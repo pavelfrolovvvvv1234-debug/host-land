@@ -14,11 +14,32 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       
+      - name: Validate secrets
+        run: |
+          if [ -z "${{ secrets.DEPLOY_HOST }}" ]; then
+            echo "❌ DEPLOY_HOST secret is not set"
+            exit 1
+          fi
+          if [ -z "${{ secrets.DEPLOY_USER }}" ]; then
+            echo "❌ DEPLOY_USER secret is not set"
+            exit 1
+          fi
+          if [ -z "${{ secrets.DEPLOY_KEY }}" ]; then
+            echo "❌ DEPLOY_KEY secret is not set"
+            exit 1
+          fi
+          if [ -z "${{ secrets.DEPLOY_PATH }}" ]; then
+            echo "❌ DEPLOY_PATH secret is not set"
+            exit 1
+          fi
+          echo "✅ All secrets are configured"
+      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: 'npm'
+          cache-dependency-path: apps/client/package-lock.json
       
       - name: Install dependencies
         run: npm ci
@@ -36,9 +57,10 @@ jobs:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_KEY }}
-          port: ${{ secrets.DEPLOY_PORT || 22 }}
+          port: ${{ secrets.DEPLOY_PORT || '22' }}
           source: "./apps/client"
           target: ${{ secrets.DEPLOY_PATH }}
+          strip_components: 0
           exclude: |
             node_modules
             .next
@@ -47,6 +69,7 @@ jobs:
             *.log
             .env*.local
             .turbo
+          debug: true
       
       - name: SSH and restart
         uses: appleboy/ssh-action@master
@@ -54,9 +77,9 @@ jobs:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_KEY }}
-          port: ${{ secrets.DEPLOY_PORT || 22 }}
+          port: ${{ secrets.DEPLOY_PORT || '22' }}
           script: |
             cd ${{ secrets.DEPLOY_PATH }}
             npm ci --production
             pm2 restart dior-host || pm2 start npm --name "dior-host" -- start
-
+          debug: true
