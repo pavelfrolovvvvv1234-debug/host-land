@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch: # Позволяет запускать вручную
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -13,60 +13,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
-      - name: Validate secrets
-        run: |
-          echo "🔍 Checking GitHub Secrets..."
-          echo ""
-          
-          MISSING_SECRETS=0
-          
-          if [ -z "${{ secrets.SSH_HOST }}" ]; then
-            echo "❌ SSH_HOST secret is NOT SET"
-            echo "   Go to: Settings → Secrets and variables → Actions → New repository secret"
-            echo "   Name: SSH_HOST"
-            echo "   Value: Your server IP or domain (e.g., 123.45.67.89)"
-            MISSING_SECRETS=$((MISSING_SECRETS + 1))
-          else
-            echo "✅ SSH_HOST is set"
-          fi
-          
-          if [ -z "${{ secrets.SSH_USER }}" ]; then
-            echo "❌ SSH_USER secret is NOT SET"
-            echo "   Name: SSH_USER"
-            echo "   Value: SSH username (e.g., root)"
-            MISSING_SECRETS=$((MISSING_SECRETS + 1))
-          else
-            echo "✅ SSH_USER is set"
-          fi
-          
-          if [ -z "${{ secrets.SSH_PRIVATE_KEY }}" ]; then
-            echo "❌ SSH_PRIVATE_KEY secret is NOT SET"
-            echo "   Name: SSH_PRIVATE_KEY"
-            echo "   Value: Private SSH key (cat ~/.ssh/id_rsa)"
-            MISSING_SECRETS=$((MISSING_SECRETS + 1))
-          else
-            echo "✅ SSH_PRIVATE_KEY is set"
-          fi
-          
-          if [ -z "${{ secrets.DEPLOY_PATH }}" ]; then
-            echo "❌ DEPLOY_PATH secret is NOT SET"
-            echo "   Name: DEPLOY_PATH"
-            echo "   Value: Server path (e.g., /var/www/dior-host)"
-            MISSING_SECRETS=$((MISSING_SECRETS + 1))
-          else
-            echo "✅ DEPLOY_PATH is set"
-          fi
-          
-          echo ""
-          if [ $MISSING_SECRETS -gt 0 ]; then
-            echo "🚫 Deployment cancelled: $MISSING_SECRETS secret(s) missing"
-            echo ""
-            echo "📖 Setup guide: https://github.com/pavelfrolovvvvv1234-debug/host-land/blob/main/.github/DEPLOY_SETUP.md"
-            exit 1
-          fi
-          
-          echo "✅ All secrets are configured! Proceeding with deployment..."
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -85,25 +31,6 @@ jobs:
         env:
           NODE_ENV: production
       
-      - name: Debug secrets (check if they exist)
-        run: |
-          echo "Checking secrets..."
-          if [ -n "${{ secrets.SSH_HOST }}" ]; then
-            echo "✅ SSH_HOST is set (length: ${#SSH_HOST})"
-          else
-            echo "❌ SSH_HOST is NOT set"
-          fi
-          if [ -n "${{ secrets.SSH_USER }}" ]; then
-            echo "✅ SSH_USER is set (length: ${#SSH_USER})"
-          else
-            echo "❌ SSH_USER is NOT set"
-          fi
-          if [ -n "${{ secrets.SSH_PRIVATE_KEY }}" ]; then
-            echo "✅ SSH_PRIVATE_KEY is set (length: ${#SSH_PRIVATE_KEY})"
-          else
-            echo "❌ SSH_PRIVATE_KEY is NOT set"
-          fi
-      
       - name: Deploy to server
         uses: appleboy/scp-action@master
         with:
@@ -117,7 +44,7 @@ jobs:
           debug: true
       
       - name: SSH and restart
-        uses: appleboy/ssh-action@v1
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
