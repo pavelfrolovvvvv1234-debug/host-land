@@ -21,32 +21,32 @@ jobs:
           
           MISSING_SECRETS=0
           
-          if [ -z "${{ secrets.DEPLOY_HOST }}" ]; then
-            echo "❌ DEPLOY_HOST secret is NOT SET"
+          if [ -z "${{ secrets.SSH_HOST }}" ]; then
+            echo "❌ SSH_HOST secret is NOT SET"
             echo "   Go to: Settings → Secrets and variables → Actions → New repository secret"
-            echo "   Name: DEPLOY_HOST"
+            echo "   Name: SSH_HOST"
             echo "   Value: Your server IP or domain (e.g., 123.45.67.89)"
             MISSING_SECRETS=$((MISSING_SECRETS + 1))
           else
-            echo "✅ DEPLOY_HOST is set"
+            echo "✅ SSH_HOST is set"
           fi
           
-          if [ -z "${{ secrets.DEPLOY_USER }}" ]; then
-            echo "❌ DEPLOY_USER secret is NOT SET"
-            echo "   Name: DEPLOY_USER"
+          if [ -z "${{ secrets.SSH_USER }}" ]; then
+            echo "❌ SSH_USER secret is NOT SET"
+            echo "   Name: SSH_USER"
             echo "   Value: SSH username (e.g., root)"
             MISSING_SECRETS=$((MISSING_SECRETS + 1))
           else
-            echo "✅ DEPLOY_USER is set"
+            echo "✅ SSH_USER is set"
           fi
           
-          if [ -z "${{ secrets.DEPLOY_KEY }}" ]; then
-            echo "❌ DEPLOY_KEY secret is NOT SET"
-            echo "   Name: DEPLOY_KEY"
+          if [ -z "${{ secrets.SSH_PRIVATE_KEY }}" ]; then
+            echo "❌ SSH_PRIVATE_KEY secret is NOT SET"
+            echo "   Name: SSH_PRIVATE_KEY"
             echo "   Value: Private SSH key (cat ~/.ssh/id_rsa)"
             MISSING_SECRETS=$((MISSING_SECRETS + 1))
           else
-            echo "✅ DEPLOY_KEY is set"
+            echo "✅ SSH_PRIVATE_KEY is set"
           fi
           
           if [ -z "${{ secrets.DEPLOY_PATH }}" ]; then
@@ -86,32 +86,24 @@ jobs:
           NODE_ENV: production
       
       - name: Deploy to server
-        uses: appleboy/scp-action@master
+        uses: appleboy/scp-action@v1
         with:
-          host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}
-          key: ${{ secrets.DEPLOY_KEY }}
-          port: ${{ secrets.DEPLOY_PORT || '22' }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
           source: "./apps/client"
           target: ${{ secrets.DEPLOY_PATH }}
-          strip_components: 0
-          exclude: |
-            node_modules
-            .next
-            .git
-            .github
-            *.log
-            .env*.local
-            .turbo
+          overwrite: true
           debug: true
       
       - name: SSH and restart
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v1
         with:
-          host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}
-          key: ${{ secrets.DEPLOY_KEY }}
-          port: ${{ secrets.DEPLOY_PORT || '22' }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
           script: |
             cd ${{ secrets.DEPLOY_PATH }}
             npm ci --production

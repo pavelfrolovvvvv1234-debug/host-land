@@ -14,16 +14,16 @@
 
 ### Шаг 2: Добавьте следующие секреты
 
-#### DEPLOY_HOST
-- **Name**: `DEPLOY_HOST`
+#### SSH_HOST
+- **Name**: `SSH_HOST`
 - **Value**: IP адрес или домен вашего сервера (например: `123.45.67.89` или `server.example.com`)
 
-#### DEPLOY_USER
-- **Name**: `DEPLOY_USER`
+#### SSH_USER
+- **Name**: `SSH_USER`
 - **Value**: Имя пользователя для SSH (например: `root` или `deploy`)
 
-#### DEPLOY_KEY
-- **Name**: `DEPLOY_KEY`
+#### SSH_PRIVATE_KEY
+- **Name**: `SSH_PRIVATE_KEY`
 - **Value**: Приватный SSH ключ для подключения к серверу
 
 **Как получить SSH ключ:**
@@ -49,9 +49,9 @@ chmod 600 ~/.ssh/authorized_keys
 - **Name**: `DEPLOY_PATH`
 - **Value**: Путь на сервере, куда деплоить проект (например: `/var/www/dior-host`)
 
-#### DEPLOY_PORT (опционально)
-- **Name**: `DEPLOY_PORT`
-- **Value**: SSH порт (по умолчанию: `22`)
+#### DEPLOY_PATH
+- **Name**: `DEPLOY_PATH`
+- **Value**: Путь на сервере, куда деплоить проект (например: `/var/www/dior-host`)
 
 ## Альтернатива: Использование пароля вместо ключа
 
@@ -59,12 +59,12 @@ chmod 600 ~/.ssh/authorized_keys
 
 ```yaml
 - name: Deploy to server
-  uses: appleboy/scp-action@master
+  uses: appleboy/scp-action@v1
   with:
-    host: ${{ secrets.DEPLOY_HOST }}
-    username: ${{ secrets.DEPLOY_USER }}
-    password: ${{ secrets.DEPLOY_PASSWORD }}  # Вместо key
-    port: ${{ secrets.DEPLOY_PORT || 22 }}
+    host: ${{ secrets.SSH_HOST }}
+    username: ${{ secrets.SSH_USER }}
+    password: ${{ secrets.SSH_PASSWORD }}  # Вместо key (не рекомендуется)
+    port: 22
     source: "./apps/client"
     target: ${{ secrets.DEPLOY_PATH }}
 ```
