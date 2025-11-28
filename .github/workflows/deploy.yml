@@ -16,23 +16,57 @@ jobs:
       
       - name: Validate secrets
         run: |
+          echo "🔍 Checking GitHub Secrets..."
+          echo ""
+          
+          MISSING_SECRETS=0
+          
           if [ -z "${{ secrets.DEPLOY_HOST }}" ]; then
-            echo "❌ DEPLOY_HOST secret is not set"
-            exit 1
+            echo "❌ DEPLOY_HOST secret is NOT SET"
+            echo "   Go to: Settings → Secrets and variables → Actions → New repository secret"
+            echo "   Name: DEPLOY_HOST"
+            echo "   Value: Your server IP or domain (e.g., 123.45.67.89)"
+            MISSING_SECRETS=$((MISSING_SECRETS + 1))
+          else
+            echo "✅ DEPLOY_HOST is set"
           fi
+          
           if [ -z "${{ secrets.DEPLOY_USER }}" ]; then
-            echo "❌ DEPLOY_USER secret is not set"
-            exit 1
+            echo "❌ DEPLOY_USER secret is NOT SET"
+            echo "   Name: DEPLOY_USER"
+            echo "   Value: SSH username (e.g., root)"
+            MISSING_SECRETS=$((MISSING_SECRETS + 1))
+          else
+            echo "✅ DEPLOY_USER is set"
           fi
+          
           if [ -z "${{ secrets.DEPLOY_KEY }}" ]; then
-            echo "❌ DEPLOY_KEY secret is not set"
-            exit 1
+            echo "❌ DEPLOY_KEY secret is NOT SET"
+            echo "   Name: DEPLOY_KEY"
+            echo "   Value: Private SSH key (cat ~/.ssh/id_rsa)"
+            MISSING_SECRETS=$((MISSING_SECRETS + 1))
+          else
+            echo "✅ DEPLOY_KEY is set"
           fi
+          
           if [ -z "${{ secrets.DEPLOY_PATH }}" ]; then
-            echo "❌ DEPLOY_PATH secret is not set"
+            echo "❌ DEPLOY_PATH secret is NOT SET"
+            echo "   Name: DEPLOY_PATH"
+            echo "   Value: Server path (e.g., /var/www/dior-host)"
+            MISSING_SECRETS=$((MISSING_SECRETS + 1))
+          else
+            echo "✅ DEPLOY_PATH is set"
+          fi
+          
+          echo ""
+          if [ $MISSING_SECRETS -gt 0 ]; then
+            echo "🚫 Deployment cancelled: $MISSING_SECRETS secret(s) missing"
+            echo ""
+            echo "📖 Setup guide: https://github.com/pavelfrolovvvvv1234-debug/host-land/blob/main/.github/DEPLOY_SETUP.md"
             exit 1
           fi
-          echo "✅ All secrets are configured"
+          
+          echo "✅ All secrets are configured! Proceeding with deployment..."
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
