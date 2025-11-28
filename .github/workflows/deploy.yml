@@ -85,6 +85,25 @@ jobs:
         env:
           NODE_ENV: production
       
+      - name: Debug secrets (check if they exist)
+        run: |
+          echo "Checking secrets..."
+          if [ -n "${{ secrets.SSH_HOST }}" ]; then
+            echo "✅ SSH_HOST is set (length: ${#SSH_HOST})"
+          else
+            echo "❌ SSH_HOST is NOT set"
+          fi
+          if [ -n "${{ secrets.SSH_USER }}" ]; then
+            echo "✅ SSH_USER is set (length: ${#SSH_USER})"
+          else
+            echo "❌ SSH_USER is NOT set"
+          fi
+          if [ -n "${{ secrets.SSH_PRIVATE_KEY }}" ]; then
+            echo "✅ SSH_PRIVATE_KEY is set (length: ${#SSH_PRIVATE_KEY})"
+          else
+            echo "❌ SSH_PRIVATE_KEY is NOT set"
+          fi
+      
       - name: Deploy to server
         uses: appleboy/scp-action@v1
         with:
