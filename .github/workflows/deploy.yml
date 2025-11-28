@@ -31,6 +31,13 @@ jobs:
         env:
           NODE_ENV: production
       
+      - name: Check secrets presence
+        run: |
+          echo "SSH_HOST set: ${{ secrets.SSH_HOST != '' }}"
+          echo "SSH_USER set: ${{ secrets.SSH_USER != '' }}"
+          echo "SSH_PRIVATE_KEY set: ${{ secrets.SSH_PRIVATE_KEY != '' }}"
+          echo "DEPLOY_PATH set: ${{ secrets.DEPLOY_PATH != '' }}"
+      
       - name: Deploy to server
         uses: appleboy/scp-action@master
         with:
