@@ -1,0 +1,162 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+  SUPPORT
+}
+
+enum ServerStatus {
+  PENDING
+  PROVISIONING
+  ACTIVE
+  SUSPENDED
+  TERMINATED
+  ERROR
+}
+
+enum InvoiceStatus {
+  DRAFT
+  PENDING
+  PAID
+  OVERDUE
+  CANCELLED
+  REFUNDED
+}
+
+enum TransactionType {
+  CREDIT
+  DEBIT
+}
+
+enum TicketStatus {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+}
+
+enum TicketPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  passwordHash  String    @map("password_hash")
+  firstName     String?   @map("first_name")
+  lastName      String?   @map("last_name")
+  role          Role      @default(USER)
+  isEmailVerified Boolean @default(false) @map("is_email_verified")
+  twoFactorSecret String? @map("two_factor_secret")
+  twoFactorEnabled Boolean @default(false) @map("two_factor_enabled")
+  refreshToken  String?   @map("refresh_token")
+  refreshTokenExpiresAt DateTime? @map("refresh_token_expires_at")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  servers       Server[]
+  invoices      Invoice[]
+  transactions  Transaction[]
+  tickets       Ticket[]
+  ticketsAssigned Ticket[] @relation("AssignedTickets")
+
+  @@map("users")
+}
+
+model Server {
+  id              String       @id @default(uuid())
+  userId          String       @map("user_id")
+  name            String
+  status          ServerStatus @default(PENDING)
+  externalId      String?      @map("external_id") // ID from Pterodactyl/Proxmox
+  specs           Json         // CPU, RAM, Disk, etc.
+  ipAddress       String?      @map("ip_address")
+  createdAt       DateTime     @default(now()) @map("created_at")
+  updatedAt       DateTime     @updatedAt @map("updated_at")
+
+  user            User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  invoices        Invoice[]
+
+  @@index([userId])
+  @@index([status])
+  @@map("servers")
+}
+
+model Invoice {
+  id            String        @id @default(uuid())
+  userId        String        @map("user_id")
+  serverId      String?       @map("server_id")
+  amount        Decimal       @db.Decimal(10, 2)
+  status        InvoiceStatus @default(DRAFT)
+  dueDate       DateTime      @map("due_date")
+  paidAt        DateTime?     @map("paid_at")
+  stripePaymentIntentId String? @map("stripe_payment_intent_id")
+  createdAt     DateTime      @default(now()) @map("created_at")
+  updatedAt     DateTime      @updatedAt @map("updated_at")
+
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  server        Server?       @relation(fields: [serverId], references: [id], onDelete: SetNull)
+  transactions  Transaction[]
+
+  @@index([userId])
+  @@index([status])
+  @@index([dueDate])
+  @@map("invoices")
+}
+
+model Transaction {
+  id            String          @id @default(uuid())
+  userId        String          @map("user_id")
+  invoiceId     String?         @map("invoice_id")
+  type          TransactionType
+  amount        Decimal         @db.Decimal(10, 2)
+  balance       Decimal         @db.Decimal(10, 2) // Running balance after this transaction
+  description   String
+  metadata      Json?           // Additional data (payment gateway info, etc.)
+  createdAt     DateTime        @default(now()) @map("created_at")
+
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  invoice       Invoice?        @relation(fields: [invoiceId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([invoiceId])
+  @@index([createdAt])
+  @@map("transactions")
+}
+
+model Ticket {
+  id            String          @id @default(uuid())
+  userId       String          @map("user_id")
+  assignedToId String?         @map("assigned_to_id")
+  subject      String
+  description  String
+  status       TicketStatus     @default(OPEN)
+  priority     TicketPriority   @default(MEDIUM)
+  createdAt    DateTime        @default(now()) @map("created_at")
+  updatedAt    DateTime        @updatedAt @map("updated_at")
+  resolvedAt   DateTime?       @map("resolved_at")
+
+  user         User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  assignedTo   User?           @relation("AssignedTickets", fields: [assignedToId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([status])
+  @@index([priority])
+  @@index([assignedToId])
+  @@map("tickets")
+}
+

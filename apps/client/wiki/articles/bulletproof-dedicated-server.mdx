@@ -1,0 +1,440 @@
+# Bulletproof Dedicated Servers: Complete Technical Guide
+
+Bulletproof dedicated servers are physical bare-metal servers hosted in jurisdictions with lenient abuse policies and manual complaint handling. Unlike standard dedicated hosting, bulletproof dedicated servers implement human-operated abuse desks, network-level traffic filtering, and IP reputation management that minimize automated account termination.
+
+## Definition and Overview
+
+A **bulletproof dedicated server** is a physical bare-metal server with exclusive access to CPU, RAM, storage, and network interfaces, hosted in a jurisdiction tolerant to gray-zone content and aggressive marketing campaigns. The term "bulletproof" refers to the provider's policy of manually reviewing abuse tickets and DMCA notices rather than automatically suspending accounts.
+
+Key characteristics:
+
+- **Full hardware isolation**: Exclusive access to physical hardware (no virtualization or sharing).
+- **Manual abuse triage**: Human operators review complaints before taking action.
+- **Offshore-friendly locations**: Typical datacenters in NL, DE, RO, MD, and other EU jurisdictions.
+- **Network-level filtering**: Multi-homed BGP routing, custom IP reputation management, and DDoS protection.
+
+## Why This Matters
+
+Standard dedicated server providers terminate accounts automatically when receiving DMCA notices or abuse complaints. For projects involving aggressive marketing, content mirrors, privacy-focused services, or security research, this creates unacceptable downtime risk. Bulletproof dedicated servers address this by implementing policy-driven abuse handling that distinguishes between legitimate criminal activity and gray-zone content.
+
+Market drivers:
+
+- **DMCA escalation**: Content creators and copyright holders increasingly use automated takedown systems that trigger false positives.
+- **Abuse ticket automation**: Many hosting providers rely on automated systems that suspend accounts without human review.
+- **High-performance requirements**: Bare-metal servers provide maximum CPU, RAM, and I/O performance for high-load applications.
+
+## Technical Architecture
+
+### Hardware Stack
+
+**CPU architecture**:
+
+- **Intel Xeon**: Dual-socket or single-socket Xeon processors (8–64 cores per server).
+- **AMD EPYC**: Single-socket or dual-socket EPYC processors (8–128 cores per server).
+- **CPU features**: Full access to CPU features (AVX, AVX2, AVX-512, etc.).
+
+**Memory architecture**:
+
+- **ECC RAM**: Error-correcting code (ECC) memory for data integrity (32–512 GB per server).
+- **Memory channels**: Full access to memory channels for maximum bandwidth.
+- **Memory speed**: DDR4 or DDR5 memory (2,400–5,600 MT/s).
+
+**Storage architecture**:
+
+- **NVMe SSD**: High-performance NVMe storage (500 GB–10 TB per server).
+- **SATA SSD**: Cost-effective SATA SSD storage (1–20 TB per server).
+- **HDD**: High-capacity HDD storage (4–100 TB per server).
+- **RAID configuration**: RAID 0, 1, 5, 6, 10, or ZFS for redundancy and performance.
+
+**Network architecture**:
+
+- **Network interfaces**: 1 Gbit/s, 10 Gbit/s, or 100 Gbit/s network interfaces.
+- **BGP routing**: Multi-homed BGP sessions with multiple transit providers.
+- **IP allocation**: Static IPv4 addresses with optional IPv6 (/64 or /48 prefixes).
+
+### Network Architecture
+
+**Layer 3 (L3) routing**:
+
+- **Multi-homed BGP**: BGP sessions with multiple Tier 1 and Tier 2 transit providers.
+- **Custom BGP communities**: Traffic engineering and abuse mitigation via BGP communities.
+- **Anycast IP**: Optional Anycast IP addressing for DNS and CDN workloads.
+
+**Layer 4 (L4) filtering**:
+
+- **Stateful firewalls**: iptables/nftables with connection tracking.
+- **DDoS mitigation**: Network-edge DDoS protection (rate limiting, SYN flood protection).
+- **Traffic shaping**: Per-server traffic shaping and QoS policies.
+
+**Layer 7 (L7) inspection**:
+
+- **Reverse proxy**: Optional reverse proxy layer (nginx, Apache) for HTTP/HTTPS filtering.
+- **WAF**: Web Application Firewall rules for common attack patterns.
+- **SSL/TLS termination**: SSL/TLS termination with SNI-based routing.
+
+### Storage Stack
+
+**NVMe SSD storage** with RAID configurations:
+
+- **RAID 10**: Mirrored and striped arrays for high IOPS and redundancy.
+- **RAID 5/6**: Parity-based redundancy for cost optimization.
+- **ZFS**: Copy-on-write filesystem with snapshot support and data integrity checks.
+
+**Performance characteristics**:
+
+- **Sequential read**: 3,500+ MB/s (NVMe SSD).
+- **Sequential write**: 3,000+ MB/s (NVMe SSD).
+- **Random read (4K)**: 600,000+ IOPS (NVMe SSD).
+- **Random write (4K)**: 500,000+ IOPS (NVMe SSD).
+
+## Abuse-Handling Architecture
+
+### Manual Abuse Triage
+
+Bulletproof dedicated server providers implement **human-operated abuse desks** that review complaints before taking action. Typical workflow:
+
+1. **Ticket ingestion**: Abuse complaints received via email, web form, or API.
+2. **Initial triage**: Classification by severity (criminal activity, DMCA, spam, etc.).
+3. **Investigation**: Review of server logs, content, and customer communication.
+4. **Decision**: Action taken only if violation matches zero-tolerance policy.
+
+**Zero-tolerance policies**:
+
+- **Malware distribution**: Servers used for malware hosting or command-and-control (C2) infrastructure.
+- **Child exploitation**: Servers hosting illegal content.
+- **Phishing campaigns**: Servers targeting financial institutions or other trusted entities.
+- **DDoS attack infrastructure**: Servers used for DDoS attacks.
+
+Gray-zone content (aggressive marketing, content mirrors, privacy services) receives warnings or content removal requests rather than account termination.
+
+### Network-Level Filtering
+
+**Traffic filtering** at network edge:
+
+- **Ingress filtering**: Block malicious traffic before it reaches servers.
+- **Egress filtering**: Monitor outbound traffic for abuse patterns (spam, DDoS, etc.).
+- **Rate limiting**: Per-IP and per-server connection rate limits to prevent abuse.
+
+**IP reputation management**:
+
+- **Blacklist monitoring**: Continuous monitoring of IP addresses against blacklists (Spamhaus, SURBL, etc.).
+- **Automatic IP rotation**: Automatic IP rotation when blacklisting occurs.
+- **BGP route filtering**: BGP route filtering to prevent IP hijacking and route leaks.
+
+### Jurisdictional Protection
+
+Bulletproof dedicated server providers operate in jurisdictions with:
+
+- **Lenient abuse policies**: Local laws that require court orders for content removal.
+- **Data protection**: GDPR and similar frameworks that limit automated data processing.
+- **Network neutrality**: Regulations that prevent ISPs from blocking content without due process.
+
+**Common jurisdictions**:
+
+- **Netherlands (NL)**: Strong data protection laws, lenient abuse handling.
+- **Germany (DE)**: GDPR compliance, court-ordered content removal only.
+- **Romania (RO)**: Offshore-friendly policies, low regulatory oversight.
+- **Moldova (MD)**: Minimal abuse enforcement, privacy-focused regulations.
+
+## Traffic Filtering Systems
+
+### Ingress Filtering
+
+**DDoS protection**:
+
+- **SYN flood protection**: Rate limiting and connection tracking for SYN flood attacks.
+- **UDP flood protection**: Rate limiting for UDP flood attacks.
+- **ICMP flood protection**: Rate limiting for ICMP flood attacks.
+
+**Traffic shaping**:
+
+- **Per-IP rate limiting**: Limit traffic per source IP address.
+- **Per-protocol rate limiting**: Limit traffic per protocol (TCP, UDP, ICMP).
+- **Connection rate limiting**: Limit new connections per second.
+
+### Egress Filtering
+
+**Outbound traffic monitoring**:
+
+- **Spam detection**: Monitor outbound email traffic for spam patterns.
+- **DDoS detection**: Monitor outbound traffic for DDoS attack patterns.
+- **Malware detection**: Monitor outbound traffic for malware communication.
+
+**Traffic blocking**:
+
+- **Blacklist blocking**: Block outbound traffic to known malicious IP addresses.
+- **Port blocking**: Block outbound traffic on specific ports (e.g., port 25 for spam).
+- **Protocol blocking**: Block outbound traffic on specific protocols.
+
+### L7 Inspection
+
+**HTTP/HTTPS filtering**:
+
+- **Reverse proxy**: nginx or Apache reverse proxy for HTTP/HTTPS filtering.
+- **WAF rules**: Web Application Firewall rules for common attack patterns (SQL injection, XSS, etc.).
+- **SSL/TLS termination**: SSL/TLS termination with SNI-based routing.
+
+## IP Policies
+
+### IP Address Allocation
+
+**Static IPv4 addresses**:
+
+- **IP allocation**: Static IPv4 addresses assigned to dedicated servers.
+- **Reverse DNS (PTR)**: Configurable reverse DNS records via control panel or API.
+- **IP reputation**: IP reputation monitoring and automatic rotation for blacklisted ranges.
+
+**IPv6 allocation**:
+
+- **IPv6 prefixes**: /64 or /48 IPv6 prefixes assigned to dedicated servers.
+- **IPv6 routing**: Full IPv6 routing support with BGP announcements.
+
+### IP Reputation Management
+
+**Blacklist monitoring**:
+
+- **Continuous monitoring**: IP addresses monitored against blacklists (Spamhaus, SURBL, etc.).
+- **Automatic rotation**: Automatic IP rotation when blacklisting occurs.
+- **BGP announcements**: BGP route filtering to prevent IP hijacking.
+
+**IP rotation strategies**:
+
+- **Proactive rotation**: Rotate IPs before blacklisting occurs (based on reputation scores).
+- **Reactive rotation**: Rotate IPs after blacklisting occurs.
+- **Manual rotation**: Manual IP rotation via control panel or API.
+
+### BGP Routing
+
+**Multi-homed BGP**:
+
+- **Multiple transit providers**: BGP sessions with multiple Tier 1 and Tier 2 transit providers.
+- **Custom BGP communities**: Traffic engineering and abuse mitigation via BGP communities.
+- **RPKI validation**: Resource Public Key Infrastructure (RPKI) for route origin validation.
+
+**BGP route filtering**:
+
+- **Route filtering**: Filter BGP routes to prevent IP hijacking and route leaks.
+- **Prefix filtering**: Filter BGP prefixes based on ASN and prefix length.
+- **Community filtering**: Filter BGP routes based on BGP communities.
+
+## Use Cases and Project Types
+
+### High-Performance Databases
+
+**Database servers** require maximum CPU, RAM, and I/O performance:
+
+- **MySQL/MariaDB**: Large-scale MySQL/MariaDB databases with high query loads.
+- **PostgreSQL**: High-performance PostgreSQL databases with complex queries.
+- **MongoDB**: Large-scale MongoDB databases with high write loads.
+- **Redis**: High-performance Redis caches with high throughput requirements.
+
+### CDN and Streaming
+
+**Content delivery networks** require high bandwidth and low latency:
+
+- **Video streaming**: High-bandwidth video streaming servers.
+- **File distribution**: Large-file distribution servers (software, media, etc.).
+- **CDN edge nodes**: CDN edge nodes with high traffic loads.
+
+### High-Risk Web Applications
+
+**Web applications** that receive frequent abuse complaints:
+
+- **User-generated content**: Platforms with user-generated content and copyright concerns.
+- **File sharing**: File sharing services with DMCA exposure.
+- **Streaming platforms**: Streaming platforms with content licensing gray zones.
+
+### Security Research
+
+**Security research** and threat intelligence:
+
+- **Honeypots**: Honeypot servers for threat intelligence collection.
+- **Malware analysis**: Sandboxed malware analysis environments.
+- **Penetration testing**: Penetration testing infrastructure.
+
+## Performance Benchmarks
+
+### CPU Performance
+
+**Single-threaded performance** (operations per second):
+
+- **Intel Xeon**: 5,000+ ops/sec per core.
+- **AMD EPYC**: 5,500+ ops/sec per core.
+
+**Multi-threaded performance** (scaling):
+
+- **Linear scaling**: Linear scaling up to physical core count.
+- **No virtualization overhead**: Maximum performance without virtualization overhead.
+
+### Storage Performance
+
+**Sequential read performance** (MB/s):
+
+- **NVMe SSD**: 3,500+ MB/s.
+- **SATA SSD**: 500–600 MB/s.
+- **HDD**: 100–200 MB/s.
+
+**Random read performance** (IOPS, 4K blocks):
+
+- **NVMe SSD**: 600,000+ IOPS.
+- **SATA SSD**: 50,000–100,000 IOPS.
+- **HDD**: 100–200 IOPS.
+
+### Network Performance
+
+**Bandwidth** (Gbit/s):
+
+- **1 Gbit/s**: Standard network interface.
+- **10 Gbit/s**: High-bandwidth network interface.
+- **100 Gbit/s**: Ultra-high-bandwidth network interface.
+
+**Latency** (ms to major EU datacenters):
+
+- **< 5 ms**: Low latency to major EU datacenters.
+- **Packet loss**: < 0.001% under normal conditions.
+
+## Security Considerations
+
+### Physical Security
+
+**Datacenter security**:
+
+- **Access control**: Biometric access control and security cameras.
+- **Fire suppression**: Fire suppression systems (sprinklers, gas systems).
+- **Power redundancy**: UPS and backup generators for power redundancy.
+
+### Network Security
+
+**Firewall rules**:
+
+- **Stateful firewalls**: iptables/nftables with connection tracking.
+- **DDoS protection**: Network-edge DDoS protection (rate limiting, SYN flood protection).
+- **Intrusion detection**: Intrusion detection systems (IDS) for attack pattern detection.
+
+### Access Control
+
+**SSH key authentication**:
+
+- **Disable password authentication**: Use SSH key authentication only.
+- **Restrict SSH access**: Restrict SSH access to specific IP ranges.
+- **Fail2ban**: Use fail2ban or similar tools for brute-force protection.
+
+## Troubleshooting and Common Issues
+
+### High CPU Usage
+
+**Symptoms**: Server shows 100% CPU usage, slow response times.
+
+**Diagnosis**:
+
+```bash
+# Check CPU usage per process
+top -b -n 1 | head -20
+
+# Check CPU wait time
+iostat -x 1 5
+
+# Check CPU frequency scaling
+cpupower frequency-info
+```
+
+**Solutions**:
+
+- Optimize application code for CPU efficiency.
+- Enable CPU frequency scaling (performance mode).
+- Upgrade to higher-core-count CPU.
+
+### Network Latency Issues
+
+**Symptoms**: High latency to external services, packet loss.
+
+**Diagnosis**:
+
+```bash
+# Test latency to external hosts
+ping -c 10 8.8.8.8
+
+# Trace network path
+traceroute 8.8.8.8
+
+# Check network interface statistics
+ifconfig eth0
+```
+
+**Solutions**:
+
+- Contact provider for network routing optimization.
+- Use CDN for static content delivery.
+- Enable TCP BBR congestion control.
+
+### Storage Performance Degradation
+
+**Symptoms**: Slow disk I/O, high I/O wait times.
+
+**Diagnosis**:
+
+```bash
+# Check disk I/O statistics
+iostat -x 1 5
+
+# Check I/O wait time
+vmstat 1 5
+
+# Test disk performance
+fio --name=randread --ioengine=libaio --iodepth=16 --rw=randread --bs=4k --size=1G --runtime=60
+```
+
+**Solutions**:
+
+- Upgrade to NVMe SSD for higher IOPS.
+- Optimize database queries for I/O efficiency.
+- Enable filesystem caching (bcache, lvmcache).
+
+## FAQ
+
+### What is the difference between bulletproof dedicated servers and standard dedicated servers?
+
+Bulletproof dedicated servers implement manual abuse handling and operate in jurisdictions with lenient abuse policies, while standard dedicated servers use automated abuse systems that terminate accounts immediately upon receiving complaints.
+
+### Can bulletproof dedicated servers ignore all DMCA notices?
+
+No. Bulletproof dedicated server providers review DMCA notices manually and may remove content or terminate accounts if violations match zero-tolerance policies. However, they do not automatically suspend accounts without investigation.
+
+### What jurisdictions are best for bulletproof dedicated servers?
+
+Netherlands (NL), Germany (DE), Romania (RO), and Moldova (MD) are common jurisdictions for bulletproof dedicated servers due to lenient abuse policies and strong data protection laws.
+
+### How is network performance different from standard dedicated servers?
+
+Bulletproof dedicated servers typically provide multi-homed BGP routing with multiple transit providers for improved redundancy and performance, with optional Anycast IP addressing.
+
+### Can I bring my own IP addresses?
+
+Some bulletproof dedicated server providers support BGP sessions for customer-owned IP prefixes, subject to routing policy and RPKI constraints.
+
+### How is abuse handled differently from standard hosting?
+
+Bulletproof dedicated server providers use manual abuse triage where human operators review complaints before taking action, rather than automated systems that suspend accounts immediately.
+
+### What is the typical storage configuration?
+
+Bulletproof dedicated servers typically use NVMe SSD storage with RAID 10 (mirrored and striped) for high IOPS and redundancy, with optional SATA SSD or HDD for cost optimization.
+
+### How is IP reputation managed?
+
+Bulletproof dedicated server providers monitor IP addresses against blacklists and automatically rotate IPs when blacklisting occurs. They also implement BGP route filtering to prevent IP hijacking.
+
+### What is the difference between bulletproof dedicated servers and bulletproof VDS?
+
+Bulletproof dedicated servers provide exclusive access to physical hardware with no virtualization overhead, while bulletproof VDS provides virtualized instances with dedicated CPU cores and guaranteed RAM allocation.
+
+### How is traffic filtering implemented?
+
+Bulletproof dedicated servers implement network-level traffic filtering at L3 (routing), L4 (firewall), and L7 (reverse proxy/WAF) layers, with DDoS protection at network edge.
+
+## Related Articles
+
+- [Bulletproof VDS](/wiki/articles/bulletproof-vds)
+- [Bulletproof Domains](/wiki/articles/bulletproof-domains)
+- [Dedicated Servers with IPHM](/wiki/articles/dedicated-servers-with-iphm)
+- [Dedicated Servers](/wiki/articles/dedicated-servers)

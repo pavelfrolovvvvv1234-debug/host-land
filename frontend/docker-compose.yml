@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dior-host-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=${API_URL:-https://api.dior.host}
+      - NEXT_PUBLIC_FRONTEND_URL=${FRONTEND_URL:-https://dior.host}
+      - API_BASE_URL=${API_BASE_URL:-https://api.dior.host/v1}
+      - FRONTEND_URL=${FRONTEND_URL:-https://dior.host}
+    env_file:
+      - .env.production
+    restart: unless-stopped
+    networks:
+      - dior-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Backend API (if needed as separate service)
+  # Uncomment if you want to run API as separate service
+  # api:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   container_name: dior-host-api
+  #   ports:
+  #     - "3001:3000"
+  #   environment:
+  #     - NODE_ENV=production
+  #     - PORT=3000
+  #     - API_BASE_URL=${API_BASE_URL:-https://api.dior.host/v1}
+  #     - FRONTEND_URL=${FRONTEND_URL:-https://dior.host}
+  #   env_file:
+  #     - .env.production
+  #   restart: unless-stopped
+  #   networks:
+  #     - dior-network
+
+networks:
+  dior-network:
+    driver: bridge
+
+

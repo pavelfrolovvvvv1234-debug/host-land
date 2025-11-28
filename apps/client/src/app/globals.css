@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+/* Navigation styles */
+.nav-logo {
+  transition: opacity 0.3s ease;
+}
+
+.nav-logo:hover {
+  opacity: 0.8;
+}
+
+.nav-link {
+  transition: all 0.2s ease;
+}
+
+.logo-path {
+  transition: fill 0.3s ease;
+}
+
+.lang-switcher {
+  transition: all 0.2s ease;
+}
+
+.lang-switcher:hover {
+  border-color: rgba(66, 104, 255, 0.5);
+}
+
+/* Service card animations */
+.service-card {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(10, 77, 146, 0.3),
+              0 0 20px rgba(66, 104, 255, 0.15);
+}
+
+.service-card-icon {
+  transition: filter 0.3s ease;
+  will-change: filter;
+}
+
+.service-card:hover .service-card-icon {
+  animation: iconGlowPulse 1s ease-in-out infinite;
+}
+
+@keyframes iconGlowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px rgba(66, 104, 255, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(66, 104, 255, 0.7));
+  }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+/* Legal Pages Styling */
+.legal-content {
+  @apply text-white/80 leading-relaxed;
+}
+
+.legal-content h2 {
+  @apply text-3xl font-semibold mb-6 text-white border-b border-white/10 pb-4 mt-12;
+}
+
+.legal-content h3 {
+  @apply text-xl font-semibold mb-3 text-white mt-6;
+}
+
+.legal-content h4 {
+  @apply text-lg font-semibold mb-2 text-white mt-4;
+}
+
+.legal-content p {
+  @apply mb-4 leading-relaxed;
+}
+
+.legal-content ul,
+.legal-content ol {
+  @apply ml-4 mb-4;
+}
+
+.legal-content li {
+  @apply mb-2;
+}
+
+.legal-content a {
+  @apply text-blue-300 hover:text-white underline;
+}
+
+.legal-content table {
+  @apply w-full text-sm;
+}
+
+.legal-content table thead {
+  @apply bg-white/5;
+}
+
+.legal-content table th {
+  @apply text-left py-3 px-4 text-white font-semibold border-b border-white/10;
+}
+
+.legal-content table td {
+  @apply py-3 px-4 border-b border-white/5;
+}
+
+.legal-content table tbody tr:hover {
+  @apply bg-white/5;
+}
+
+.legal-content code {
+  @apply bg-black/50 px-2 py-1 rounded text-sm font-mono;
+}
+
+.legal-content pre {
+  @apply bg-black/50 p-4 rounded-lg overflow-x-auto;
+}
+
+.legal-content blockquote {
+  @apply border-l-4 border-blue-500/50 pl-4 italic text-white/70;
+}
+
+

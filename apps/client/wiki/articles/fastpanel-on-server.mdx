@@ -1,0 +1,343 @@
+# FastPanel on Server: Complete Installation and Configuration Guide
+
+FastPanel is a free, open-source web hosting control panel for Linux servers. It provides a user-friendly interface for managing websites, domains, databases, email accounts, and server resources. This guide covers installation, configuration, and best practices for using FastPanel on your server.
+
+## Definition and Overview
+
+**FastPanel** is a lightweight, open-source web hosting control panel designed for Linux servers. It provides a web-based interface for managing websites, domains, databases, email accounts, FTP accounts, and server resources without requiring command-line expertise.
+
+Key features:
+
+- **Web-based interface**: User-friendly web interface for server management.
+- **Multi-domain support**: Manage multiple domains and websites from a single panel.
+- **Database management**: MySQL/MariaDB and PostgreSQL database management.
+- **Email management**: Email account creation and management.
+- **FTP management**: FTP account creation and management.
+- **SSL certificate management**: Let's Encrypt SSL certificate installation and renewal.
+- **Backup management**: Automated backup creation and restoration.
+
+## Installation
+
+### System Requirements
+
+**Operating system**:
+
+- **CentOS 7/8**: CentOS 7 or 8 (or Rocky Linux, AlmaLinux).
+- **Ubuntu 18.04/20.04/22.04**: Ubuntu Server 18.04, 20.04, or 22.04.
+- **Debian 9/10/11**: Debian 9, 10, or 11.
+
+**Hardware requirements**:
+
+- **CPU**: 1+ CPU cores (2+ recommended).
+- **RAM**: 512 MB minimum (1 GB+ recommended).
+- **Storage**: 10 GB minimum (20 GB+ recommended).
+- **Network**: Internet connection for installation and updates.
+
+### Installation Steps
+
+**1. Connect to your server**:
+
+```bash
+ssh root@your-server-ip
+```
+
+**2. Download and run the installation script**:
+
+```bash
+curl -fsSL https://fastpanel.direct/install.sh | bash
+```
+
+**3. Wait for installation to complete**:
+
+The installation script will:
+- Install required dependencies (nginx, PHP, MySQL/MariaDB, etc.).
+- Configure web server and database.
+- Set up FastPanel web interface.
+- Generate admin credentials.
+
+**4. Access FastPanel**:
+
+- Open your web browser and navigate to: `https://your-server-ip:8888`
+- Login with the credentials provided during installation.
+
+## Configuration
+
+### Initial Setup
+
+**1. Change default password**:
+
+- Login to FastPanel.
+- Navigate to Settings → Change Password.
+- Set a strong, unique password.
+
+**2. Configure server hostname**:
+
+- Navigate to Settings → Server Settings.
+- Set server hostname and domain.
+
+**3. Configure timezone**:
+
+- Navigate to Settings → Server Settings.
+- Set correct timezone for your location.
+
+### Domain and Website Management
+
+**Adding a domain**:
+
+1. Navigate to Domains → Add Domain.
+2. Enter domain name (e.g., example.com).
+3. Select document root directory.
+4. Configure PHP version (if needed).
+5. Click "Add Domain".
+
+**Creating a website**:
+
+1. Navigate to Websites → Add Website.
+2. Select domain from dropdown.
+3. Choose document root directory.
+4. Configure PHP version and settings.
+5. Enable SSL certificate (Let's Encrypt).
+6. Click "Create Website".
+
+### Database Management
+
+**Creating a database**:
+
+1. Navigate to Databases → Add Database.
+2. Enter database name.
+3. Create database user and password.
+4. Select database type (MySQL/MariaDB or PostgreSQL).
+5. Click "Create Database".
+
+**Managing databases**:
+
+- **phpMyAdmin**: Access phpMyAdmin for MySQL/MariaDB management.
+- **pgAdmin**: Access pgAdmin for PostgreSQL management (if installed).
+- **Database backup**: Create and restore database backups.
+
+### Email Management
+
+**Creating email accounts**:
+
+1. Navigate to Email → Add Email Account.
+2. Enter email address (e.g., user@example.com).
+3. Set password for email account.
+4. Configure mailbox size limit.
+5. Click "Create Email Account".
+
+**Email configuration**:
+
+- **IMAP/POP3**: Configure email clients using IMAP or POP3.
+- **SMTP**: Configure SMTP settings for outgoing email.
+- **Webmail**: Access webmail interface for email management.
+
+### SSL Certificate Management
+
+**Installing Let's Encrypt SSL**:
+
+1. Navigate to Websites → Select Website.
+2. Click "SSL Certificate".
+3. Select "Let's Encrypt".
+4. Enter email address for certificate notifications.
+5. Click "Install Certificate".
+
+**Automatic renewal**:
+
+- Let's Encrypt certificates are automatically renewed by FastPanel.
+- Certificates are renewed 30 days before expiration.
+
+### Backup Management
+
+**Creating backups**:
+
+1. Navigate to Backups → Create Backup.
+2. Select backup type (Full, Database, Files).
+3. Choose backup destination (Local, Remote).
+4. Schedule automatic backups (optional).
+5. Click "Create Backup".
+
+**Restoring backups**:
+
+1. Navigate to Backups → Restore Backup.
+2. Select backup from list.
+3. Choose restore options.
+4. Click "Restore Backup".
+
+## Best Practices
+
+### Security
+
+**Firewall configuration**:
+
+```bash
+# Allow FastPanel port (8888)
+ufw allow 8888/tcp
+
+# Allow HTTP/HTTPS
+ufw allow 80/tcp
+ufw allow 443/tcp
+
+# Allow SSH
+ufw allow 22/tcp
+
+# Enable firewall
+ufw enable
+```
+
+**SSH security**:
+
+- Disable root login via SSH.
+- Use SSH key authentication.
+- Change default SSH port (optional).
+
+**FastPanel security**:
+
+- Use strong, unique passwords.
+- Enable two-factor authentication (if available).
+- Regularly update FastPanel and server software.
+- Restrict FastPanel access to specific IP addresses (if possible).
+
+### Performance Optimization
+
+**PHP optimization**:
+
+- Use appropriate PHP version for your applications.
+- Configure PHP memory limits based on application requirements.
+- Enable OPcache for improved PHP performance.
+
+**Database optimization**:
+
+- Regularly optimize database tables.
+- Configure appropriate database cache settings.
+- Monitor database performance and query times.
+
+**Web server optimization**:
+
+- Enable gzip compression.
+- Configure appropriate cache headers.
+- Use CDN for static content (if applicable).
+
+### Backup Strategy
+
+**Automated backups**:
+
+- Schedule daily backups for critical data.
+- Store backups in multiple locations (local and remote).
+- Test backup restoration regularly.
+
+**Backup retention**:
+
+- Keep daily backups for 7 days.
+- Keep weekly backups for 4 weeks.
+- Keep monthly backups for 12 months.
+
+## Troubleshooting
+
+### Common Issues
+
+**FastPanel not accessible**:
+
+```bash
+# Check FastPanel service status
+systemctl status fastpanel
+
+# Restart FastPanel service
+systemctl restart fastpanel
+
+# Check firewall rules
+ufw status
+```
+
+**Website not loading**:
+
+```bash
+# Check nginx status
+systemctl status nginx
+
+# Check nginx configuration
+nginx -t
+
+# Restart nginx
+systemctl restart nginx
+```
+
+**Database connection issues**:
+
+```bash
+# Check MySQL/MariaDB status
+systemctl status mysql
+# or
+systemctl status mariadb
+
+# Check database user permissions
+mysql -u root -p
+```
+
+**Email not working**:
+
+```bash
+# Check mail server status
+systemctl status postfix
+
+# Check mail logs
+tail -f /var/log/mail.log
+```
+
+## FAQ
+
+### What is FastPanel?
+
+FastPanel is a free, open-source web hosting control panel for Linux servers that provides a web-based interface for managing websites, domains, databases, and email accounts.
+
+### Is FastPanel free?
+
+Yes, FastPanel is completely free and open-source.
+
+### What operating systems are supported?
+
+FastPanel supports CentOS 7/8, Ubuntu 18.04/20.04/22.04, and Debian 9/10/11.
+
+### Can I use FastPanel with existing websites?
+
+Yes, FastPanel can be installed on servers with existing websites, but it's recommended to backup your data before installation.
+
+### How do I update FastPanel?
+
+FastPanel can be updated through the web interface or using the command line:
+
+```bash
+fastpanel update
+```
+
+### Can I use FastPanel with other control panels?
+
+No, FastPanel should not be installed alongside other control panels (cPanel, Plesk, etc.) as they may conflict.
+
+### How do I uninstall FastPanel?
+
+FastPanel can be uninstalled using:
+
+```bash
+fastpanel uninstall
+```
+
+**Warning**: Uninstalling FastPanel will remove the control panel but will not remove your websites, databases, or email accounts.
+
+### What web servers are supported?
+
+FastPanel uses nginx as the web server by default.
+
+### Can I use FastPanel with Apache?
+
+FastPanel is designed to work with nginx. Using Apache may require additional configuration.
+
+### How do I backup my FastPanel configuration?
+
+FastPanel configuration can be backed up through the web interface or by backing up the FastPanel configuration directory.
+
+## Related Articles
+
+- [ISPManager on Server](/wiki/articles/ispmanager-on-the-server)
+- [Site on the Server](/wiki/articles/site-on-the-server)
+- [Virtual Servers](/wiki/articles/virtual-servers)
+- [Dedicated Servers](/wiki/articles/dedicated-servers)

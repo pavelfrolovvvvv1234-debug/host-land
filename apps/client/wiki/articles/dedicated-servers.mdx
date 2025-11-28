@@ -1,0 +1,328 @@
+# Dedicated Servers: Complete Technical Guide
+
+Dedicated servers provide exclusive access to physical bare-metal hardware with no virtualization overhead, maximum CPU/RAM/I/O performance, and full control over operating system, network configuration, and IP addressing.
+
+## Definition and Overview
+
+A **dedicated server** is a physical bare-metal server with exclusive access to CPU, RAM, storage, and network interfaces. Unlike virtualized servers (VDS/VPS), dedicated servers provide no virtualization overhead, maximum performance, and full hardware isolation from other customers.
+
+Key characteristics:
+
+- **Exclusive hardware access**: Full access to all CPU cores, RAM, storage, and network interfaces.
+- **No virtualization overhead**: Direct access to hardware without hypervisor layer.
+- **Maximum performance**: Highest CPU, RAM, and I/O performance possible.
+- **Full control**: Complete control over operating system, network configuration, and IP addressing.
+
+## Why This Matters
+
+High-performance applications (databases, CDN, streaming) and high-security workloads (compliance, isolation requirements) require dedicated server infrastructure. Virtualized alternatives (VDS/VPS) introduce virtualization overhead and resource sharing that limit performance and isolation.
+
+Market drivers:
+
+- **Performance requirements**: Applications requiring maximum CPU, RAM, and I/O performance.
+- **Isolation requirements**: Compliance and security requirements for full hardware isolation.
+- **IP control**: Requirements for custom IP addressing, BGP routing, and IP reputation management.
+- **Cost optimization**: Long-term cost savings for high-resource workloads compared to cloud VPS.
+
+## Technical Architecture
+
+### Hardware Stack
+
+**CPU architecture**:
+
+- **Intel Xeon**: Dual-socket or single-socket Xeon processors (8–64 cores per server).
+- **AMD EPYC**: Single-socket or dual-socket EPYC processors (8–128 cores per server).
+- **CPU features**: Full access to CPU features (AVX, AVX2, AVX-512, etc.).
+- **CPU frequency**: Base and boost frequencies for performance optimization.
+
+**Memory architecture**:
+
+- **ECC RAM**: Error-correcting code (ECC) memory for data integrity (32–512 GB per server).
+- **Memory channels**: Full access to memory channels for maximum bandwidth.
+- **Memory speed**: DDR4 or DDR5 memory (2,400–5,600 MT/s).
+- **Memory configuration**: Single, dual, or quad-channel memory configurations.
+
+**Storage architecture**:
+
+- **NVMe SSD**: High-performance NVMe storage (500 GB–10 TB per server).
+- **SATA SSD**: Cost-effective SATA SSD storage (1–20 TB per server).
+- **HDD**: High-capacity HDD storage (4–100 TB per server).
+- **RAID configuration**: RAID 0, 1, 5, 6, 10, or ZFS for redundancy and performance.
+
+**Network architecture**:
+
+- **Network interfaces**: 1 Gbit/s, 10 Gbit/s, or 100 Gbit/s network interfaces.
+- **BGP routing**: Multi-homed BGP sessions with multiple transit providers.
+- **IP allocation**: Static IPv4 addresses with optional IPv6 (/64 or /48 prefixes).
+
+### Operating System
+
+**Linux distributions**:
+
+- **CentOS/Rocky Linux**: Enterprise Linux distributions with long-term support.
+- **Ubuntu Server**: Popular Linux distribution with regular updates.
+- **Debian**: Stable Linux distribution with conservative update policy.
+- **Custom builds**: Minimal Linux distributions optimized for specific workloads.
+
+**Windows Server**:
+
+- **Windows Server 2022**: Latest Windows Server with Hyper-V support.
+- **Windows Server 2019**: Previous Windows Server version with long-term support.
+- **Windows Server Core**: Minimal Windows Server installation without GUI.
+
+### Network Configuration
+
+**IP addressing**:
+
+- **Static IPv4**: Static IPv4 addresses assigned to network interfaces.
+- **IPv6**: /64 or /48 IPv6 prefixes for IPv6 support.
+- **Reverse DNS (PTR)**: Configurable reverse DNS records for IP addresses.
+
+**BGP routing**:
+
+- **Multi-homed BGP**: BGP sessions with multiple Tier 1 and Tier 2 transit providers.
+- **Custom BGP communities**: Traffic engineering and abuse mitigation via BGP communities.
+- **RPKI validation**: Resource Public Key Infrastructure (RPKI) for route origin validation.
+
+**Firewall configuration**:
+
+- **iptables/nftables**: Linux firewall rules for traffic filtering.
+- **Windows Firewall**: Windows firewall rules for traffic filtering.
+- **Hardware firewalls**: Optional hardware firewalls for additional security.
+
+## Performance Characteristics
+
+### CPU Performance
+
+**Single-threaded performance** (operations per second):
+
+- **Intel Xeon**: 5,000+ ops/sec per core (no virtualization overhead).
+- **AMD EPYC**: 5,500+ ops/sec per core (no virtualization overhead).
+
+**Multi-threaded performance** (scaling):
+
+- **Linear scaling**: Linear scaling up to physical core count.
+- **No virtualization overhead**: Maximum performance without virtualization overhead.
+- **CPU frequency scaling**: Dynamic frequency scaling for power optimization.
+
+### Memory Performance
+
+**Memory bandwidth** (GB/s):
+
+- **DDR4**: 25–50 GB/s per memory channel.
+- **DDR5**: 40–80 GB/s per memory channel.
+- **Multi-channel**: Up to 8 memory channels for maximum bandwidth.
+
+**Memory latency**:
+
+- **DDR4**: 50–70 ns latency.
+- **DDR5**: 40–60 ns latency.
+- **ECC overhead**: Minimal ECC overhead (< 1%).
+
+### Storage Performance
+
+**Sequential read performance** (MB/s):
+
+- **NVMe SSD**: 3,500+ MB/s.
+- **SATA SSD**: 500–600 MB/s.
+- **HDD**: 100–200 MB/s.
+
+**Random read performance** (IOPS, 4K blocks):
+
+- **NVMe SSD**: 600,000+ IOPS.
+- **SATA SSD**: 50,000–100,000 IOPS.
+- **HDD**: 100–200 IOPS.
+
+### Network Performance
+
+**Bandwidth** (Gbit/s):
+
+- **1 Gbit/s**: Standard network interface.
+- **10 Gbit/s**: High-bandwidth network interface.
+- **100 Gbit/s**: Ultra-high-bandwidth network interface.
+
+**Latency** (ms to major EU datacenters):
+
+- **< 5 ms**: Low latency to major EU datacenters.
+- **Packet loss**: < 0.001% under normal conditions.
+
+## Use Cases and Project Types
+
+### High-Performance Databases
+
+**Database servers** require maximum CPU, RAM, and I/O performance:
+
+- **MySQL/MariaDB**: Large-scale MySQL/MariaDB databases with high query loads.
+- **PostgreSQL**: High-performance PostgreSQL databases with complex queries.
+- **MongoDB**: Large-scale MongoDB databases with high write loads.
+- **Redis**: High-performance Redis caches with high throughput requirements.
+
+### CDN and Streaming
+
+**Content delivery networks** require high bandwidth and low latency:
+
+- **Video streaming**: High-bandwidth video streaming servers.
+- **File distribution**: Large-file distribution servers (software, media, etc.).
+- **CDN edge nodes**: CDN edge nodes with high traffic loads.
+
+### High-Load Web Applications
+
+**Web applications** requiring maximum performance:
+
+- **E-commerce platforms**: High-traffic e-commerce platforms with complex queries.
+- **API servers**: High-throughput API servers with low latency requirements.
+- **Real-time applications**: Real-time applications requiring consistent performance.
+
+### Compliance and Security
+
+**Compliance and security** requirements:
+
+- **HIPAA compliance**: Healthcare applications requiring full hardware isolation.
+- **PCI DSS compliance**: Payment processing applications requiring secure infrastructure.
+- **SOC 2 compliance**: Enterprise applications requiring audit trails and isolation.
+
+## Security Considerations
+
+### Physical Security
+
+**Datacenter security**:
+
+- **Access control**: Biometric access control and security cameras.
+- **Fire suppression**: Fire suppression systems (sprinklers, gas systems).
+- **Power redundancy**: UPS and backup generators for power redundancy.
+
+### Network Security
+
+**Firewall rules**:
+
+- **Stateful firewalls**: iptables/nftables with connection tracking.
+- **DDoS protection**: Network-edge DDoS protection (rate limiting, SYN flood protection).
+- **Intrusion detection**: Intrusion detection systems (IDS) for attack pattern detection.
+
+### Access Control
+
+**SSH key authentication**:
+
+- **Disable password authentication**: Use SSH key authentication only.
+- **Restrict SSH access**: Restrict SSH access to specific IP ranges.
+- **Fail2ban**: Use fail2ban or similar tools for brute-force protection.
+
+## Troubleshooting and Common Issues
+
+### High CPU Usage
+
+**Symptoms**: Server shows 100% CPU usage, slow response times.
+
+**Diagnosis**:
+
+```bash
+# Check CPU usage per process
+top -b -n 1 | head -20
+
+# Check CPU wait time
+iostat -x 1 5
+
+# Check CPU frequency scaling
+cpupower frequency-info
+```
+
+**Solutions**:
+
+- Optimize application code for CPU efficiency.
+- Enable CPU frequency scaling (performance mode).
+- Upgrade to higher-core-count CPU.
+
+### Network Latency Issues
+
+**Symptoms**: High latency to external services, packet loss.
+
+**Diagnosis**:
+
+```bash
+# Test latency to external hosts
+ping -c 10 8.8.8.8
+
+# Trace network path
+traceroute 8.8.8.8
+
+# Check network interface statistics
+ifconfig eth0
+```
+
+**Solutions**:
+
+- Contact provider for network routing optimization.
+- Use CDN for static content delivery.
+- Enable TCP BBR congestion control.
+
+### Storage Performance Degradation
+
+**Symptoms**: Slow disk I/O, high I/O wait times.
+
+**Diagnosis**:
+
+```bash
+# Check disk I/O statistics
+iostat -x 1 5
+
+# Check I/O wait time
+vmstat 1 5
+
+# Test disk performance
+fio --name=randread --ioengine=libaio --iodepth=16 --rw=randread --bs=4k --size=1G --runtime=60
+```
+
+**Solutions**:
+
+- Upgrade to NVMe SSD for higher IOPS.
+- Optimize database queries for I/O efficiency.
+- Enable filesystem caching (bcache, lvmcache).
+
+## FAQ
+
+### What is the difference between dedicated servers and VDS/VPS?
+
+Dedicated servers provide exclusive access to physical hardware with no virtualization overhead, while VDS/VPS provide virtualized instances with shared physical resources.
+
+### When should I choose dedicated servers over VDS/VPS?
+
+Choose dedicated servers when you need maximum performance, full hardware isolation, or compliance requirements that mandate bare-metal infrastructure.
+
+### What operating systems are supported?
+
+Most providers support Linux distributions (CentOS, Ubuntu, Debian) and Windows Server.
+
+### Can I bring my own IP addresses?
+
+Some providers support BGP sessions for customer-owned IP prefixes, subject to routing policy and RPKI constraints.
+
+### How is network performance different from VDS/VPS?
+
+Dedicated servers typically provide dedicated bandwidth (1 Gbit/s, 10 Gbit/s, or 100 Gbit/s) with no overselling, while VDS/VPS may share bandwidth with other instances.
+
+### What is the typical storage configuration?
+
+Dedicated servers typically use NVMe SSD storage with RAID 10 (mirrored and striped) for high IOPS and redundancy, with optional SATA SSD or HDD for cost optimization.
+
+### How is performance different from VDS/VPS?
+
+Dedicated servers provide maximum CPU, RAM, and I/O performance with no virtualization overhead, while VDS/VPS introduce virtualization overhead and resource sharing.
+
+### What is BGP routing?
+
+BGP (Border Gateway Protocol) routing allows dedicated servers to announce custom IP prefixes and route traffic through multiple transit providers for improved redundancy and performance.
+
+### How is security different from VDS/VPS?
+
+Dedicated servers provide full hardware isolation and complete control over security configuration, while VDS/VPS share physical resources with other customers.
+
+### What is the cost difference between dedicated servers and VDS/VPS?
+
+Dedicated servers typically cost more than VDS/VPS but provide better performance and isolation for high-resource workloads.
+
+## Related Articles
+
+- [Bulletproof Dedicated Servers](/wiki/articles/bulletproof-dedicated-server)
+- [Dedicated Servers with IPHM](/wiki/articles/dedicated-servers-with-iphm)
+- [Virtual Servers](/wiki/articles/virtual-servers)
+- [Bulletproof VDS](/wiki/articles/bulletproof-vds)

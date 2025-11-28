@@ -1,0 +1,290 @@
+# Problem with Session Lockout on Windows After Multiple Failed Login Attempts to Server
+
+This guide covers troubleshooting and resolving session lockout issues on Windows servers after multiple failed login attempts, including account lockout policies, event log analysis, and prevention strategies.
+
+## Definition and Overview
+
+**Session lockout** on Windows servers occurs when user accounts are locked after multiple failed login attempts due to security policies. This is a security feature designed to prevent brute-force attacks, but it can also lock out legitimate users who mistype their passwords.
+
+Key concepts:
+
+- **Account lockout policy**: Windows security policy that locks accounts after failed login attempts.
+- **Lockout threshold**: Number of failed attempts before account is locked.
+- **Lockout duration**: Time period during which account remains locked.
+- **Reset account lockout counter**: Time period after which failed attempt counter resets.
+
+## Understanding Account Lockout Policies
+
+### Default Policies
+
+**Default Windows account lockout settings**:
+
+- **Lockout threshold**: Not configured (unlimited attempts).
+- **Lockout duration**: Not configured (requires administrator unlock).
+- **Reset account lockout counter**: Not configured.
+
+**Recommended settings**:
+
+- **Lockout threshold**: 5–10 failed attempts.
+- **Lockout duration**: 15–30 minutes (or until administrator unlock).
+- **Reset account lockout counter**: 15–30 minutes.
+
+### Group Policy Configuration
+
+**Configuring account lockout policy**:
+
+1. Open **Group Policy Management** (gpmc.msc).
+2. Navigate to: **Computer Configuration → Policies → Windows Settings → Security Settings → Account Policies → Account Lockout Policy**.
+3. Configure the following policies:
+   - **Account lockout threshold**: Set to desired number of failed attempts (e.g., 5).
+   - **Account lockout duration**: Set to desired lockout duration (e.g., 30 minutes).
+   - **Reset account lockout counter after**: Set to desired reset time (e.g., 30 minutes).
+
+**Applying policy**:
+
+```powershell
+gpupdate /force
+```
+
+## Troubleshooting Locked Accounts
+
+### Checking Account Status
+
+**Using Active Directory Users and Computers**:
+
+1. Open **Active Directory Users and Computers** (dsa.msc).
+2. Navigate to user account.
+3. Right-click user → **Properties** → **Account** tab.
+4. Check **Account is locked out** checkbox status.
+
+**Using PowerShell**:
+
+```powershell
+# Check if account is locked
+Get-ADUser -Identity username -Properties LockedOut | Select-Object Name, LockedOut
+
+# Unlock account
+Unlock-ADAccount -Identity username
+```
+
+**Using Command Prompt**:
+
+```cmd
+# Check account status
+net user username
+
+# Unlock account (requires administrator)
+net user username /active:yes
+```
+
+### Event Log Analysis
+
+**Viewing security event logs**:
+
+1. Open **Event Viewer** (eventvwr.msc).
+2. Navigate to: **Windows Logs → Security**.
+3. Filter events by:
+   - **Event ID 4740**: Account was locked out.
+   - **Event ID 4625**: Failed logon attempt.
+   - **Event ID 4771**: Kerberos pre-authentication failed.
+
+**Using PowerShell to view events**:
+
+```powershell
+# View account lockout events
+Get-WinEvent -FilterHashtable @{LogName='Security'; ID=4740} | Format-List
+
+# View failed logon attempts
+Get-WinEvent -FilterHashtable @{LogName='Security'; ID=4625} | Format-List
+```
+
+### Identifying Lockout Source
+
+**Common lockout sources**:
+
+- **RDP connections**: Remote Desktop Protocol connections with incorrect passwords.
+- **Network shares**: Mapped network drives with incorrect credentials.
+- **Scheduled tasks**: Scheduled tasks running with expired passwords.
+- **Services**: Windows services running with user accounts and expired passwords.
+- **Mobile devices**: Mobile devices with cached credentials.
+- **VPN connections**: VPN connections with incorrect credentials.
+
+**Using Account Lockout Tools**:
+
+Download and use **Account Lockout and Management Tools** from Microsoft:
+
+1. Install **ALockout.dll** on domain controller.
+2. Configure event log to capture lockout source information.
+3. Analyze event logs to identify lockout source.
+
+## Resolving Lockout Issues
+
+### Immediate Unlock
+
+**Unlocking account immediately**:
+
+```powershell
+# Unlock account using PowerShell
+Unlock-ADAccount -Identity username
+
+# Unlock account using Command Prompt (requires administrator)
+net user username /active:yes
+```
+
+**Using Active Directory Users and Computers**:
+
+1. Open **Active Directory Users and Computers**.
+2. Navigate to user account.
+3. Right-click user → **Properties** → **Account** tab.
+4. Uncheck **Account is locked out**.
+5. Click **OK**.
+
+### Preventing Future Lockouts
+
+**Password management**:
+
+- Use strong, unique passwords.
+- Avoid password reuse across multiple systems.
+- Regularly update passwords.
+- Use password managers for secure password storage.
+
+**Credential management**:
+
+- Update cached credentials on all devices.
+- Remove old mapped network drives.
+- Update scheduled task credentials.
+- Update service account passwords.
+
+**Monitoring and alerting**:
+
+- Configure event log monitoring for lockout events.
+- Set up email alerts for account lockouts.
+- Regularly review security event logs.
+- Use account lockout management tools.
+
+## Best Practices
+
+### Account Lockout Policy
+
+**Recommended settings**:
+
+- **Lockout threshold**: 5–10 failed attempts (balance between security and usability).
+- **Lockout duration**: 15–30 minutes (or until administrator unlock for high-security environments).
+- **Reset account lockout counter**: 15–30 minutes (should match or be less than lockout duration).
+
+**High-security environments**:
+
+- **Lockout threshold**: 3–5 failed attempts.
+- **Lockout duration**: Until administrator unlock.
+- **Reset account lockout counter**: 15–30 minutes.
+
+### Monitoring and Alerting
+
+**Event log monitoring**:
+
+- Monitor Event ID 4740 (account lockout).
+- Monitor Event ID 4625 (failed logon attempts).
+- Set up email alerts for lockout events.
+- Regularly review security event logs.
+
+**Using PowerShell for monitoring**:
+
+```powershell
+# Create scheduled task to monitor lockouts
+$action = New-ScheduledTaskAction -Execute "PowerShell.exe" -Argument "-File C:\Scripts\MonitorLockouts.ps1"
+$trigger = New-ScheduledTaskTrigger -Daily -At 9am
+Register-ScheduledTask -TaskName "Monitor Account Lockouts" -Action $action -Trigger $trigger
+```
+
+### User Education
+
+**Educating users**:
+
+- Inform users about account lockout policies.
+- Provide guidance on password management.
+- Explain how to avoid lockouts.
+- Provide contact information for unlock requests.
+
+## Troubleshooting Common Scenarios
+
+### Scenario 1: User Locked Out After Password Change
+
+**Problem**: User changes password but gets locked out immediately.
+
+**Solution**:
+
+1. Unlock user account.
+2. Verify password change was successful.
+3. Check for cached credentials on devices:
+   - Clear credential manager on Windows.
+   - Remove cached credentials on mobile devices.
+   - Update mapped network drives.
+   - Update scheduled tasks.
+   - Update service accounts.
+
+### Scenario 2: Service Account Lockouts
+
+**Problem**: Service accounts getting locked out repeatedly.
+
+**Solution**:
+
+1. Identify service using locked account.
+2. Update service account password.
+3. Restart service with new credentials.
+4. Consider using managed service accounts (MSAs) or group managed service accounts (gMSAs).
+
+### Scenario 3: RDP Lockouts
+
+**Problem**: Users getting locked out when connecting via RDP.
+
+**Solution**:
+
+1. Verify RDP connection is using correct credentials.
+2. Clear cached RDP credentials.
+3. Check for multiple RDP sessions with incorrect passwords.
+4. Consider implementing RDP Gateway for additional security.
+
+## FAQ
+
+### How do I unlock a locked account?
+
+You can unlock an account using:
+- Active Directory Users and Computers (uncheck "Account is locked out").
+- PowerShell: `Unlock-ADAccount -Identity username`
+- Command Prompt: `net user username /active:yes` (requires administrator)
+
+### How long does an account stay locked?
+
+Account lockout duration depends on Group Policy settings. Default is until administrator unlock, but can be configured for automatic unlock after a specified time period.
+
+### How do I prevent account lockouts?
+
+- Use strong, unique passwords.
+- Update cached credentials on all devices.
+- Remove old mapped network drives.
+- Update scheduled task credentials.
+- Update service account passwords.
+
+### How do I find the source of account lockouts?
+
+- Review security event logs (Event ID 4740, 4625, 4771).
+- Use Account Lockout and Management Tools from Microsoft.
+- Check for cached credentials on devices.
+- Review scheduled tasks and services.
+
+### Can I configure different lockout policies for different users?
+
+Yes, you can use Fine-Grained Password Policies in Active Directory to configure different lockout policies for different users or groups.
+
+### How do I monitor account lockouts?
+
+- Configure event log monitoring for Event ID 4740.
+- Set up email alerts for lockout events.
+- Use PowerShell scripts to monitor and report lockouts.
+- Regularly review security event logs.
+
+## Related Articles
+
+- [The Error: Fatal glibc Error CPU Does Not Support on CentOS 9](/wiki/articles/the-error-fatal-glibc-error-cpu-does-not-support-on-centos-9)
+- [Virtual Servers](/wiki/articles/virtual-servers)
+- [Dedicated Servers](/wiki/articles/dedicated-servers)

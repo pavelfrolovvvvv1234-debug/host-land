@@ -1,0 +1,316 @@
+# Virtual Servers: Complete Technical Guide
+
+Virtual servers (VDS/VPS) provide virtualized server instances with dedicated CPU cores, guaranteed RAM allocation, and full root access. Unlike shared hosting, virtual servers offer complete control over the operating system, software stack, and network configuration while sharing physical hardware resources with other instances.
+
+## Definition and Overview
+
+A **virtual server** (also known as VDS - Virtual Dedicated Server or VPS - Virtual Private Server) is a virtualized server instance provisioned on physical hardware using hypervisor technology. Virtual servers provide dedicated CPU cores, guaranteed RAM allocation, and full root access while sharing physical hardware resources with other instances.
+
+Key characteristics:
+
+- **Virtualization**: Server instances created using hypervisor technology (KVM, OpenVZ, etc.).
+- **Dedicated resources**: Dedicated CPU cores and guaranteed RAM allocation per instance.
+- **Full root access**: Complete control over operating system and software stack.
+- **Resource isolation**: CPU, RAM, and network resources isolated from other instances.
+
+## Why This Matters
+
+Virtual servers provide a balance between cost-effectiveness and performance, making them ideal for small to medium-sized applications that require more control than shared hosting but don't need the full resources of dedicated servers.
+
+Market drivers:
+
+- **Cost-effectiveness**: Lower cost than dedicated servers while providing dedicated resources.
+- **Scalability**: Easy scaling of resources (CPU, RAM, storage) as needed.
+- **Flexibility**: Full control over operating system and software stack.
+- **Isolation**: Resource isolation from other instances on the same physical server.
+
+## Technical Architecture
+
+### Virtualization Stack
+
+**Hypervisor types**:
+
+- **KVM (Kernel-based Virtual Machine)**: Full hardware virtualization with Linux kernel.
+- **OpenVZ**: Container-based virtualization with shared kernel.
+- **Xen**: Paravirtualization and hardware-assisted virtualization.
+- **VMware**: Enterprise-grade virtualization platform.
+
+**CPU allocation models**:
+
+- **Dedicated cores**: Full CPU cores assigned exclusively to a virtual server instance.
+- **Burstable allocation**: Guaranteed minimum CPU with burst capacity up to physical limits.
+- **CPU pinning**: Specific CPU cores pinned to virtual server instances.
+
+**Memory allocation models**:
+
+- **Dedicated RAM**: Guaranteed RAM allocation per instance (no overselling).
+- **Burstable RAM**: Guaranteed minimum RAM with burst capacity.
+- **Swap space**: Optional swap space for memory overflow.
+
+### Storage Stack
+
+**Storage types**:
+
+- **NVMe SSD**: High-performance NVMe storage with high IOPS.
+- **SATA SSD**: Cost-effective SATA SSD storage with moderate IOPS.
+- **HDD**: High-capacity HDD storage with lower IOPS.
+
+**Storage allocation**:
+
+- **Dedicated storage**: Storage space allocated exclusively to each instance.
+- **RAID configurations**: RAID 0, 1, 5, 6, 10 for redundancy and performance.
+- **Snapshots**: Optional snapshot functionality for backup and recovery.
+
+### Network Architecture
+
+**Network interfaces**:
+
+- **Virtual network interfaces**: Virtual network interfaces assigned to each instance.
+- **Bandwidth allocation**: Dedicated or shared bandwidth per instance.
+- **IP allocation**: Static IPv4 addresses with optional IPv6 support.
+
+**Network isolation**:
+
+- **VLAN isolation**: Virtual LAN isolation between instances.
+- **Firewall rules**: Per-instance firewall rules for traffic filtering.
+- **DDoS protection**: Optional DDoS protection at network edge.
+
+## Performance Characteristics
+
+### CPU Performance
+
+**Dedicated CPU cores** provide predictable performance:
+
+- **No CPU overselling**: 1:1 core allocation for dedicated cores.
+- **CPU pinning**: CPU cores pinned to instances for cache locality.
+- **Burst capacity**: Burst capacity up to 100% of allocated cores.
+
+**Benchmark results** (typical configuration: 4 vCPU, 8 GB RAM, NVMe SSD):
+
+- **CPU-intensive workloads**: 4,000+ single-threaded operations per second.
+- **Multi-threaded workloads**: Linear scaling up to allocated core count.
+- **I/O wait**: < 5% under normal load.
+
+### Memory Performance
+
+**Dedicated RAM allocation** with optional swap:
+
+- **No memory overselling**: Guaranteed RAM allocation per instance.
+- **Transparent huge pages**: THP enabled for improved performance.
+- **Memory ballooning**: Optional memory ballooning for dynamic allocation.
+
+### Storage Performance
+
+**NVMe SSD** with guaranteed IOPS:
+
+- **Sequential read**: 3,000+ MB/s.
+- **Sequential write**: 2,500+ MB/s.
+- **Random read (4K)**: 500,000+ IOPS.
+- **Random write (4K)**: 400,000+ IOPS.
+
+### Network Performance
+
+**Gigabit or 10 Gbit/s** network interfaces:
+
+- **Bandwidth**: 1 Gbit/s or 10 Gbit/s dedicated per instance.
+- **Latency**: < 10 ms to major EU datacenters.
+- **Packet loss**: < 0.01% under normal conditions.
+
+## Use Cases and Project Types
+
+### Web Hosting
+
+**Web hosting** applications:
+
+- **WordPress sites**: High-traffic WordPress sites with dedicated resources.
+- **E-commerce platforms**: E-commerce platforms with moderate traffic.
+- **Web applications**: Custom web applications with dedicated resources.
+
+### Development and Testing
+
+**Development and testing** environments:
+
+- **Development servers**: Development servers for software development.
+- **Testing environments**: Testing environments for QA and staging.
+- **CI/CD pipelines**: Continuous integration and deployment pipelines.
+
+### Small to Medium Databases
+
+**Database servers** with moderate loads:
+
+- **MySQL/MariaDB**: Small to medium MySQL/MariaDB databases.
+- **PostgreSQL**: Small to medium PostgreSQL databases.
+- **MongoDB**: Small to medium MongoDB databases.
+
+### Application Servers
+
+**Application servers** for various workloads:
+
+- **API servers**: API servers with moderate traffic.
+- **Microservices**: Microservices with dedicated resources.
+- **Container hosts**: Docker and container hosting platforms.
+
+## Operating System Support
+
+### Linux Distributions
+
+**Popular Linux distributions**:
+
+- **Ubuntu Server**: Popular Linux distribution with regular updates.
+- **CentOS/Rocky Linux**: Enterprise Linux distributions with long-term support.
+- **Debian**: Stable Linux distribution with conservative update policy.
+- **Fedora**: Cutting-edge Linux distribution with latest features.
+
+### Windows Server
+
+**Windows Server** options:
+
+- **Windows Server 2022**: Latest Windows Server with Hyper-V support.
+- **Windows Server 2019**: Previous Windows Server version with long-term support.
+- **Windows Server Core**: Minimal Windows Server installation without GUI.
+
+## Security Considerations
+
+### Hypervisor Security
+
+**Virtualization security**:
+
+- **Hardware isolation**: CPU and memory isolation between instances.
+- **Network isolation**: VLAN isolation and firewall rules.
+- **Storage isolation**: Storage space isolation between instances.
+
+### Access Control
+
+**SSH key authentication**:
+
+- **Disable password authentication**: Use SSH key authentication only.
+- **Restrict SSH access**: Restrict SSH access to specific IP ranges.
+- **Fail2ban**: Use fail2ban or similar tools for brute-force protection.
+
+### Firewall Configuration
+
+**Firewall rules**:
+
+- **iptables/nftables**: Linux firewall rules for traffic filtering.
+- **Windows Firewall**: Windows firewall rules for traffic filtering.
+- **Provider firewalls**: Optional provider-managed firewalls.
+
+## Troubleshooting and Common Issues
+
+### High CPU Usage
+
+**Symptoms**: Virtual server shows 100% CPU usage, slow response times.
+
+**Diagnosis**:
+
+```bash
+# Check CPU usage per process
+top -b -n 1 | head -20
+
+# Check CPU wait time
+iostat -x 1 5
+
+# Check for CPU steal time (overselling indicator)
+vmstat 1 5
+```
+
+**Solutions**:
+
+- Upgrade to dedicated CPU cores.
+- Optimize application code for CPU efficiency.
+- Enable CPU pinning for cache locality.
+
+### Network Latency Issues
+
+**Symptoms**: High latency to external services, packet loss.
+
+**Diagnosis**:
+
+```bash
+# Test latency to external hosts
+ping -c 10 8.8.8.8
+
+# Trace network path
+traceroute 8.8.8.8
+
+# Check network interface statistics
+ifconfig eth0
+```
+
+**Solutions**:
+
+- Contact provider for network routing optimization.
+- Use CDN for static content delivery.
+- Enable TCP BBR congestion control.
+
+### Storage Performance Degradation
+
+**Symptoms**: Slow disk I/O, high I/O wait times.
+
+**Diagnosis**:
+
+```bash
+# Check disk I/O statistics
+iostat -x 1 5
+
+# Check I/O wait time
+vmstat 1 5
+
+# Test disk performance
+fio --name=randread --ioengine=libaio --iodepth=16 --rw=randread --bs=4k --size=1G --runtime=60
+```
+
+**Solutions**:
+
+- Upgrade to NVMe SSD with higher IOPS allocation.
+- Optimize database queries for I/O efficiency.
+- Enable filesystem caching (bcache, lvmcache).
+
+## FAQ
+
+### What is the difference between virtual servers and dedicated servers?
+
+Virtual servers provide virtualized instances with shared physical hardware, while dedicated servers provide exclusive access to physical hardware.
+
+### What is the difference between VDS and VPS?
+
+VDS (Virtual Dedicated Server) and VPS (Virtual Private Server) are essentially the same - both provide virtualized server instances. The terms are often used interchangeably.
+
+### What hypervisor is used?
+
+Most providers use KVM (Kernel-based Virtual Machine) for full hardware isolation, though some use OpenVZ, Xen, or VMware.
+
+### Can I upgrade resources?
+
+Yes, most providers allow upgrading CPU, RAM, and storage resources without downtime.
+
+### What operating systems are supported?
+
+Most providers support Linux distributions (Ubuntu, CentOS, Debian) and Windows Server.
+
+### How is performance different from shared hosting?
+
+Virtual servers provide dedicated CPU cores and guaranteed RAM allocation, while shared hosting shares all resources among multiple customers.
+
+### What is the cost difference between virtual servers and dedicated servers?
+
+Virtual servers typically cost less than dedicated servers but provide less performance and isolation.
+
+### Can I use virtual servers for high-performance workloads?
+
+Virtual servers are suitable for small to medium workloads. For high-performance workloads, consider dedicated servers or bulletproof VDS.
+
+### How is security different from shared hosting?
+
+Virtual servers provide resource isolation and full root access, while shared hosting shares resources and provides limited access.
+
+### What is the typical storage configuration?
+
+Virtual servers typically use NVMe SSD storage with guaranteed IOPS allocation per instance.
+
+## Related Articles
+
+- [Bulletproof VDS](/wiki/articles/bulletproof-vds)
+- [Dedicated Servers](/wiki/articles/dedicated-servers)
+- [TurboNet Virtual Servers](/wiki/articles/turbonet-virtual-servers)
+- [Bulletproof Dedicated Servers](/wiki/articles/bulletproof-dedicated-server)

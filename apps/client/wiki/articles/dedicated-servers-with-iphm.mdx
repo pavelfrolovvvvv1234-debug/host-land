@@ -1,0 +1,274 @@
+# Dedicated Servers with IPHM: Complete Technical Guide
+
+IP History Management (IPHM) is a service that provides dedicated servers with IP addresses that have clean reputation history and minimal abuse complaints. Unlike standard dedicated servers, IPHM servers use IP addresses that have been carefully vetted for reputation, reducing the risk of blacklisting, email deliverability issues, and network reputation problems.
+
+## Definition and Overview
+
+**IP History Management (IPHM)** is a service that provides dedicated servers with IP addresses that have been carefully selected and managed for clean reputation history. IPHM servers use IP addresses that have minimal abuse complaints, clean blacklist records, and positive reputation scores, reducing the risk of blacklisting and network reputation issues.
+
+Key characteristics:
+
+- **Clean IP reputation**: IP addresses with minimal abuse complaints and blacklist records.
+- **Reputation monitoring**: Continuous monitoring of IP addresses against blacklists and reputation databases.
+- **Automatic rotation**: Automatic IP rotation when blacklisting or reputation degradation occurs.
+- **Reputation scoring**: IP addresses scored based on historical abuse complaints and blacklist records.
+
+## Why This Matters
+
+Standard dedicated servers may use IP addresses with unknown or negative reputation history, leading to blacklisting, email deliverability issues, and network reputation problems. IPHM addresses this by providing IP addresses with clean reputation history and proactive reputation management.
+
+Market drivers:
+
+- **Email deliverability**: Clean IP addresses improve email deliverability and reduce spam filtering.
+- **Network reputation**: Positive IP reputation reduces the risk of blacklisting and network blocks.
+- **Abuse mitigation**: Proactive reputation management reduces the risk of abuse complaints and account termination.
+
+## Technical Architecture
+
+### IP Reputation Management
+
+**Reputation databases**:
+
+- **Spamhaus**: DNS-based blacklist (DBL) and IP blacklist (SBL, XBL, PBL).
+- **SURBL**: URI-based blacklist for spam and phishing URLs.
+- **Barracuda**: Reputation-based email filtering and IP reputation scoring.
+- **Sender Score**: Return Path's IP reputation scoring system (0–100 scale).
+
+**Reputation scoring**:
+
+- **Clean IPs**: IP addresses with no blacklist records and minimal abuse complaints (score 90–100).
+- **Good IPs**: IP addresses with minor blacklist records or isolated abuse complaints (score 70–89).
+- **Fair IPs**: IP addresses with moderate blacklist records or recurring abuse complaints (score 50–69).
+- **Poor IPs**: IP addresses with significant blacklist records or frequent abuse complaints (score 0–49).
+
+### IP Selection Process
+
+**IP vetting**:
+
+1. **Historical analysis**: Review of IP address history for abuse complaints and blacklist records.
+2. **Reputation scoring**: Calculation of reputation score based on historical data.
+3. **Blacklist checking**: Verification against major blacklists (Spamhaus, SURBL, etc.).
+4. **Selection**: Selection of IP addresses with clean reputation (score 90–100).
+
+**IP allocation**:
+
+- **Static allocation**: IP addresses allocated statically to dedicated servers.
+- **IP ranges**: Optional IP ranges (/29, /28, /27, etc.) for multiple IP addresses.
+- **IPv6 support**: Optional IPv6 prefixes (/64 or /48) with reputation management.
+
+### Reputation Monitoring
+
+**Continuous monitoring**:
+
+- **Blacklist monitoring**: Continuous monitoring of IP addresses against blacklists (Spamhaus, SURBL, etc.).
+- **Reputation tracking**: Tracking of reputation scores over time.
+- **Abuse complaint tracking**: Monitoring of abuse complaints and DMCA notices.
+
+**Alerting and rotation**:
+
+- **Automatic alerts**: Alerts when IP addresses are blacklisted or reputation degrades.
+- **Automatic rotation**: Automatic IP rotation when blacklisting occurs or reputation falls below threshold.
+- **Manual rotation**: Manual IP rotation via control panel or API.
+
+## Anti-Abuse Logic
+
+### Proactive Reputation Management
+
+**Reputation protection**:
+
+- **IP rotation**: Proactive IP rotation before blacklisting occurs (based on reputation trends).
+- **Reputation monitoring**: Continuous monitoring of reputation scores and blacklist records.
+- **Abuse prevention**: Guidelines and best practices to prevent abuse complaints.
+
+**Reputation recovery**:
+
+- **Delisting requests**: Assistance with blacklist delisting requests.
+- **Reputation recovery**: Strategies for recovering IP reputation after blacklisting.
+- **IP replacement**: Replacement of blacklisted IPs with clean alternatives.
+
+### Abuse Handling
+
+**Manual abuse triage**:
+
+- **Human review**: Human operators review abuse complaints before taking action.
+- **Investigation**: Review of server logs, content, and customer communication.
+- **Decision**: Action taken only if violation matches zero-tolerance policy.
+
+**Zero-tolerance policies**:
+
+- **Malware distribution**: Servers used for malware hosting or command-and-control (C2) infrastructure.
+- **Child exploitation**: Servers hosting illegal content.
+- **Phishing campaigns**: Servers targeting financial institutions or other trusted entities.
+- **DDoS attack infrastructure**: Servers used for DDoS attacks.
+
+Gray-zone content (aggressive marketing, content mirrors, privacy services) receives warnings or content removal requests rather than account termination.
+
+## Use Cases and Project Types
+
+### Email Marketing and Delivery
+
+**Email marketing** requires clean IP reputation for deliverability:
+
+- **Transactional email**: High-volume transactional email delivery (order confirmations, password resets, etc.).
+- **Marketing email**: Email marketing campaigns with high deliverability requirements.
+- **Email infrastructure**: Email servers and infrastructure with reputation requirements.
+
+### High-Reputation Web Applications
+
+**Web applications** requiring positive IP reputation:
+
+- **E-commerce platforms**: E-commerce platforms with payment processing and customer data.
+- **SaaS applications**: Software-as-a-Service applications with user authentication and data storage.
+- **API services**: API services with high-volume traffic and reputation requirements.
+
+### Compliance and Security
+
+**Compliance and security** requirements:
+
+- **HIPAA compliance**: Healthcare applications requiring secure email and data transmission.
+- **PCI DSS compliance**: Payment processing applications requiring secure infrastructure.
+- **SOC 2 compliance**: Enterprise applications requiring audit trails and reputation management.
+
+## Reputation Management Best Practices
+
+### Email Deliverability
+
+**SPF, DKIM, and DMARC**:
+
+- **SPF records**: Configure SPF records to authorize email sending servers.
+- **DKIM signatures**: Enable DKIM signatures for email authentication.
+- **DMARC policies**: Implement DMARC policies for email authentication and reporting.
+
+**Email sending practices**:
+
+- **Gradual warm-up**: Gradually increase email volume to build reputation.
+- **List hygiene**: Maintain clean email lists and remove invalid addresses.
+- **Content quality**: Avoid spam trigger words and maintain professional content.
+
+### Network Reputation
+
+**Traffic management**:
+
+- **Rate limiting**: Implement rate limiting to prevent abuse and reputation issues.
+- **Traffic monitoring**: Monitor outbound traffic for abuse patterns.
+- **Abuse prevention**: Implement abuse prevention measures (CAPTCHA, rate limiting, etc.).
+
+**IP rotation**:
+
+- **Proactive rotation**: Rotate IPs before blacklisting occurs (based on reputation trends).
+- **Reactive rotation**: Rotate IPs after blacklisting occurs.
+- **Manual rotation**: Manual IP rotation via control panel or API.
+
+## Troubleshooting and Common Issues
+
+### IP Blacklisting
+
+**Symptoms**: IP address blacklisted, email delivery issues, network blocks.
+
+**Diagnosis**:
+
+```bash
+# Check IP blacklist status
+dig +short <IP>.zen.spamhaus.org
+dig +short <IP>.bl.spamcop.net
+
+# Check IP reputation
+# Use online tools: mxtoolbox.com, sender-score.org
+```
+
+**Solutions**:
+
+- Contact provider for IP rotation.
+- Submit delisting requests to blacklist operators.
+- Review server logs for abuse patterns.
+- Implement abuse prevention measures.
+
+### Email Deliverability Issues
+
+**Symptoms**: Emails not delivered, emails marked as spam.
+
+**Diagnosis**:
+
+```bash
+# Check SPF records
+dig +short TXT example.com | grep spf
+
+# Check DKIM records
+dig +short TXT default._domainkey.example.com
+
+# Check DMARC records
+dig +short TXT _dmarc.example.com
+```
+
+**Solutions**:
+
+- Configure SPF, DKIM, and DMARC records correctly.
+- Gradually warm up email sending volume.
+- Maintain clean email lists and remove invalid addresses.
+- Review email content for spam trigger words.
+
+### Reputation Degradation
+
+**Symptoms**: IP reputation score decreasing, increased blacklist records.
+
+**Diagnosis**:
+
+- Monitor reputation scores via provider dashboard.
+- Review abuse complaints and blacklist records.
+- Analyze traffic patterns for abuse indicators.
+
+**Solutions**:
+
+- Implement abuse prevention measures.
+- Review and optimize email sending practices.
+- Contact provider for IP rotation if necessary.
+- Submit delisting requests for false positives.
+
+## FAQ
+
+### What is IPHM?
+
+IPHM (IP History Management) is a service that provides dedicated servers with IP addresses that have clean reputation history and minimal abuse complaints.
+
+### How is IPHM different from standard dedicated servers?
+
+IPHM servers use IP addresses that have been carefully vetted for reputation, while standard dedicated servers may use IP addresses with unknown or negative reputation history.
+
+### What reputation databases are monitored?
+
+IPHM monitors major reputation databases including Spamhaus, SURBL, Barracuda, and Sender Score.
+
+### How is IP reputation scored?
+
+IP reputation is scored on a 0–100 scale based on historical abuse complaints and blacklist records, with clean IPs scoring 90–100.
+
+### What happens if an IP is blacklisted?
+
+IPHM providers automatically rotate blacklisted IPs with clean alternatives and assist with delisting requests.
+
+### Can I request specific IP addresses?
+
+Some providers allow requests for specific IP addresses or IP ranges, subject to availability and reputation requirements.
+
+### How is email deliverability improved?
+
+IPHM improves email deliverability by providing clean IP addresses with positive reputation scores and proactive reputation management.
+
+### What is the cost difference between IPHM and standard dedicated servers?
+
+IPHM servers typically cost slightly more than standard dedicated servers due to reputation management overhead.
+
+### How is reputation monitored?
+
+IPHM providers continuously monitor IP addresses against blacklists and reputation databases, with automatic alerts and rotation when issues occur.
+
+### Can I use IPHM for any workload?
+
+IPHM is ideal for workloads requiring positive IP reputation, such as email marketing, high-reputation web applications, and compliance-sensitive projects.
+
+## Related Articles
+
+- [Dedicated Servers](/wiki/articles/dedicated-servers)
+- [Bulletproof Dedicated Servers](/wiki/articles/bulletproof-dedicated-server)
+- [Virtual Servers](/wiki/articles/virtual-servers)
+- [Bulletproof VDS](/wiki/articles/bulletproof-vds)

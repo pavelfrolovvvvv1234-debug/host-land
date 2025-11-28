@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Disallow: /search
+Disallow: /admin
+Disallow: /internal
+
+Sitemap: https://dior.host/sitemap.xml
+

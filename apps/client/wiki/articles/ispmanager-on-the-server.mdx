@@ -1,0 +1,419 @@
+# ISPManager on Server: Complete Installation and Configuration Guide
+
+ISPManager is a commercial web hosting control panel for Linux servers. It provides a comprehensive interface for managing websites, domains, databases, email accounts, DNS records, and server resources. This guide covers installation, configuration, and best practices for using ISPManager on your server.
+
+## Definition and Overview
+
+**ISPManager** is a commercial web hosting control panel designed for Linux servers. It provides a web-based interface for managing websites, domains, databases, email accounts, DNS records, FTP accounts, and server resources with advanced features for hosting providers and system administrators.
+
+Key features:
+
+- **Web-based interface**: Comprehensive web interface for server management.
+- **Multi-domain support**: Manage multiple domains and websites from a single panel.
+- **Database management**: MySQL/MariaDB, PostgreSQL, and MongoDB database management.
+- **Email management**: Email account creation, management, and spam filtering.
+- **DNS management**: Full DNS zone management with support for all record types.
+- **FTP management**: FTP account creation and management.
+- **SSL certificate management**: Let's Encrypt and commercial SSL certificate installation.
+- **Backup management**: Automated backup creation and restoration.
+- **User management**: Multi-user support with role-based access control.
+
+## Installation
+
+### System Requirements
+
+**Operating system**:
+
+- **CentOS 7/8**: CentOS 7 or 8 (or Rocky Linux, AlmaLinux).
+- **Ubuntu 18.04/20.04/22.04**: Ubuntu Server 18.04, 20.04, or 22.04.
+- **Debian 9/10/11**: Debian 9, 10, or 11.
+
+**Hardware requirements**:
+
+- **CPU**: 2+ CPU cores (4+ recommended).
+- **RAM**: 2 GB minimum (4 GB+ recommended).
+- **Storage**: 20 GB minimum (50 GB+ recommended).
+- **Network**: Internet connection for installation and updates.
+
+### Installation Steps
+
+**1. Connect to your server**:
+
+```bash
+ssh root@your-server-ip
+```
+
+**2. Download ISPManager installation script**:
+
+```bash
+wget https://download.ispsystem.com/install.sh
+```
+
+**3. Run installation script**:
+
+```bash
+bash install.sh
+```
+
+**4. Follow installation wizard**:
+
+The installation wizard will:
+- Check system requirements.
+- Install required dependencies.
+- Configure web server and database.
+- Set up ISPManager web interface.
+- Generate admin credentials.
+
+**5. Access ISPManager**:
+
+- Open your web browser and navigate to: `https://your-server-ip:1500`
+- Login with the credentials provided during installation.
+
+## Configuration
+
+### Initial Setup
+
+**1. Change default password**:
+
+- Login to ISPManager.
+- Navigate to Settings → Change Password.
+- Set a strong, unique password.
+
+**2. Configure server hostname**:
+
+- Navigate to Settings → Server Settings.
+- Set server hostname and domain.
+
+**3. Configure timezone**:
+
+- Navigate to Settings → Server Settings.
+- Set correct timezone for your location.
+
+**4. Configure IP addresses**:
+
+- Navigate to Settings → IP Addresses.
+- Add server IP addresses.
+- Configure IP address settings.
+
+### Domain and Website Management
+
+**Adding a domain**:
+
+1. Navigate to Domains → Add Domain.
+2. Enter domain name (e.g., example.com).
+3. Select document root directory.
+4. Configure PHP version and settings.
+5. Enable SSL certificate (Let's Encrypt or commercial).
+6. Click "Add Domain".
+
+**Creating a website**:
+
+1. Navigate to Websites → Add Website.
+2. Select domain from dropdown.
+3. Choose document root directory.
+4. Configure PHP version and settings.
+5. Enable SSL certificate.
+6. Configure additional settings (redirects, aliases, etc.).
+7. Click "Create Website".
+
+### Database Management
+
+**Creating a database**:
+
+1. Navigate to Databases → Add Database.
+2. Enter database name.
+3. Create database user and password.
+4. Select database type (MySQL/MariaDB, PostgreSQL, or MongoDB).
+5. Configure database settings.
+6. Click "Create Database".
+
+**Managing databases**:
+
+- **phpMyAdmin**: Access phpMyAdmin for MySQL/MariaDB management.
+- **pgAdmin**: Access pgAdmin for PostgreSQL management.
+- **MongoDB management**: Access MongoDB management interface.
+- **Database backup**: Create and restore database backups.
+
+### Email Management
+
+**Creating email accounts**:
+
+1. Navigate to Email → Add Email Account.
+2. Enter email address (e.g., user@example.com).
+3. Set password for email account.
+4. Configure mailbox size limit.
+5. Enable spam filtering (optional).
+6. Click "Create Email Account".
+
+**Email configuration**:
+
+- **IMAP/POP3**: Configure email clients using IMAP or POP3.
+- **SMTP**: Configure SMTP settings for outgoing email.
+- **Webmail**: Access webmail interface for email management.
+- **Spam filtering**: Configure spam filtering rules and settings.
+
+### DNS Management
+
+**Managing DNS zones**:
+
+1. Navigate to DNS → DNS Zones.
+2. Select domain.
+3. Add, edit, or delete DNS records (A, AAAA, CNAME, MX, TXT, etc.).
+4. Configure DNS settings (TTL, NS records, etc.).
+5. Save DNS zone changes.
+
+**DNS record types**:
+
+- **A records**: IPv4 address mappings.
+- **AAAA records**: IPv6 address mappings.
+- **CNAME records**: Canonical name aliases.
+- **MX records**: Mail exchange records.
+- **TXT records**: Text records (SPF, DKIM, DMARC, etc.).
+- **NS records**: Name server records.
+- **SRV records**: Service records.
+
+### SSL Certificate Management
+
+**Installing Let's Encrypt SSL**:
+
+1. Navigate to Websites → Select Website.
+2. Click "SSL Certificate".
+3. Select "Let's Encrypt".
+4. Enter email address for certificate notifications.
+5. Configure certificate settings.
+6. Click "Install Certificate".
+
+**Installing commercial SSL certificates**:
+
+1. Navigate to Websites → Select Website.
+2. Click "SSL Certificate".
+3. Select "Commercial Certificate".
+4. Upload certificate files (certificate, private key, CA bundle).
+5. Configure certificate settings.
+6. Click "Install Certificate".
+
+**Automatic renewal**:
+
+- Let's Encrypt certificates are automatically renewed by ISPManager.
+- Certificates are renewed 30 days before expiration.
+
+### Backup Management
+
+**Creating backups**:
+
+1. Navigate to Backups → Create Backup.
+2. Select backup type (Full, Database, Files, Email).
+3. Choose backup destination (Local, Remote FTP, Remote SSH).
+4. Schedule automatic backups (optional).
+5. Configure backup settings.
+6. Click "Create Backup".
+
+**Restoring backups**:
+
+1. Navigate to Backups → Restore Backup.
+2. Select backup from list.
+3. Choose restore options (Full, Database, Files, Email).
+4. Configure restore settings.
+5. Click "Restore Backup".
+
+### User Management
+
+**Creating users**:
+
+1. Navigate to Users → Add User.
+2. Enter user information (username, password, email).
+3. Configure user permissions and limits.
+4. Assign user to domains and resources.
+5. Click "Create User".
+
+**User permissions**:
+
+- **Full access**: Full access to all features and resources.
+- **Limited access**: Limited access to specific features and resources.
+- **Domain access**: Access to specific domains only.
+- **Resource limits**: CPU, RAM, storage, and bandwidth limits.
+
+## Best Practices
+
+### Security
+
+**Firewall configuration**:
+
+```bash
+# Allow ISPManager port (1500)
+ufw allow 1500/tcp
+
+# Allow HTTP/HTTPS
+ufw allow 80/tcp
+ufw allow 443/tcp
+
+# Allow SSH
+ufw allow 22/tcp
+
+# Enable firewall
+ufw enable
+```
+
+**SSH security**:
+
+- Disable root login via SSH.
+- Use SSH key authentication.
+- Change default SSH port (optional).
+
+**ISPManager security**:
+
+- Use strong, unique passwords.
+- Enable two-factor authentication (if available).
+- Regularly update ISPManager and server software.
+- Restrict ISPManager access to specific IP addresses (if possible).
+
+### Performance Optimization
+
+**PHP optimization**:
+
+- Use appropriate PHP version for your applications.
+- Configure PHP memory limits based on application requirements.
+- Enable OPcache for improved PHP performance.
+
+**Database optimization**:
+
+- Regularly optimize database tables.
+- Configure appropriate database cache settings.
+- Monitor database performance and query times.
+
+**Web server optimization**:
+
+- Enable gzip compression.
+- Configure appropriate cache headers.
+- Use CDN for static content (if applicable).
+
+### Backup Strategy
+
+**Automated backups**:
+
+- Schedule daily backups for critical data.
+- Store backups in multiple locations (local and remote).
+- Test backup restoration regularly.
+
+**Backup retention**:
+
+- Keep daily backups for 7 days.
+- Keep weekly backups for 4 weeks.
+- Keep monthly backups for 12 months.
+
+## Troubleshooting
+
+### Common Issues
+
+**ISPManager not accessible**:
+
+```bash
+# Check ISPManager service status
+systemctl status ispmanager
+
+# Restart ISPManager service
+systemctl restart ispmanager
+
+# Check firewall rules
+ufw status
+```
+
+**Website not loading**:
+
+```bash
+# Check web server status
+systemctl status nginx
+# or
+systemctl status apache2
+
+# Check web server configuration
+nginx -t
+# or
+apache2ctl configtest
+
+# Restart web server
+systemctl restart nginx
+# or
+systemctl restart apache2
+```
+
+**Database connection issues**:
+
+```bash
+# Check MySQL/MariaDB status
+systemctl status mysql
+# or
+systemctl status mariadb
+
+# Check database user permissions
+mysql -u root -p
+```
+
+**Email not working**:
+
+```bash
+# Check mail server status
+systemctl status postfix
+
+# Check mail logs
+tail -f /var/log/mail.log
+```
+
+## FAQ
+
+### What is ISPManager?
+
+ISPManager is a commercial web hosting control panel for Linux servers that provides a comprehensive interface for managing websites, domains, databases, and email accounts.
+
+### Is ISPManager free?
+
+ISPManager offers both free and commercial versions. The free version has limited features, while the commercial version includes advanced features and support.
+
+### What operating systems are supported?
+
+ISPManager supports CentOS 7/8, Ubuntu 18.04/20.04/22.04, and Debian 9/10/11.
+
+### Can I use ISPManager with existing websites?
+
+Yes, ISPManager can be installed on servers with existing websites, but it's recommended to backup your data before installation.
+
+### How do I update ISPManager?
+
+ISPManager can be updated through the web interface or using the command line:
+
+```bash
+ispmanager update
+```
+
+### Can I use ISPManager with other control panels?
+
+No, ISPManager should not be installed alongside other control panels (cPanel, Plesk, etc.) as they may conflict.
+
+### How do I uninstall ISPManager?
+
+ISPManager can be uninstalled using:
+
+```bash
+ispmanager uninstall
+```
+
+**Warning**: Uninstalling ISPManager will remove the control panel but will not remove your websites, databases, or email accounts.
+
+### What web servers are supported?
+
+ISPManager supports both nginx and Apache web servers.
+
+### Can I switch between nginx and Apache?
+
+Yes, ISPManager allows switching between nginx and Apache, but this may require reconfiguration of websites and settings.
+
+### How do I backup my ISPManager configuration?
+
+ISPManager configuration can be backed up through the web interface or by backing up the ISPManager configuration directory.
+
+## Related Articles
+
+- [FastPanel on Server](/wiki/articles/fastpanel-on-server)
+- [Site on the Server](/wiki/articles/site-on-the-server)
+- [Virtual Servers](/wiki/articles/virtual-servers)
+- [Dedicated Servers](/wiki/articles/dedicated-servers)
