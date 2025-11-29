@@ -11,6 +11,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Debug - Check secrets
+        run: |
+          echo "HOST: ${{ secrets.HOST != '' && 'SET' || 'NOT SET' }}"
+          echo "USERNAME: ${{ secrets.USERNAME != '' && 'SET' || 'NOT SET' }}"
+          echo "PASSWORD: ${{ secrets.PASSWORD != '' && 'SET' || 'NOT SET' }}"
+          echo "DEPLOY_PATH: ${{ secrets.DEPLOY_PATH != '' && 'SET' || 'NOT SET' }}"
+
       - name: Deploy via SCP (Password)
         uses: appleboy/scp-action@master
         with:
@@ -22,4 +29,3 @@ jobs:
           target: ${{ secrets.DEPLOY_PATH }}
           overwrite: true
           debug: true
-

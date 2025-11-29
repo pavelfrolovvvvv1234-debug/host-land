@@ -1,0 +1,62 @@
+name: FIXED Deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify secrets exist
+        run: |
+          echo "=== SECRET VERIFICATION ==="
+          if [ -z "${{ secrets.HOST }}" ]; then
+            echo "❌ HOST секрет НЕ НАЙДЕН или ПУСТОЙ"
+            exit 1
+          else
+            echo "✅ HOST секрет найден"
+          fi
+          
+          if [ -z "${{ secrets.USERNAME }}" ]; then
+            echo "❌ USERNAME секрет НЕ НАЙДЕН или ПУСТОЙ"
+            exit 1
+          else
+            echo "✅ USERNAME секрет найден"
+          fi
+          
+          if [ -z "${{ secrets.PASSWORD }}" ] && [ -z "${{ secrets.SSH_KEY }}" ]; then
+            echo "❌ PASSWORD и SSH_KEY секреты НЕ НАЙДЕНЫ или ПУСТЫЕ"
+            exit 1
+          else
+            if [ -n "${{ secrets.PASSWORD }}" ]; then
+              echo "✅ PASSWORD секрет найден"
+            fi
+            if [ -n "${{ secrets.SSH_KEY }}" ]; then
+              echo "✅ SSH_KEY секрет найден"
+            fi
+          fi
+          
+          if [ -z "${{ secrets.DEPLOY_PATH }}" ]; then
+            echo "❌ DEPLOY_PATH секрет НЕ НАЙДЕН или ПУСТОЙ"
+            exit 1
+          else
+            echo "✅ DEPLOY_PATH секрет найден"
+          fi
+          echo "==========================="
+
+      - name: Deploy via SCP
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: 22
+          source: "."
+          target: ${{ secrets.DEPLOY_PATH }}
+          overwrite: true
+          debug: true
+
