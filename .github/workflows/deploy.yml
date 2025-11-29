@@ -31,12 +31,30 @@ jobs:
         env:
           NODE_ENV: production
 
-      - name: Check secrets presence
+      - name: Debug secrets
         run: |
-          echo "HOST set: ${{ secrets.HOST != '' }}"
-          echo "USERNAME set: ${{ secrets.USERNAME != '' }}"
-          echo "SSH_KEY set: ${{ secrets.SSH_KEY != '' }}"
-          echo "DEPLOY_PATH set: ${{ secrets.DEPLOY_PATH != '' }}"
+          echo "=== SECRETS CHECK ==="
+          if [ -n "${{ secrets.HOST }}" ]; then
+            echo "✓ HOST is set (length: ${#HOST})"
+          else
+            echo "✗ HOST is NOT set"
+          fi
+          if [ -n "${{ secrets.USERNAME }}" ]; then
+            echo "✓ USERNAME is set (length: ${#USERNAME})"
+          else
+            echo "✗ USERNAME is NOT set"
+          fi
+          if [ -n "${{ secrets.SSH_KEY }}" ]; then
+            echo "✓ SSH_KEY is set (length: ${#SSH_KEY})"
+          else
+            echo "✗ SSH_KEY is NOT set"
+          fi
+          if [ -n "${{ secrets.DEPLOY_PATH }}" ]; then
+            echo "✓ DEPLOY_PATH is set"
+          else
+            echo "✗ DEPLOY_PATH is NOT set"
+          fi
+          echo "===================="
 
       - name: Deploy via SCP
         uses: appleboy/scp-action@master
