@@ -34,6 +34,12 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: Prepare deployment files
+        run: |
+          mkdir -p deploy
+          cp -r apps/client/* deploy/
+          cp -r apps/client/.[!.]* deploy/ 2>/dev/null || true
+
       - name: Deploy via SCP
         uses: appleboy/scp-action@master
         with:
@@ -41,7 +47,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: 22
-          source: "./apps/client"
+          source: "./deploy/*"
           target: ${{ secrets.DEPLOY_PATH }}
           overwrite: true
           debug: true
@@ -68,14 +74,12 @@ jobs:
             fi
             
             # Установка зависимостей
-            npm ci --production
+            npm install --production
             
             # Остановка старого процесса если запущен
             pm2 stop dior-host || true
             pm2 delete dior-host || true
             
             # Запуск приложения
-            cd ${{ secrets.DEPLOY_PATH }}
             pm2 start npm --name "dior-host" -- start
             pm2 save
-            pm2 startup
