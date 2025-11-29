@@ -1,23 +1,22 @@
 # Настройка секретов для деплоя
 
-## Критически важно: имена секретов должны быть ТОЧНО такими
+## Требуемые секреты в GitHub
 
-Создайте секреты в GitHub: https://github.com/pavelfrolovvvvv1234-debug/host-land/settings/secrets/actions
+Перейдите в настройки репозитория: **Settings → Secrets and variables → Actions → Repository secrets**
 
-## Секреты для создания:
+Создайте следующие секреты с **точными именами** (регистр важен):
 
-### 1. SSH_HOST
-- **Name**: `SSH_HOST` (точно так, регистр важен!)
-- **Value**: `95.182.98.171`
+### 1. HOST
+**Имя:** `HOST`  
+**Значение:** `95.182.98.171`
 
-### 2. SSH_USER  
-- **Name**: `SSH_USER` (точно так, регистр важен!)
-- **Value**: `root`
+### 2. USERNAME
+**Имя:** `USERNAME`  
+**Значение:** `root`
 
-### 3. SSH_PRIVATE_KEY
-- **Name**: `SSH_PRIVATE_KEY` (точно так, регистр важен!)
-- **Value**: (весь приватный ключ, включая BEGIN и END):
-
+### 3. SSH_KEY
+**Имя:** `SSH_KEY`  
+**Значение:** (весь приватный ключ, включая BEGIN и END строки)
 ```
 -----BEGIN OPENSSH PRIVATE KEY-----
 b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAACFwAAAAdzc2gtcn
@@ -35,10 +34,10 @@ MAAAdAp8ZFS6fGRUsAAAAHc3NoLXJzYQAAAgEArITCsn3efCGtRFhYrrk+SdFY2Ek8lk5u
 bpDB7ZIqVEOshMzgobjYzArDDZv4h+wj5iU3armK6/l/u/F4C+WWHA30a3J5UMASJ8EaM7
 Kj+QevAr57RWmAKZxYBD+CMDnZWcG0IkK4YI14I6TBC488ESbNVe5ic3qFZnMBUlr/g0xx
 gpFrE2mRHlxFSy/+Yar9XUOwmC7nyE8XYn0RiG1LVW8HzWVkXf9mFFdvctyWKUEwYcUHOx
-B61S9isk/WkadNUCCUlJgZFg1WPom54ImhsA1QzWBAyXMn4MzWkTteb8C+zp9naUDQ5yUr0
-X74nOxMfirRoR0hl2y+Fbi225sO4z+n7elQTMMNdQyp8uoG6L+OGPx+ijrbnCjDQIFaH8ip
-htCerRf08240PqXdHrZcQttkMAXpoE2CkFlRUqBIOfzTdODJelgch1HYI2UxBeU5MizRr
-PG/Nb9lE1esfm2ve6ktx3Xdi6upcfFNCmtLJaGYNZ5JwbbP4YVYoEo9Y17LJlmOuEl9nz
+B61S9isk/WkadNUCCUlJgZFg1WPom54ImhsA1QzWBAyXMn4MzWkTteb8C+zp9naUDQ5yUr
+0X74nOxMfirRoR0hl2y+Fbi225sO4z+n7elQTMMNdQyp8uoG6L+OGPx+ijrbnCjDQIFaH8
+iphtCerRf08240PqXdHrZcQttkMAXpoE2CkFlRUqBIOfzTdODJelgch1HYI2UxBeU5MizR
+rPG/Nb9lE1esfm2ve6ktx3Xdi6upcfFNCmtLJaGYNZ5JwbbP4YVYoEo9Y17LJlmOuEl9nz
 tbS4ozn4ReZP9eayC7vFzzBPZcp9wABfHo9+FCzhEnPVZh6rvRTwrg77Xjd3FbAwhY0R23
 gDcXk2+3fTnXf0KiQOpuhBGnkHdWGKeAAe5fXdmlyV/2y2CmnHRvT6aBnpY+zgSamnbZqa
 N7Hy3NXrCYgZa12NMUXwMAAAADAQABAAACABgf3owQPubz3KNkiU4xmEzBSh/AqgjIwfeT
@@ -71,34 +70,43 @@ LiORVm/rJdsAAAAKZGVwbG95X2tleQE=
 ```
 
 ### 4. DEPLOY_PATH
-- **Name**: `DEPLOY_PATH`
-- **Value**: Путь на сервере, куда деплоить (например: `/var/www/dior-host`)
+**Имя:** `DEPLOY_PATH`  
+**Значение:** Путь на сервере, куда деплоить (например, `/var/www/host-land`)
 
-## Важно:
+---
 
-1. **Имена секретов должны быть ТОЧНО такими** (регистр важен!):
-   - `SSH_HOST` (не `ssh_host`, не `DEPLOY_HOST`)
-   - `SSH_USER` (не `ssh_user`, не `DEPLOY_USER`)
-   - `SSH_PRIVATE_KEY` (не `SSH_KEY`, не `DEPLOY_KEY`)
+## Альтернатива: Использование пароля вместо SSH ключа
 
-2. **Приватный ключ** должен включать:
-   - Строку `-----BEGIN OPENSSH PRIVATE KEY-----`
-   - Все строки ключа
-   - Строку `-----END OPENSSH PRIVATE KEY-----`
+Если вы хотите использовать пароль вместо SSH ключа, создайте секрет:
 
-3. **После создания секретов** перезапустите workflow вручную
+### PASSWORD
+**Имя:** `PASSWORD`  
+**Значение:** `lY3wW4qH1woH`
 
-## Проверка:
-
-После настройки секретов в логе шага "Deploy to server" в блоке `Config:` должно быть:
-
-```
-Host: []string:1:1 {
-   "95.182.98.171",
-},
-Username: "root",
-Key: "-----BEGIN OPENSSH PRIVATE KEY-----..."
+И в workflow замените:
+```yaml
+key: ${{ secrets.SSH_KEY }}
 ```
 
-Если там всё ещё пусто - проверьте имена секретов в GitHub.
+на:
+```yaml
+password: ${{ secrets.PASSWORD }}
+```
 
+---
+
+## Важно
+
+1. **Регистр важен**: `HOST`, `USERNAME`, `SSH_KEY` (не `host`, `username`, `ssh_key`)
+2. **SSH ключ**: Должен быть **приватный ключ** (начинается с `-----BEGIN OPENSSH PRIVATE KEY-----`)
+3. **Публичный ключ**: Должен быть добавлен в `~/.ssh/authorized_keys` на сервере
+4. **Проверка**: После создания секретов, запустите workflow и проверьте шаг "Check secrets presence" - все должны быть `true`
+
+---
+
+## Данные сервера
+
+- **Host:** `95.182.98.171`
+- **Username:** `root`
+- **Password:** `lY3wW4qH1woH`
+- **SSH Public Key:** `ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCshMKyfd58Ia1EWFiuuT5J0VjYSTyWTm5ukMHtkipUQ6yEzOChuNjMCsMNm/iH7CPmJTdquYrr+X+78XgL5ZYcDfRrcnlQwBInwRozsqP5B68CvntFaYApnFgEP4IwOdlZwbQiQrhgjXgjpMELjzwRJs1V7mJzeoVmcwFSWv+DTHGCkWsTaZEeXEVLL/5hqv1dQ7CYLufITxdifRGIbUtVbwfNZWRd/2YUV29y3JYpQTBhxQc7EHrVL2KyT9aRp01QIJSUmBkWDVY+ibngiaGwDVDNYEDJcyfgzNaRO15vwL7On2dpQNDnJSvRfvic7Ex+KtGhHSGXbL4VuLbbmw7jP6ft6VBMww11DKny6gbov44Y/H6KOtucKMNAgVofyKmG0J6tF/TzbjQ+pd0etlxC22QwBemgTYKQWVFSoEg5/NN04Ml6WByHUdgjZTEF5TkyLNGs8b81v2UTV6x+ba97qS3Hdd2Lq6lx8U0Ka0sloZg1nknBts/hhVigSj1jXssmWY64SX2fO1tLijOfhF5k/15rILu8XPME9lyn3AAF8ej34ULOESc9VmHqu9FPCuDvteN3cVsDCFjRHbeANxeTb7d9Odd/QqJA6m6EEaeQd1YYp4AB7l9d2aXJX/bLYKacdG9PpoGelj7OBJqadtmpo3sfLc1esJiBlrXY0xRfAw== deploy_key`

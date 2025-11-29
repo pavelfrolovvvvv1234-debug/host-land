@@ -33,17 +33,17 @@ jobs:
 
       - name: Check secrets presence
         run: |
-          echo "SSH_HOST set: ${{ secrets.SSH_HOST != '' }}"
-          echo "SSH_USER set: ${{ secrets.SSH_USER != '' }}"
-          echo "SSH_PRIVATE_KEY set: ${{ secrets.SSH_PRIVATE_KEY != '' }}"
+          echo "HOST set: ${{ secrets.HOST != '' }}"
+          echo "USERNAME set: ${{ secrets.USERNAME != '' }}"
+          echo "SSH_KEY set: ${{ secrets.SSH_KEY != '' }}"
           echo "DEPLOY_PATH set: ${{ secrets.DEPLOY_PATH != '' }}"
 
       - name: Deploy via SCP
-        uses: appleboy/scp-action@v1
+        uses: appleboy/scp-action@master
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
           port: 22
           source: "./apps/client"
           target: ${{ secrets.DEPLOY_PATH }}
@@ -51,11 +51,11 @@ jobs:
           debug: true
 
       - name: SSH and restart
-        uses: appleboy/ssh-action@v1
+        uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
           port: 22
           script: |
             cd ${{ secrets.DEPLOY_PATH }}
