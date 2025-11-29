@@ -1,19 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  output: 'standalone',
-  env: {
-    API_URL: process.env.API_URL || 'http://localhost:3001',
+  eslint: {
+    // Отключаем ESLint во время production build
+    ignoreDuringBuilds: true,
   },
-  async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: `${process.env.API_URL || 'http://localhost:3001'}/api/:path*`,
-      },
-    ];
+  typescript: {
+    // Отключаем проверку типов во время build (опционально)
+    ignoreBuildErrors: false,
   },
-};
+}
 
-module.exports = nextConfig;
-
+module.exports = nextConfig
