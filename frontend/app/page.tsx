@@ -1,8 +1,8 @@
-import { HomePage } from "../components/home/HomePage";
+import { HomePageModern } from "../components/home/HomePageModern";
 import { homeContent } from "../content/home";
 
 export default function Page() {
-  return <HomePage locale="en" content={homeContent.en} />;
+  return <HomePageModern locale="en" content={homeContent.en} />;
 }
 
 

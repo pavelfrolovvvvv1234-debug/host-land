@@ -584,21 +584,28 @@ export function HomePage({ locale, content = homeContent[locale] }: HomePageProp
                 {content.stepsTitle}
               </motion.h2>
               <p className="text-white/70 mt-2">{content.stepsSubtitle}</p>
-              <StaggerContainer className="mt-4 space-y-4">
-                {content.steps.map((step, index) => (
-                  <motion.li key={step.title} variants={fadeInUp} className="flex gap-4">
-                    <motion.span
-                      className="h-10 w-10 flex items-center justify-center rounded-full border border-white/30 text-lg font-bold"
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                    >
-                      {index + 1}
-                    </motion.span>
-                    <div>
-                      <h3 className="font-semibold">{step.title}</h3>
-                      <p className="text-sm text-white/70">{step.description}</p>
-                    </div>
-                  </motion.li>
-                ))}
+              <StaggerContainer className="mt-6">
+                <ul className="space-y-6 list-none">
+                  {content.steps.map((step, index) => (
+                    <motion.li key={step.title} variants={fadeInUp} className="flex gap-4 items-start">
+                      <motion.span
+                        className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full border-2 border-white/30 text-lg font-bold text-white"
+                        style={{ 
+                          minWidth: '40px', 
+                          minHeight: '40px',
+                          lineHeight: '1'
+                        }}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                      >
+                        {index + 1}
+                      </motion.span>
+                      <div className="flex-1 min-w-0 pt-0.5">
+                        <h3 className="font-semibold text-white mb-1.5">{step.title}</h3>
+                        <p className="text-sm text-white/70 leading-relaxed">{step.description}</p>
+                      </div>
+                    </motion.li>
+                  ))}
+                </ul>
               </StaggerContainer>
             </section>
           </ScrollReveal>

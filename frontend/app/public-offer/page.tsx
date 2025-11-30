@@ -359,8 +359,8 @@ export default function PublicOfferPage() {
               </p>
               <p>
                 <strong>DMCA Notices:</strong>{" "}
-                <a href="mailto:dmca@dior.host" className="text-blue-300 hover:text-white">
-                  dmca@dior.host
+                <a href="mailto:support@dior.host" className="text-blue-300 hover:text-white">
+                  support@dior.host
                 </a>
               </p>
               <p>

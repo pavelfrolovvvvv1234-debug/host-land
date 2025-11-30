@@ -84,8 +84,7 @@ export default function SLAPage() {
               <li>Резервные сетевые пути к нескольким вышестоящим провайдерам</li>
               <li>Маршрутизация BGP с автоматическим переключением</li>
               <li>Защита от DDoS и фильтрация (до наших лимитов мощности)</li>
-              <li>Пиринг на NL-IX, AMS-IX, DE-CIX и RO-IX</li>
-              <li>Общая сетевая мощность 150+ Gbps</li>
+              <li>Пиринг на NL-IX</li>
             </ul>
             <p className="text-white/80 leading-relaxed mt-4">
               Простой сети измеряется как неспособность маршрутизировать трафик к/от вашей услуги из-за сбоев инфраструктуры, исключая DDoS-атаки, превышающие нашу способность фильтрации.
@@ -93,51 +92,58 @@ export default function SLAPage() {
           </div>
         </section>
 
-        <section id="hardware-replacement" className="mb-12">
+        <section id="recovery-time" className="mb-12">
           <h2 className="text-3xl font-semibold mb-6 text-white border-b border-white/10 pb-4">
-            3. Время замены оборудования
+            3. Предположительное время восстановления
           </h2>
           <div className="bg-black/30 border border-white/10 rounded-lg p-4">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-white/10">
-                  <th className="text-left py-3 px-4 text-white font-semibold">Компонент оборудования</th>
-                  <th className="text-left py-3 px-4 text-white font-semibold">Время замены</th>
+                  <th className="text-left py-3 px-4 text-white font-semibold">Сервис / Компонент</th>
+                  <th className="text-left py-3 px-4 text-white font-semibold">Предположительное время восстановления</th>
                   <th className="text-left py-3 px-4 text-white font-semibold">Примечания</th>
                 </tr>
               </thead>
               <tbody className="text-white/80">
                 <tr className="border-b border-white/5">
-                  <td className="py-3 px-4">Хранилище (SSD/NVMe)</td>
-                  <td className="py-3 px-4">≤ 4 часа</td>
-                  <td className="py-3 px-4">Горячая замена, доступно резервное хранилище</td>
+                  <td className="py-3 px-4">Главный сайт, биллинг и панели управления</td>
+                  <td className="py-3 px-4">1-2 часа</td>
+                  <td className="py-3 px-4">Восстанавливаются при сбое панели, ОС или сервера</td>
                 </tr>
                 <tr className="border-b border-white/5">
-                  <td className="py-3 px-4">Модули RAM</td>
-                  <td className="py-3 px-4">≤ 4 часа</td>
-                  <td className="py-3 px-4">ECC RAM с обнаружением ошибок</td>
+                  <td className="py-3 px-4">Выдача виртуального сервера</td>
+                  <td className="py-3 px-4">3-6 минут</td>
+                  <td className="py-3 px-4">Биллинг даёт команду на создание ВМ и автоматически устанавливает ОС</td>
                 </tr>
                 <tr className="border-b border-white/5">
-                  <td className="py-3 px-4">Сетевой интерфейс</td>
-                  <td className="py-3 px-4">≤ 2 часа</td>
-                  <td className="py-3 px-4">Резервные сетевые интерфейсы</td>
+                  <td className="py-3 px-4">Регистрация домена</td>
+                  <td className="py-3 px-4">16 часов – 3 дня</td>
+                  <td className="py-3 px-4">Много юридической возни, поэтому срок регистрации увеличен</td>
                 </tr>
                 <tr className="border-b border-white/5">
-                  <td className="py-3 px-4">Блок питания</td>
-                  <td className="py-3 px-4">≤ 1 час</td>
-                  <td className="py-3 px-4">Резервные БП, автоматическое переключение</td>
+                  <td className="py-3 px-4">Выдача физического сервера</td>
+                  <td className="py-3 px-4">4 часа – 3 дня</td>
+                  <td className="py-3 px-4">Иногда сервер нужно привезти на объект или вызвать сотрудника для установки комплектующих</td>
+                </tr>
+                <tr className="border-b border-white/5">
+                  <td className="py-3 px-4">Смена ОС на физическом сервере</td>
+                  <td className="py-3 px-4">1-6 часов</td>
+                  <td className="py-3 px-4">Сотрудник дата-центра самостоятельно ставит ОС</td>
+                </tr>
+                <tr className="border-b border-white/5">
+                  <td className="py-3 px-4">Время ответа от поддержки</td>
+                  <td className="py-3 px-4">1-30 минут</td>
+                  <td className="py-3 px-4">Иногда сотрудники в одно и то же время спят</td>
                 </tr>
                 <tr>
-                  <td className="py-3 px-4">Материнская плата/CPU</td>
-                  <td className="py-3 px-4">≤ 8 часов</td>
-                  <td className="py-3 px-4">Полная замена сервера при необходимости</td>
+                  <td className="py-3 px-4">Дополнительно</td>
+                  <td className="py-3 px-4">по ситуации</td>
+                  <td className="py-3 px-4">Уведомление клиентов через тикеты или Telegram</td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <p className="text-white/80 leading-relaxed mt-4">
-            Время замены измеряется с момента подтверждения отказа оборудования до восстановления услуги. Время может быть продлено во время форс-мажорных событий или если запасные части недоступны.
-          </p>
         </section>
 
         <section id="support-response" className="mb-12">
@@ -291,7 +297,7 @@ export default function SLAPage() {
               <ol className="list-decimal list-inside space-y-1 text-white/80 ml-4">
                 <li>Автоматические оповещения немедленно уведомляют инженеров NOC</li>
                 <li>Инженеры расследуют и диагностируют проблему</li>
-                <li>Затронутые клиенты уведомляются по email и через систему тикетов</li>
+                <li>Затронутые клиенты уведомляются по одной из ветвей оповещения: email, через систему тикетов и Telegram-канал</li>
                 <li>Решение реализуется и проверяется</li>
                 <li>Отчет после инцидента генерируется для крупных инцидентов</li>
               </ol>
@@ -299,7 +305,7 @@ export default function SLAPage() {
             <div>
               <h3 className="text-xl font-semibold mb-2 text-white">7.3. Коммуникация об инцидентах</h3>
               <p className="text-white/80 leading-relaxed">
-                Для инцидентов, затрагивающих нескольких клиентов или длящихся более 15 минут, мы предоставляем обновления статуса по email и на нашей странице статуса. Обновления отправляются: при начале инцидента, каждые 30 минут во время инцидента и при разрешении.
+                Для инцидентов, затрагивающих нескольких клиентов или продолжающихся более 15 минут, мы предоставляем обновления статуса через Telegram-канал, биллинговую систему и службу поддержки. Обновления публикуются при начале инцидента, примерно каждые 30 минут в ходе его устранения и после полного разрешения.
               </p>
             </div>
           </div>

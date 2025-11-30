@@ -74,28 +74,28 @@ const blogPosts: BlogCard[] = [
       "Complete guide to DMCA-ignored hosting architecture, abuse-handling workflows, use cases, technical advantages, legal considerations, and deployment strategies."
   },
   {
-    slug: "abuse-resistant-dns-routing-guide",
-    title: "Abuse-Resistant DNS & Routing Guide",
+    slug: "cdn-complete-guide",
+    title: "CDN: Complete Guide to Website Acceleration Through Global Content Delivery Networks",
     summary:
-      "Learn how to route traffic through offshore-friendly networks and DNS providers that withstand abuse complaints."
+      "Deep technical dive into CDN architecture, edge caching, geo-routing, smart-routing, DNS load balancing, and configuration examples for Cloudflare, Fastly, and Akamai."
   },
   {
-    slug: "best-bulletproof-hosting-locations-2025",
-    title: "Best Bulletproof Hosting Locations in 2025",
+    slug: "vpn-infrastructure-guide",
+    title: "VPN Infrastructure Breakdown: How to Choose a VPN Provider and Deploy Your Own Corporate VPN Stack",
     summary:
-      "Review the top offshore jurisdictions for abuse-resistant infrastructure, including NL, DE, RO and MD."
+      "Technical deep-dive into VPN protocols (WireGuard, OpenVPN, IPSec), deployment architectures, security encryption, access control, use cases, and monetization strategies."
   },
   {
-    slug: "bulletproof-dedicated-servers-guide",
-    title: "Bulletproof Dedicated Servers Guide",
+    slug: "minecraft-hosting-architecture",
+    title: "Minecraft Hosting: Architecture, Optimization, Load Management, Security, and Scalability",
     summary:
-      "When to move from VPS to dedicated bare metal and how to design abuse-resistant hardware stacks."
+      "Complete technical guide to Minecraft server hosting, Java performance optimization, Paper/Spigot/Purpur configuration, BungeeCord/Velocity scaling, and production deployment strategies."
   },
   {
-    slug: "bulletproof-vds-complete-guide",
-    title: "Complete Guide to Bulletproof VDS",
+    slug: "abuse-resistant-vps-complete-guide",
+    title: "Abuse-Resistant VPS/VDS: How Abuse-Resistant Data Centers Work and Who Really Needs Them",
     summary:
-      "A practical overview of bulletproof VDS for marketers, privacy startups and security labs."
+      "Complete technical guide to abuse-resistant hosting, abuse request handling mechanics, IPHM, SLA policies, policy-friendly jurisdictions, and use cases for high-risk projects."
   }
 ];
 

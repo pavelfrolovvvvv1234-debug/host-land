@@ -348,7 +348,7 @@ export default function PrivacyPolicyPage() {
               </div>
             </div>
             <p className="text-white/80 leading-relaxed mt-4">
-              To exercise these rights, contact us at <a href="mailto:privacy@dior.host" className="text-blue-300 hover:text-white underline">privacy@dior.host</a>. We will respond within 30 days.
+              To exercise these rights, contact us at <a href="mailto:support@dior.host" className="text-blue-300 hover:text-white underline">support@dior.host</a>. We will respond within 30 days.
             </p>
           </div>
         </section>
@@ -364,8 +364,8 @@ export default function PrivacyPolicyPage() {
             <div className="space-y-2 text-white/80">
               <p>
                 <strong>Email:</strong>{" "}
-                <a href="mailto:privacy@dior.host" className="text-blue-300 hover:text-white">
-                  privacy@dior.host
+                <a href="mailto:support@dior.host" className="text-blue-300 hover:text-white">
+                  support@dior.host
                 </a>
               </p>
               <p>

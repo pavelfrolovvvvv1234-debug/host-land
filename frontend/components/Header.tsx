@@ -15,7 +15,7 @@ export function Header() {
   const ruHref = basePath === "/" ? "/ru" : `/ru${basePath}`;
 
   return (
-    <nav className="bg-black border-b border-white/10">
+    <nav className="sticky top-0 z-50 border-b border-white/10 bg-background/80 backdrop-blur-md">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">

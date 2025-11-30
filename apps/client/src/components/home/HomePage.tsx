@@ -3,19 +3,19 @@
 import Image from "next/image";
 import { Fragment, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import back2 from "@/assets/back_2.png";
-import { HeroGlowSweep } from "@/components/motion/HeroGlowSweep";
-import { DigitalGrain } from "@/components/motion/DigitalGrain";
-import { ScrollReveal } from "@/components/motion/ScrollReveal";
-import { StaggerContainer } from "@/components/motion/StaggerContainer";
-import { PremiumCard } from "@/components/motion/PremiumCard";
-import { TLDCloud } from "@/components/motion/TLDCloud";
-import { ProgressLine } from "@/components/motion/ProgressLine";
-import { IPHMPulseLine } from "@/components/motion/IPHMPulseLine";
-import { FAQItem } from "@/components/motion/FAQItem";
-import { fadeInUp, iconRotate, slideInLeft } from "@/lib/motion";
-import { homeContent, type HomeContent, type ParagraphSegment } from "@/content/home";
-import { localizePath, type Locale } from "@/lib/localization";
+import back2 from "../../assets/back_2.png";
+import { HeroGlowSweep } from "../motion/HeroGlowSweep";
+import { DigitalGrain } from "../motion/DigitalGrain";
+import { ScrollReveal } from "../motion/ScrollReveal";
+import { StaggerContainer } from "../motion/StaggerContainer";
+import { PremiumCard } from "../motion/PremiumCard";
+import { TLDCloud } from "../motion/TLDCloud";
+import { ProgressLine } from "../motion/ProgressLine";
+import { IPHMPulseLine } from "../motion/IPHMPulseLine";
+import { FAQItem } from "../motion/FAQItem";
+import { fadeInUp, iconRotate, slideInLeft } from "../../lib/motion";
+import { homeContent, type HomeContent, type ParagraphSegment } from "../../content/home";
+import { localizePath, type Locale } from "../../lib/localization";
 
 export interface HomePageProps {
   readonly locale: Locale;

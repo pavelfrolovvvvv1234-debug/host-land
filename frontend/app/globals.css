@@ -7,6 +7,33 @@ body {
   scroll-behavior: smooth;
 }
 
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080808;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}
+
+/* Hide details marker */
+details > summary {
+  list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
 /* Legal Pages Styling */
 .legal-content {
   @apply text-white/80 leading-relaxed;
@@ -71,6 +98,31 @@ body {
 
 .legal-content blockquote {
   @apply border-l-4 border-blue-500/50 pl-4 italic text-white/70;
+}
+
+/* Hide content until preloader is ready - prevent flash */
+main[style*="display: none"],
+main[style*="visibility: hidden"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Smooth content appearance animation */
+.content-fade-in {
+  animation: contentFadeIn 0.8s ease-out forwards;
+}
+
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 

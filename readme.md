@@ -1,129 +1,193 @@
-# Dior Host 2.0
+kenoji, [11/28/2025 11:23 PM]
+***
 
-Premium hosting provider platform - Monorepo with Next.js frontend and NestJS backend.
+### 🏗  DIOR.HOST 2.0
 
-## Tech Stack
+Type: Monorepo / Hybrid (Modular Monolith)
+Approach: API-First, Containerized, GitOps ready.
 
-- **Monorepo**: TurboRepo with npm workspaces
-- **Frontend**: Next.js 14+ (App Router), TypeScript, Tailwind CSS, Shadcn/UI, Zustand
-- **Backend**: NestJS (Express), TypeScript, Prisma ORM, BullMQ
-- **Database**: PostgreSQL 16
-- **Cache/Queue**: Redis 7
-- **Infrastructure**: Docker Compose (Dev & Prod), Nginx
+#### 1. TECH STACK (Strict)
 
-## Project Structure
+Frontend (Client & Admin SPA):
+*   Framework: Next.js 14+ (App Router)
+*   Lang: TypeScript
+*   UI Kit: Tailwind CSS + Shadcn/UI + Radix UI
+*   State: Zustand (Global), React Query (Server State)
+*   Forms: React Hook Form + Zod
+*   Charts: Recharts (для статистики в админке)
 
-```
+Backend (Core API):
+*   Framework: NestJS (Express/Fastify adapter)
+*   Lang: TypeScript
+*   DB: PostgreSQL 16
+*   ORM: Prisma ORM
+*   Queue: Redis + BullMQ (критично для асинхронного создания серверов)
+*   Validation: class-validator + class-transformer
+
+Infrastructure:
+*   Container: Docker + Docker Compose
+*   Proxy: Nginx (Reverse Proxy + SSL termination)
+*   CI/CD: GitHub Actions / GitLab CI
+
+---
+
+#### 2. PROJECT TREE (Structure)
+
+Структура для монорепозитория (удобно шарить типы между фронтом и бэком).
+
+
 dior-host-v2/
+├── .github/                   # CI/CD Workflows
+├── docker/                    # Docker configs (dev/prod)
+│   ├── nginx/
+│   ├── postgres/
+│   └── redis/
 ├── apps/
-│   ├── client/          # Next.js frontend
-│   └── api/              # NestJS backend
-├── packages/
-│   └── dto/              # Shared DTOs/Types
-├── docker/               # Docker configs
-├── docker-compose.yml     # Development
-├── docker-compose.prod.yml # Production
-└── .memory/              # Project documentation
-```
+│   ├── client/                # Next.js (Landing + Dashboard)
+│   │   ├── src/
+│   │   │   ├── app/           # App Router pages
+│   │   │   ├── components/    # UI Kit (Atoms/Molecules)
+│   │   │   ├── features/      # Business logic (Billing, Servers)
+│   │   │   ├── lib/           # API clients, utils
+│   │   │   └── types/         # Frontend specific types
+│   │   ├── public/
+│   │   └── Dockerfile
+│   │
+│   └── api/                   # NestJS Core
+│       ├── src/
+│       │   ├── config/        # Env configs
+│       │   ├── modules/
+│       │   │   ├── auth/      # JWT, Guards, Strategies
+│       │   │   ├── users/     # User management
+│       │   │   ├── billing/   # Payment gateways, Invoices
+│       │   │   ├── servers/   # Logic for provisioning
+│       │   │   ├── support/   # Ticket system
+│       │   │   └── external/  # Adapters (Pterodactyl/Proxmox API)
+│       │   ├── common/        # Decorators, Filters, Interceptors
+│       │   └── main.ts
+│       ├── prisma/            # Schema & Migrations
+│       └── Dockerfile
+│
+├── packages/                  # Shared libs (Optional)
+│   └── dto/                   # Shared DTOs/Interfaces
+│
+├── .env.example
+├── docker-compose.yml
+├── docker-compose.prod.yml
+├── Makefile                   # Shortcuts (up, down, logs, migrate)
+└── README.md
 
-## Quick Start
 
-### Prerequisites
+---
 
-- Docker & Docker Compose
-- Node.js 18+ (for local development)
-- npm 9+
+#### 3. GLOBAL LOGIC MAP (Audit)
 
-### Development
+A. Core Modules (Backend):
+1.  Auth Service: JWT (Access/Refresh), 2FA (TOTP), Role Guard (User/Admin/Support).
+2.  Billing Service:
+    *   Transaction Ledger (Double-entry bookkeeping pattern — обязательно).
+    *   Payment Gateways Adapters (Factory pattern).
+    *   Recurring Tasks (Cron: списание средств, суспенд услуг).
+3.  Provisioning Service (The Bridge):
+    *   Queue Consumer (BullMQ): Обработка задач "Create", "Suspend", "Terminate".
+    *   API Client: Общение с внешней панелью (Pterodactyl/ISP).
+4.  Notification Service: Email (SMTP/Resend), TG Bot notifications.
 
-1. **Создайте `.env` файл:**
-   ```bash
-   cp .env.example .env
-   # или на Windows: copy .env.example .env
-   ```
+B. Frontend Features:
+1.  Public: SSR Pages (SEO), Dynamic Pricing Calculator.
+2.  Dashboard: Protected Routes, Real-time status (SWR/React Query polling), Terminal Emulator (xterm.js — если нужен доступ к консоли).
 
-2. **Запустите сервисы:**
-   ```bash
-   make up
-   # или
-   docker-compose up -d
-   ```
+---
 
-3. **Дождитесь запуска (30-60 сек) и выполните миграции:**
-   ```bash
-   make migrate
-   ```
+#### 4. DOCKER COMPOSE (Empty/Skeleton Format)
 
-4. **Заполните базу тестовыми данными (опционально):**
-   ```bash
-   make seed
-   ```
+Чистый шаблон для деплоя.
 
-5. **Откройте в браузере:**
-   - Frontend: http://localhost:3000
-   - API Health: http://localhost:3001/health
+kenoji, [11/28/2025 11:23 PM]
+```yaml
+version: '3.9'
 
-**Тестовые аккаунты (после seed):**
-- Admin: `admin@dior.host` / `admin123`
-- User: `user@dior.host` / `user123`
+services:
+  # --- Infrastructure ---
+  postgres:
+    image: postgres:16-alpine
+    container_name: dior_db
+    restart: always
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - internal_net
 
-📖 **Подробная инструкция**: См. [QUICKSTART.md](QUICKSTART.md)
+  redis:
+    image: redis:7-alpine
+    container_name: dior_redis
+    restart: always
+    command: redis-server --save 60 1 --loglevel warning
+    volumes:
+      - redis_data:/data
+    networks:
+      - internal_net
+# --- Application ---
+  api:
+    container_name: dior_api
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile
+      target: production
+    restart: always
+    env_file: .env
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - internal_net
 
-### Production
+  client:
+    container_name: dior_client
+    build:
+      context: ./apps/client
+      dockerfile: Dockerfile
+      target: production
+    restart: always
+    env_file: .env
+    depends_on:
+      - api
+    networks:
+      - internal_net
 
-```bash
-make prod-build
-make prod
-# or
-docker-compose -f docker-compose.prod.yml build
-docker-compose -f docker-compose.prod.yml up -d
-```
+  # --- Gateway ---
+  nginx:
+    image: nginx:alpine
+    container_name: dior_gateway
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./docker/certbot:/etc/letsencrypt
+    depends_on:
+      - client
+      - api
+    networks:
+      - internal_net
 
-## Available Commands
+volumes:
+  pg_data:
+  redis_data:
 
-See `Makefile` for all available commands:
+networks:
+  internal_net:
+    driver: bridge
 
-- `make up` - Start development environment
-- `make down` - Stop services
-- `make logs` - View logs
-- `make migrate` - Run database migrations
-- `make seed` - Seed database
-- `make prod` - Start production environment
-- `make clean` - Clean all containers and volumes
+`
 
-## Environment Variables
-
-See `.env.example` for all required environment variables.
-
-## Features
-
-- ✅ Authentication (JWT with refresh tokens)
-- ✅ Role-based access control (USER, ADMIN, SUPPORT)
-- ✅ Two-factor authentication (TOTP)
-- ✅ User management
-- ✅ Billing system (Double-entry ledger, invoices, transactions)
-- ✅ Server provisioning (BullMQ queues, async processing)
-- ✅ Support ticket system (Full CRUD with assignment)
-- ✅ Admin dashboard (Statistics and management)
-- ✅ Server management UI
-
-## Development
-
-### Local Development (without Docker)
-
-```bash
-# Install dependencies
-npm install
-
-# Start API
-cd apps/api
-npm run start:dev
-
-# Start Client (in another terminal)
-cd apps/client
-npm run dev
-```
-
-## License
-
-UNLICENSED
+#### 5. DEPLOYMENT STRATEGY (GitOps)
+1.  Git: Ветка main — production.
+2.  CI: GitHub Actions собирает образы и пушит в GHCR (Container Registry).
+3.  CD: На сервере Watchtower или скрипт в cron, который делает docker compose pull && docker compose up -d.
+4.  Migrations: Запускаются отдельным контейнером или командой в entrypoint API перед стартом.

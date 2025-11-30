@@ -61,6 +61,25 @@ function removeJsonLdScript(content: string): string {
   );
 }
 
+function getWikiArticlePath(slug: string): string {
+  // Try multiple possible paths where wiki articles might be located
+  const cwd = process.cwd();
+  const possiblePaths = [
+    join(cwd, "wiki", "articles", `${slug}.mdx`), // If cwd is frontend/
+    join(cwd, "frontend", "wiki", "articles", `${slug}.mdx`), // If cwd is project root
+  ];
+
+  // Find the first path that exists
+  for (const path of possiblePaths) {
+    if (existsSync(path)) {
+      return path;
+    }
+  }
+
+  // Return the first path as default (will trigger notFound if doesn't exist)
+  return possiblePaths[0];
+}
+
 export default function WikiArticlePage({ params }: PageProps) {
   const { slug } = params;
 
@@ -68,14 +87,11 @@ export default function WikiArticlePage({ params }: PageProps) {
     notFound();
   }
 
-  const filePath = join(
-    process.cwd(),
-    "wiki",
-    "articles",
-    `${slug}.mdx`
-  );
+  const filePath = getWikiArticlePath(slug);
 
   if (!existsSync(filePath)) {
+    console.error(`Wiki article not found: ${slug}`);
+    console.error(`Searched at: ${filePath}`);
     notFound();
   }
 
@@ -145,12 +161,7 @@ export async function generateMetadata({ params }: PageProps) {
     };
   }
 
-  const filePath = join(
-    process.cwd(),
-    "wiki",
-    "articles",
-    `${slug}.mdx`
-  );
+  const filePath = getWikiArticlePath(slug);
 
   if (!existsSync(filePath)) {
     return {

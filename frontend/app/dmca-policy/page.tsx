@@ -125,7 +125,7 @@ export default function DMCAPolicyPage() {
           </h2>
           <div className="space-y-4">
             <p className="text-white/80 leading-relaxed mb-4">
-              To submit a DMCA takedown notice, send email to <a href="mailto:dmca@dior.host" className="text-blue-300 hover:text-white underline">dmca@dior.host</a> with the following information:
+              To submit a DMCA takedown notice, send email to <a href="mailto:support@dior.host" className="text-blue-300 hover:text-white underline">support@dior.host</a> with the following information:
             </p>
             <div className="bg-black/30 border border-white/10 rounded-lg p-4">
               <h3 className="font-semibold mb-3 text-white">Required Information</h3>
@@ -240,7 +240,7 @@ export default function DMCAPolicyPage() {
             <div className="bg-black/20 border border-white/5 rounded-lg p-4 mt-4">
               <h3 className="font-semibold mb-2 text-white">Counter-Notification Process</h3>
               <ol className="list-decimal list-inside space-y-1 text-white/80 text-sm ml-4">
-                <li>Submit counter-notification to <a href="mailto:dmca@dior.host" className="text-blue-300 hover:text-white underline">dmca@dior.host</a></li>
+                <li>Submit counter-notification to <a href="mailto:support@dior.host" className="text-blue-300 hover:text-white underline">support@dior.host</a></li>
                 <li>We forward the counter-notification to the original complainant</li>
                 <li>If the complainant does not file a court action within 10-14 business days, we may restore the content</li>
                 <li>If a court action is filed, we comply with court orders</li>

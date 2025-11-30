@@ -1,0 +1,269 @@
+# ISPmanager on the Server
+
+ISPmanager is a commercial hosting control panel for Linux servers that provides comprehensive management of websites, domains, databases, email, and server resources. This guide explains installation and configuration.
+
+## What is ISPmanager?
+
+ISPmanager is a powerful hosting control panel designed for hosting providers and advanced users. It offers extensive functionality for managing hosting infrastructure with support for multiple users, billing integration, and advanced server configurations.
+
+### Key Features
+
+- **Multi-user support** - Manage multiple hosting accounts
+- **Billing integration** - Connect with billing systems
+- **Resource management** - CPU, RAM, disk quotas
+- **Domain management** - DNS, SSL, domain parking
+- **Email system** - Full email server management
+- **Database management** - MySQL, PostgreSQL support
+- **Backup system** - Automated backups
+
+## System Requirements
+
+- **OS**: CentOS 7/8, AlmaLinux 8/9, Rocky Linux 8/9, Ubuntu 20.04/22.04, Debian 11/12
+- **RAM**: Minimum 1 GB (2 GB recommended)
+- **Disk**: Minimum 20 GB free space
+- **Network**: Internet connection for installation
+
+## Installation
+
+### Step 1: Connect to Server
+
+Connect to your server via SSH:
+
+```bash
+ssh root@your-server-ip
+```
+
+### Step 2: Download Installation Script
+
+For ISPmanager 5 (Lite version - free):
+
+```bash
+wget https://download.ispsystem.com/install.sh
+```
+
+For ISPmanager 6 (commercial):
+
+```bash
+wget https://download.ispsystem.com/install6.sh
+```
+
+### Step 3: Make Executable
+
+```bash
+chmod +x install.sh
+```
+
+### Step 4: Run Installation
+
+Execute the installation script:
+
+```bash
+bash install.sh
+```
+
+Follow the on-screen prompts. You'll be asked to:
+
+1. Choose installation type (Lite or Premium)
+2. Select server role (master or slave)
+3. Configure network settings
+4. Set admin credentials
+
+### Step 5: Access ISPmanager
+
+After installation, access ISPmanager at:
+
+```
+https://your-server-ip:1500
+```
+
+Use the admin credentials created during installation.
+
+## Initial Setup
+
+### Step 1: License Activation
+
+If using commercial version, activate your license in the web interface.
+
+### Step 2: Configure Server
+
+1. Set server hostname
+2. Configure timezone
+3. Set up network interfaces
+4. Configure DNS servers
+
+### Step 3: Security Settings
+
+1. Change default admin password
+2. Configure firewall rules
+3. Set up SSH key authentication
+4. Enable fail2ban
+
+### Step 4: Install Additional Software
+
+Install required software packages:
+
+- PHP versions and extensions
+- Database servers (MySQL/MariaDB, PostgreSQL)
+- Web servers (Apache, Nginx)
+- Mail servers (Postfix, Dovecot)
+
+## Creating Websites
+
+### Step 1: Create User Account
+
+1. Go to "Users" section
+2. Click "Create User"
+3. Enter username and password
+4. Set resource limits (disk, bandwidth, etc.)
+
+### Step 2: Add Domain
+
+1. Select user account
+2. Go to "Websites" section
+3. Click "Add Website"
+4. Enter domain name
+5. Configure document root
+6. Select PHP version
+
+### Step 3: Configure DNS
+
+1. Go to "DNS" section
+2. Add DNS zone for your domain
+3. Configure A, MX, CNAME records
+4. Update nameservers at domain registrar
+
+### Step 4: Install SSL Certificate
+
+1. Open website settings
+2. Go to "SSL" tab
+3. Click "Install Certificate"
+4. Choose Let's Encrypt or upload custom certificate
+
+## Database Management
+
+### Creating Database
+
+1. Go to "Databases" section
+2. Click "Create Database"
+3. Enter database name
+4. Create database user
+5. Set password and permissions
+
+### Accessing Databases
+
+- **phpMyAdmin**: Access via `https://your-server-ip:1500/phpmyadmin`
+- **Command line**: Use MySQL/MariaDB client
+- **Remote access**: Configure remote database access if needed
+
+## Email Configuration
+
+### Setting Up Mail Server
+
+1. Go to "Mail" section
+2. Configure mail server settings
+3. Set up SPF and DKIM records
+4. Configure spam filtering
+
+### Creating Mailbox
+
+1. Select user account
+2. Go to "Mail" section
+3. Click "Create Mailbox"
+4. Enter email address and password
+5. Set mailbox size limit
+
+### Email Client Settings
+
+- **IMAP Server**: mail.yourdomain.com
+- **SMTP Server**: mail.yourdomain.com
+- **Ports**: 143 (IMAP), 993 (IMAPS), 587 (SMTP), 465 (SMTPS)
+- **Authentication**: Required
+
+## Backup Configuration
+
+### Setting Up Backups
+
+1. Go to "Backups" section
+2. Configure backup storage location
+3. Set backup schedule (daily, weekly, monthly)
+4. Select what to backup:
+   - Website files
+   - Databases
+   - Email accounts
+   - Configuration files
+
+### Restoring Backups
+
+1. Go to "Backups" section
+2. Select backup to restore
+3. Choose restore scope
+4. Click "Restore"
+
+## Advanced Features
+
+### Resource Management
+
+Set quotas for users:
+
+- Disk space limits
+- Bandwidth limits
+- CPU usage limits
+- RAM limits
+- Number of domains/websites
+
+### Billing Integration
+
+Connect ISPmanager with billing systems:
+
+- WHMCS integration
+- Blesta integration
+- Custom API integration
+
+### Multi-Server Setup
+
+Configure master-slave setup for:
+
+- Load balancing
+- High availability
+- Geographic distribution
+
+## Troubleshooting
+
+### Cannot Access Panel
+
+1. Check service status: `systemctl status ispmgr`
+2. Verify port 1500 is open
+3. Check firewall rules
+4. Review logs: `/usr/local/ispmgr/var/ispmgr.log`
+
+### Website Not Working
+
+1. Check web server status: `systemctl status httpd` or `systemctl status nginx`
+2. Verify domain DNS records
+3. Check website error logs
+4. Verify PHP-FPM is running
+
+### Email Issues
+
+1. Check mail server status: `systemctl status postfix` and `systemctl status dovecot`
+2. Verify DNS records (MX, SPF, DKIM)
+3. Check mail logs: `/var/log/mail.log`
+4. Test email delivery
+
+## FAQ
+
+**What's the difference between ISPmanager Lite and Premium?**
+
+Lite is free but has limited features. Premium includes advanced features, billing integration, and commercial support.
+
+**Can I migrate from cPanel to ISPmanager?**
+
+Yes, ISPmanager provides migration tools and scripts for cPanel to ISPmanager migration.
+
+**Does ISPmanager support Windows?**
+
+No, ISPmanager is Linux-only. It supports CentOS, Ubuntu, Debian, AlmaLinux, and Rocky Linux.
+
+**How do I update ISPmanager?**
+
+Updates can be performed through the web interface or command line using package manager.

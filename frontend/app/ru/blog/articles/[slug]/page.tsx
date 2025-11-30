@@ -24,11 +24,12 @@ const articleSlugs = [
   "offshore-hosting-blog",
   "abuse-resistant-hosting-stack-blog",
   "dmca-ignored-hosting-blog",
+  // New SEO articles (MDX)
+  "cdn-complete-guide",
+  "vpn-infrastructure-guide",
+  "minecraft-hosting-architecture",
+  "abuse-resistant-vps-complete-guide",
   // Existing articles (MD)
-  "abuse-resistant-dns-routing-guide",
-  "best-bulletproof-hosting-locations-2025",
-  "bulletproof-dedicated-servers-guide",
-  "bulletproof-vds-complete-guide",
   "bulletproof-domains-guide",
   "bulletproof-security-controls",
   "bulletproof-vps-for-marketers",

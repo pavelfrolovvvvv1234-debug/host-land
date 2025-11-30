@@ -1,3 +1,8 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+
 type ComparisonRow = { label: string; bulletproof: string; regular: string };
 
 type Zone = {
@@ -147,237 +152,235 @@ const faqs = [
 ];
 
 export default function BulletproofDomainsPage() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-    <div>
-      <section className="bg-black/60 border border-white/10 rounded-2xl p-6 shadow-[0px_21px_120px_rgba(10,77,146,0.2)]">
-        <h1 className="text-3xl font-bold">{hero.heading}</h1>
-        <p className="mt-2 text-white/70">{hero.subheading}</p>
-        <p className="mt-4 text-white/80">{hero.summary}</p>
-      </section>
+    <main className="relative overflow-hidden">
+      {/* Background Glows */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-hero-glow blur-[100px] pointer-events-none opacity-50"></div>
 
-      <section className="mt-6 bg-black/30 border border-white/10 rounded-xl p-4 text-sm text-white/80">
-        <p>
-          Pair your domains with{" "}
-          <a
-            className="text-blue-300 hover:text-white"
-            href="/bulletproof/vds"
-          >
-            bulletproof VDS
-          </a>{" "}
-          and{" "}
-          <a
-            className="text-blue-300 hover:text-white"
-            href="/bulletproof/dedicated"
-          >
-            dedicated servers
-          </a>{" "}
-          for end-to-end resilience.
-        </p>
-      </section>
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 relative z-10">
+        {/* Hero Section */}
+        <div className="relative rounded-2xl border border-white/5 bg-surface/50 p-8 sm:p-20 shadow-2xl overflow-hidden backdrop-blur-sm mb-12">
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent skew-x-12 opacity-30"></div>
 
-      <div className="mt-4 bg-[#00000079] rounded-lg">
-        <div className="p-4">
-          <ul className="flex flex-col gap-4 mt-4 select-none sm:w-2/3 mx-auto">
-            <li className="border border-[#ffffff54] hover:border-[#ffffffcc] p-2 rounded flex gap-4 justify-between items-center font-semibold pl-4">
-              <div className="flex justify-between items-center gap-4 flex-wrap">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#FFFFFF"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" />
-                  <path d="m9 9.5 2 2 4-4" />
-                </svg>{" "}
-                Registration
-              </div>
-              <span className="bg-gradient-to-tr from-orange-700 via-pink-600 to-orange-600 p-2 rounded-lg inline-block vibrate-1-normal">
-                <span className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-100 via-teal-100 to-green-500 bg-clip-text text-transparent font-bold">
-                  {domainsPrices.reg} $
-                </span>
-              </span>
-            </li>
-            <li className="border border-[#ffffff54] hover:border-[#ffffffcc] p-2 rounded flex gap-4 justify-between items-center font-semibold pl-4">
-              <div className="flex justify-between items-center gap-4 flex-wrap">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#ffffff"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M10 2h4" />
-                  <path d="M12 14v-4" />
-                  <path d="M4 13a8 8 0 0 1 8-7 8 8 0 1 1-5.3 14L4 17.6" />
-                  <path d="M9 17H4v5" />
-                </svg>{" "}
-                Renewal
-              </div>
-              <span className="bg-gradient-to-tr from-orange-700 via-pink-600 to-orange-600 p-2 rounded-lg inline-block vibrate-1-normal">
-                <span className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-100 via-teal-100 to-green-500 bg-clip-text text-transparent font-bold">
-                  {domainsPrices.renew} $
-                </span>
-              </span>
-            </li>
-            <li className="border border-[#ffffff54] hover:border-[#ffffffcc] p-2 rounded flex gap-4 justify-between items-center font-semibold pl-4">
-              <div className="flex justify-between items-center gap-4 flex-wrap">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#ffffff"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M8 3 4 7l4 4" />
-                  <path d="M4 7h16" />
-                  <path d="m16 21 4-4-4-4" />
-                  <path d="M20 17H4" />
-                </svg>{" "}
-                Transfer
-              </div>
-              <span className="bg-gradient-to-tr from-orange-700 via-pink-600 to-orange-600 p-2 rounded-lg inline-block vibrate-1-normal">
-                <span className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-100 via-teal-100 to-green-500 bg-clip-text text-transparent font-bold">
-                  {domainsPrices.transfer} $
-                </span>
-              </span>
-            </li>
-          </ul>
+          <div className="relative z-10 text-center">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="mx-auto max-w-4xl text-3xl sm:text-5xl font-semibold tracking-tight text-white mb-6 leading-tight"
+            >
+              {hero.heading}
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-base sm:text-lg text-white/70 mb-4"
+            >
+              {hero.subheading}
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mx-auto max-w-2xl text-base sm:text-lg text-white/60 leading-relaxed bg-black/40 p-6 rounded-xl border border-white/5 backdrop-blur-sm shadow-xl"
+            >
+              {hero.summary}
+            </motion.p>
+          </div>
+        </div>
 
-          <div className="mx-auto mt-4">
-            <div className="inline-flex items-center justify-center w-full relative">
-              <hr className="w-64 h-px my-8 bg-transparent border-0 dark:bg-white/40" />
-              <span className="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-[#040404] left-1/2 dark:text-white">
-                Available Zones
-              </span>
-            </div>
-            <div className="flex flex-wrap gap-4 mt-2">
-              {zones.map((zone) => (
-                <a
+        {/* Pricing Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          {[
+            { label: "Registration", price: domainsPrices.reg, icon: "📝" },
+            { label: "Renewal", price: domainsPrices.renew, icon: "🔄" },
+            { label: "Transfer", price: domainsPrices.transfer, icon: "↔️" }
+          ].map((item, index) => (
+            <motion.div
+              key={item.label}
+              initial={{ opacity: 0, y: 20 }}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="relative rounded-xl border border-white/10 bg-card-gradient p-6 hover:border-primary/30 transition-all"
+            >
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-2xl">{item.icon}</span>
+                <span className="text-3xl font-bold text-primary">${item.price}</span>
+              </div>
+              <h3 className="text-lg font-semibold text-white">{item.label}</h3>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Domain Zones Grid */}
+        <div className="relative rounded-2xl border border-white/5 bg-surface/50 p-8 shadow-2xl overflow-hidden backdrop-blur-sm mb-12">
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+          <div className="relative z-10">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="text-2xl sm:text-3xl font-semibold text-white mb-8 text-center"
+            >
+              Available Domain Zones
+            </motion.h2>
+            <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4">
+              {zones.map((zone, index) => (
+                <motion.a
                   key={zone.title}
                   href={zone.url}
-                  className="w-1/2 md:w-1/4 flex-grow select-none cursor-pointer p-4 flex flex-col items-start gap-4 border border-white/40 rounded-lg hover:border-white"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={mounted ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                  whileHover={{ scale: 1.05 }}
+                  className="relative rounded-xl border border-white/10 bg-card-gradient p-4 hover:border-primary/50 transition-all text-center group"
                 >
-                  <div className="flex flex-col gap-2 items-start">
-                    <h3 className="text-3xl font-bold">{zone.title}</h3>
-                    <span className="bg-gradient-to-tr from-orange-700 via-pink-600 to-orange-600 p-2 rounded-lg inline-block">
-                      <span className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-100 via-teal-100 to-green-500 bg-clip-text text-transparent font-bold">
-                        {zone.price} $
-                      </span>
-                    </span>
+                  <div className="text-2xl font-bold text-white mb-2">{zone.title}</div>
+                  <div className="text-sm font-semibold text-primary">${zone.price}/yr</div>
+                </motion.a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Steps Section */}
+        <div className="relative rounded-2xl border border-white/5 bg-surface/50 p-8 sm:p-12 shadow-2xl overflow-hidden backdrop-blur-sm mb-12">
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+          <div className="relative z-10">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="text-2xl sm:text-3xl font-semibold text-white mb-8"
+            >
+              How to secure a bulletproof domain
+            </motion.h2>
+            <div className="grid gap-6 md:grid-cols-2">
+              {steps.map((step, index) => (
+                <motion.div
+                  key={step.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={mounted ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.1 * index }}
+                  className="flex gap-4"
+                >
+                  <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full border-2 border-primary/30 bg-primary/10 text-lg font-bold text-primary">
+                    {index + 1}
                   </div>
-                </a>
+                  <div>
+                    <h3 className="font-semibold text-white mb-1">{step.title}</h3>
+                    <p className="text-sm text-white/70">{step.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Info Sections */}
+        <div className="grid gap-6 md:grid-cols-3 mb-12">
+          {sections.map((section, index) => (
+            <motion.div
+              key={section.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.1 * index }}
+              className="relative rounded-xl border border-white/10 bg-card-gradient p-6 hover:border-primary/30 transition-all"
+            >
+              <h2 className="text-xl font-semibold text-white mb-3">{section.title}</h2>
+              <p className="text-sm text-white/70 mb-4">{section.body}</p>
+              {section.bullets && (
+                <ul className="space-y-2">
+                  {section.bullets.map((bullet, idx) => (
+                    <li key={idx} className="text-sm text-white/80 flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Comparison Table */}
+        <div className="relative rounded-2xl border border-white/5 bg-surface/50 p-8 shadow-2xl overflow-hidden backdrop-blur-sm mb-12">
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+          <div className="relative z-10">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="text-2xl sm:text-3xl font-semibold text-white mb-2"
+            >
+              Bulletproof domains vs regular domains
+            </motion.h2>
+            <p className="text-white/70 mb-6">Keep your DNS online during disputes.</p>
+            <div className="overflow-auto rounded-xl border border-white/10">
+              <table className="min-w-full text-left text-sm">
+                <thead className="bg-white/5">
+                  <tr>
+                    <th className="px-6 py-4 font-semibold text-white">Factor</th>
+                    <th className="px-6 py-4 font-semibold text-primary">Bulletproof domains</th>
+                    <th className="px-6 py-4 font-semibold text-white/60">Regular domains</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {comparisonRows.map((row, idx) => (
+                    <tr key={row.label} className={`border-t border-white/10 ${idx % 2 === 0 ? 'bg-white/5' : ''}`}>
+                      <th className="px-6 py-4 font-semibold text-white">{row.label}</th>
+                      <td className="px-6 py-4 text-white/80">{row.bulletproof}</td>
+                      <td className="px-6 py-4 text-white/60">{row.regular}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="relative rounded-2xl border border-white/5 bg-surface/50 p-8 shadow-2xl overflow-hidden backdrop-blur-sm">
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+          <div className="relative z-10">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="text-2xl sm:text-3xl font-semibold text-white mb-8"
+            >
+              Bulletproof domain FAQ
+            </motion.h2>
+            <div className="space-y-4">
+              {faqs.map((faq, index) => (
+                <motion.details
+                  key={faq.question}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={mounted ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.1 * index }}
+                  className="group border border-white/10 rounded-lg bg-black/40 hover:border-primary/30 transition-all"
+                >
+                  <summary className="cursor-pointer p-4 font-semibold text-white flex items-center justify-between hover:text-primary transition-colors">
+                    <span>{faq.question}</span>
+                    <span className="ml-2 transition-transform group-open:rotate-90">▶</span>
+                  </summary>
+                  <div className="px-4 pb-4">
+                    <p className="text-sm text-white/70">{faq.answer}</p>
+                  </div>
+                </motion.details>
               ))}
             </div>
           </div>
         </div>
       </div>
-
-      {steps.length > 0 && (
-        <section className="mt-10 bg-black/40 border border-white/10 rounded-2xl p-6">
-          <h2 className="text-2xl font-semibold">
-            How to secure a bulletproof domain
-          </h2>
-          <ol className="mt-4 space-y-4">
-            {steps.map((step, index) => (
-              <li key={step.title} className="flex gap-4">
-                <span className="h-10 w-10 flex items-center justify-center rounded-full border border-white/30 text-lg font-bold">
-                  {index + 1}
-                </span>
-                <div>
-                  <h3 className="font-semibold">{step.title}</h3>
-                  <p className="text-sm text-white/70">{step.description}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </section>
-      )}
-
-      {sections.length > 0 && (
-        <section className="mt-10 grid gap-6 md:grid-cols-3">
-          {sections.map((section) => (
-            <article
-              key={section.title}
-              className="bg-black/40 border border-white/10 rounded-xl p-5 flex flex-col gap-3"
-            >
-              <h2 className="text-xl font-semibold">{section.title}</h2>
-              <p className="text-sm text-white/70">{section.body}</p>
-              {section.bullets && (
-                <ul className="list-disc list-inside text-sm text-white/80 space-y-1">
-                  {section.bullets.map((bullet) => (
-                    <li key={bullet}>{bullet}</li>
-                  ))}
-                </ul>
-              )}
-            </article>
-          ))}
-        </section>
-      )}
-
-      {comparisonRows.length > 0 && (
-        <section className="mt-10">
-          <h2 className="text-2xl font-semibold">
-            Bulletproof domains vs regular domains
-          </h2>
-          <p className="text-white/70 mt-2">Keep your DNS online during disputes.</p>
-          <div className="mt-4 overflow-auto rounded-xl border border-white/10">
-            <table className="min-w-full text-left text-sm">
-              <thead className="bg-white/5 uppercase text-xs tracking-wide">
-                <tr>
-                  <th className="px-4 py-3">Factor</th>
-                  <th className="px-4 py-3">Bulletproof domains</th>
-                  <th className="px-4 py-3">Regular domains</th>
-                </tr>
-              </thead>
-              <tbody>
-                {comparisonRows.map((row) => (
-                  <tr key={row.label} className="border-t border-white/10">
-                    <th className="px-4 py-3 font-semibold">{row.label}</th>
-                    <td className="px-4 py-3 text-white/80">{row.bulletproof}</td>
-                    <td className="px-4 py-3 text-white/60">{row.regular}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-      )}
-
-      {faqs.length > 0 && (
-        <section className="mt-10 bg-black/40 border border-white/10 rounded-2xl p-6">
-          <h2 className="text-2xl font-semibold">Bulletproof domain FAQ</h2>
-          <div className="mt-4 space-y-4">
-            {faqs.map((faq) => (
-              <details
-                key={faq.question}
-                className="group border border-white/10 rounded-lg p-4 bg-black/30"
-              >
-                <summary className="cursor-pointer font-semibold text-lg flex items-center justify-between">
-                  <span>{faq.question}</span>
-                  <span className="faq-arrow ml-2">▶</span>
-                </summary>
-                <div className="accordion-content">
-                  <p className="mt-2 text-sm text-white/70">{faq.answer}</p>
-                </div>
-              </details>
-            ))}
-          </div>
-        </section>
-      )}
-    </div>
+    </main>
   );
 }
-

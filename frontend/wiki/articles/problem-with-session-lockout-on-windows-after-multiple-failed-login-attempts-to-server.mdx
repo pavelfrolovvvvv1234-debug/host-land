@@ -1,0 +1,255 @@
+# Session Lock Issue on Windows After Multiple Failed Login Attempts
+
+Windows Server can lock user accounts or sessions after multiple failed login attempts as a security measure. This guide explains how to resolve and prevent this issue.
+
+## What Causes Session Lockout?
+
+Windows automatically locks accounts after a specified number of failed login attempts to prevent brute force attacks. This can happen with:
+
+- **RDP (Remote Desktop)** - Remote desktop connections
+- **File shares** - SMB/CIFS connections
+- **Web applications** - Applications using Windows authentication
+- **SSH** - If using Windows OpenSSH server
+
+## Check Account Lockout Status
+
+### Method 1: Command Line
+
+Open PowerShell or Command Prompt as Administrator:
+
+```powershell
+# Check if account is locked
+net user username
+
+# Check lockout events in Event Viewer
+Get-EventLog -LogName Security -InstanceId 4740 | Select-Object -First 10
+```
+
+### Method 2: Event Viewer
+
+1. Open **Event Viewer** (eventvwr.msc)
+2. Navigate to **Windows Logs** → **Security**
+3. Look for Event ID:
+   - **4625** - Failed logon attempt
+   - **4740** - Account locked out
+   - **4771** - Kerberos pre-authentication failed
+
+## Solution 1: Unlock Account Manually
+
+### Using Command Line
+
+```powershell
+# Unlock specific user
+net user username /active:yes
+Unlock-ADAccount -Identity username  # For Active Directory
+```
+
+### Using Computer Management
+
+1. Open **Computer Management** (compmgmt.msc)
+2. Navigate to **Local Users and Groups** → **Users**
+3. Right-click locked user → **Properties**
+4. Uncheck **Account is disabled** (if checked)
+5. Click **OK**
+
+### Using Active Directory (Domain)
+
+1. Open **Active Directory Users and Computers**
+2. Find the locked user account
+3. Right-click → **Properties**
+4. Go to **Account** tab
+5. Uncheck **Account is locked out**
+6. Click **OK**
+
+## Solution 2: Adjust Account Lockout Policy
+
+### View Current Policy
+
+```powershell
+# View account lockout policy
+secedit /export /cfg C:\policy.txt
+type C:\policy.txt | findstr /i "lockout"
+```
+
+Or using Group Policy Editor:
+
+1. Open **gpedit.msc** (Local Group Policy Editor)
+2. Navigate to: **Computer Configuration** → **Windows Settings** → **Security Settings** → **Account Policies** → **Account Lockout Policy**
+
+### Modify Lockout Policy
+
+1. Open **Local Security Policy** (secpol.msc)
+2. Navigate to **Account Policies** → **Account Lockout Policy**
+3. Double-click **Account lockout threshold**
+4. Set number of invalid attempts (e.g., 10) or set to 0 to disable
+5. Configure:
+   - **Account lockout duration** - How long account stays locked (minutes)
+   - **Reset account lockout counter after** - Time before counter resets (minutes)
+
+Recommended settings:
+- **Threshold**: 5-10 invalid attempts
+- **Duration**: 30-60 minutes
+- **Reset counter**: 30-60 minutes
+
+### Using Command Line
+
+```powershell
+# Set lockout threshold (0 = disabled)
+net accounts /lockoutthreshold:10
+
+# Set lockout duration (0 = until admin unlocks)
+net accounts /lockoutduration:30
+
+# Set reset time
+net accounts /lockoutwindow:30
+```
+
+## Solution 3: Identify Lockout Source
+
+### Check Event Logs
+
+Find what's causing the lockouts:
+
+```powershell
+# Filter lockout events
+Get-EventLog -LogName Security -InstanceId 4740 -Newest 10 | 
+    Format-List TimeGenerated, Message
+
+# Check failed logon attempts
+Get-EventLog -LogName Security -InstanceId 4625 -Newest 20 |
+    Where-Object {$_.Message -like "*username*"} |
+    Format-List TimeGenerated, Message
+```
+
+### Common Causes
+
+1. **Stored credentials** - Old passwords in Credential Manager
+2. **Scheduled tasks** - Tasks using old passwords
+3. **Services** - Services running under user account with old password
+4. **Mapped drives** - Network drives with cached credentials
+5. **Mobile devices** - Phones/tablets with old passwords
+
+## Solution 4: Clear Stored Credentials
+
+### Windows Credential Manager
+
+1. Open **Credential Manager** (control /name Microsoft.CredentialManager)
+2. Go to **Windows Credentials**
+3. Remove all entries related to the server
+4. Go to **Generic Credentials**
+5. Remove related entries
+
+### Using Command Line
+
+```powershell
+# List stored credentials
+cmdkey /list
+
+# Delete specific credential
+cmdkey /delete:targetname
+
+# Delete all credentials (use with caution)
+cmdkey /list | ForEach-Object {cmdkey /delete:$_}
+```
+
+## Solution 5: Check Services and Scheduled Tasks
+
+### Check Services
+
+```powershell
+# Find services running under user account
+Get-WmiObject Win32_Service | 
+    Where-Object {$_.StartName -like "*username*"} |
+    Format-Table Name, StartName, State
+```
+
+Update service credentials if needed:
+
+```powershell
+# Change service account
+sc.exe config ServiceName obj= "DOMAIN\username" password= "password"
+```
+
+### Check Scheduled Tasks
+
+```powershell
+# Find tasks running under user account
+Get-ScheduledTask | 
+    Where-Object {$_.Principal.UserId -like "*username*"} |
+    Format-Table TaskName, Principal
+```
+
+Update task credentials in Task Scheduler if needed.
+
+## Solution 6: Disable Account Lockout (Not Recommended)
+
+Only for testing or specific scenarios:
+
+```powershell
+# Set threshold to 0 (disables lockout)
+net accounts /lockoutthreshold:0
+```
+
+**Warning**: This reduces security. Only use in isolated environments.
+
+## Prevention
+
+### Best Practices
+
+1. **Strong passwords** - Use complex passwords to reduce guessability
+2. **Password expiration** - Enforce regular password changes
+3. **Multi-factor authentication** - Add 2FA/MFA where possible
+4. **Monitor lockouts** - Set up alerts for account lockout events
+5. **Update credentials** - Keep all stored credentials current
+6. **Limit login attempts** - Reasonable threshold (5-10 attempts)
+
+### Monitoring Script
+
+Create a monitoring script to alert on lockouts:
+
+```powershell
+# Monitor lockout events
+$events = Get-EventLog -LogName Security -InstanceId 4740 -Newest 1 -ErrorAction SilentlyContinue
+if ($events) {
+    Write-Host "Account lockout detected: $($events[0].Message)"
+    # Send email alert, log to file, etc.
+}
+```
+
+## Troubleshooting Remote Desktop
+
+If RDP is causing lockouts:
+
+1. **Check RDP settings**:
+   - Right-click **This PC** → **Properties** → **Remote settings**
+   - Ensure "Allow remote connections" is enabled
+
+2. **Clear RDP cache**:
+   ```powershell
+   # Delete RDP connection cache
+   Remove-Item "$env:APPDATA\Microsoft\Terminal Server Client\Cache\*" -Recurse -Force
+   ```
+
+3. **Check RDP port**:
+   ```powershell
+   # Verify RDP is listening
+   netstat -an | findstr :3389
+   ```
+
+## FAQ
+
+**How long does an account stay locked?**
+
+By default, accounts stay locked until an administrator unlocks them. You can configure automatic unlock after a set duration.
+
+**Can I prevent lockouts for specific accounts?**
+
+Yes, you can exclude accounts from lockout policy, but this reduces security.
+
+**What's the difference between account lockout and session lockout?**
+
+Account lockout prevents all login attempts. Session lockout only affects current sessions.
+
+**How do I find what's causing repeated lockouts?**
+
+Check Event Viewer Security logs for Event ID 4740 and 4625 to identify the source IP or application causing lockouts.

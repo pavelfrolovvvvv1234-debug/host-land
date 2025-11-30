@@ -59,34 +59,28 @@ export function Footer() {
               <span className="font-bold text-sm">{isRu ? "Юридические документы" : "Legal"}</span>
             </li>
             <li className="mt-2">
-              <a
-                href={isRu ? "/docs/agreement_ru.pdf" : "/docs/agreement_en.pdf"}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href={isRu ? "/ru/public-offer" : "/public-offer"}
                 className="text-zinc-600 hover:text-[#7a83f3]"
               >
                 {isRu ? "Публичная оферта" : "Public offer"}
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href={isRu ? "/docs/PrivacyPolicyDiorHostRU.pdf" : "/docs/PrivacyPolicyDiorHostEN.pdf"}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href={isRu ? "/ru/privacy-policy" : "/privacy-policy"}
                 className="text-zinc-600 hover:text-[#7a83f3]"
               >
                 {isRu ? "Политика конфиденциальности" : "Privacy policy"}
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href={isRu ? "/docs/termsofagreementRU.pdf" : "/docs/termsofagreementEN.pdf"}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href={isRu ? "/ru/user-agreement" : "/user-agreement"}
                 className="text-zinc-600 hover:text-[#7a83f3]"
               >
                 {isRu ? "Пользовательское соглашение" : "User agreement"}
-              </a>
+              </Link>
             </li>
             <li>
               <Link href={isRu ? "/ru/about" : "/about"} className="text-zinc-600 hover:text-[#7a83f3]">
