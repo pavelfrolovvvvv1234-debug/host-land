@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { Fragment, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { homeContent, type HomeContent, type ParagraphSegment, type Locale } from "../../content/home";
-import { localizePath } from "../../lib/localization";
+import { homeContent, type HomeContent, type ParagraphSegment } from "../../content/home";
+import { localizePath, type Locale } from "../../lib/localization";
 import { FAQItem } from "../motion/FAQItem";
 import { fadeInUp } from "../../lib/motion";
 
