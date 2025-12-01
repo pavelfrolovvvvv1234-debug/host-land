@@ -1,0 +1,235 @@
+# FastPanel on the Server
+
+FastPanel is a free, open-source hosting control panel for Linux servers. This guide explains how to install and configure FastPanel on your server.
+
+## What is FastPanel?
+
+FastPanel is a modern, lightweight hosting control panel designed for Linux servers. It provides an intuitive web interface for managing websites, domains, databases, email, and server configurations.
+
+### Key Features
+
+- **Free and open-source** - No licensing fees
+- **Lightweight** - Minimal resource usage
+- **Modern interface** - User-friendly web UI
+- **Multi-domain support** - Manage multiple websites
+- **Email management** - Create and manage email accounts
+- **Database management** - MySQL/MariaDB support
+- **SSL certificates** - Automated Let's Encrypt
+
+## System Requirements
+
+- **OS**: CentOS 7/8, AlmaLinux 8/9, Rocky Linux 8/9, Ubuntu 20.04/22.04, Debian 11/12
+- **RAM**: Minimum 512 MB (1 GB recommended)
+- **Disk**: Minimum 10 GB free space
+- **Network**: Internet connection for installation
+
+## Installation
+
+### Step 1: Connect to Your Server
+
+Connect to your server via SSH:
+
+```bash
+ssh root@your-server-ip
+```
+
+### Step 2: Download Installation Script
+
+Download the FastPanel installation script:
+
+```bash
+wget https://repo.fastpanel.direct/install.sh
+```
+
+Or using curl:
+
+```bash
+curl -o install.sh https://repo.fastpanel.direct/install.sh
+```
+
+### Step 3: Make Script Executable
+
+```bash
+chmod +x install.sh
+```
+
+### Step 4: Run Installation
+
+Execute the installation script:
+
+```bash
+bash install.sh
+```
+
+The installation process will:
+
+1. Check system requirements
+2. Install necessary dependencies
+3. Configure web server (Nginx)
+4. Set up database server (MariaDB)
+5. Install PHP and required extensions
+6. Configure FastPanel
+
+Installation typically takes 5-15 minutes depending on server speed.
+
+### Step 5: Access FastPanel
+
+After installation, access FastPanel at:
+
+```
+https://your-server-ip:8888
+```
+
+Use the credentials provided at the end of installation.
+
+## Initial Configuration
+
+### Step 1: Change Default Password
+
+Upon first login, change the default admin password.
+
+### Step 2: Configure Network Settings
+
+Set your server's hostname and configure network settings.
+
+### Step 3: Set Up SSL Certificate
+
+Install SSL certificate for FastPanel interface (recommended for security).
+
+### Step 4: Configure Firewall
+
+Ensure port 8888 is open in your firewall:
+
+```bash
+# For UFW (Ubuntu/Debian)
+ufw allow 8888/tcp
+
+# For firewalld (CentOS/RHEL)
+firewall-cmd --permanent --add-port=8888/tcp
+firewall-cmd --reload
+```
+
+## Creating Your First Website
+
+### Step 1: Add Domain
+
+1. Log into FastPanel
+2. Go to "Websites" section
+3. Click "Add Website"
+4. Enter your domain name
+5. Choose document root directory
+6. Select PHP version
+
+### Step 2: Configure DNS
+
+Point your domain's DNS records to your server IP:
+
+- **A record**: `@` → your-server-ip
+- **A record**: `www` → your-server-ip
+
+### Step 3: Install SSL Certificate
+
+1. Go to website settings
+2. Navigate to "SSL" tab
+3. Click "Install Let's Encrypt Certificate"
+4. FastPanel will automatically configure SSL
+
+## Database Management
+
+### Creating a Database
+
+1. Go to "Databases" section
+2. Click "Add Database"
+3. Enter database name
+4. Create database user
+5. Set password
+6. Grant permissions
+
+### Accessing Database via phpMyAdmin
+
+FastPanel includes phpMyAdmin for database management:
+
+```
+https://your-server-ip:8888/phpmyadmin
+```
+
+## Email Configuration
+
+### Creating Email Account
+
+1. Go to "Mail" section
+2. Click "Add Mailbox"
+3. Enter email address
+4. Set password
+5. Configure mailbox size limit
+
+### Email Client Configuration
+
+Use these settings for email clients:
+
+- **IMAP Server**: mail.yourdomain.com
+- **SMTP Server**: mail.yourdomain.com
+- **Ports**: 143 (IMAP), 587 (SMTP)
+- **Encryption**: STARTTLS
+
+## Backup and Restore
+
+### Creating Backup
+
+1. Go to "Backups" section
+2. Click "Create Backup"
+3. Select what to backup (files, databases, emails)
+4. Backup will be stored in `/usr/local/fastpanel/backups/`
+
+### Restore from Backup
+
+1. Go to "Backups" section
+2. Select backup to restore
+3. Choose restore options
+4. Click "Restore"
+
+## Troubleshooting
+
+### FastPanel Won't Start
+
+Check service status:
+
+```bash
+systemctl status fastpanel
+```
+
+Restart service:
+
+```bash
+systemctl restart fastpanel
+```
+
+### Cannot Access Web Interface
+
+1. Check if port 8888 is open: `netstat -tlnp | grep 8888`
+2. Verify firewall rules
+3. Check FastPanel logs: `/usr/local/fastpanel/logs/error.log`
+
+### Website Not Loading
+
+1. Check web server status: `systemctl status nginx`
+2. Verify domain DNS records
+3. Check website error logs in FastPanel
+
+## FAQ
+
+**Is FastPanel really free?**
+
+Yes, FastPanel is completely free and open-source with no licensing fees.
+
+**Can I use FastPanel with existing websites?**
+
+Yes, but you may need to reconfigure existing websites to work with FastPanel's structure.
+
+**Does FastPanel support multiple PHP versions?**
+
+Yes, FastPanel supports multiple PHP versions (7.4, 8.0, 8.1, 8.2) and allows per-domain PHP version selection.
+
+**How do I update FastPanel?**
+
+FastPanel can be updated through the web interface. Go to "Settings" → "Updates" to check for available updates.

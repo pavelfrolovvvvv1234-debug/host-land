@@ -1,0 +1,111 @@
+lang: en
+id: services
+url: /services/
+currentPage: Services
+layout: layouts/services.vto
+servicesList:
+  - title: Bulletproof VDS
+    description: >-
+      On these servers, you can keep everything. We ignore any type of
+      complaint. The ability to deliver any OS. Anonymity is 100%
+    link: /bulletproof-vds
+    icon: >-
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0
+      0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round"><path d="M6 10H4a2 2 0 0
+      1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"></path><path
+      d="M6 14H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0
+      0-2-2h-2"></path><path d="M6 6h.01"></path><path d="M6
+      18h.01"></path><path d="m13 6-4 6h6l-4 6"></path></svg>
+    id: bulletproofvds
+  - title: Bulletproof Domains
+    description: >-
+      Bulletproof domains. No blocking and the warranty is for the whole period!
+      Transfer is possible, if desired. All domains for $70
+    link: /bulletproof-domains
+    icon: >-
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0
+      0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12"
+      r="4"></circle><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4
+      8"></path></svg>
+    id: domains
+  - title: Virtual servers (VDS)
+    description: >-
+      Regular servers for "white" or "gray" operation. Complaints are not
+      ignored! The ability to install any OS
+    link: /vds
+    icon: >-
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0
+      0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8"
+      x="2" y="2" rx="2" ry="2"></rect><rect width="20" height="8" x="2" y="14"
+      rx="2" ry="2"></rect><line x1="6" x2="6.01" y1="6" y2="6"></line><line
+      x1="6" x2="6.01" y1="18" y2="18"></line></svg>
+    id: defaultvds
+  - title: Bulletproof Dedicated Servers
+    description: >-
+      Dedicated servers with a 100% guarantee of anonymity. No blocking and no
+      complaints. The ability to deliver any OS.
+    link: /dedicated-servers
+    icon: >-
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0
+      0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12"
+      r="3"></circle><path d="M4.5 10H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0
+      1 2 2v4a2 2 0 0 1-2 2h-.5"></path><path d="M4.5 14H4a2 2 0 0 0-2 2v4a2 2 0
+      0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-.5"></path><path d="M6
+      6h.01"></path><path d="M6 18h.01"></path><path d="m15.7
+      13.4-.9-.3"></path><path d="m9.2 10.9-.9-.3"></path><path d="m10.6
+      15.7.3-.9"></path><path d="m13.6 15.7-.4-1"></path><path d="m10.8
+      9.3-.4-1"></path><path d="m8.3 13.6 1-.4"></path><path d="m14.7 10.8
+      1-.4"></path><path d="m13.4 8.3-.3.9"></path></svg>
+    id: bulletproofds
+  - title: Dedicated Servers
+    description: >-
+      Dedicated servers for "white" or "gray" operation. Complaints are not
+      ignored! The ability to install any OS.
+    link: /dedicated-servers
+    icon: >-
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0
+      0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12"
+      r="3"></circle><path d="M4.5 10H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0
+      1 2 2v4a2 2 0 0 1-2 2h-.5"></path><path d="M4.5 14H4a2 2 0 0 0-2 2v4a2 2 0
+      0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-.5"></path><path d="M6
+      6h.01"></path><path d="M6 18h.01"></path><path d="m15.7
+      13.4-.9-.3"></path><path d="m9.2 10.9-.9-.3"></path><path d="m10.6
+      15.7.3-.9"></path><path d="m13.6 15.7-.4-1"></path><path d="m10.8
+      9.3-.4-1"></path><path d="m8.3 13.6 1-.4"></path><path d="m14.7 10.8
+      1-.4"></path><path d="m13.4 8.3-.3.9"></path></svg>
+    id: ds
+  - title: TurboVDS
+    description: >-
+      Servers for parsing, mass-checking, SEO, security analysis, and other
+      high-load network tasks. With up to 10 Gbps bandwidth, they deliver
+      lightning-fast performance and stability. Ideal for port scanning, host
+      availability checks, automation, and API-driven operations. Outperforms
+      standard abuse-resistant VDS thanks to superior network throughput.
+    icon: >-
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0
+      0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round"><path d="M6 10H4a2 2 0 0
+      1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"></path><path
+      d="M6 14H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0
+      0-2-2h-2"></path><path d="M6 6h.01"></path><path d="M6
+      18h.01"></path><path d="m13 6-4 6h6l-4 6"></path></svg>
+    id: turbovds
+  - title: Dedicated Servers IPHM
+    description: >-
+      IPHM servers allow users to hide their real IP address by masking it with
+      another. This can be useful for privacy protection, bypassing geographical
+      restrictions, or conducting network security testing. Bandwidth up to 10
+      Gbps.
+    icon: >-
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0
+      0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round"><path d="M2 12a5 5 0 0 0 5
+      5 8 8 0 0 1 5 2 8 8 0 0 1 5-2 5 5 0 0 0 5-5V7h-5a8 8 0 0 0-5 2 8 8 0 0
+      0-5-2H2Z"></path><path d="M6 11c1.5 0 3 .5 3 2-2 0-3 0-3-2Z"></path><path
+      d="M18 11c-1.5 0-3 .5-3 2 2 0 3 0 3-2Z"></path></svg>
+    id: iphm

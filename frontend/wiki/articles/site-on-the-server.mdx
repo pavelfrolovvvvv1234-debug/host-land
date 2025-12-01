@@ -1,0 +1,358 @@
+# Website on the Server
+
+This guide explains how to deploy and configure a website on your server, covering DNS configuration, web server setup, SSL certificates, and common configurations.
+
+## Prerequisites
+
+Before deploying your website, ensure you have:
+
+- **Domain name** - Registered and accessible
+- **Server access** - SSH access to your server
+- **Web server** - Apache or Nginx installed
+- **PHP** - If using PHP-based websites
+- **Database** - MySQL/MariaDB if needed
+
+## Step 1: Prepare Your Server
+
+### Install Web Server
+
+For Apache (Ubuntu/Debian):
+
+```bash
+apt update
+apt install apache2
+systemctl start apache2
+systemctl enable apache2
+```
+
+For Nginx (Ubuntu/Debian):
+
+```bash
+apt update
+apt install nginx
+systemctl start nginx
+systemctl enable nginx
+```
+
+### Install PHP
+
+```bash
+apt install php php-fpm php-mysql php-cli php-curl php-gd php-mbstring php-xml
+```
+
+### Install Database Server
+
+```bash
+apt install mysql-server
+mysql_secure_installation
+```
+
+## Step 2: Configure DNS
+
+Point your domain to your server:
+
+### Create DNS Records
+
+At your domain registrar, create:
+
+- **A Record**: `@` → `your-server-ip`
+- **A Record**: `www` → `your-server-ip`
+
+### Verify DNS Propagation
+
+Check DNS propagation:
+
+```bash
+dig yourdomain.com
+nslookup yourdomain.com
+```
+
+Wait 24-48 hours for DNS to fully propagate globally.
+
+## Step 3: Create Website Directory
+
+### Create Document Root
+
+```bash
+mkdir -p /var/www/yourdomain.com
+chown -R www-data:www-data /var/www/yourdomain.com
+chmod -R 755 /var/www/yourdomain.com
+```
+
+### Upload Website Files
+
+Upload your website files to the directory:
+
+```bash
+# Using SCP
+scp -r /local/path/* user@server:/var/www/yourdomain.com/
+
+# Or use FTP/SFTP client
+```
+
+## Step 4: Configure Web Server
+
+### Apache Configuration
+
+Create virtual host file:
+
+```bash
+nano /etc/apache2/sites-available/yourdomain.com.conf
+```
+
+Add configuration:
+
+```apache
+<VirtualHost *:80>
+    ServerName yourdomain.com
+    ServerAlias www.yourdomain.com
+    DocumentRoot /var/www/yourdomain.com
+    
+    <Directory /var/www/yourdomain.com>
+        Options -Indexes +FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+    
+    ErrorLog ${APACHE_LOG_DIR}/yourdomain.com-error.log
+    CustomLog ${APACHE_LOG_DIR}/yourdomain.com-access.log combined
+</VirtualHost>
+```
+
+Enable site:
+
+```bash
+a2ensite yourdomain.com.conf
+a2enmod rewrite
+systemctl reload apache2
+```
+
+### Nginx Configuration
+
+Create server block:
+
+```bash
+nano /etc/nginx/sites-available/yourdomain.com
+```
+
+Add configuration:
+
+```nginx
+server {
+    listen 80;
+    server_name yourdomain.com www.yourdomain.com;
+    root /var/www/yourdomain.com;
+    index index.html index.php;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+}
+```
+
+Enable site:
+
+```bash
+ln -s /etc/nginx/sites-available/yourdomain.com /etc/nginx/sites-enabled/
+nginx -t
+systemctl reload nginx
+```
+
+## Step 5: Install SSL Certificate
+
+### Using Let's Encrypt (Certbot)
+
+Install Certbot:
+
+```bash
+apt install certbot python3-certbot-apache  # For Apache
+# or
+apt install certbot python3-certbot-nginx   # For Nginx
+```
+
+Get certificate:
+
+```bash
+certbot --apache -d yourdomain.com -d www.yourdomain.com  # Apache
+# or
+certbot --nginx -d yourdomain.com -d www.yourdomain.com   # Nginx
+```
+
+Certbot will automatically:
+
+1. Obtain SSL certificate
+2. Configure HTTPS redirect
+3. Set up auto-renewal
+
+### Manual SSL Configuration
+
+If using commercial SSL:
+
+1. Upload certificate files to `/etc/ssl/`
+2. Configure web server to use certificates
+3. Set up HTTPS redirect
+
+## Step 6: Configure Database (If Needed)
+
+### Create Database
+
+```bash
+mysql -u root -p
+```
+
+```sql
+CREATE DATABASE yourdb;
+CREATE USER 'dbuser'@'localhost' IDENTIFIED BY 'strong_password';
+GRANT ALL PRIVILEGES ON yourdb.* TO 'dbuser'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+```
+
+### Update Website Configuration
+
+Update your website's configuration file with database credentials:
+
+```php
+// Example for PHP application
+define('DB_HOST', 'localhost');
+define('DB_USER', 'dbuser');
+define('DB_PASS', 'strong_password');
+define('DB_NAME', 'yourdb');
+```
+
+## Step 7: Set Permissions
+
+### Correct File Permissions
+
+```bash
+# Set ownership
+chown -R www-data:www-data /var/www/yourdomain.com
+
+# Set directory permissions
+find /var/www/yourdomain.com -type d -exec chmod 755 {} \;
+
+# Set file permissions
+find /var/www/yourdomain.com -type f -exec chmod 644 {} \;
+
+# For writable directories (uploads, cache)
+chmod -R 775 /var/www/yourdomain.com/uploads
+```
+
+## Step 8: Test Your Website
+
+### Verify Website is Accessible
+
+```bash
+curl -I http://yourdomain.com
+```
+
+### Check Web Server Logs
+
+```bash
+# Apache
+tail -f /var/log/apache2/yourdomain.com-error.log
+
+# Nginx
+tail -f /var/log/nginx/error.log
+```
+
+## Common Configurations
+
+### PHP Configuration
+
+Edit PHP settings:
+
+```bash
+nano /etc/php/8.1/fpm/php.ini
+```
+
+Common settings:
+
+```ini
+upload_max_filesize = 64M
+post_max_size = 64M
+memory_limit = 256M
+max_execution_time = 300
+```
+
+Restart PHP-FPM:
+
+```bash
+systemctl restart php8.1-fpm
+```
+
+### Enable Gzip Compression
+
+For Nginx, add to server block:
+
+```nginx
+gzip on;
+gzip_vary on;
+gzip_types text/plain text/css application/json application/javascript text/xml application/xml;
+```
+
+## Security Best Practices
+
+1. **Keep software updated** - Regularly update OS, web server, PHP
+2. **Use strong passwords** - For database, FTP, SSH
+3. **Configure firewall** - Only allow necessary ports
+4. **Install fail2ban** - Protect against brute force attacks
+5. **Regular backups** - Automate website backups
+6. **Use HTTPS** - Always use SSL certificates
+7. **Restrict file permissions** - Don't use 777 permissions
+
+## Troubleshooting
+
+### Website Shows "403 Forbidden"
+
+Check file permissions and ownership:
+
+```bash
+ls -la /var/www/yourdomain.com
+chown -R www-data:www-data /var/www/yourdomain.com
+```
+
+### Website Shows "500 Internal Server Error"
+
+Check error logs and PHP configuration:
+
+```bash
+tail -f /var/log/apache2/error.log
+php -v
+```
+
+### SSL Certificate Not Working
+
+Verify certificate installation:
+
+```bash
+certbot certificates
+certbot renew --dry-run
+```
+
+## FAQ
+
+**How long does DNS propagation take?**
+
+Typically 24-48 hours, but can be immediate to several hours depending on TTL settings.
+
+**Do I need a control panel to manage websites?**
+
+No, but control panels like cPanel, Plesk, or ISPmanager make management easier.
+
+**Can I host multiple websites on one server?**
+
+Yes, configure multiple virtual hosts/server blocks for each domain.
+
+**How do I backup my website?**
+
+Use rsync, tar, or backup scripts. Many control panels include automated backup features.

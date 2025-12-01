@@ -1,0 +1,24 @@
+# Analytics Configuration
+# Copy these variables to your .env.local file
+
+# Google Analytics 4 (GA4)
+# Get this from: https://analytics.google.com/
+# Format: G-XXXXXXXXXX
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+
+# Google Search Console Verification
+# Get this from: https://search.google.com/search-console
+# This is the content value from the meta tag
+NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=your-google-verification-code
+
+# Yandex Metrika
+# Get this from: https://metrika.yandex.ru/
+# Just the counter ID number (e.g., 12345678)
+NEXT_PUBLIC_YANDEX_METRIKA_ID=12345678
+
+# Bing Webmaster Tools Verification
+# Get this from: https://www.bing.com/webmasters/
+# This is the content value from the meta tag
+NEXT_PUBLIC_BING_VERIFICATION=your-bing-verification-code
+
+

@@ -1,0 +1,9 @@
+lang: ["en", "ru"]
+layout: "layouts/main.vto"
+
+en:
+  currentPage: "Search"
+ru:
+  currentPage: "Поиск"
+
+content: <div id="search"></div>

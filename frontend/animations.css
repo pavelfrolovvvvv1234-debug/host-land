@@ -1,0 +1,432 @@
+/* ============================================
+   DIOR HOST - PREMIUM TECHNICAL ANIMATIONS
+   GPU-accelerated, minimal, cyber-infrastructure style
+   ============================================ */
+
+/* ============================================
+   1. HERO BLOCK ANIMATIONS
+   ============================================ */
+
+/* Hero text fade-in with upward motion */
+.hero-fade-in {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: heroFadeIn 0.7s ease-out forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes heroFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger animation for hero buttons/badges */
+.hero-stagger {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: heroStagger 0.6s ease-out forwards;
+  will-change: transform, opacity;
+}
+
+.hero-stagger:nth-child(1) { animation-delay: 0.1s; }
+.hero-stagger:nth-child(2) { animation-delay: 0.2s; }
+.hero-stagger:nth-child(3) { animation-delay: 0.3s; }
+.hero-stagger:nth-child(4) { animation-delay: 0.4s; }
+.hero-stagger:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes heroStagger {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Parallax effect for hero logo/image */
+.hero-parallax {
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+
+/* ============================================
+   2. CARD HOVER ANIMATIONS (VDS/Dedicated/IPHM)
+   ============================================ */
+
+.service-card {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(10, 77, 146, 0.3),
+              0 0 20px rgba(66, 104, 255, 0.15);
+}
+
+/* Icon glow pulse animation */
+.service-card-icon {
+  transition: filter 0.3s ease;
+  will-change: filter;
+}
+
+.service-card:hover .service-card-icon {
+  animation: iconGlowPulse 1s ease-in-out infinite;
+}
+
+@keyframes iconGlowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px rgba(66, 104, 255, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(66, 104, 255, 0.7));
+  }
+}
+
+/* Price fade + scale on hover */
+.service-card-price {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  will-change: opacity, transform;
+}
+
+.service-card:hover .service-card-price {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+/* ============================================
+   3. SHOW MORE / ACCORDION ANIMATIONS
+   ============================================ */
+
+/* Arrow rotation */
+.accordion-arrow {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+  will-change: transform;
+}
+
+details[open] .accordion-arrow,
+.accordion-open .accordion-arrow {
+  transform: rotate(180deg);
+}
+
+/* Smooth accordion content */
+.accordion-content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s ease 0.1s,
+              padding-top 0.3s ease,
+              padding-bottom 0.3s ease;
+  will-change: max-height, opacity;
+}
+
+details[open] .accordion-content,
+.accordion-open .accordion-content {
+  max-height: 1000px;
+  opacity: 1;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* Active accordion background */
+details.group[open],
+.accordion-open {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-color: rgba(66, 104, 255, 0.3);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ============================================
+   4. DOMAIN REGISTRATION HOVER
+   ============================================ */
+
+.domain-link {
+  position: relative;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  will-change: color, background-color;
+}
+
+.domain-link::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: rgba(66, 104, 255, 0.8);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: width;
+}
+
+.domain-link:hover {
+  color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(66, 104, 255, 0.1);
+}
+
+.domain-link:hover::before {
+  width: 100%;
+}
+
+/* ============================================
+   5. WHY US SECTION ANIMATIONS
+   ============================================ */
+
+.why-us-icon {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.why-us-item:hover .why-us-icon {
+  transform: scale(1.07);
+}
+
+.why-us-item {
+  transition: transform 0.2s ease;
+  will-change: transform;
+}
+
+/* Smooth list expansion */
+.why-us-list {
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s ease;
+  will-change: max-height, opacity;
+}
+
+/* ============================================
+   6. FAQ BLOCK ANIMATIONS
+   ============================================ */
+
+/* FAQ arrow rotation */
+.faq-arrow {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+  will-change: transform;
+}
+
+details.group[open] .faq-arrow {
+  transform: rotate(90deg);
+}
+
+/* FAQ content animation (already handled by existing CSS, but ensure smooth) */
+details.group > p {
+  transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.4s ease 0.1s,
+              margin-top 0.4s ease;
+  will-change: height, opacity, margin-top;
+}
+
+/* ============================================
+   7. BACKGROUND CYBER ANIMATION
+   ============================================ */
+
+.network-dots {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.04;
+  overflow: hidden;
+}
+
+.network-dot {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: radial-gradient(circle, rgba(66, 104, 255, 0.6) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: networkFloat 25s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.network-dot:nth-child(1) {
+  top: 10%;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.network-dot:nth-child(2) {
+  top: 30%;
+  left: 60%;
+  animation-delay: 5s;
+}
+
+.network-dot:nth-child(3) {
+  top: 50%;
+  left: 15%;
+  animation-delay: 10s;
+}
+
+.network-dot:nth-child(4) {
+  top: 70%;
+  left: 75%;
+  animation-delay: 15s;
+}
+
+.network-dot:nth-child(5) {
+  top: 20%;
+  left: 85%;
+  animation-delay: 20s;
+}
+
+@keyframes networkFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.03;
+  }
+  25% {
+    transform: translate(30px, -20px) scale(1.2);
+    opacity: 0.06;
+  }
+  50% {
+    transform: translate(-20px, 40px) scale(0.8);
+    opacity: 0.04;
+  }
+  75% {
+    transform: translate(40px, 20px) scale(1.1);
+    opacity: 0.05;
+  }
+}
+
+/* ============================================
+   8. PRELOADER ANIMATIONS (Enhanced)
+   ============================================ */
+
+.preloader-logo {
+  animation: preloaderLogoIn 0.9s ease-out forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes preloaderLogoIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ============================================
+   9. NAVIGATION MICRO-ANIMATIONS
+   ============================================ */
+
+/* Menu underline */
+.nav-link {
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: rgba(66, 104, 255, 0.8);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: width;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Logo glow on hover */
+.nav-logo {
+  transition: filter 0.3s ease;
+  will-change: filter;
+}
+
+.nav-logo:hover {
+  filter: drop-shadow(0 0 8px rgba(66, 104, 255, 0.5));
+}
+
+/* Language switcher opacity */
+.lang-switcher {
+  transition: opacity 0.2s ease;
+  will-change: opacity;
+}
+
+.lang-switcher:hover {
+  opacity: 0.8;
+}
+
+/* ============================================
+   10. SCROLL REVEAL ANIMATIONS
+   ============================================ */
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delay for multiple elements */
+.scroll-reveal:nth-child(1) { transition-delay: 0s; }
+.scroll-reveal:nth-child(2) { transition-delay: 0.05s; }
+.scroll-reveal:nth-child(3) { transition-delay: 0.1s; }
+.scroll-reveal:nth-child(4) { transition-delay: 0.15s; }
+.scroll-reveal:nth-child(5) { transition-delay: 0.2s; }
+.scroll-reveal:nth-child(6) { transition-delay: 0.25s; }
+
+/* ============================================
+   MOBILE OPTIMIZATIONS
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Reduce animations on mobile for performance */
+  .network-dots {
+    display: none;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-2px);
+  }
+  
+  .scroll-reveal {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Disable heavy animations */
+  .service-card:hover .service-card-icon {
+    animation: none;
+  }
+}
+
+/* ============================================
+   PERFORMANCE OPTIMIZATIONS
+   ============================================ */
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .network-dots {
+    display: none;
+  }
+}
+
+
+

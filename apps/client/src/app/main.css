@@ -1,0 +1,1737 @@
+/* ============================================
+   TAILWIND CSS - MUST BE FIRST
+   ============================================ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@plugin "@tailwindcss/typography";
+
+/* ============================================
+   PRELOADER STYLES - PREMIUM ANIMATIONS
+   ============================================ */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #080808;
+  z-index: 9999;
+  display: none; /* Hidden by default */
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  will-change: opacity, transform;
+  visibility: hidden;
+}
+
+/* Preloader visible state - highest priority - MUST override everything */
+.preloader.preloader-visible {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Fade out animation state - smooth disappearing */
+.preloader.preloader-fadeout {
+  opacity: 0 !important;
+  transition: opacity 0.5s ease-out !important;
+  pointer-events: none !important;
+}
+
+/* Removed should ALWAYS override visible - highest priority */
+.preloader.preloader-removed {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Inline styles should also work */
+.preloader[style*="display: flex"] {
+  display: flex !important;
+}
+
+/* Hidden state must override visible - highest priority for hiding */
+.preloader.preloader-hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.4s ease-out;
+}
+
+/* Hidden overrides visible */
+.preloader.preloader-hidden.preloader-visible {
+  opacity: 0 !important;
+}
+
+.preloader.preloader-removed:not(.preloader-visible) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Force hide removed preloader - highest priority */
+.preloader.preloader-removed {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.preloader-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Logo Animation Group - Main Container */
+.logo-animation-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  transform: scale(1);
+  transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+  will-change: transform, opacity;
+}
+
+.preloader.preloader-hidden .logo-animation-group {
+  opacity: 0;
+  transform: scale(0.98);
+}
+
+/* Smooth fade out for logo animation group */
+.preloader.preloader-fadeout .logo-animation-group {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+/* Logo Container with Glow */
+.preloader-logo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.9) rotate(-3deg);
+  animation: logo-entrance 0.9s ease-out forwards;
+  will-change: transform, opacity;
+}
+
+.preloader-logo svg {
+  width: 109px;
+  height: 21px;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 0 8px rgba(66, 104, 255, 0.3));
+}
+
+/* Logo Glow Effect */
+.logo-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140px;
+  height: 40px;
+  background: radial-gradient(ellipse, rgba(66, 104, 255, 0.3) 0%, transparent 70%);
+  opacity: 0.3;
+  animation: logo-glow-pulse 2.5s ease-in-out infinite;
+  will-change: opacity;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Logo Path - Stroke animation disabled for fill paths */
+.logo-path {
+  /* Note: stroke-dashoffset only works with stroke, not fill */
+  /* Keeping this for potential future stroke-based logo variants */
+}
+
+/* Text and Underline styles removed - only logo is shown */
+
+/* ============================================
+   KEYFRAMES - PREMIUM ANIMATIONS
+   ============================================ */
+
+/* 1. Logo Entrance Animation */
+@keyframes logo-entrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) rotate(-3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* 2. Logo Glow Pulse */
+@keyframes logo-glow-pulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* 3. Logo Draw (SVG stroke animation) - Reserved for stroke-based variants */
+@keyframes logo-draw {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Text and Underline animations removed - only logo animations remain */
+
+/* ============================================
+   FINAL GROUP ANIMATION (after entrance)
+   ============================================ */
+.logo-animation-group.animate-final {
+  animation: group-final-pulse 3s ease-in-out infinite;
+}
+
+@keyframes group-final-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+/* Mobile adaptation */
+@media (max-width: 640px) {
+  .preloader-logo svg {
+    width: 87px;
+    height: 17px;
+  }
+  
+  .logo-glow {
+    width: 110px;
+    height: 32px;
+  }
+  
+  .preloader-text {
+    font-size: 1.25rem;
+    letter-spacing: 0.12em;
+  }
+  
+  .logo-animation-group {
+    gap: 1.2rem;
+  }
+  
+  /* Disable heavy animations on mobile */
+  .logo-glow {
+    animation: none;
+    opacity: 0.2;
+  }
+  
+  .logo-animation-group.animate-final {
+    animation: none;
+  }
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+.content-draw {
+  font-size: 1.2rem;
+  font-weight: 200;
+}
+
+/* ============================================
+   CRITICAL: WIKI PAGES CSS - MAXIMUM PRIORITY
+   ============================================ */
+
+/* Ensure all markdown elements are properly styled */
+.content-draw *,
+article.content-draw *,
+.prose.prose-invert *,
+article.prose.prose-invert * {
+  box-sizing: border-box;
+}
+
+/* ============================================
+   TABLES - ABSOLUTE PRIORITY
+   ============================================ */
+/* Force table rendering - highest priority - MUST BE FIRST */
+.content-draw table,
+.prose.prose-invert table,
+article.content-draw table,
+article.prose.prose-invert table,
+article.prose table,
+.prose table,
+body .content-draw table,
+body article.content-draw table,
+body .prose.prose-invert table,
+body article.prose.prose-invert table {
+  display: table !important;
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 1.5rem 0 !important;
+  table-layout: auto !important;
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 0.5rem !important;
+  overflow: hidden !important;
+}
+
+/* Ensure all table child elements are displayed correctly */
+.content-draw table thead,
+.prose.prose-invert table thead,
+article.content-draw table thead,
+article.prose.prose-invert table thead,
+body .content-draw table thead,
+body article.content-draw table thead {
+  display: table-header-group !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.content-draw table tbody,
+.prose.prose-invert table tbody,
+article.content-draw table tbody,
+article.prose.prose-invert table tbody,
+body .content-draw table tbody,
+body article.content-draw table tbody {
+  display: table-row-group !important;
+}
+
+.content-draw table tr,
+.prose.prose-invert table tr,
+article.content-draw table tr,
+article.prose.prose-invert table tr,
+body .content-draw table tr,
+body article.content-draw table tr {
+  display: table-row !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.content-draw table tr:last-child,
+.prose.prose-invert table tr:last-child,
+article.content-draw table tr:last-child,
+article.prose.prose-invert table tr:last-child {
+  border-bottom: none !important;
+}
+
+.content-draw table td,
+.content-draw table th,
+.prose.prose-invert table td,
+.prose.prose-invert table th,
+article.content-draw table td,
+article.content-draw table th,
+article.prose.prose-invert table td,
+article.prose.prose-invert table th,
+body .content-draw table td,
+body .content-draw table th,
+body article.content-draw table td,
+body article.content-draw table th {
+  display: table-cell !important;
+  padding: 0.75rem 1rem !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+  vertical-align: top !important;
+}
+
+.content-draw table td:last-child,
+.content-draw table th:last-child,
+.prose.prose-invert table td:last-child,
+.prose.prose-invert table th:last-child,
+article.content-draw table td:last-child,
+article.content-draw table th:last-child {
+  border-right: none !important;
+}
+
+.content-draw table thead th,
+.prose.prose-invert table thead th,
+article.content-draw table thead th,
+article.prose.prose-invert table thead th {
+  font-weight: 600 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-align: left !important;
+}
+
+.content-draw table tbody td,
+.prose.prose-invert table tbody td,
+article.content-draw table tbody td,
+article.prose.prose-invert table tbody td {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.content-draw table tbody tr:hover,
+.prose.prose-invert table tbody tr:hover,
+article.content-draw table tbody tr:hover,
+article.prose.prose-invert table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+}
+
+/* ============================================
+   LISTS - WIKI PAGES
+   ============================================ */
+.content-draw ol,
+article.content-draw ol,
+.prose.prose-invert ol,
+article.prose.prose-invert ol {
+  list-style: decimal !important;
+  margin-left: 20px !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+  padding-left: 1.5rem !important;
+}
+
+.content-draw ul,
+article.content-draw ul,
+.prose.prose-invert ul,
+article.prose.prose-invert ul {
+  list-style: disc !important;
+  margin-left: 20px !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+  padding-left: 1.5rem !important;
+}
+
+.content-draw li,
+article.content-draw li,
+.prose.prose-invert li,
+article.prose.prose-invert li {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.content-draw hr {
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.content-draw h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 3rem;
+}
+
+.content-draw h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 3rem;
+}
+.content-draw h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 3rem;
+}
+.content-draw h4 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  line-height: 3rem;
+}
+.content-draw h5 {
+  font-size: 1.125rem;
+  font-weight: bold;
+  line-height: 3rem;
+}
+.content-draw h6 {
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 3rem;
+}
+
+.content-draw pre {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.content-draw code {
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 0.5rem 0.5rem;
+  border-radius: 5px;
+  border: white 1px solid;
+  margin: 4px;
+}
+
+.content-draw p {
+  margin-top: 2rem;
+  /* margin-bottom: 2rem; */
+}
+
+.content-draw a {
+  position: relative;
+  color: #2e53f8;
+  transition: all 0.2s ease-in-out;
+}
+
+.content-draw a::before {
+  position: absolute;
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: #2e53f8;
+  transform: scaleX(0);
+  transition: all 0.2s ease-in-out;
+}
+
+.content-draw a:hover {
+  color: #f82e49;
+}
+.content-draw a:hover::before {
+  background-color: #f82e49;
+  transform: scaleX(1);
+}
+
+:root {
+  --pagefind-ui-scale: 0.8;
+  --pagefind-ui-primary: #034ad8;
+  --pagefind-ui-text: #cfcfcf;
+  --pagefind-ui-background: #141414;
+  --pagefind-ui-border: #0c0c0c;
+  --pagefind-ui-tag: #080808;
+  --pagefind-ui-border-width: 2px;
+  --pagefind-ui-border-radius: 8px;
+  --pagefind-ui-image-border-radius: 8px;
+  --pagefind-ui-image-box-ratio: 3 / 2;
+  --pagefind-ui-font: "Commissioner";
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+@keyframes scale-up-center-alternate {
+  0% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.scale-up-center-alternate {
+  animation: scale-up-center-alternate 900ms cubic-bezier(0.19, 1, 0.22, 1) 0s
+    infinite alternate both;
+}
+
+@keyframes slide-bottom-alternate {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(20px);
+  }
+}
+
+.slide-bottom-alternate {
+  animation: slide-bottom-alternate 900ms cubic-bezier(1, 0, 0, 1) 1s infinite
+    alternate both;
+}
+
+@keyframes fade-in-normal {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-in-normal {
+  animation: fade-in-normal 2s ease-in 0s 1 normal forwards;
+}
+
+@keyframes heartbeat-normal {
+  from {
+    transform: scale(1);
+    transform-origin: center center;
+    animation-timing-function: ease-out;
+  }
+  10% {
+    transform: scale(0.91);
+    animation-timing-function: ease-in;
+  }
+  17% {
+    transform: scale(0.98);
+    animation-timing-function: ease-out;
+  }
+  33% {
+    transform: scale(0.87);
+    animation-timing-function: ease-in;
+  }
+  45% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
+  }
+}
+
+.heartbeat-normal {
+  animation: heartbeat-normal 800ms cubic-bezier(0.6, -0.28, 0.735, 0.045) 0s
+    infinite normal forwards;
+}
+
+.outer {
+  width: 300px;
+  height: 250px;
+  border-radius: 10px;
+  padding: 1px;
+  background: radial-gradient(circle 230px at 0% 0%, #ffffff, #080813);
+  position: relative;
+}
+
+.dot {
+  width: 5px;
+  aspect-ratio: 1;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 0 10px #ffffff;
+  border-radius: 100px;
+  z-index: 2;
+  right: 10%;
+  top: 10%;
+  animation: moveDot 6s linear infinite;
+}
+
+@keyframes moveDot {
+  0%,
+  100% {
+    top: 10%;
+    right: 10%;
+  }
+  25% {
+    top: 10%;
+    right: calc(100% - 35px);
+  }
+  50% {
+    top: calc(100% - 30px);
+    right: calc(100% - 35px);
+  }
+  75% {
+    top: calc(100% - 30px);
+    right: 10%;
+  }
+}
+
+.card {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 9px;
+  border: solid 1px #202222;
+  background-size: 20px 20px;
+  background: radial-gradient(circle 280px at 0% 0%, #1d1d1d, #0e0e0e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-direction: column;
+  color: #fff;
+}
+.ray {
+  width: 220px;
+  height: 45px;
+  border-radius: 100px;
+  position: absolute;
+  background-color: #c7c7c777;
+  opacity: 0.4;
+  box-shadow: 0 0 50px #5a72f7;
+  filter: blur(10px);
+  transform-origin: 10%;
+  top: 0%;
+  left: 0;
+  transform: rotate(40deg);
+}
+
+.card .text {
+  font-weight: bolder;
+  font-size: 4rem;
+  background: linear-gradient(45deg, #000000 4%, #fff, #000);
+  background-clip: text;
+  color: transparent;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  background-color: #2c2c2c;
+}
+.topl {
+  top: 10%;
+  background: linear-gradient(90deg, #888888 30%, #1d1f1f 70%);
+}
+.bottoml {
+  bottom: 10%;
+}
+.leftl {
+  left: 10%;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, #747474 30%, #222424 70%);
+}
+.rightl {
+  right: 10%;
+  width: 1px;
+  height: 100%;
+}
+
+.rightarrowcs {
+  position: absolute;
+  right: -10px;
+  top: 5rem;
+  width: 30px;
+  height: 4px;
+  background-color: #fff;
+}
+
+.rightarrowcs::after {
+  position: absolute;
+  background-color: #fff;
+  right: -5px;
+  top: 3px;
+  content: "";
+  display: block;
+  width: 12px;
+  height: 4px;
+  transform: rotate(135deg);
+}
+
+.rightarrowcs::before {
+  position: absolute;
+  background-color: #fff;
+  right: -5px;
+  top: -3px;
+  content: "";
+  display: block;
+  width: 12px;
+  height: 4px;
+  transform: rotate(-135deg);
+}
+
+.dtlsc[open] > summary {
+  border-color: #3a63ec;
+}
+
+@keyframes vibrate-1-normal {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.vibrate-1-normal {
+  animation: vibrate-1-normal 10s cubic-bezier(0.215, 0.61, 0.355, 1) 0s
+    infinite normal none;
+}
+
+/* FAQ Smooth Animation - Final Working Version */
+details.group {
+  overflow: hidden;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+details.group summary {
+  position: relative;
+  padding-right: 2.5rem !important;
+  list-style: none !important;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s ease;
+  display: block;
+}
+
+details.group summary::-webkit-details-marker {
+  display: none !important;
+}
+
+details.group summary::marker {
+  display: none !important;
+}
+
+details.group summary::after {
+  content: "▶";
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+  line-height: 1;
+}
+
+details.group[open] summary::after {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+details.group summary:hover {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+details.group summary:hover::after {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+details.group > p {
+  height: 0;
+  opacity: 0;
+  margin-top: 0 !important;
+  overflow: hidden;
+  transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.4s ease 0.1s,
+              margin-top 0.4s ease;
+}
+
+/* JavaScript will set exact height values */
+details.group[open] > p {
+  /* height set by JS */
+  opacity: 1;
+  margin-top: 0.5rem !important;
+}
+
+details.group[open] {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  background-color: rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Additional styles for markdown tables in wiki articles */
+.prose.prose-invert table,
+.content-draw table,
+article.prose.prose-invert table,
+article.content-draw table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 0.5rem !important;
+  overflow: hidden !important;
+  display: table !important;
+}
+
+.prose.prose-invert thead,
+.content-draw thead,
+article.prose.prose-invert thead,
+article.content-draw thead {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  display: table-header-group !important;
+}
+
+.prose.prose-invert thead th,
+.content-draw thead th,
+article.prose.prose-invert thead th,
+article.content-draw thead th {
+  padding: 0.75rem 1rem !important;
+  text-align: left !important;
+  font-weight: 600 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+  display: table-cell !important;
+}
+
+.prose.prose-invert thead th:last-child,
+.content-draw thead th:last-child,
+article.prose.prose-invert thead th:last-child,
+article.content-draw thead th:last-child {
+  border-right: none !important;
+}
+
+.prose.prose-invert tbody tr,
+.content-draw tbody tr,
+article.prose.prose-invert tbody tr,
+article.content-draw tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  transition: background-color 0.2s ease !important;
+  display: table-row !important;
+}
+
+.prose.prose-invert tbody tr:hover,
+.content-draw tbody tr:hover,
+article.prose.prose-invert tbody tr:hover,
+article.content-draw tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+}
+
+.prose.prose-invert tbody tr:last-child,
+.content-draw tbody tr:last-child,
+article.prose.prose-invert tbody tr:last-child,
+article.content-draw tbody tr:last-child {
+  border-bottom: none !important;
+}
+
+.prose.prose-invert tbody td,
+.content-draw tbody td,
+article.prose.prose-invert tbody td,
+article.content-draw tbody td {
+  padding: 0.75rem 1rem !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+  display: table-cell !important;
+}
+
+.prose.prose-invert tbody td:last-child,
+.content-draw tbody td:last-child,
+article.prose.prose-invert tbody td:last-child,
+article.content-draw tbody td:last-child {
+  border-right: none !important;
+}
+
+.prose.prose-invert tbody th,
+.content-draw tbody th,
+article.prose.prose-invert tbody th,
+article.content-draw tbody th {
+  padding: 0.75rem 1rem !important;
+  font-weight: 600 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+  display: table-cell !important;
+}
+
+.prose.prose-invert tbody th:last-child,
+.content-draw tbody th:last-child,
+article.prose.prose-invert tbody th:last-child,
+article.content-draw tbody th:last-child {
+  border-right: none !important;
+}
+
+/* Ensure tbody is displayed correctly */
+.prose.prose-invert tbody,
+.content-draw tbody,
+article.prose.prose-invert tbody,
+article.content-draw tbody {
+  display: table-row-group !important;
+}
+
+/* Additional table wrapper for better styling */
+.prose.prose-invert table,
+.content-draw table,
+article.prose.prose-invert table,
+article.content-draw table {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Ensure table cells have proper text color */
+.prose.prose-invert table td,
+.prose.prose-invert table th,
+.content-draw table td,
+.content-draw table th,
+article.prose.prose-invert table td,
+article.prose.prose-invert table th,
+article.content-draw table td,
+article.content-draw table th {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Ensure markdown code blocks are styled */
+.prose.prose-invert pre,
+.content-draw pre,
+article.prose.prose-invert pre,
+article.content-draw pre {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 0.5rem !important;
+  padding: 1rem !important;
+  overflow-x: auto !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.prose.prose-invert code,
+.content-draw code,
+article.prose.prose-invert code,
+article.content-draw code {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 0.25rem !important;
+  padding: 0.125rem 0.375rem !important;
+  font-size: 0.875em !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.prose.prose-invert pre code,
+.content-draw pre code,
+article.prose.prose-invert pre code,
+article.content-draw pre code {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Ensure blockquotes are styled */
+.prose.prose-invert blockquote,
+.content-draw blockquote,
+article.prose.prose-invert blockquote,
+article.content-draw blockquote {
+  border-left: 4px solid rgba(46, 83, 248, 0.5) !important;
+  padding-left: 1rem !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-style: italic !important;
+}
+
+/* Ensure lists have proper spacing */
+.prose.prose-invert ul,
+.prose.prose-invert ol,
+.content-draw ul,
+.content-draw ol,
+article.prose.prose-invert ul,
+article.prose.prose-invert ol,
+article.content-draw ul,
+article.content-draw ol {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+  padding-left: 1.5rem !important;
+}
+
+.prose.prose-invert ul li,
+.prose.prose-invert ol li,
+.content-draw ul li,
+.content-draw ol li,
+article.prose.prose-invert ul li,
+article.prose.prose-invert ol li,
+article.content-draw ul li,
+article.content-draw ol li {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Ensure proper spacing for nested lists */
+.prose.prose-invert ul ul,
+.prose.prose-invert ol ol,
+.prose.prose-invert ul ol,
+.prose.prose-invert ol ul,
+.content-draw ul ul,
+.content-draw ol ol,
+.content-draw ul ol,
+.content-draw ol ul,
+article.prose.prose-invert ul ul,
+article.prose.prose-invert ol ol,
+article.prose.prose-invert ul ol,
+article.prose.prose-invert ol ul,
+article.content-draw ul ul,
+article.content-draw ol ol,
+article.content-draw ul ol,
+article.content-draw ol ul {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Ensure horizontal rules are visible */
+.prose.prose-invert hr,
+.content-draw hr,
+article.prose.prose-invert hr,
+article.content-draw hr {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
+}
+
+/* Force table display for all table elements - Universal styles */
+/* CRITICAL: Ensure tables are always displayed correctly */
+article.prose table,
+article.content-draw table,
+.prose table,
+.content-draw table,
+article.prose.prose-invert table,
+article.content-draw table,
+.prose.prose-invert table {
+  display: table !important;
+  width: 100% !important;
+  table-layout: auto !important;
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 1.5rem 0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 0.5rem !important;
+  overflow: hidden !important;
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+article.prose table thead,
+article.content-draw table thead,
+.prose table thead,
+.content-draw table thead {
+  display: table-header-group !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+article.prose table tbody,
+article.content-draw table tbody,
+.prose table tbody,
+.content-draw table tbody {
+  display: table-row-group !important;
+}
+
+article.prose table tr,
+article.content-draw table tr,
+.prose table tr,
+.content-draw table tr {
+  display: table-row !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+article.prose table tr:last-child,
+article.content-draw table tr:last-child,
+.prose table tr:last-child,
+.content-draw table tr:last-child {
+  border-bottom: none !important;
+}
+
+article.prose table td,
+article.prose table th,
+article.content-draw table td,
+article.content-draw table th,
+.prose table td,
+.prose table th,
+.content-draw table td,
+.content-draw table th {
+  display: table-cell !important;
+  padding: 0.75rem 1rem !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  vertical-align: top !important;
+}
+
+article.prose table td:last-child,
+article.prose table th:last-child,
+article.content-draw table td:last-child,
+article.content-draw table th:last-child,
+.prose table td:last-child,
+.prose table th:last-child,
+.content-draw table td:last-child,
+.content-draw table th:last-child {
+  border-right: none !important;
+}
+
+article.prose table th,
+article.content-draw table th,
+.prose table th,
+.content-draw table th {
+  font-weight: 600 !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+article.prose table tbody tr:hover,
+article.content-draw table tbody tr:hover,
+.prose table tbody tr:hover,
+.content-draw table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+}
+
+/* Additional universal styles for all markdown elements in wiki articles */
+article.prose,
+article.content-draw,
+.prose,
+.content-draw {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Ensure strong/bold text is visible */
+article.prose strong,
+article.content-draw strong,
+.prose strong,
+.content-draw strong {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-weight: 600 !important;
+}
+
+/* Ensure links are visible and styled */
+article.prose a,
+article.content-draw a,
+.prose a,
+.content-draw a {
+  color: #2e53f8 !important;
+  text-decoration: underline !important;
+}
+
+article.prose a:hover,
+article.content-draw a:hover,
+.prose a:hover,
+.content-draw a:hover {
+  color: #f82e49 !important;
+}
+
+/* Ensure images are responsive */
+article.prose img,
+article.content-draw img,
+.prose img,
+.content-draw img {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 0.5rem !important;
+  margin: 1rem 0 !important;
+}
+
+/* Ensure headings are styled */
+.prose.prose-invert h1,
+.prose.prose-invert h2,
+.prose.prose-invert h3,
+.prose.prose-invert h4,
+.prose.prose-invert h5,
+.prose.prose-invert h6,
+.content-draw h1,
+.content-draw h2,
+.content-draw h3,
+.content-draw h4,
+.content-draw h5,
+.content-draw h6,
+article.prose.prose-invert h1,
+article.prose.prose-invert h2,
+article.prose.prose-invert h3,
+article.prose.prose-invert h4,
+article.prose.prose-invert h5,
+article.prose.prose-invert h6,
+article.content-draw h1,
+article.content-draw h2,
+article.content-draw h3,
+article.content-draw h4,
+article.content-draw h5,
+article.content-draw h6 {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: bold !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Ensure paragraphs are styled */
+.prose.prose-invert p,
+.content-draw p,
+article.prose.prose-invert p,
+article.content-draw p {
+  color: rgba(255, 255, 255, 0.8) !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+  line-height: 1.75 !important;
+}
+
+/* ============================================
+   FINAL OVERRIDE - MAXIMUM SPECIFICITY FOR WIKI PAGES
+   ============================================ */
+/* These rules MUST be at the end to override everything */
+body article.prose.prose-invert.content-draw table,
+body article.content-draw.prose.prose-invert table,
+body .prose.prose-invert.content-draw table {
+  display: table !important;
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 1.5rem 0 !important;
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 0.5rem !important;
+  overflow: hidden !important;
+}
+
+body article.prose.prose-invert.content-draw table thead,
+body article.content-draw.prose.prose-invert table thead {
+  display: table-header-group !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+body article.prose.prose-invert.content-draw table tbody,
+body article.content-draw.prose.prose-invert table tbody {
+  display: table-row-group !important;
+}
+
+body article.prose.prose-invert.content-draw table tr,
+body article.content-draw.prose.prose-invert table tr {
+  display: table-row !important;
+}
+
+body article.prose.prose-invert.content-draw table td,
+body article.prose.prose-invert.content-draw table th,
+body article.content-draw.prose.prose-invert table td,
+body article.content-draw.prose.prose-invert table th {
+  display: table-cell !important;
+  padding: 0.75rem 1rem !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+body article.prose.prose-invert.content-draw table thead th {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 600 !important;
+}
+
+/* ============================================
+   FINAL OVERRIDE - AFTER TAILWIND - MAXIMUM PRIORITY
+   MUST BE AT THE END TO OVERRIDE TAILWIND
+   ============================================ */
+@layer utilities {
+  /* Tables - Force display and styling for wiki pages */
+  article.prose.prose-invert.content-draw table,
+  article.content-draw.prose.prose-invert table,
+  body article.prose.prose-invert.content-draw table,
+  body article.content-draw.prose.prose-invert table {
+    display: table !important;
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 1.5rem 0 !important;
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 0.5rem !important;
+    overflow: hidden !important;
+    table-layout: auto !important;
+  }
+
+  article.prose.prose-invert.content-draw table thead,
+  article.content-draw.prose.prose-invert table thead,
+  body article.prose.prose-invert.content-draw table thead,
+  body article.content-draw.prose.prose-invert table thead {
+    display: table-header-group !important;
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  article.prose.prose-invert.content-draw table tbody,
+  article.content-draw.prose.prose-invert table tbody,
+  body article.prose.prose-invert.content-draw table tbody,
+  body article.content-draw.prose.prose-invert table tbody {
+    display: table-row-group !important;
+  }
+
+  article.prose.prose-invert.content-draw table tr,
+  article.content-draw.prose.prose-invert table tr,
+  body article.prose.prose-invert.content-draw table tr,
+  body article.content-draw.prose.prose-invert table tr {
+    display: table-row !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  article.prose.prose-invert.content-draw table tr:last-child,
+  article.content-draw.prose.prose-invert table tr:last-child,
+  body article.prose.prose-invert.content-draw table tr:last-child,
+  body article.content-draw.prose.prose-invert table tr:last-child {
+    border-bottom: none !important;
+  }
+
+  article.prose.prose-invert.content-draw table td,
+  article.prose.prose-invert.content-draw table th,
+  article.content-draw.prose.prose-invert table td,
+  article.content-draw.prose.prose-invert table th,
+  body article.prose.prose-invert.content-draw table td,
+  body article.prose.prose-invert.content-draw table th,
+  body article.content-draw.prose.prose-invert table td,
+  body article.content-draw.prose.prose-invert table th {
+    display: table-cell !important;
+    padding: 0.75rem 1rem !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+    vertical-align: top !important;
+  }
+
+  article.prose.prose-invert.content-draw table td:last-child,
+  article.prose.prose-invert.content-draw table th:last-child,
+  article.content-draw.prose.prose-invert table td:last-child,
+  article.content-draw.prose.prose-invert table th:last-child,
+  body article.prose.prose-invert.content-draw table td:last-child,
+  body article.prose.prose-invert.content-draw table th:last-child,
+  body article.content-draw.prose.prose-invert table td:last-child,
+  body article.content-draw.prose.prose-invert table th:last-child {
+    border-right: none !important;
+  }
+
+  article.prose.prose-invert.content-draw table thead th,
+  article.content-draw.prose.prose-invert table thead th,
+  body article.prose.prose-invert.content-draw table thead th,
+  body article.content-draw.prose.prose-invert table thead th {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 600 !important;
+    text-align: left !important;
+  }
+
+  article.prose.prose-invert.content-draw table tbody tr:hover,
+  article.content-draw.prose.prose-invert table tbody tr:hover,
+  body article.prose.prose-invert.content-draw table tbody tr:hover,
+  body article.content-draw.prose.prose-invert table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.03) !important;
+  }
+
+  /* Lists - Override Tailwind for wiki pages */
+  article.prose.prose-invert.content-draw ul,
+  article.content-draw.prose.prose-invert ul,
+  body article.prose.prose-invert.content-draw ul,
+  body article.content-draw.prose.prose-invert ul {
+    list-style: disc !important;
+    margin-left: 1.5rem !important;
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+    padding-left: 1.5rem !important;
+  }
+
+  article.prose.prose-invert.content-draw ol,
+  article.content-draw.prose.prose-invert ol,
+  body article.prose.prose-invert.content-draw ol,
+  body article.content-draw.prose.prose-invert ol {
+    list-style: decimal !important;
+    margin-left: 1.5rem !important;
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+    padding-left: 1.5rem !important;
+  }
+
+  article.prose.prose-invert.content-draw li,
+  article.content-draw.prose.prose-invert li,
+  body article.prose.prose-invert.content-draw li,
+  body article.content-draw.prose.prose-invert li {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+}
+
+/* ============================================
+   WIKI PAGES CSS - COMPLETE OVERRIDE
+   SIMPLE, RELIABLE, MAXIMUM SPECIFICITY
+   ============================================ */
+/* Force all table elements to display correctly */
+html body article.prose.prose-invert.content-draw table,
+html body article.content-draw.prose.prose-invert table {
+  display: table !important;
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 1.5rem 0 !important;
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 0.5rem !important;
+  overflow: hidden !important;
+  table-layout: auto !important;
+}
+
+html body article.prose.prose-invert.content-draw table thead,
+html body article.content-draw.prose.prose-invert table thead {
+  display: table-header-group !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+html body article.prose.prose-invert.content-draw table tbody,
+html body article.content-draw.prose.prose-invert table tbody {
+  display: table-row-group !important;
+}
+
+html body article.prose.prose-invert.content-draw table tr,
+html body article.content-draw.prose.prose-invert table tr {
+  display: table-row !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+html body article.prose.prose-invert.content-draw table tr:last-child,
+html body article.content-draw.prose.prose-invert table tr:last-child {
+  border-bottom: none !important;
+}
+
+html body article.prose.prose-invert.content-draw table td,
+html body article.prose.prose-invert.content-draw table th,
+html body article.content-draw.prose.prose-invert table td,
+html body article.content-draw.prose.prose-invert table th {
+  display: table-cell !important;
+  padding: 0.75rem 1rem !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+  vertical-align: top !important;
+}
+
+html body article.prose.prose-invert.content-draw table td:last-child,
+html body article.prose.prose-invert.content-draw table th:last-child,
+html body article.content-draw.prose.prose-invert table td:last-child,
+html body article.content-draw.prose.prose-invert table th:last-child {
+  border-right: none !important;
+}
+
+html body article.prose.prose-invert.content-draw table thead th {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 600 !important;
+  text-align: left !important;
+}
+
+html body article.prose.prose-invert.content-draw table tbody tr:hover,
+html body article.content-draw.prose.prose-invert table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+}
+
+/* Lists */
+html body article.prose.prose-invert.content-draw ul,
+html body article.content-draw.prose.prose-invert ul {
+  list-style: disc !important;
+  margin-left: 1.5rem !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+  padding-left: 1.5rem !important;
+}
+
+html body article.prose.prose-invert.content-draw ol,
+html body article.content-draw.prose.prose-invert ol {
+  list-style: decimal !important;
+  margin-left: 1.5rem !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+  padding-left: 1.5rem !important;
+}
+
+html body article.prose.prose-invert.content-draw li,
+html body article.content-draw.prose.prose-invert li {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Headings */
+html body article.prose.prose-invert.content-draw h1,
+html body article.content-draw.prose.prose-invert h1 {
+  font-size: 2.5rem !important;
+  font-weight: bold !important;
+  line-height: 3rem !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+html body article.prose.prose-invert.content-draw h2,
+html body article.content-draw.prose.prose-invert h2 {
+  font-size: 2rem !important;
+  font-weight: bold !important;
+  line-height: 3rem !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+html body article.prose.prose-invert.content-draw h3,
+html body article.content-draw.prose.prose-invert h3 {
+  font-size: 1.5rem !important;
+  font-weight: bold !important;
+  line-height: 3rem !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Paragraphs */
+html body article.prose.prose-invert.content-draw p,
+html body article.content-draw.prose.prose-invert p {
+  color: rgba(255, 255, 255, 0.8) !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+  line-height: 1.75 !important;
+}
+
+/* Code blocks */
+html body article.prose.prose-invert.content-draw pre,
+html body article.content-draw.prose.prose-invert pre {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 0.5rem !important;
+  padding: 1rem !important;
+  overflow-x: auto !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+html body article.prose.prose-invert.content-draw code,
+html body article.content-draw.prose.prose-invert code {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 0.25rem !important;
+  padding: 0.125rem 0.375rem !important;
+  font-size: 0.875em !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+html body article.prose.prose-invert.content-draw pre code,
+html body article.content-draw.prose.prose-invert pre code {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Blockquotes */
+html body article.prose.prose-invert.content-draw blockquote,
+html body article.content-draw.prose.prose-invert blockquote {
+  border-left: 4px solid rgba(46, 83, 248, 0.5) !important;
+  padding-left: 1rem !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-style: italic !important;
+}
+
+/* Horizontal rules */
+html body article.prose.prose-invert.content-draw hr,
+html body article.content-draw.prose.prose-invert hr {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
+}
+
+/* ============================================
+   FINAL CHECK - ULTIMATE SPECIFICITY
+   ============================================ */
+html body main div article.prose.prose-invert.content-draw table,
+html body main div article.content-draw.prose.prose-invert table {
+  display: table !important;
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 1.5rem 0 !important;
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 0.5rem !important;
+  overflow: hidden !important;
+}
+
+html body main div article.prose.prose-invert.content-draw table thead,
+html body main div article.content-draw.prose.prose-invert table thead {
+  display: table-header-group !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+html body main div article.prose.prose-invert.content-draw table tbody,
+html body main div article.content-draw.prose.prose-invert table tbody {
+  display: table-row-group !important;
+}
+
+html body main div article.prose.prose-invert.content-draw table tr,
+html body main div article.content-draw.prose.prose-invert table tr {
+  display: table-row !important;
+}
+
+html body main div article.prose.prose-invert.content-draw table td,
+html body main div article.prose.prose-invert.content-draw table th,
+html body main div article.content-draw.prose.prose-invert table td,
+html body main div article.content-draw.prose.prose-invert table th {
+  display: table-cell !important;
+  padding: 0.75rem 1rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+html body main div article.prose.prose-invert.content-draw table thead th {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 600 !important;
+}
+
+html body main div article.prose.prose-invert.content-draw ul,
+html body main div article.content-draw.prose.prose-invert ul {
+  list-style: disc !important;
+  margin-left: 1.5rem !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+  padding-left: 1.5rem !important;
+}
+
+html body main div article.prose.prose-invert.content-draw ol,
+html body main div article.content-draw.prose.prose-invert ol {
+  list-style: decimal !important;
+  margin-left: 1.5rem !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+  padding-left: 1.5rem !important;
+}
+
+html body main div article.prose.prose-invert.content-draw li,
+html body main div article.content-draw.prose.prose-invert li {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+html body main div article.prose.prose-invert.content-draw h1,
+html body main div article.content-draw.prose.prose-invert h1 {
+  font-size: 2.5rem !important;
+  font-weight: bold !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+html body main div article.prose.prose-invert.content-draw h2,
+html body main div article.content-draw.prose.prose-invert h2 {
+  font-size: 2rem !important;
+  font-weight: bold !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+html body main div article.prose.prose-invert.content-draw h3,
+html body main div article.content-draw.prose.prose-invert h3 {
+  font-size: 1.5rem !important;
+  font-weight: bold !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+html body main div article.prose.prose-invert.content-draw p,
+html body main div article.content-draw.prose.prose-invert p {
+  color: rgba(255, 255, 255, 0.8) !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+  line-height: 1.75 !important;
+}
+
+html body main div article.prose.prose-invert.content-draw pre,
+html body main div article.content-draw.prose.prose-invert pre {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 0.5rem !important;
+  padding: 1rem !important;
+  overflow-x: auto !important;
+  margin: 1rem 0 !important;
+}
+
+html body main div article.prose.prose-invert.content-draw code,
+html body main div article.content-draw.prose.prose-invert code {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 0.25rem !important;
+  padding: 0.125rem 0.375rem !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+html body main div article.prose.prose-invert.content-draw pre code,
+html body main div article.content-draw.prose.prose-invert pre code {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+html body main div article.prose.prose-invert.content-draw blockquote,
+html body main div article.content-draw.prose.prose-invert blockquote {
+  border-left: 4px solid rgba(46, 83, 248, 0.5) !important;
+  padding-left: 1rem !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-style: italic !important;
+}
