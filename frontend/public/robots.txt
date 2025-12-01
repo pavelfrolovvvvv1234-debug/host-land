@@ -1,8 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /search
-Disallow: /admin
-Disallow: /internal
-Disallow: /api
-
-Sitemap: https://dior.host/sitemap.xml
