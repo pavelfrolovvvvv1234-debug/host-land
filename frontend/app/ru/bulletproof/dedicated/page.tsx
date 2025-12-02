@@ -1,3 +1,8 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+
 type ComparisonRow = { label: string; bulletproof: string; regular: string };
 
 type DedicatedTarif = {
@@ -239,205 +244,269 @@ const faqs = [
 ];
 
 export default function BulletproofDedicatedPageRu() {
-  return (
-    <div>
-      <section className="bg-black/60 border border-white/10 rounded-2xl p-6 shadow-[0px_21px_120px_rgba(10,77,146,0.2)] hero-fade-in">
-        <h1 className="text-3xl font-bold">{hero.heading}</h1>
-        <p className="mt-2 text-white/70">{hero.subheading}</p>
-      </section>
+  const [mounted, setMounted] = useState(false);
 
-      <section className="mt-6 bg-black/30 border border-white/10 rounded-xl p-4 text-sm text-white/80">
-        <p>
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  return (
+    <main className="relative overflow-hidden">
+      {/* Background Glows */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-hero-glow blur-[100px] pointer-events-none opacity-50"></div>
+
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 relative z-10">
+        {/* Hero Section */}
+        <div className="relative rounded-2xl border border-white/5 bg-surface/50 p-8 sm:p-20 shadow-2xl overflow-hidden backdrop-blur-sm mb-12">
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent skew-x-12 opacity-30"></div>
+
+          <div className="relative z-10 text-center">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="mx-auto max-w-4xl text-3xl sm:text-5xl font-semibold tracking-tight text-white mb-6 leading-tight"
+            >
+              {hero.heading}
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="mx-auto max-w-2xl text-base sm:text-lg text-white/70 leading-relaxed"
+            >
+              {hero.subheading}
+            </motion.p>
+          </div>
+        </div>
+
+        {/* Quick Info Banner */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={mounted ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="relative rounded-xl border border-white/10 bg-black/40 p-4 text-center text-sm text-white/70 mb-12"
+        >
           Объедините bare metal с{" "}
-          <a
-            className="text-blue-300 hover:text-white"
-            href="/ru/bulletproof/vds"
-          >
+          <a href="/ru/bulletproof/vds" className="text-primary hover:text-primary/80 underline">
             абузоустойчивыми VDS
           </a>{" "}
           и{" "}
-          <a
-            className="text-blue-300 hover:text-white"
-            href="/ru/bulletproof/domains"
-          >
+          <a href="/ru/bulletproof/domains" className="text-primary hover:text-primary/80 underline">
             bulletproof-доменами
           </a>{" "}
           для полного стека.
-        </p>
-      </section>
+        </motion.div>
 
-      <div className="mt-8 flex flex-wrap gap-4 p-2 bg-[#09131c]/40 sm:justify-center shadow-[0px_21px_295px_89px_rgba(10,_77,_146,_0.18)] rounded-lg">
-        {tarifs.map((tarif) => (
-          <div
-            key={tarif.title + tarif.ram}
-            className="p-2 rounded-lg border flex-grow sm:min-w-[250px] sm:max-w-[287px] border-[#ffffff49] select-none service-card scroll-reveal revealed"
-          >
-            <div className="content">
-              <div className="flex flex-col gap-2 !items-start !justify-start m-[20px]">
-                <div className="flex flex-wrap gap-4 items-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="41"
-                    height="41"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#FFF"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="service-card-icon"
+        {/* Tariff Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {tarifs.map((tarif, index) => (
+            <motion.div
+              key={`${tarif.title}-${tarif.ram}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.05 }}
+              whileHover={{ scale: 1.02, y: -4 }}
+              className="group relative"
+            >
+              <div className="relative rounded-xl border border-white/10 bg-card-gradient p-1 hover:border-primary/50 transition-all duration-300">
+                <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none"></div>
+                <div className="relative flex flex-col h-full rounded-lg bg-black/40 p-6 hover:bg-black/60 transition-all">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="rounded-lg p-2 bg-primary/10 border border-primary/20 text-primary">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <circle cx="12" cy="12" r="3" />
+                        <path d="M4.5 10H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-.5" />
+                        <path d="M4.5 14H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-.5" />
+                        <path d="M6 6h.01" />
+                        <path d="M6 18h.01" />
+                      </svg>
+                    </div>
+                    <h2 className="text-lg font-semibold text-white">{tarif.title}</h2>
+                  </div>
+                  <div className="flex-1 space-y-3 mb-6">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-white/60">CPU</span>
+                      <span className="text-white font-semibold">{tarif.cpu} cores / {tarif.threads} threads</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-white/60">RAM</span>
+                      <span className="text-white font-semibold">{tarif.ram} GB</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-white/60">SSD</span>
+                      <span className="text-white font-semibold">{tarif.ssd} GB</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-white/60">Сеть</span>
+                      <span className="text-white font-semibold">{tarif.networkSpeed} Gbps</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-white/60">Трафик</span>
+                      <span className="text-white font-semibold">{tarif.bandwidth}</span>
+                    </div>
+                  </div>
+                  <a
+                    href={tarif.url}
+                    className="w-full rounded-lg border border-primary/30 bg-primary/10 px-4 py-3 text-center text-sm font-medium text-primary hover:bg-primary/20 transition-colors"
                   >
-                    <circle cx="12" cy="12" r="3" />
-                    <path d="M4.5 10H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-.5" />
-                    <path d="M4.5 14H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-.5" />
-                    <path d="M6 6h.01" />
-                  </svg>
-                  <h2 className="font-bold text-xl">{tarif.title}</h2>
+                    ${tarif.price}/мес
+                  </a>
                 </div>
-                <div className="mt-auto text-xs w-full">
-                  <ul className="flex flex-col gap-2">
-                    <li className="text-sm flex justify-between">
-                      <span className="rounded-lg font-bold px-1 inline-block">CPU</span>{" "}
-                      {tarif.cpu} core {tarif.threads} threads
-                    </li>
-                    <li className="text-sm flex justify-between">
-                      <span className="rounded-lg font-bold px-1 inline-block">RAM</span>{" "}
-                      {tarif.ram} gb
-                    </li>
-                    <li className="text-sm flex justify-between">
-                      <span className="rounded-lg font-bold px-1 inline-block">
-                        SSD / NVME
-                      </span>{" "}
-                      {tarif.ssd} gb
-                    </li>
-                  </ul>
-                  <ul className="mt-4 flex flex-col gap-2">
-                    <li className="text-white/40 flex gap-2">
-                      <span className="rounded-lg bg-gradient-to-tl from-stone-700 via-yellow-400 to-emerald-50 text-black font-bold px-1 inline-block">
-                        Network speed
-                      </span>{" "}
-                      {tarif.networkSpeed} gb/s
-                    </li>
-                    <li className="text-white/40 flex gap-2">
-                      <span className="rounded-lg bg-gradient-to-tl from-stone-700 via-yellow-400 to-emerald-50 text-black font-bold px-1 inline-block">
-                        Bandwidth
-                      </span>{" "}
-                      {tarif.bandwidth}
-                    </li>
-                    <li className="text-white/40 flex gap-2">
-                      <span className="rounded-lg bg-gradient-to-tl from-stone-700 via-yellow-400 to-emerald-50 text-black font-bold px-1 inline-block">
-                        OS
-                      </span>{" "}
-                      {tarif.os}
-                    </li>
-                  </ul>
-                </div>
-                <a
-                  href={tarif.url}
-                  className="p-2 bg-black/20 w-full rounded-lg border-[#ffffff44] mt-4 border hover:border-[#6e84e4] service-card-price"
-                >
-                  {tarif.price} $ / месяц (заказать)
-                </a>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Steps Section */}
+        {steps.length > 0 && (
+          <div className="relative rounded-2xl border border-white/5 bg-surface/50 p-8 sm:p-12 shadow-2xl overflow-hidden backdrop-blur-sm mb-12">
+            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+            <div className="relative z-10">
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                animate={mounted ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6 }}
+                className="text-2xl sm:text-3xl font-semibold text-white mb-8"
+              >
+                Как проходит процесс заказа?
+              </motion.h2>
+              <div className="grid gap-6 md:grid-cols-2">
+                {steps.map((step, index) => (
+                  <motion.div
+                    key={step.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={mounted ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.1 * index }}
+                    className="flex gap-4"
+                  >
+                    <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full border-2 border-primary/30 bg-primary/10 text-lg font-bold text-primary">
+                      {index + 1}
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-white mb-1">{step.title}</h3>
+                      <p className="text-sm text-white/70">{step.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </div>
-        ))}
-      </div>
+        )}
 
-      {steps.length > 0 && (
-        <section className="mt-10 bg-black/40 border border-white/10 rounded-2xl p-6">
-          <h2 className="text-2xl font-semibold">Как проходит процесс заказа?</h2>
-          <ol className="mt-4 space-y-4">
-            {steps.map((step, index) => (
-              <li key={step.title} className="flex gap-4 scroll-reveal revealed">
-                <span className="h-10 w-10 flex items-center justify-center rounded-full border border-white/30 text-lg font-bold">
-                  {index + 1}
-                </span>
-                <div>
-                  <h3 className="font-semibold">{step.title}</h3>
-                  <p className="text-sm text-white/70">{step.description}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </section>
-      )}
-
-      {sections.length > 0 && (
-        <section className="mt-10 grid gap-6 md:grid-cols-3">
-          {sections.map((section) => (
-            <article
-              key={section.title}
-              className="bg-black/40 border border-white/10 rounded-xl p-5 flex flex-col gap-3"
-            >
-              <h2 className="text-xl font-semibold">{section.title}</h2>
-              <p className="text-sm text-white/70">{section.body}</p>
-              {section.bullets && (
-                <ul className="list-disc list-inside text-sm text-white/80 space-y-1">
-                  {section.bullets.map((bullet) => (
-                    <li key={bullet}>{bullet}</li>
-                  ))}
-                </ul>
-              )}
-            </article>
-          ))}
-        </section>
-      )}
-
-      {comparisonRows.length > 0 && (
-        <section className="mt-10">
-          <h2 className="text-2xl font-semibold">
-            Абузоустойчивые выделенные vs обычные
-          </h2>
-          <p className="text-white/70 mt-2">
-            Контроль, приватность и устойчивость.
-          </p>
-          <div className="mt-4 overflow-auto rounded-xl border border-white/10">
-            <table className="min-w-full text-left text-sm">
-              <thead className="bg-white/5 uppercase text-xs tracking-wide">
-                <tr>
-                  <th className="px-4 py-3">Критерий</th>
-                  <th className="px-4 py-3">Bulletproof dedicated</th>
-                  <th className="px-4 py-3">Классический dedicated</th>
-                </tr>
-              </thead>
-              <tbody>
-                {comparisonRows.map((row) => (
-                  <tr key={row.label} className="border-t border-white/10">
-                    <th className="px-4 py-3 font-semibold">{row.label}</th>
-                    <td className="px-4 py-3 text-white/80">{row.bulletproof}</td>
-                    <td className="px-4 py-3 text-white/60">{row.regular}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-      )}
-
-      {faqs.length > 0 && (
-        <section className="mt-10 bg-black/40 border border-white/10 rounded-2xl p-6">
-          <h2 className="text-2xl font-semibold">FAQ по абузоустойчивым выделенным серверам</h2>
-          <div className="mt-4 space-y-4">
-            {faqs.map((faq) => (
-              <details
-                key={faq.question}
-                className="group border border-white/10 rounded-lg p-4 bg-black/30"
+        {/* Info Sections */}
+        {sections.length > 0 && (
+          <div className="grid gap-6 md:grid-cols-3 mb-12">
+            {sections.map((section, index) => (
+              <motion.div
+                key={section.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={mounted ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.1 * index }}
+                className="relative rounded-xl border border-white/10 bg-card-gradient p-6 hover:border-primary/30 transition-all"
               >
-                <summary className="cursor-pointer font-semibold text-lg flex items-center justify-between">
-                  <span>{faq.question}</span>
-                  <span className="faq-arrow ml-2">▶</span>
-                </summary>
-                <div className="accordion-content">
-                  <p className="mt-2 text-sm text-white/70">{faq.answer}</p>
-                </div>
-              </details>
+                <h2 className="text-xl font-semibold text-white mb-3">{section.title}</h2>
+                <p className="text-sm text-white/70 mb-4">{section.body}</p>
+                {section.bullets && (
+                  <ul className="space-y-2">
+                    {section.bullets.map((bullet, idx) => (
+                      <li key={idx} className="text-sm text-white/80 flex items-start gap-2">
+                        <span className="text-primary mt-1">•</span>
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </motion.div>
             ))}
           </div>
-        </section>
-      )}
-    </div>
+        )}
+
+        {/* Comparison Table */}
+        {comparisonRows.length > 0 && (
+          <div className="relative rounded-2xl border border-white/5 bg-surface/50 p-8 shadow-2xl overflow-hidden backdrop-blur-sm mb-12">
+            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+            <div className="relative z-10">
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                animate={mounted ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6 }}
+                className="text-2xl sm:text-3xl font-semibold text-white mb-2"
+              >
+                Абузоустойчивые выделенные vs обычные
+              </motion.h2>
+              <p className="text-white/70 mb-6">Контроль, приватность и устойчивость.</p>
+              <div className="overflow-auto rounded-xl border border-white/10">
+                <table className="min-w-full text-left text-sm">
+                  <thead className="bg-white/5">
+                    <tr>
+                      <th className="px-6 py-4 font-semibold text-white">Критерий</th>
+                      <th className="px-6 py-4 font-semibold text-primary">Bulletproof dedicated</th>
+                      <th className="px-6 py-4 font-semibold text-white/60">Классический dedicated</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {comparisonRows.map((row, idx) => (
+                      <tr key={row.label} className={`border-t border-white/10 ${idx % 2 === 0 ? 'bg-white/5' : ''}`}>
+                        <th className="px-6 py-4 font-semibold text-white">{row.label}</th>
+                        <td className="px-6 py-4 text-white/80">{row.bulletproof}</td>
+                        <td className="px-6 py-4 text-white/60">{row.regular}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* FAQ Section */}
+        {faqs.length > 0 && (
+          <div className="relative rounded-2xl border border-white/5 bg-surface/50 p-8 shadow-2xl overflow-hidden backdrop-blur-sm">
+            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+            <div className="relative z-10">
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                animate={mounted ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6 }}
+                className="text-2xl sm:text-3xl font-semibold text-white mb-8"
+              >
+                FAQ по абузоустойчивым выделенным серверам
+              </motion.h2>
+              <div className="space-y-4">
+                {faqs.map((faq, index) => (
+                  <motion.details
+                    key={faq.question}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={mounted ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.1 * index }}
+                    className="group border border-white/10 rounded-lg bg-black/40 hover:border-primary/30 transition-all"
+                  >
+                    <summary className="cursor-pointer p-4 font-semibold text-white flex items-center justify-between hover:text-primary transition-colors">
+                      <span>{faq.question}</span>
+                      <span className="ml-2 transition-transform group-open:rotate-90">▶</span>
+                    </summary>
+                    <div className="px-4 pb-4">
+                      <p className="text-sm text-white/70">{faq.answer}</p>
+                    </div>
+                  </motion.details>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </main>
   );
 }
-
-
