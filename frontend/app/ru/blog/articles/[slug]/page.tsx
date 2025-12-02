@@ -86,19 +86,27 @@ export default function BlogArticlePage({ params }: PageProps) {
     notFound();
   }
 
-  // Try .mdx first, then .md
-  let filePath = join(process.cwd(), "blog", "articles", `${slug}.mdx`);
+  // Try Russian articles first (.mdx and .md), then fallback to English
+  const possiblePaths = [
+    join(process.cwd(), "blog", "articles-ru", `${slug}.mdx`),
+    join(process.cwd(), "blog", "articles-ru", `${slug}.md`),
+    join(process.cwd(), "blog", "articles", `${slug}.mdx`),
+    join(process.cwd(), "blog", "articles", `${slug}.md`)
+  ];
+
+  let filePath: string | null = null;
   let fileContent: string | null = null;
 
-  if (existsSync(filePath)) {
-    fileContent = readFileSync(filePath, "utf-8");
-  } else {
-    filePath = join(process.cwd(), "blog", "articles", `${slug}.md`);
-    if (existsSync(filePath)) {
-      fileContent = readFileSync(filePath, "utf-8");
-    } else {
-      notFound();
+  for (const path of possiblePaths) {
+    if (existsSync(path)) {
+      filePath = path;
+      fileContent = readFileSync(path, "utf-8");
+      break;
     }
+  }
+
+  if (!filePath || !fileContent) {
+    notFound();
   }
 
   if (!fileContent) {
