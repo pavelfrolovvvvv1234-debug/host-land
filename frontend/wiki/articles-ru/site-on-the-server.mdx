@@ -1,0 +1,192 @@
+# Размещение сайта на сервере
+
+Руководство по размещению веб-сайта на VDS или выделенном сервере с настройкой веб-сервера, базы данных и домена.
+
+## Способы размещения сайта
+
+### 1. Через панель управления
+
+**Рекомендуется для новичков:**
+- FastPanel (бесплатно)
+- ISPmanager (платно)
+- VestaCP (бесплатно)
+- Другие панели
+
+### 2. Ручная настройка
+
+**Для опытных пользователей:**
+- Установка веб-сервера (Nginx/Apache)
+- Настройка PHP/Node.js/Python
+- Конфигурация базы данных
+- Настройка домена
+
+## Быстрый старт с панелью
+
+### Шаг 1: Установите панель
+
+**FastPanel** (рекомендуется):
+```bash
+bash <(curl -s https://fastpanel.direct/install.sh)
+```
+
+### Шаг 2: Добавьте сайт
+
+1. Войдите в панель
+2. Нажмите «Добавить сайт»
+3. Укажите домен
+4. Выберите PHP версию
+
+### Шаг 3: Загрузите файлы
+
+- Через FTP/SFTP
+- Через файловый менеджер панели
+- Через Git
+
+### Шаг 4: Настройте DNS
+
+Направьте А-запись домена на IP сервера:
+```
+@ A 95.182.98.171
+www A 95.182.98.171
+```
+
+## Ручная настройка (без панели)
+
+### Установка стека LEMP
+
+```bash
+# Обновление системы
+apt update && apt upgrade -y
+
+# Установка Nginx
+apt install nginx -y
+
+# Установка PHP
+apt install php-fpm php-mysql -y
+
+# Установка MySQL
+apt install mysql-server -y
+
+# Установка Git (опционально)
+apt install git -y
+```
+
+### Создание конфига Nginx
+
+```nginx
+server {
+    listen 80;
+    server_name example.com www.example.com;
+    root /var/www/example.com;
+    index index.php index.html;
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+    }
+}
+```
+
+### Загрузка файлов
+
+```bash
+# Создайте директорию
+mkdir -p /var/www/example.com
+
+# Загрузите файлы через SCP или Git
+git clone https://github.com/user/site.git /var/www/example.com
+```
+
+## SSL-сертификат (Let's Encrypt)
+
+### Установка Certbot
+
+```bash
+apt install certbot python3-certbot-nginx -y
+certbot --nginx -d example.com -d www.example.com
+```
+
+Сертификат будет обновляться автоматически.
+
+## База данных
+
+### Создание базы MySQL
+
+```bash
+mysql -u root -p
+
+CREATE DATABASE sitename;
+CREATE USER 'siteuser'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL ON sitename.* TO 'siteuser'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+```
+
+## Типичные проблемы
+
+### Сайт не открывается
+
+**Проверьте:**
+- Работает ли Nginx: `systemctl status nginx`
+- Открыт ли порт 80/443: `netstat -tlnp | grep 80`
+- Правильно ли настроен DNS
+
+### 502 Bad Gateway
+
+**Причины:**
+- PHP-FPM не запущен
+- Неправильный путь к сокету
+- Недостаточно ресурсов
+
+**Решение:**
+```bash
+systemctl start php8.1-fpm
+systemctl status php8.1-fpm
+```
+
+### Permission denied
+
+**Решение:**
+```bash
+chown -R www-data:www-data /var/www/example.com
+chmod -R 755 /var/www/example.com
+```
+
+## Оптимизация
+
+### Кеширование
+
+Настройте кеширование в Nginx:
+```nginx
+location ~* \.(jpg|jpeg|png|gif|ico|css|js)$ {
+    expires 30d;
+}
+```
+
+### Gzip-сжатие
+
+```nginx
+gzip on;
+gzip_types text/plain text/css application/json application/javascript;
+```
+
+## FAQ
+
+### Нужна ли панель управления?
+Нет, но она упрощает управление для новичков.
+
+### Какой веб-сервер лучше — Nginx или Apache?
+Nginx быстрее и легче, Apache — проще для новичков.
+
+### Можно ли несколько сайтов на одном сервере?
+Да, настраивается через виртуальные хосты.
+
+### Как часто делать бэкапы?
+Ежедневно для важных проектов.
+
+---
+
+**Нужен сервер для сайта?**  
+[VDS для обычных сайтов](/ru/services/vds)  
+[Bulletproof VDS для рискованных](/ru/bulletproof/vds)
+

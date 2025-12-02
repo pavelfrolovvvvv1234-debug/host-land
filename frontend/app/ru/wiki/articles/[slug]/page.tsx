@@ -62,11 +62,13 @@ function removeJsonLdScript(content: string): string {
 }
 
 function getWikiArticlePath(slug: string): string {
-  // Try multiple possible paths where wiki articles might be located
+  // Try multiple possible paths where Russian wiki articles might be located
   const cwd = process.cwd();
   const possiblePaths = [
-    join(cwd, "wiki", "articles", `${slug}.mdx`), // If cwd is frontend/
-    join(cwd, "frontend", "wiki", "articles", `${slug}.mdx`), // If cwd is project root
+    join(cwd, "wiki", "articles-ru", `${slug}.mdx`), // Russian articles first
+    join(cwd, "frontend", "wiki", "articles-ru", `${slug}.mdx`),
+    join(cwd, "wiki", "articles", `${slug}.mdx`), // Fallback to English if Russian doesn't exist
+    join(cwd, "frontend", "wiki", "articles", `${slug}.mdx`),
   ];
 
   // Find the first path that exists
