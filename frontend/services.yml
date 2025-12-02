@@ -34,7 +34,7 @@ servicesList:
     description: >-
       Regular servers for "white" or "gray" operation. Complaints are not
       ignored! The ability to install any OS
-    link: /vds
+    link: /services/vds
     icon: >-
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0
       0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2"
@@ -85,7 +85,7 @@ servicesList:
       high-load network tasks. With up to 10 Gbps bandwidth, they deliver
       lightning-fast performance and stability. Ideal for port scanning, host
       availability checks, automation, and API-driven operations. Outperforms
-      standard abuse-resistant VDS thanks to superior network throughput.
+      standard bulletproof VDS thanks to superior network throughput.
     icon: >-
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0
       0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2"

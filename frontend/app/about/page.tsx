@@ -9,7 +9,7 @@ import Link from "next/link";
 
 const hero = {
   heading: "About Dior Host",
-  subheading: "Offshore infrastructure provider with abuse-resistant policies"
+  subheading: "Offshore infrastructure provider with bulletproof policies"
 };
 
 const companyInfo = {
@@ -37,7 +37,7 @@ const jurisdictions =
   "We maintain physical presence and legal entities in Netherlands, Germany and Romania, allowing us to balance offshore protections with EU/US compliance readiness for regulated partners.";
 
 const mission =
-  "Our mission is to provide reliable abuse-resistant infrastructure for legitimate businesses, marketing teams, security researchers, and privacy-focused applications. We believe in due process, manual review, and mediation over automatic suspensions.";
+  "Our mission is to provide reliable bulletproof infrastructure for legitimate businesses, marketing teams, security researchers, and privacy-focused applications. We believe in due process, manual review, and mediation over automatic suspensions.";
 
 const technology =
   "Dior Host uses enterprise-grade hardware including ECC RAM, AES-NI encryption, NVMe storage, and redundant network paths. Our infrastructure supports instant deployment, encrypted snapshots, and automated backups across multiple Tier III facilities.";
@@ -48,7 +48,7 @@ const compliance =
 const services = [
   {
     title: "Bulletproof VDS",
-    description: "Abuse-resistant virtual servers with flexible abuse-handling policies",
+    description: "bulletproof virtual servers with flexible abuse-handling policies",
     link: "/bulletproof/vds"
   },
   {
@@ -58,7 +58,7 @@ const services = [
   },
   {
     title: "Domain Registration",
-    description: "Bulletproof domains with abuse-resistant registration policies",
+    description: "Bulletproof domains with bulletproof registration policies",
     link: "/bulletproof/domains"
   },
   {
@@ -122,7 +122,7 @@ const jsonLd = {
   "url": "https://dior.host",
   "logo": "https://dior.host/favicon.png",
   "foundingDate": "2020",
-  "description": "Offshore infrastructure provider with abuse-resistant policies",
+  "description": "Offshore infrastructure provider with bulletproof policies",
   "address": {
     "@type": "PostalAddress",
     "addressCountry": "NL"

@@ -119,7 +119,7 @@ export default function PublicOfferPage() {
                 Dior Host provides virtualized server instances with allocated CPU, RAM, storage, and network resources. Services include:
               </p>
               <ul className="list-disc list-inside space-y-2 text-white/80 ml-4">
-                <li>Bulletproof VDS with abuse-resistant policies</li>
+                <li>Bulletproof VDS with bulletproof policies</li>
                 <li>TurboNet Virtual Servers with enhanced network performance</li>
                 <li>Standard Virtual Servers with standard SLA</li>
                 <li>Instant deployment and automated backups</li>
@@ -132,7 +132,7 @@ export default function PublicOfferPage() {
                 Physical server hardware dedicated to a single client, including:
               </p>
               <ul className="list-disc list-inside space-y-2 text-white/80 ml-4">
-                <li>Bulletproof Dedicated Servers with abuse-resistant handling</li>
+                <li>Bulletproof Dedicated Servers with bulletproof handling</li>
                 <li>Dedicated Servers with IPHM (IP History Management)</li>
                 <li>Standard Dedicated Servers</li>
                 <li>Hardware replacement within SLA timeframes</li>
@@ -141,7 +141,7 @@ export default function PublicOfferPage() {
             <div>
               <h3 className="text-xl font-semibold mb-3 text-white">4.3. Domain Registration</h3>
               <p className="text-white/80 leading-relaxed mb-2">
-                Domain name registration and management services for various TLDs, including bulletproof domains with abuse-resistant policies.
+                Domain name registration and management services for various TLDs, including bulletproof domains with bulletproof policies.
               </p>
             </div>
             <div>

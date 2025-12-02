@@ -6,7 +6,7 @@ servicesList:
   - title: Абузоустойчивые VDS
     description: >-
       На этих серверах вы можете сохранить все. Мы игнорируем любые жалобы.
-      Возможность доставки любой ОС. Анонимность 100%
+      Возможность установки любой ОС. Анонимность 100%
     link: /bulletproof-vds
     icon: >-
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0
@@ -19,8 +19,7 @@ servicesList:
     id: bulletproofvds
   - title: Абузоустойчивые домены
     description: >-
-      Пуленепробиваемые домены. Никаких блокировок и гарантия на весь срок! При
-      желании возможен перенос. Все домены за $80
+      При желании возможен перенос. Все домены от 80$
     link: /bulletproof-domains
     icon: >-
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0
@@ -33,7 +32,7 @@ servicesList:
     description: >-
       Обычные серверы для «белой» или «серой» эксплуатации. Жалобы не остаются
       без внимания! Возможность установки любой ОС
-    link: /vds
+    link: /services/vds
     icon: >-
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0
       0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2"

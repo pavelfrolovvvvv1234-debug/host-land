@@ -22,7 +22,7 @@ type Tarif = {
 };
 
 const hero = {
-  heading: "Bulletproof VDS Hosting (Abuse-Resistant VPS)",
+  heading: "Bulletproof VDS Hosting (bulletproof VPS)",
   subheading: "Offshore VPS with DMCA-ignored policies and instant delivery",
   summary:
     "In simple terms, bulletproof VPS hosting is a service that keeps your virtual servers online even when complaints, DMCA notices or abuse reports are filed against your content thanks to offshore-friendly networks in the USA, Netherlands, Germany and the wider EU."
@@ -49,7 +49,7 @@ const sections = [
   },
   {
     title: "What workloads fit bulletproof VDS?",
-    body: "Privacy SaaS, affiliate marketing, fintech gateways, cybersecurity labs, streaming mirrors and DMCA-heavy media benefit from abuse-resistant VPS.",
+    body: "Privacy SaaS, affiliate marketing, fintech gateways, cybersecurity labs, streaming mirrors and DMCA-heavy media benefit from bulletproof VPS.",
     bullets: [
       "Full root access for custom stacks, containers and tunnelling.",
       "Snapshot, reinstall and rescue modes via panel or API.",
@@ -376,7 +376,7 @@ export default function BulletproofVdsPage() {
               >
                 Bulletproof VDS vs regular VPS
               </motion.h2>
-              <p className="text-white/70 mb-6">Stay online longer with offshore abuse-resistant infrastructure.</p>
+              <p className="text-white/70 mb-6">Stay online longer with offshore bulletproof infrastructure.</p>
               <div className="overflow-auto rounded-xl border border-white/10">
                 <table className="min-w-full text-left text-sm">
                   <thead className="bg-white/5">

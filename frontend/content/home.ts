@@ -230,7 +230,7 @@ export const homeContent: Record<Locale, HomeContent> = {
   en: {
     hero: {
       title: "Bulletproof VPS, VDS & Offshore Hosting",
-      subtitle: "Offshore abuse-resistant infrastructure for global teams",
+      subtitle: "Offshore bulletproof infrastructure for global teams",
       description:
         "Bulletproof hosting is a service that stays online despite DMCA, complaints, or abuse reports, supported by offshore-friendly providers in the USA, UK, Netherlands, Germany, and the EU.",
       highlightPills: ["No AML/KYC/CFT", "Instant delivery", "Data encryption", "The best prices"]
@@ -318,7 +318,7 @@ export const homeContent: Record<Locale, HomeContent> = {
     sections: [
       {
         title: "What is bulletproof hosting?",
-        body: "Bulletproof hosting is an abuse-resistant infrastructure model that prioritizes uptime, privacy and due-process reviews. Dior Host deploys compute in offshore facilities throughout the Netherlands, Germany, Romania and USA-friendly routes, escalates DMCA complaints manually and works with you before taking action.",
+        body: "Bulletproof hosting is a bulletproof infrastructure model that prioritizes uptime, privacy and due-process reviews. Dior Host deploys compute in offshore facilities throughout the Netherlands, Germany, Romania and USA-friendly routes, escalates DMCA complaints manually and works with you before taking action.",
         bullets: [
           "DMCA-ignored by default with legal escalation only when a court order arrives.",
           "Offshore routing with redundant AS paths in NL, DE, RO and USA-friendly locations.",
@@ -369,7 +369,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       }
     ],
     stepsTitle: "How to choose a bulletproof VPS provider",
-    stepsSubtitle: "Why offshore abuse-resistant servers stay online longer.",
+    stepsSubtitle: "Why offshore bulletproof servers stay online longer.",
     steps: [
       {
         title: "Define compliance risk",
@@ -381,7 +381,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       },
       {
         title: "Match workloads to resources",
-        description: "Map CPU, RAM, storage and bandwidth requirements to abuse-resistant VPS or dedicated tiers."
+        description: "Map CPU, RAM, storage and bandwidth requirements to bulletproof VPS or dedicated tiers."
       },
       {
         title: "Plan mitigation & documentation",
@@ -393,7 +393,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       }
     ],
     comparisonTitle: "Bulletproof vs regular hosting",
-    comparisonSubtitle: "Why offshore abuse-resistant servers stay online longer.",
+    comparisonSubtitle: "Why offshore bulletproof servers stay online longer.",
     comparisonHeaders: {
       keyFactor: "Key factor",
       bulletproof: "Bulletproof",
@@ -431,7 +431,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       {
         question: "What is bulletproof hosting?",
         answer:
-          "Bulletproof hosting is abuse-resistant infrastructure that keeps running even when DMCA or abuse notices arrive by relying on offshore jurisdictions, manual reviews and flexible acceptable-use rules."
+          "Bulletproof hosting is bulletproof infrastructure that keeps running even when DMCA or abuse notices arrive by relying on offshore jurisdictions, manual reviews and flexible acceptable-use rules."
       },
       {
         question: "Is bulletproof VPS legal in my country?",
@@ -451,7 +451,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       {
         question: "Can I move from regular hosting to bulletproof hosting easily?",
         answer:
-          "Yes. Schedule a migration window with our NOC, import images or snapshots and we will re-provision workloads on abuse-resistant nodes."
+          "Yes. Schedule a migration window with our NOC, import images or snapshots and we will re-provision workloads on bulletproof nodes."
       }
     ]
   },
@@ -460,7 +460,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       title: "Абузоустойчивый хостинг, VPS и VDS",
       subtitle: "Офшорная инфраструктура, устойчивая к любым злоупотреблениям и жалобам, идеально подходящая для командной и индивидуальной работы",
       description:
-        "Bulletproof-хостинг остаётся онлайн, даже под давлением абузов и DMCA. Bulletproof-серверы сохраняют работоспособность. Это достигается за счёт офшорных площадок в США, Великобритании, Нидерландах, Германии и других странах ЕС.",
+        "Bulletproof-хостинг остаётся онлайн, даже под давлением абузов и DMCA. Bulletproof-серверы сохраняют работоспособность за счёт использования устойчивой инфраструктуры, распределённых оффшорных площадок и собственных правил обработки жалоб.",
       highlightPills: ["Без AML/KYC/CFT", "Мгновенная выдача", "Шифрование данных", "Лучшие цены"]
     },
     heroScrollLabel: "Прокрутите вниз",

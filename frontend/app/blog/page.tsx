@@ -3,7 +3,7 @@ import Link from "next/link";
 const blogIntro = {
   title: "Bulletproof Hosting Insights",
   summary:
-    "Actionable playbooks for abuse-resistant VPS, dedicated servers, offshore domains and DMCA compliance."
+    "Actionable playbooks for bulletproof VPS, dedicated servers, offshore domains and DMCA compliance."
 };
 
 type BlogCard = {
@@ -62,10 +62,10 @@ const blogPosts: BlogCard[] = [
       "Technical explanation of offshore hosting architecture, jurisdiction selection, DMCA ignore policies, network stability considerations, legal risks, and deployment strategies."
   },
   {
-    slug: "abuse-resistant-hosting-stack-blog",
-    title: "How to Build an Abuse-Resistant Hosting Stack: DNS, L4/L7 Firewalls, Routing, IP Reputation",
+    slug: "bulletproof-hosting-stack-blog",
+    title: "How to Build an bulletproof Hosting Stack: DNS, L4/L7 Firewalls, Routing, IP Reputation",
     summary:
-      "Technical guide to building abuse-resistant hosting infrastructure, including DNS configuration, firewall rules, BGP routing, IP reputation monitoring, and deployment best practices."
+      "Technical guide to building bulletproof hosting infrastructure, including DNS configuration, firewall rules, BGP routing, IP reputation monitoring, and deployment best practices."
   },
   {
     slug: "dmca-ignored-hosting-blog",
@@ -92,10 +92,10 @@ const blogPosts: BlogCard[] = [
       "Complete technical guide to Minecraft server hosting, Java performance optimization, Paper/Spigot/Purpur configuration, BungeeCord/Velocity scaling, and production deployment strategies."
   },
   {
-    slug: "abuse-resistant-vps-complete-guide",
-    title: "Abuse-Resistant VPS/VDS: How Abuse-Resistant Data Centers Work and Who Really Needs Them",
+    slug: "bulletproof-vps-complete-guide",
+    title: "bulletproof VPS/VDS: How bulletproof Data Centers Work and Who Really Needs Them",
     summary:
-      "Complete technical guide to abuse-resistant hosting, abuse request handling mechanics, IPHM, SLA policies, policy-friendly jurisdictions, and use cases for high-risk projects."
+      "Complete technical guide to bulletproof hosting, abuse request handling mechanics, IPHM, SLA policies, policy-friendly jurisdictions, and use cases for high-risk projects."
   }
 ];
 

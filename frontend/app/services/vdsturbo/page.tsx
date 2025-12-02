@@ -23,7 +23,7 @@ const hero = {
   heading: "TurboVDS",
   subheading: "High-performance servers for network-intensive tasks",
   summary:
-    "Servers for parsing, mass-checking, SEO, security analysis, and other high-load network tasks. With up to 10 Gbps bandwidth, they deliver lightning-fast performance and stability. Ideal for port scanning, host availability checks, automation, and API-driven operations. Outperforms standard abuse-resistant VDS thanks to superior network throughput."
+    "Servers for parsing, mass-checking, SEO, security analysis, and other high-load network tasks. With up to 10 Gbps bandwidth, they deliver lightning-fast performance and stability. Ideal for port scanning, host availability checks, automation, and API-driven operations. Outperforms standard bulletproof VDS thanks to superior network throughput."
 };
 
 const tarifs: Tarif[] = [

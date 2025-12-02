@@ -20,7 +20,7 @@ type DedicatedTarif = {
 
 const hero = {
   heading: "Bulletproof Dedicated Servers",
-  subheading: "Abuse-resistant bare metal with offshore jurisdictions",
+  subheading: "bulletproof bare metal with offshore jurisdictions",
   summary:
     "In simple terms, bulletproof dedicated hosting keeps your bare-metal nodes online even when DMCA notices or abuse complaints arrive by placing hardware in offshore-friendly facilities across the USA, Netherlands, Germany and the EU."
 };

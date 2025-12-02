@@ -128,7 +128,7 @@ const faqs = [
   {
     question: "What is a bulletproof domain?",
     answer:
-      "A domain registered via abuse-resistant offshore registrars that do not remove DNS delegation when DMCA arrives."
+      "A domain registered via bulletproof offshore registrars that do not remove DNS delegation when DMCA arrives."
   },
   {
     question: "Can I transfer existing domains?",

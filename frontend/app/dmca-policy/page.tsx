@@ -50,7 +50,7 @@ export default function DMCAPolicyPage() {
               The Digital Millennium Copyright Act (DMCA) is a United States copyright law that provides a framework for copyright holders to request removal of infringing content from online services.
             </p>
             <p className="text-white/80 leading-relaxed">
-              While DMCA is a U.S. law, similar copyright protection mechanisms exist in other jurisdictions. Dior Host operates from multiple jurisdictions (Netherlands, Germany, Romania) and handles copyright notices according to our abuse-resistant policies.
+              While DMCA is a U.S. law, similar copyright protection mechanisms exist in other jurisdictions. Dior Host operates from multiple jurisdictions (Netherlands, Germany, Romania) and handles copyright notices according to our bulletproof policies.
             </p>
           </div>
         </section>

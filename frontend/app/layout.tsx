@@ -22,7 +22,7 @@ const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 const metadataBase: Metadata = {
   title: "Bulletproof VPS, VDS & Offshore Hosting | Dior Host",
   description:
-    "Abuse-resistant VPS, VDS, dedicated servers and domains in offshore EU & US locations with DMCA-ignored policies, 24/7 support and privacy-first operations.",
+    "bulletproof VPS, VDS, dedicated servers and domains in offshore EU & US locations with DMCA-ignored policies, 24/7 support and privacy-first operations.",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "32x32", type: "image/x-icon" },

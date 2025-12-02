@@ -18,7 +18,7 @@ seo:
       - "bulletproof hosting"
       - "offshore compliance"
       - "hosting compliance"
-      - "abuse-resistant hosting"
+      - "bulletproof hosting"
       - "offshore vps"
       - "compliance guide"
       - "hosting documentation"

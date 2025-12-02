@@ -163,6 +163,44 @@ export default function IPHMPageRu() {
           </div>
         ))}
       </div>
+
+      <section className="mt-10 grid gap-6 md:grid-cols-3">
+        <article className="bg-black/40 border border-white/10 rounded-xl p-5 flex flex-col gap-3">
+          <h2 className="text-xl font-semibold">Для чего нужен IP-спуфинг на сервере?</h2>
+          <p className="text-sm text-white/70">
+            Позволяет отправлять сетевой трафик с поддельного IP-адреса, что используется для тестирования сетевой безопасности, распределённых нагрузочных сценариев или разработки сетевых решений.
+          </p>
+          <ul className="list-disc list-inside text-sm text-white/80 space-y-1">
+            <li>Высокая скорость и стабильность при интенсивном трафике.</li>
+            <li>Полный контроль над сетевыми настройками и IP-адресами.</li>
+            <li>Возможность безопасного тестирования собственных сервисов и сетей</li>
+          </ul>
+        </article>
+
+        <article className="bg-black/40 border border-white/10 rounded-xl p-5 flex flex-col gap-3">
+          <h2 className="text-xl font-semibold">Почему стоит выбирать выделенный сервер для IPHM?</h2>
+          <p className="text-sm text-white/70">
+            Выделенный сервер даёт полный контроль над ресурсами и сетевыми настройками, что невозможно на стандартных VPS.
+          </p>
+          <ul className="list-disc list-inside text-sm text-white/80 space-y-1">
+            <li>Неограниченные возможности по настройке сетевых интерфейсов.</li>
+            <li>Высокая пропускная способность для нагрузочного тестирования.</li>
+            <li>Отдельный IP для управления репутацией трафика.</li>
+          </ul>
+        </article>
+
+        <article className="bg-black/40 border border-white/10 rounded-xl p-5 flex flex-col gap-3">
+          <h2 className="text-xl font-semibold">Можно ли использовать сервер для анонимизации и обхода гео-блокировок?</h2>
+          <p className="text-sm text-white/70">
+            Да, выделенный IPHM-сервер позволяет менять исходящие IP и подключаться через разные точки мира.
+          </p>
+          <ul className="list-disc list-inside text-sm text-white/80 space-y-1">
+            <li>Доступ к ресурсам с разных локаций.</li>
+            <li>Снижение риска блокировок по IP.</li>
+            <li>Поддержка кастомных сетевых протоколов.</li>
+          </ul>
+        </article>
+      </section>
     </div>
   );
 }
