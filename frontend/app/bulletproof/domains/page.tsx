@@ -30,7 +30,7 @@ const sections = [
   },
   {
     title: "Which TLDs are supported?",
-    body: "Flat $70/year pricing (except .io) across .com, .net, .org, .io, .cc, .uk, .us, .link, .bz and more.",
+    body: "Flat $80/year pricing (except .io) across .com, .net, .org, .io, .cc, .uk, .us, .link, .bz and more.",
     bullets: [
       "Instant activation plus API access.",
       "Assisted transfers and backorders.",
@@ -89,7 +89,7 @@ const comparisonRows: ComparisonRow[] = [
   },
   {
     label: "Pricing",
-    bulletproof: "Flat yearly pricing ($70 / $99 for .io).",
+    bulletproof: "Flat yearly pricing ($80 / $99 for .io).",
     regular: "Fluctuating renewals, hidden fees."
   },
   {
@@ -100,9 +100,9 @@ const comparisonRows: ComparisonRow[] = [
 ];
 
 const domainsPrices = {
-  reg: 70,
-  renew: 70,
-  transfer: 70
+  reg: 80,
+  renew: 80,
+  transfer: 80
 };
 
 const zones: Zone[] = [

@@ -33,7 +33,7 @@ const services = [
   {
     title: "Bulletproof Domains",
     description:
-      "Bulletproof domains. No blocking and the warranty is for the whole period! Transfer is possible, if desired. All domains for $70",
+      "Bulletproof domains. No blocking and the warranty is for the whole period! Transfer is possible, if desired. All domains from $80",
     href: "/bulletproof/domains",
     icon: (
       <svg
