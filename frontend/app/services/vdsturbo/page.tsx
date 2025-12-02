@@ -41,7 +41,7 @@ const tarifs: Tarif[] = [
     price: 99,
     url:
       "https://my.diorhost.com?func=register&redirect=startform%3Dquickorder%26redirect%3Dbasket%26pricelist%3D301%26period%3D1%26project%3D2",
-    pps: "~1.5 million"
+    pps: "~450-800"
   },
   {
     title: "TurboNet M",
@@ -57,7 +57,7 @@ const tarifs: Tarif[] = [
     price: 159,
     url:
       "https://my.diorhost.com?func=register&redirect=startform%3Dquickorder%26redirect%3Dbasket%26pricelist%3D307%26period%3D1%26project%3D2",
-    pps: "~10 million"
+    pps: "~450-800"
   },
   {
     title: "TurboNet S",
@@ -73,7 +73,7 @@ const tarifs: Tarif[] = [
     price: 199,
     url:
       "https://my.diorhost.com?func=register&redirect=startform%3Dquickorder%26redirect%3Dbasket%26pricelist%3D313%26period%3D1%26project%3D2",
-    pps: "~30 million"
+    pps: "~450-800"
   }
 ];
 

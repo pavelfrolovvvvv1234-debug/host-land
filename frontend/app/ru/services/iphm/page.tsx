@@ -1,4 +1,7 @@
-import Link from "next/link";
+"use client";
+
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 type Prop = {
   name: string;
@@ -13,6 +16,12 @@ type Tarif = {
   props: Prop[];
   price: number;
   url: string;
+};
+
+const hero = {
+  heading: "Выделенные Серверы IPHM",
+  summary:
+    "Сервера с IPHM предоставляют возможность скрывать настоящий IP-адрес пользователя, маскируя его под другой. Это может быть полезно для защиты приватности, обхода географических блокировок или проведения тестирования безопасности сети. Канал до 10гб/сек"
 };
 
 const tarifs: Tarif[] = [
@@ -93,116 +102,166 @@ const tarifs: Tarif[] = [
   }
 ];
 
+const sections = [
+  {
+    title: "Для чего нужен IP-спуфинг на сервере?",
+    body: "Позволяет отправлять сетевой трафик с поддельного IP-адреса, что используется для тестирования сетевой безопасности, распределённых нагрузочных сценариев или разработки сетевых решений.",
+    bullets: [
+      "Высокая скорость и стабильность при интенсивном трафике.",
+      "Полный контроль над сетевыми настройками и IP-адресами.",
+      "Возможность безопасного тестирования собственных сервисов и сетей"
+    ]
+  },
+  {
+    title: "Почему стоит выбирать выделенный сервер для IPHM?",
+    body: "Выделенный сервер даёт полный контроль над ресурсами и сетевыми настройками, что невозможно на стандартных VPS.",
+    bullets: [
+      "Неограниченные возможности по настройке сетевых интерфейсов.",
+      "Высокая пропускная способность для нагрузочного тестирования.",
+      "Отдельный IP для управления репутацией трафика."
+    ]
+  },
+  {
+    title: "Можно ли использовать сервер для анонимизации и обхода гео-блокировок?",
+    body: "Да, выделенный IPHM-сервер позволяет менять исходящие IP и подключаться через разные точки мира.",
+    bullets: [
+      "Доступ к ресурсам с разных локаций.",
+      "Снижение риска блокировок по IP.",
+      "Поддержка кастомных сетевых протоколов."
+    ]
+  }
+];
+
 export default function IPHMPageRu() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-    <div className="mt-4">
-      <section className="bg-black/60 border border-white/10 rounded-2xl p-6 shadow-[0px_21px_120px_rgba(10,77,146,0.2)]">
-        <h1 className="text-3xl font-bold">Выделенные Серверы IPHM</h1>
-        <p className="mt-2 text-white/70">
-          Сервера с IPHM предоставляют возможность скрывать настоящий IP-адрес пользователя, маскируя его под другой. Это может быть полезно для защиты приватности, обхода географических блокировок или проведения тестирования безопасности сети. Канал до 10гб/сек
-        </p>
-      </section>
+    <main className="relative overflow-hidden">
+      {/* Background Glows */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-hero-glow blur-[100px] pointer-events-none opacity-50"></div>
 
-      <div className="flex flex-wrap gap-4 p-2 bg-[#09131c] sm:justify-center shadow-[0px_21px_295px_89px_rgba(10,_77,_146,_0.18)] rounded-lg mt-6">
-        {tarifs.map((tarif, index) => (
-          <div
-            key={tarif.title + tarif.ram + index}
-            className="p-2 rounded-lg border flex-grow sm:min-w-[250px] sm:max-w-[287px] border-[#ffffff49] select-none"
-          >
-            <div className="content">
-              <div className="flex flex-col gap-2 !items-start !justify-start m-[20px]">
-                <div className="flex flex-wrap gap-4 items-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="41"
-                    height="41"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#e0e0e0"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M2 12a5 5 0 0 0 5 5 8 8 0 0 1 5 2 8 8 0 0 1 5-2 5 5 0 0 0 5-5V7h-5a8 8 0 0 0-5 2 8 8 0 0 0-5-2H2Z" />
-                    <path d="M6 11c1.5 0 3 .5 3 2-2 0-3 0-3-2Z" />
-                    <path d="M18 11c-1.5 0-3 .5-3 2 2 0 3 0 3-2Z" />
-                  </svg>
-                  <h2 className="font-bold text-xl">{tarif.title}</h2>
-                </div>
-                <div className="mt-auto text-xs w-full">
-                  <ul className="flex flex-col gap-2">
-                    <li className="text-sm flex justify-between">
-                      <span className="rounded-lg font-bold px-1 inline-block">CPU</span> {tarif.cpu} ядер
-                    </li>
-                    <li className="text-sm flex justify-between">
-                      <span className="rounded-lg font-bold px-1 inline-block">RAM</span> {tarif.ram} гб
-                    </li>
-                    <li className="text-sm flex justify-between">
-                      <span className="rounded-lg font-bold px-1 inline-block">SSD / NVME</span> {tarif.ssd} гб
-                    </li>
-                  </ul>
-                  <ul className="mt-4 flex flex-col gap-2">
-                    {tarif.props.map((prop) => (
-                      <li key={prop.name} className="text-white/40 flex gap-2">
-                        <span className="rounded-lg text-center flex justify-center items-center bg-gradient-to-tl from-stone-700 via-yellow-400 to-emerald-50 text-black font-bold px-1">
-                          {prop.name}
-                        </span>{" "}
-                        {prop.value}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <a
-                  href={tarif.url}
-                  className="p-2 bg-black/20 w-full rounded-lg border-[#ffffff44] mt-4 border hover:border-[#6e84e4] text-center block"
-                >
-                  {tarif.price}$ / месяц
-                </a>
-              </div>
-            </div>
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 relative z-10">
+        {/* Hero Section */}
+        <div className="relative rounded-2xl border border-white/5 bg-surface/50 p-8 sm:p-20 shadow-2xl overflow-hidden backdrop-blur-sm mb-12">
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent skew-x-12 opacity-30"></div>
+
+          <div className="relative z-10 text-center">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="mx-auto max-w-4xl text-3xl sm:text-5xl font-semibold tracking-tight text-white mb-6 leading-tight"
+            >
+              {hero.heading}
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mx-auto max-w-2xl text-base sm:text-lg text-white/60 leading-relaxed bg-black/40 p-6 rounded-xl border border-white/5 backdrop-blur-sm shadow-xl"
+            >
+              {hero.summary}
+            </motion.p>
           </div>
-        ))}
+        </div>
+
+        {/* Tariff Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {tarifs.map((tarif, index) => (
+            <motion.div
+              key={`${tarif.title}-${tarif.ram}-${tarif.ssd}-${index}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ scale: 1.02, y: -4 }}
+              className="group relative"
+            >
+              <div className="relative rounded-xl border border-white/10 bg-card-gradient p-1 hover:border-primary/50 transition-all duration-300">
+                <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none"></div>
+                <div className="relative flex flex-col h-full rounded-lg bg-black/40 p-6 hover:bg-black/60 transition-all">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="rounded-lg p-2 bg-primary/10 border border-primary/20 text-primary">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M2 12a5 5 0 0 0 5 5 8 8 0 0 1 5 2 8 8 0 0 1 5-2 5 5 0 0 0 5-5V7h-5a8 8 0 0 0-5 2 8 8 0 0 0-5-2H2Z" />
+                        <path d="M6 11c1.5 0 3 .5 3 2-2 0-3 0-3-2Z" />
+                        <path d="M18 11c-1.5 0-3 .5-3 2 2 0 3 0 3-2Z" />
+                      </svg>
+                    </div>
+                    <h2 className="text-lg font-semibold text-white">{tarif.title}</h2>
+                  </div>
+                  <div className="flex-1 space-y-3 mb-6">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-white/60">CPU</span>
+                      <span className="text-white font-semibold">{tarif.cpu} ядер</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-white/60">RAM</span>
+                      <span className="text-white font-semibold">{tarif.ram} GB</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-white/60">Хранилище</span>
+                      <span className="text-white font-semibold">{tarif.ssd} GB</span>
+                    </div>
+                    {tarif.props.map((prop) => (
+                      <div key={prop.name} className="flex justify-between text-sm">
+                        <span className="text-white/60">{prop.name}</span>
+                        <span className="text-white font-semibold">{prop.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <a
+                    href={tarif.url}
+                    className="w-full rounded-lg border border-primary/30 bg-primary/10 px-4 py-3 text-center text-sm font-medium text-primary hover:bg-primary/20 transition-colors"
+                  >
+                    ${tarif.price}/мес
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Info Sections */}
+        <div className="grid gap-6 md:grid-cols-3">
+          {sections.map((section, index) => (
+            <motion.div
+              key={section.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.1 * index }}
+              className="relative rounded-xl border border-white/10 bg-card-gradient p-6 hover:border-primary/30 transition-all"
+            >
+              <h2 className="text-xl font-semibold text-white mb-3">{section.title}</h2>
+              <p className="text-sm text-white/70 mb-4">{section.body}</p>
+              {section.bullets && (
+                <ul className="space-y-2">
+                  {section.bullets.map((bullet, idx) => (
+                    <li key={idx} className="text-sm text-white/80 flex items-start gap-2">
+                      <span className="text-primary mt-1">•</span>
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </motion.div>
+          ))}
+        </div>
       </div>
-
-      <section className="mt-10 grid gap-6 md:grid-cols-3">
-        <article className="bg-black/40 border border-white/10 rounded-xl p-5 flex flex-col gap-3">
-          <h2 className="text-xl font-semibold">Для чего нужен IP-спуфинг на сервере?</h2>
-          <p className="text-sm text-white/70">
-            Позволяет отправлять сетевой трафик с поддельного IP-адреса, что используется для тестирования сетевой безопасности, распределённых нагрузочных сценариев или разработки сетевых решений.
-          </p>
-          <ul className="list-disc list-inside text-sm text-white/80 space-y-1">
-            <li>Высокая скорость и стабильность при интенсивном трафике.</li>
-            <li>Полный контроль над сетевыми настройками и IP-адресами.</li>
-            <li>Возможность безопасного тестирования собственных сервисов и сетей</li>
-          </ul>
-        </article>
-
-        <article className="bg-black/40 border border-white/10 rounded-xl p-5 flex flex-col gap-3">
-          <h2 className="text-xl font-semibold">Почему стоит выбирать выделенный сервер для IPHM?</h2>
-          <p className="text-sm text-white/70">
-            Выделенный сервер даёт полный контроль над ресурсами и сетевыми настройками, что невозможно на стандартных VPS.
-          </p>
-          <ul className="list-disc list-inside text-sm text-white/80 space-y-1">
-            <li>Неограниченные возможности по настройке сетевых интерфейсов.</li>
-            <li>Высокая пропускная способность для нагрузочного тестирования.</li>
-            <li>Отдельный IP для управления репутацией трафика.</li>
-          </ul>
-        </article>
-
-        <article className="bg-black/40 border border-white/10 rounded-xl p-5 flex flex-col gap-3">
-          <h2 className="text-xl font-semibold">Можно ли использовать сервер для анонимизации и обхода гео-блокировок?</h2>
-          <p className="text-sm text-white/70">
-            Да, выделенный IPHM-сервер позволяет менять исходящие IP и подключаться через разные точки мира.
-          </p>
-          <ul className="list-disc list-inside text-sm text-white/80 space-y-1">
-            <li>Доступ к ресурсам с разных локаций.</li>
-            <li>Снижение риска блокировок по IP.</li>
-            <li>Поддержка кастомных сетевых протоколов.</li>
-          </ul>
-        </article>
-      </section>
-    </div>
+    </main>
   );
 }
-
-
