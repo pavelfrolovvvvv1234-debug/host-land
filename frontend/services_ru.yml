@@ -7,7 +7,7 @@ servicesList:
     description: >-
       На этих серверах вы можете сохранить все. Мы игнорируем любые жалобы.
       Возможность установки любой ОС. Анонимность 100%
-    link: /bulletproof-vds
+    link: /ru/bulletproof/vds
     icon: >-
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0
       0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2"
@@ -20,7 +20,7 @@ servicesList:
   - title: Абузоустойчивые домены
     description: >-
       При желании возможен перенос. Все домены от 80$
-    link: /bulletproof-domains
+    link: /ru/bulletproof/domains
     icon: >-
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0
       0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2"
@@ -32,7 +32,7 @@ servicesList:
     description: >-
       Обычные серверы для «белой» или «серой» эксплуатации. Жалобы не остаются
       без внимания! Возможность установки любой ОС
-    link: /services/vds
+    link: /ru/services/vds
     icon: >-
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0
       0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2"
@@ -45,7 +45,7 @@ servicesList:
     description: >-
       Выделенные серверы со 100% гарантией анонимности. Никаких блокировок и
       жалоб. Возможность доставки на любую ОС.
-    link: /dedicated-servers
+    link: /ru/bulletproof/dedicated
     icon: >-
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0
       0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2"
@@ -63,7 +63,7 @@ servicesList:
     description: >-
       Выделенные серверы для «белой» или «серой» работы. Жалобы не остаются без
       внимания! Возможность установки любой ОС.
-    link: /dedicated-servers
+    link: /ru/services/dedicated
     icon: >-
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0
       0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2"
@@ -85,7 +85,7 @@ servicesList:
       порт-сканирования, проверки доступности хостов, автоматизации и
       API-запросов. Лучше стандартных абузоустойчивых VDS за счёт высокой
       пропускной способности. 
-    link: /turbovds
+    link: /ru/services/vdsturbo
     icon: >-
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0
       0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2"
@@ -101,6 +101,7 @@ servicesList:
       пользователя, маскируя его под другой. Это может быть полезно для защиты
       приватности, обхода географических блокировок или проведения тестирования
       безопасности сети. Канал до 10гб/сек
+    link: /ru/services/iphm
     icon: >-
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0
       0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2"

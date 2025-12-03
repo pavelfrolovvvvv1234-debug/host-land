@@ -8,7 +8,7 @@ servicesList:
     description: >-
       On these servers, you can keep everything. We ignore any type of
       complaint. The ability to deliver any OS. Anonymity is 100%
-    link: /bulletproof-vds
+    link: /bulletproof/vds
     icon: >-
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0
       0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2"
@@ -22,7 +22,7 @@ servicesList:
     description: >-
       Bulletproof domains. No blocking and the warranty is for the whole period!
       Transfer is possible, if desired. All domains from $80
-    link: /bulletproof-domains
+    link: /bulletproof/domains
     icon: >-
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0
       0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2"
@@ -47,7 +47,7 @@ servicesList:
     description: >-
       Dedicated servers with a 100% guarantee of anonymity. No blocking and no
       complaints. The ability to deliver any OS.
-    link: /dedicated-servers
+    link: /bulletproof/dedicated
     icon: >-
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0
       0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2"
@@ -65,7 +65,7 @@ servicesList:
     description: >-
       Dedicated servers for "white" or "gray" operation. Complaints are not
       ignored! The ability to install any OS.
-    link: /dedicated-servers
+    link: /services/dedicated
     icon: >-
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0
       0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2"
@@ -86,6 +86,7 @@ servicesList:
       lightning-fast performance and stability. Ideal for port scanning, host
       availability checks, automation, and API-driven operations. Outperforms
       standard bulletproof VDS thanks to superior network throughput.
+    link: /services/vdsturbo
     icon: >-
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0
       0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2"
@@ -101,6 +102,7 @@ servicesList:
       another. This can be useful for privacy protection, bypassing geographical
       restrictions, or conducting network security testing. Bandwidth up to 10
       Gbps.
+    link: /services/iphm
     icon: >-
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0
       0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2"
