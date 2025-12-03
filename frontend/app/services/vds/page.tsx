@@ -23,48 +23,139 @@ const hero = {
 };
 
 const tarifs: Tarif[] = [
+  // Lite Plans
   {
-    title: "VDS-1",
+    title: "Lite 1",
+    cpu: 1,
+    ram: 1,
+    ssd: 20,
+    networkSpeed: 0.15,
+    bandwidth: "Unlimited",
+    os: "Linux, Windows",
+    price: 3.69,
+    url: "https://my.diorhost.com/"
+  },
+  {
+    title: "Lite 2",
+    cpu: 2,
+    ram: 2,
+    ssd: 40,
+    networkSpeed: 0.15,
+    bandwidth: "Unlimited",
+    os: "Linux, Windows",
+    price: 5.99,
+    url: "https://my.diorhost.com/"
+  },
+  {
+    title: "Lite 3",
     cpu: 2,
     ram: 4,
-    ssd: 50,
-    networkSpeed: 1,
+    ssd: 40,
+    networkSpeed: 0.15,
     bandwidth: "Unlimited",
     os: "Linux, Windows",
-    price: 15,
+    price: 7.49,
     url: "https://my.diorhost.com/"
   },
   {
-    title: "VDS-2",
+    title: "Lite 4",
+    cpu: 2,
+    ram: 6,
+    ssd: 50,
+    networkSpeed: 0.15,
+    bandwidth: "Unlimited",
+    os: "Linux, Windows",
+    price: 9.49,
+    url: "https://my.diorhost.com/"
+  },
+  // Elite Plans
+  {
+    title: "Elite 1",
     cpu: 4,
     ram: 8,
-    ssd: 100,
-    networkSpeed: 1,
+    ssd: 80,
+    networkSpeed: 0.15,
     bandwidth: "Unlimited",
     os: "Linux, Windows",
-    price: 30,
+    price: 16.66,
     url: "https://my.diorhost.com/"
   },
   {
-    title: "VDS-3",
-    cpu: 6,
+    title: "Elite 2",
+    cpu: 4,
+    ram: 10,
+    ssd: 100,
+    networkSpeed: 0.15,
+    bandwidth: "Unlimited",
+    os: "Linux, Windows",
+    price: 23.79,
+    url: "https://my.diorhost.com/"
+  },
+  {
+    title: "Elite 3",
+    cpu: 8,
+    ram: 12,
+    ssd: 150,
+    networkSpeed: 0.15,
+    bandwidth: "Unlimited",
+    os: "Linux, Windows",
+    price: 37.79,
+    url: "https://my.diorhost.com/"
+  },
+  {
+    title: "Elite 4",
+    cpu: 8,
     ram: 16,
     ssd: 200,
-    networkSpeed: 1,
+    networkSpeed: 0.15,
     bandwidth: "Unlimited",
     os: "Linux, Windows",
-    price: 60,
+    price: 42.29,
+    url: "https://my.diorhost.com/"
+  },
+  // Mega Plans
+  {
+    title: "Mega 1",
+    cpu: 12,
+    ram: 24,
+    ssd: 300,
+    networkSpeed: 0.15,
+    bandwidth: "Unlimited",
+    os: "Linux, Windows",
+    price: 69.29,
     url: "https://my.diorhost.com/"
   },
   {
-    title: "VDS-4",
-    cpu: 8,
+    title: "Mega 2",
+    cpu: 12,
     ram: 32,
-    ssd: 400,
-    networkSpeed: 1,
+    ssd: 320,
+    networkSpeed: 0.15,
     bandwidth: "Unlimited",
     os: "Linux, Windows",
-    price: 120,
+    price: 87.29,
+    url: "https://my.diorhost.com/"
+  },
+  {
+    title: "Mega 3",
+    cpu: 16,
+    ram: 48,
+    ssd: 320,
+    networkSpeed: 0.15,
+    bandwidth: "Unlimited",
+    os: "Linux, Windows",
+    price: 119.29,
+    url: "https://my.diorhost.com/"
+  },
+  {
+    title: "Mega 4",
+    cpu: 16,
+    ram: 64,
+    ssd: 1000,
+    networkSpeed: 0.15,
+    bandwidth: "Unlimited",
+    os: "Linux, Windows",
+    price: 195.29,
     url: "https://my.diorhost.com/"
   }
 ];
@@ -196,7 +287,7 @@ export default function VirtualServersPage() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
             >
               {tarifs.map((tarif, index) => (
                 <motion.div
@@ -224,7 +315,7 @@ export default function VirtualServersPage() {
                     </div>
                     <div className="flex justify-between">
                       <span>Network:</span>
-                      <span className="font-semibold">{tarif.networkSpeed} Gbps</span>
+                      <span className="font-semibold">{tarif.networkSpeed * 1000} Mbps</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Bandwidth:</span>
