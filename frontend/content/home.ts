@@ -347,23 +347,23 @@ export const homeContent: Record<Locale, HomeContent> = {
     testimonialsTitle: "Client Testimonials",
     testimonials: [
       {
-        name: "Marketing Agency",
-        role: "Growth Team Lead",
-        initials: "MA",
+        name: "Anonymous User",
+        role: "Marketing Team Lead",
+        initials: "AU",
         quote: "Dior host made my website feel lighter and quicker. Even image-heavy pages load fast now.",
         kpi: "99.98% uptime, 0 DMCA blocks"
       },
       {
-        name: "Privacy SaaS",
-        role: "CTO",
-        initials: "PS",
+        name: "Anonymous User",
+        role: "Tech Entrepreneur",
+        initials: "AU",
         quote: "Offshore routing and crypto payments maintain operational privacy. Support responds within minutes.",
         kpi: "7 min average response time"
       },
       {
-        name: "Security Lab",
-        role: "Security Researcher",
-        initials: "SL",
+        name: "Anonymous User",
+        role: "Security Specialist",
+        initials: "AU",
         quote: "Support is where dior host shines. Whenever I send a ticket, I actually get a human reply fast. They don't just fix things, they explain them so I know what's happening",
         kpi: "100% abuse ticket resolution"
       }
@@ -576,23 +576,23 @@ export const homeContent: Record<Locale, HomeContent> = {
     testimonialsTitle: "Отзывы клиентов",
     testimonials: [
       {
-        name: "Маркетинговое агентство",
-        role: "Team Lead по росту",
-        initials: "MA",
+        name: "Анонимный пользователь",
+        role: "Руководитель маркетинга",
+        initials: "АП",
         quote: "Dior host сделал мой сайт легче и быстрее. Даже страницы с большим количеством изображений загружаются быстро.",
         kpi: "99.98% аптайма, 0 блокировок"
       },
       {
-        name: "Privacy SaaS",
-        role: "CTO",
-        initials: "PS",
+        name: "Анонимный пользователь",
+        role: "Технический директор",
+        initials: "АП",
         quote: "Офшорные маршруты и крипто-платежи сохраняют приватность. Поддержка отвечает за минуты.",
         kpi: "7 минут среднее время ответа"
       },
       {
-        name: "Security Lab",
-        role: "Исследователь безопасности",
-        initials: "SL",
+        name: "Анонимный пользователь",
+        role: "Специалист по безопасности",
+        initials: "АП",
         quote: "Поддержка — это то, где Dior host действительно сияет. Когда я отправляю тикет, я быстро получаю ответ от человека. Они не просто исправляют проблемы, они объясняют их, чтобы я понимал, что происходит.",
         kpi: "100% обработанных тикетов"
       }
