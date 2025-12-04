@@ -2,10 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 export function Header() {
   const pathname = usePathname();
   const isRu = pathname?.startsWith("/ru") ?? false;
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const basePath =
     isRu && pathname
       ? pathname.replace(/^\/ru/, "") || "/"
@@ -13,6 +16,9 @@ export function Header() {
 
   const enHref = basePath === "" ? "/" : basePath;
   const ruHref = basePath === "/" ? "/ru" : `/ru${basePath}`;
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <nav className="sticky top-0 z-50 border-b border-white/10 bg-background/80 backdrop-blur-md">
@@ -68,16 +74,16 @@ export function Header() {
                   {isRu ? "Главная" : "Home"}
                 </Link>
                 <Link
-                  href={isRu ? "/ru/blog" : "/blog"}
-                  className="rounded-md px-3 py-2 font-medium text-gray-300 hover:bg-blue-700 hover:text-white nav-link"
-                >
-                  {isRu ? "Блог" : "Blog"}
-                </Link>
-                <Link
                   href={isRu ? "/ru/services" : "/services"}
                   className="rounded-md px-3 py-2 font-medium text-gray-300 hover:bg-blue-700 hover:text-white nav-link"
                 >
                   {isRu ? "Услуги" : "Services"}
+                </Link>
+                <Link
+                  href={isRu ? "/ru/blog" : "/blog"}
+                  className="rounded-md px-3 py-2 font-medium text-gray-300 hover:bg-blue-700 hover:text-white nav-link"
+                >
+                  {isRu ? "Блог" : "Blog"}
                 </Link>
                 <Link
                   href={isRu ? "/ru/wiki" : "/wiki"}
@@ -177,28 +183,153 @@ export function Header() {
           <div className="-mr-2 flex md:hidden">
             <button
               type="button"
+              onClick={toggleMenu}
               className="relative inline-flex items-center justify-center rounded-md bg-zinc-950 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-              aria-label="Open main menu"
+              aria-label={isMenuOpen ? "Close main menu" : "Open main menu"}
+              aria-expanded={isMenuOpen}
             >
-              <span className="sr-only">Open main menu</span>
-              <svg
-                className="size-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                />
-              </svg>
+              <span className="sr-only">{isMenuOpen ? "Close menu" : "Open menu"}</span>
+              {isMenuOpen ? (
+                <svg
+                  className="size-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  className="size-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                  />
+                </svg>
+              )}
             </button>
           </div>
         </div>
       </div>
+
+      {/* Mobile menu */}
+      {isMenuOpen && (
+        <div className="md:hidden">
+          <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
+            <Link
+              href={isRu ? "/ru" : "/"}
+              onClick={closeMenu}
+              className="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-blue-700"
+            >
+              {isRu ? "Главная" : "Home"}
+            </Link>
+            <Link
+              href={isRu ? "/ru/services" : "/services"}
+              onClick={closeMenu}
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-blue-700 hover:text-white"
+            >
+              {isRu ? "Услуги" : "Services"}
+            </Link>
+            <Link
+              href={isRu ? "/ru/blog" : "/blog"}
+              onClick={closeMenu}
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-blue-700 hover:text-white"
+            >
+              {isRu ? "Блог" : "Blog"}
+            </Link>
+            <Link
+              href={isRu ? "/ru/wiki" : "/wiki"}
+              onClick={closeMenu}
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-blue-700 hover:text-white"
+            >
+              {isRu ? "База знаний" : "Knowledge base"}
+            </Link>
+            <Link
+              href={isRu ? "/ru/affilate_program" : "/affilate_program"}
+              onClick={closeMenu}
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-blue-700 hover:text-white"
+            >
+              {isRu ? "Реферальная система" : "Affiliate program"}
+            </Link>
+            <Link
+              href={isRu ? "/ru/search" : "/search"}
+              onClick={closeMenu}
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-blue-700 hover:text-white"
+            >
+              {isRu ? "Поиск" : "Search"}
+            </Link>
+            
+            <div className="border-t border-white/10 pt-4 pb-3">
+              <a
+                href="https://my.dior.host/billmgr?func=logon"
+                className="block rounded-md px-3 py-2 text-base font-medium text-white bg-blue-600 hover:bg-blue-700"
+              >
+                {isRu ? "Войти" : "Log in"}
+              </a>
+              
+              <div className="mt-3 flex gap-2 px-3">
+                <Link
+                  href={enHref}
+                  locale={false}
+                  onClick={closeMenu}
+                  className="border rounded border-[#303030] p-2 lang-switcher"
+                  aria-label="English"
+                  aria-current={isRu ? undefined : "page"}
+                >
+                  <svg
+                    className="size-5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 640 480"
+                  >
+                    <path fill="#012169" d="M0 0h640v480H0z" />
+                    <path
+                      fill="#FFF"
+                      d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0z"
+                    />
+                    <path
+                      fill="#C8102E"
+                      d="m424 281 216 159v40L369 281zm-184 20 6 35L54 480H0zM640 0v3L391 191l2-44L590 0zM0 0l239 176h-60L0 42z"
+                    />
+                    <path fill="#FFF" d="M241 0v480h160V0zM0 160v160h640V160z" />
+                    <path fill="#C8102E" d="M0 193v96h640v-96zM273 0v480h96V0z" />
+                  </svg>
+                </Link>
+                <Link
+                  href={ruHref}
+                  locale={false}
+                  onClick={closeMenu}
+                  className="border rounded border-[#303030] p-2 lang-switcher"
+                  aria-label="Русский"
+                  aria-current={isRu ? "page" : undefined}
+                >
+                  <svg
+                    className="size-5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 640 480"
+                  >
+                    <path fill="#fff" d="M0 0h640v160H0z" />
+                    <path fill="#0039a6" d="M0 160h640v160H0z" />
+                    <path fill="#d52b1e" d="M0 320h640v160H0z" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

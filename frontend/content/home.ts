@@ -232,7 +232,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       title: "Bulletproof VPS, VDS & Offshore Hosting",
       subtitle: "Offshore bulletproof infrastructure for global teams",
       description:
-        "Bulletproof hosting is a service that stays online despite DMCA, complaints, or abuse reports, supported by offshore-friendly providers in the USA, UK, Netherlands, Germany, and the EU.",
+        "Bulletproof hosting stays operational under sustained abuse, DMCA notices, and external pressure. Its servers remain online thanks to hardened infrastructure, offshore failover zones, and custom complaint-processing policies designed to keep services running without interruption.",
       highlightPills: ["No AML/KYC/CFT", "Instant delivery", "Data encryption", "The best prices"]
     },
     heroScrollLabel: "Scroll down",
@@ -347,23 +347,23 @@ export const homeContent: Record<Locale, HomeContent> = {
     testimonialsTitle: "Client Testimonials",
     testimonials: [
       {
-        name: "Anonymous User",
-        role: "Client",
-        initials: "AU",
+        name: "Marketing Agency",
+        role: "Growth Team Lead",
+        initials: "MA",
         quote: "Dior host made my website feel lighter and quicker. Even image-heavy pages load fast now.",
         kpi: "99.98% uptime, 0 DMCA blocks"
       },
       {
-        name: "Anonymous User",
-        role: "Client",
-        initials: "AU",
+        name: "Privacy SaaS",
+        role: "CTO",
+        initials: "PS",
         quote: "Offshore routing and crypto payments maintain operational privacy. Support responds within minutes.",
         kpi: "7 min average response time"
       },
       {
-        name: "Anonymous User",
-        role: "Client",
-        initials: "AU",
+        name: "Security Lab",
+        role: "Security Researcher",
+        initials: "SL",
         quote: "Support is where dior host shines. Whenever I send a ticket, I actually get a human reply fast. They don't just fix things, they explain them so I know what's happening",
         kpi: "100% abuse ticket resolution"
       }
@@ -576,23 +576,23 @@ export const homeContent: Record<Locale, HomeContent> = {
     testimonialsTitle: "Отзывы клиентов",
     testimonials: [
       {
-        name: "Анонимный пользователь",
-        role: "Клиент",
-        initials: "АП",
+        name: "Маркетинговое агентство",
+        role: "Team Lead по росту",
+        initials: "MA",
         quote: "Dior host сделал мой сайт легче и быстрее. Даже страницы с большим количеством изображений загружаются быстро.",
         kpi: "99.98% аптайма, 0 блокировок"
       },
       {
-        name: "Анонимный пользователь",
-        role: "Клиент",
-        initials: "АП",
+        name: "Privacy SaaS",
+        role: "CTO",
+        initials: "PS",
         quote: "Офшорные маршруты и крипто-платежи сохраняют приватность. Поддержка отвечает за минуты.",
         kpi: "7 минут среднее время ответа"
       },
       {
-        name: "Анонимный пользователь",
-        role: "Клиент",
-        initials: "АП",
+        name: "Security Lab",
+        role: "Исследователь безопасности",
+        initials: "SL",
         quote: "Поддержка — это то, где Dior host действительно сияет. Когда я отправляю тикет, я быстро получаю ответ от человека. Они не просто исправляют проблемы, они объясняют их, чтобы я понимал, что происходит.",
         kpi: "100% обработанных тикетов"
       }
