@@ -235,7 +235,7 @@ export default function VirtualServersPage() {
             className="max-w-4xl mx-auto mb-12 p-6 rounded-2xl bg-yellow-500/10 border border-yellow-500/30"
           >
             <div className="flex items-start gap-4">
-              <div className="text-3xl">ΓÜá∩╕Å</div>
+              <div className="text-3xl">⚠️</div>
               <div>
                 <h3 className="text-xl font-bold text-yellow-400 mb-2">
                   Important: Not Bulletproof!
@@ -375,7 +375,7 @@ export default function VirtualServersPage() {
                   href="/bulletproof/vds"
                   className="inline-block px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold rounded-xl transition-all"
                 >
-                  View Bulletproof VDS Plans ΓåÆ
+                  View Bulletproof VDS Plans →
                 </a>
               </div>
             </motion.div>
@@ -396,7 +396,7 @@ export default function VirtualServersPage() {
               viewport={{ once: true }}
               className="p-6 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700"
             >
-              <div className="text-4xl mb-4">Γ£à</div>
+              <div className="text-4xl mb-4">✅</div>
               <h3 className="text-xl font-bold mb-3 text-purple-400">
                 White Projects
               </h3>
@@ -412,7 +412,7 @@ export default function VirtualServersPage() {
               transition={{ delay: 0.1 }}
               className="p-6 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700"
             >
-              <div className="text-4xl mb-4">≡ƒöº</div>
+              <div className="text-4xl mb-4">🔧</div>
               <h3 className="text-xl font-bold mb-3 text-purple-400">
                 Development & Testing
               </h3>
@@ -428,7 +428,7 @@ export default function VirtualServersPage() {
               transition={{ delay: 0.2 }}
               className="p-6 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700"
             >
-              <div className="text-4xl mb-4">≡ƒÆ░</div>
+              <div className="text-4xl mb-4">💰</div>
               <h3 className="text-xl font-bold mb-3 text-purple-400">
                 Budget-Friendly
               </h3>
