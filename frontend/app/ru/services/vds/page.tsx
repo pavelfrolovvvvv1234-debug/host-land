@@ -1,7 +1,104 @@
-import { redirect } from "next/navigation";
+import { ServicePageTemplate } from "@/components/services/ServicePageTemplate";
 
-export default function ServicesVdsRedirectPage() {
-  redirect("/ru/bulletproof/vds");
+export default function RegularVdsPage() {
+  return (
+    <ServicePageTemplate
+      title="Виртуальные серверы (VDS)"
+      subtitle="Обычные VDS для стандартных операций с полной кастомизацией ОС"
+      description="Обычные виртуальные серверы (VDS) предназначены для стандартных 'белых' или 'серых' операций. Эти серверы работают по стандартным правилам хостинга - жалобы обрабатываются согласно условиям провайдера. Идеально подходят для легитимного бизнеса, которому нужен полный контроль над ОС без специальных требований к обработке жалоб."
+      features={[
+        {
+          title: "Полный Root доступ",
+          description: "Полный контроль над виртуальным сервером с root/администраторским доступом для установки и настройки любого ПО."
+        },
+        {
+          title: "Установка любой ОС",
+          description: "Установите любую операционную систему - дистрибутивы Linux (Ubuntu, CentOS, Debian), Windows Server или custom образы."
+        },
+        {
+          title: "Стандартные правила",
+          description: "Серверы работают по стандартным правилам хостинга. DMCA и жалобы на абуз обрабатываются согласно условиям провайдера."
+        },
+        {
+          title: "Гибкие ресурсы",
+          description: "Масштабируемые CPU, RAM и дисковые ресурсы. Увеличивайте или уменьшайте по мере необходимости."
+        },
+        {
+          title: "Быстрая сеть",
+          description: "Высокоскоростное сетевое подключение с DDoS защитой и гарантией uptime 99.9%."
+        },
+        {
+          title: "Поддержка 24/7",
+          description: "Круглосуточная техническая поддержка по управлению сервером, устранению неполадок и обслуживанию."
+        }
+      ]}
+      plans={[
+        {
+          name: "VDS Базовый",
+          price: "$12.99",
+          period: "/месяц",
+          specs: [
+            "2 ядра CPU",
+            "2GB RAM",
+            "40GB SSD хранилище",
+            "Безлимитный трафик",
+            "1 IPv4 адрес",
+            "Полный Root доступ"
+          ],
+          orderLink: "https://my.dior.host/billmgr?func=logon"
+        },
+        {
+          name: "VDS Стандарт",
+          price: "$24.99",
+          period: "/месяц",
+          specs: [
+            "4 ядра CPU",
+            "4GB RAM",
+            "80GB SSD хранилище",
+            "Безлимитный трафик",
+            "1 IPv4 адрес",
+            "Полный Root доступ"
+          ],
+          orderLink: "https://my.dior.host/billmgr?func=logon"
+        },
+        {
+          name: "VDS Про",
+          price: "$49.99",
+          period: "/месяц",
+          specs: [
+            "8 ядер CPU",
+            "8GB RAM",
+            "160GB SSD хранилище",
+            "Безлимитный трафик",
+            "1 IPv4 адрес",
+            "Полный Root доступ"
+          ],
+          orderLink: "https://my.dior.host/billmgr?func=logon"
+        }
+      ]}
+      useCases={[
+        {
+          title: "Веб-хостинг",
+          description: "Размещайте несколько веб-сайтов, веб-приложений или e-commerce платформ с полным контролем над серверной средой."
+        },
+        {
+          title: "Разработка и тестирование",
+          description: "Создавайте изолированные среды разработки и тестирования для программных проектов без влияния на production."
+        },
+        {
+          title: "Серверы баз данных",
+          description: "Запускайте MySQL, PostgreSQL, MongoDB или другие СУБД с выделенными ресурсами и производительностью."
+        },
+        {
+          title: "Игровые серверы",
+          description: "Хостите мультиплеерные игровые серверы с низкой задержкой и выделенными ресурсами для плавного геймплея."
+        }
+      ]}
+      ctaText="Заказать обычный VDS"
+      ctaLink="https://my.dior.host/billmgr?func=logon"
+      locale="ru"
+    />
+  );
 }
 
 
