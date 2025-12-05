@@ -368,28 +368,28 @@ export const homeContent: Record<Locale, HomeContent> = {
         kpi: "100% abuse ticket resolution"
       }
     ],
-    stepsTitle: "How to choose a bulletproof VPS provider",
-    stepsSubtitle: "Why offshore bulletproof servers stay online longer.",
+    stepsTitle: "How to choose a bulletproof provider",
+    stepsSubtitle: "5 steps that help projects stay online",
     steps: [
       {
-        title: "Define compliance risk",
-        description: "List the campaigns, datasets and applications that could trigger DMCA or abuse notices."
+        title: "Abuse resistance",
+        description: "Choose a provider that manually processes complaints and DMCA, rather than automatically blocking projects. Dior Host provides exactly this approach, keeping projects running even under pressure from external requirements."
       },
       {
-        title: "Pick jurisdictions close to your audience",
-        description: "Choose Netherlands data centers (more locations coming soon) that provide optimal connectivity."
+        title: "Stability and speed",
+        description: "Reliable infrastructure and optimal connection speed ensure constant online presence for any tasks. VDS with 150 Mbps is sufficient for most projects."
       },
       {
-        title: "Match workloads to resources",
-        description: "Map CPU, RAM, storage and bandwidth requirements to bulletproof VPS or dedicated tiers."
+        title: "Attack protection",
+        description: "The provider must maintain service operation even during attempts of external interference, using modern protection measures."
       },
       {
-        title: "Plan mitigation & documentation",
-        description: "Decide whether you need AML/KYC-free billing or hybrid paperwork for banks and ad networks."
+        title: "Jurisdiction independence",
+        description: "Good bulletproof hosting minimizes the influence of foreign laws and restrictions. In offshore and neutral structures, projects remain protected from politically motivated complaints."
       },
       {
-        title: "Launch, monitor and iterate",
-        description: "Use the Dior Host panel or API to provision, migrate and watch abuse tickets with our NOC team."
+        title: "Support and transparency",
+        description: "Account managers must be in touch, consult, and document decisions to ensure safe project management without hidden risks."
       }
     ],
     comparisonTitle: "Bulletproof vs regular hosting",
