@@ -59,22 +59,22 @@ export function Footer() {
                 <div className="grid grid-cols-4 gap-2">
                   {/* VISA */}
                   <div className="flex items-center justify-center p-2 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all group">
-                    <svg width="36" height="24" viewBox="0 0 36 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="36" height="24" rx="3" fill="#1434CB"/>
-                      <path d="M15.2 8.5L13.2 15.5H11.2L10.2 10.5L9.2 15.5H7.2L5.2 8.5H7.2L7.9 12.5L8.9 8.5H10.7L11.5 12.5L12.2 8.5H15.2Z" fill="white"/>
-                      <path d="M20.2 8.5H18.2L16.2 15.5H18.2L18.7 13.5H20.7L21.2 15.5H23.2L21.2 8.5H20.2ZM19.2 11.5L20.2 9.5L21.2 11.5H19.2Z" fill="white"/>
-                      <path d="M23.2 8.5H21.2V15.5H23.2V8.5Z" fill="white"/>
-                      <path d="M27.2 8.5H25.2L24.2 12.5L23.2 8.5H21.2L23.2 15.5H25.2L26.2 11.5L27.2 15.5H29.2L27.2 8.5Z" fill="white"/>
+                    <svg width="40" height="26" viewBox="0 0 40 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="40" height="26" rx="3" fill="#1434CB"/>
+                      <path d="M17.2 9.5L15.2 16.5H13.2L12.2 11.5L11.2 16.5H9.2L7.2 9.5H9.2L9.9 13.5L10.9 9.5H12.7L13.5 13.5L14.2 9.5H17.2Z" fill="white"/>
+                      <path d="M22.2 9.5H20.2L18.2 16.5H20.2L20.7 14.5H22.7L23.2 16.5H25.2L23.2 9.5H22.2ZM21.2 12.5L22.2 10.5L23.2 12.5H21.2Z" fill="white"/>
+                      <path d="M25.2 9.5H23.2V16.5H25.2V9.5Z" fill="white"/>
+                      <path d="M29.2 9.5H27.2L26.2 13.5L25.2 9.5H23.2L25.2 16.5H27.2L28.2 12.5L29.2 16.5H31.2L29.2 9.5Z" fill="white"/>
                     </svg>
                   </div>
                   
                   {/* Mastercard */}
                   <div className="flex items-center justify-center p-2 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all group">
-                    <svg width="36" height="24" viewBox="0 0 36 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="36" height="24" rx="3" fill="#000000"/>
-                      <circle cx="13.5" cy="12" r="6" fill="#EB001B"/>
-                      <circle cx="22.5" cy="12" r="6" fill="#F79E1B"/>
-                      <path d="M18 8.5C19.2 9.3 20 10.4 20 12C20 13.6 19.2 14.7 18 15.5C16.8 14.7 16 13.6 16 12C16 10.4 16.8 9.3 18 8.5Z" fill="#FF5F00" opacity="0.8"/>
+                    <svg width="40" height="26" viewBox="0 0 40 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="40" height="26" rx="3" fill="#000000"/>
+                      <circle cx="15" cy="13" r="6.5" fill="#EB001B"/>
+                      <circle cx="25" cy="13" r="6.5" fill="#F79E1B"/>
+                      <path d="M20 8.5C21.5 9.5 22.5 11 22.5 13C22.5 15 21.5 16.5 20 17.5C18.5 16.5 17.5 15 17.5 13C17.5 11 18.5 9.5 20 8.5Z" fill="#FF5F00"/>
                     </svg>
                   </div>
                   
@@ -82,7 +82,7 @@ export function Footer() {
                   <div className="flex items-center justify-center p-2 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all group">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <circle cx="12" cy="12" r="12" fill="#F7931A"/>
-                      <text x="12" y="16" fontFamily="Arial, sans-serif" fontSize="14" fontWeight="bold" fill="white" textAnchor="middle">₿</text>
+                      <path d="M16.715 8.527C16.828 7.68 16.365 7 15.4 6.77L15.9 5H14.5L14.05 6.7C13.7 6.65 13.35 6.6 13 6.55L13.45 5H12.05L11.55 6.75C11.25 6.7 10.95 6.65 10.65 6.6L10.15 5H8.75L9.25 6.77C8.5 6.9 7.9 7.3 7.75 8.1C7.6 8.85 8 9.4 8.7 9.75C8.5 10 8.35 10.3 8.3 10.65C8.2 11.4 8.7 12 9.5 12.25L9 14H10.4L10.85 12.3C11.2 12.35 11.55 12.4 11.9 12.45L11.45 14H12.85L13.35 12.25C13.65 12.3 13.95 12.35 14.25 12.4L13.75 14H15.15L15.65 12.23C16.5 12.1 17.05 11.65 17.2 10.85C17.35 10.05 16.95 9.4 16.2 9.05C16.4 8.8 16.55 8.5 16.715 8.527ZM14.1 9.25L12.5 9.1C12.5 9.1 12.7 8.85 12.8 8.7C12.9 8.55 12.95 8.35 12.9 8.15C12.85 7.95 12.7 7.8 12.5 7.75C12.3 7.7 12.1 7.75 12 7.85C11.9 7.95 11.8 8.15 11.75 8.2L10.15 8.05L10.4 7.5C10.4 7.5 11.05 7.35 11.3 7.3C11.55 7.25 11.8 7.1 11.85 6.85L12.05 6.1L13.45 6.3L13.1 7.85C13.1 7.85 13.3 7.8 13.5 7.85C13.7 7.9 13.85 8 13.9 8.2C13.95 8.4 13.9 8.6 13.8 8.75C13.7 8.9 13.5 9.05 13.3 9.1L14.1 9.25ZM14.3 11.5L12.7 11.35C12.7 11.35 12.9 11.1 13 10.95C13.1 10.8 13.15 10.6 13.1 10.4C13.05 10.2 12.9 10.05 12.7 10C12.5 9.95 12.3 10 12.2 10.1C12.1 10.2 12 10.4 11.95 10.45L10.35 10.3L10.6 9.75C10.6 9.75 11.25 9.6 11.5 9.55C11.75 9.5 12 9.35 12.05 9.1L12.25 8.35L13.65 8.55L13.3 10.1C13.3 10.1 13.5 10.05 13.7 10.1C13.9 10.15 14.05 10.25 14.1 10.45C14.15 10.65 14.1 10.85 14 11C13.9 11.15 13.7 11.3 13.5 11.35L14.3 11.5Z" fill="white"/>
                     </svg>
                   </div>
                   
@@ -106,7 +106,7 @@ export function Footer() {
                   <div className="flex items-center justify-center p-2 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all group">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <circle cx="12" cy="12" r="12" fill="#26A17B"/>
-                      <path d="M13.5 9V7.5H16.5V6H7.5V7.5H10.5V9C7.5 9.2 5.5 10.1 5.5 11.2C5.5 12.3 7.5 13.2 10.5 13.4V18H13.5V13.4C16.5 13.2 18.5 12.3 18.5 11.2C18.5 10.1 16.5 9.2 13.5 9ZM12 12.5C9.5 12.5 7.5 12 7.5 11.2C7.5 10.4 9.5 9.9 12 9.9C14.5 9.9 16.5 10.4 16.5 11.2C16.5 12 14.5 12.5 12 12.5Z" fill="white"/>
+                      <path d="M12.5 9V7.5H15.5V6H8.5V7.5H11.5V9C8.5 9.2 6.5 10.1 6.5 11.2C6.5 12.3 8.5 13.2 11.5 13.4V18H12.5V13.4C15.5 13.2 17.5 12.3 17.5 11.2C17.5 10.1 15.5 9.2 12.5 9ZM12 12.5C9.5 12.5 7.5 12 7.5 11.2C7.5 10.4 9.5 9.9 12 9.9C14.5 9.9 16.5 10.4 16.5 11.2C16.5 12 14.5 12.5 12 12.5Z" fill="white"/>
                     </svg>
                   </div>
                   
@@ -114,7 +114,7 @@ export function Footer() {
                   <div className="flex items-center justify-center p-2 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all group">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <circle cx="12" cy="12" r="12" fill="#FF001B"/>
-                      <text x="12" y="16" fontFamily="Arial, sans-serif" fontSize="12" fontWeight="bold" fill="white" textAnchor="middle">T</text>
+                      <path d="M12 6L8 10H10.5L12 8.5L13.5 10H16L12 6ZM8 10V16H10.5V11.5L13.5 14.5H16L12 10.5L8 14.5H10.5L13.5 11.5V16H16V10H13.5L12 11.5L10.5 10H8Z" fill="white"/>
                     </svg>
                   </div>
                   
@@ -122,7 +122,7 @@ export function Footer() {
                   <div className="flex items-center justify-center p-2 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all group">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <circle cx="12" cy="12" r="12" fill="#0088CC"/>
-                      <text x="12" y="16" fontFamily="Arial, sans-serif" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">TON</text>
+                      <path d="M12 6L8 10H10.5L12 8.5L13.5 10H16L12 6ZM8 10V14H10.5V12L13.5 14.5H16L12 11L8 14.5H10.5L13.5 12V14H16V10H13.5L12 11.5L10.5 10H8Z" fill="white"/>
                     </svg>
                   </div>
                 </div>
