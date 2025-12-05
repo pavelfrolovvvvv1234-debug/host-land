@@ -164,66 +164,66 @@ export function Footer() {
               <div className="flex flex-wrap gap-2 items-center">
                 {/* VISA */}
                 <div className="bg-white rounded px-2.5 py-1.5 flex items-center justify-center border border-gray-200" style={{ minWidth: '50px', height: '32px' }}>
-                  <svg width="45" height="14" viewBox="0 0 45 14" fill="none">
-                    <path d="M19.5 2.5L17.2 11.5H15L17.3 2.5H19.5ZM28.5 2.8C29.2 2.5 30 2.3 30.8 2.3C31.8 2.3 32.5 2.7 32.5 3.5C32.5 4.5 31.5 5 30 5.5C28.8 6 28.2 6.3 28.2 7C28.2 7.5 28.6 8 29.5 8C30.2 8 30.8 7.8 31.3 7.5L31.8 9.2C31.2 9.6 30.3 10 29.2 10C28 10 27.2 9.5 27.2 8.5C27.2 7.3 28.3 6.8 29.8 6.3C31 5.9 31.5 5.6 31.5 5C31.5 4.5 31 4 30 4C29.2 4 28.5 4.2 28 4.5L27.5 2.8H28.5ZM35.5 2.5L32.5 9.5L32 7.5L30.5 2.5H28L31 11.5H33.5L37 2.5H35.5ZM23.5 2.5L20.5 11.5H22.8L23.2 9.5H26.2L26.5 11.5H28.8L25.5 2.5H23.5ZM24.5 6.5L25.5 4.5L26.2 6.5H24.5Z" fill="#1434CB"/>
-                    <path d="M12.5 2.5L9.5 8.5L9.2 6.5L7.5 2.5H5L8.5 11.5H10.8L14.5 2.5H12.5Z" fill="#1434CB"/>
+                  <svg width="48" height="16" viewBox="0 0 48 16" fill="none">
+                    <path d="M20.5 2.5L18.2 13.5H15.8L18.1 2.5H20.5ZM29.5 2.8C30.2 2.5 31 2.3 31.8 2.3C32.8 2.3 33.5 2.7 33.5 3.5C33.5 4.5 32.5 5 31 5.5C29.8 6 29.2 6.3 29.2 7C29.2 7.5 29.6 8 30.5 8C31.2 8 31.8 7.8 32.3 7.5L32.8 9.2C32.2 9.6 31.3 10 30.2 10C29 10 28.2 9.5 28.2 8.5C28.2 7.3 29.3 6.8 30.8 6.3C32 5.9 32.5 5.6 32.5 5C32.5 4.5 32 4 31 4C30.2 4 29.5 4.2 29 4.5L28.5 2.8H29.5ZM36.5 2.5L33.5 9.5L33 7.5L31.5 2.5H28.5L31.5 13.5H34L37.5 2.5H36.5ZM24.5 2.5L21.5 13.5H23.8L24.2 11.5H27.2L27.5 13.5H29.8L26.5 2.5H24.5ZM25.5 6.5L26.5 4.5L27.2 6.5H25.5Z" fill="#1434CB"/>
+                    <path d="M13.5 2.5L10.5 8.5L10.2 6.5L8.5 2.5H6L9.5 13.5H11.8L15.5 2.5H13.5Z" fill="#1434CB"/>
                   </svg>
                 </div>
                 
                 {/* Mastercard */}
                 <div className="bg-white rounded px-2.5 py-1.5 flex items-center justify-center border border-gray-200" style={{ minWidth: '50px', height: '32px' }}>
-                  <svg width="40" height="24" viewBox="0 0 40 24" fill="none">
-                    <circle cx="14" cy="12" r="8" fill="#EB001B"/>
-                    <circle cx="26" cy="12" r="8" fill="#F79E1B"/>
-                    <path d="M20 6.5C18.8 7.3 18 8.5 18 10C18 11.5 18.8 12.7 20 13.5C21.2 12.7 22 11.5 22 10C22 8.5 21.2 7.3 20 6.5Z" fill="#FF5F00"/>
+                  <svg width="50" height="32" viewBox="0 0 50 32" fill="none">
+                    <circle cx="18" cy="16" r="10" fill="#EB001B"/>
+                    <circle cx="32" cy="16" r="10" fill="#F79E1B"/>
+                    <path d="M25 8C23.5 9 22.5 10.5 22.5 12C22.5 13.5 23.5 15 25 16C26.5 15 27.5 13.5 27.5 12C27.5 10.5 26.5 9 25 8Z" fill="#FF5F00"/>
                   </svg>
                 </div>
                 
                 {/* CryptoBot */}
                 <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded px-2.5 py-1.5 flex items-center justify-center" style={{ minWidth: '70px', height: '32px' }}>
-                  <svg width="65" height="18" viewBox="0 0 65 18" fill="none">
-                    <text x="2" y="14" fill="white" fontSize="12" fontWeight="600" fontFamily="Arial, sans-serif">CryptoBot</text>
+                  <svg width="70" height="20" viewBox="0 0 70 20" fill="none">
+                    <text x="5" y="15" fill="white" fontSize="11" fontWeight="600" fontFamily="system-ui, sans-serif">CryptoBot</text>
                   </svg>
                 </div>
                 
                 {/* BTC */}
                 <div className="bg-[#F7931A] rounded px-2 py-1.5 flex items-center justify-center" style={{ minWidth: '40px', height: '32px' }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" fill="#F7931A"/>
-                    <path d="M12.5 6.5C15.5 6.5 17.5 7.5 17.5 9.5C17.5 11 16.5 12 14.5 12.5C15.5 13 16 14 16 15C16 17 14 18 11 18H7.5V6.5H12.5ZM11 9.5V11.5H13C14 11.5 14.5 11 14.5 10.5C14.5 9.5 13.5 9.5 13 9.5H11ZM11 13.5V15.5H13.5C14.5 15.5 15 15 15 14.5C15 13.5 14 13.5 13.5 13.5H11Z" fill="white"/>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="11" fill="#F7931A"/>
+                    <path d="M13.5 7.5C15.5 7.5 16.5 8.2 16.5 9.5C16.5 10.5 15.8 11.2 14.2 11.5C15 12 15.5 12.8 15.5 13.8C15.5 15.5 14 16.5 11.5 16.5H8.5V7.5H13.5ZM11.5 9.5V11H12.8C13.5 11 13.8 10.7 13.8 10.2C13.8 9.5 13.2 9.5 12.8 9.5H11.5V9.5ZM11.5 13.5V15H13C13.7 15 14 14.7 14 14.2C14 13.5 13.4 13.5 13 13.5H11.5V13.5Z" fill="white"/>
                   </svg>
                 </div>
                 
                 {/* ETH */}
                 <div className="bg-[#627EEA] rounded px-2 py-1.5 flex items-center justify-center" style={{ minWidth: '40px', height: '32px' }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <path d="M12 2L5 12L12 15L19 12L12 2Z" fill="#627EEA"/>
-                    <path d="M12 16L5 13L12 22L19 13L12 16Z" fill="#627EEA"/>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2.5L5.5 12.5L12 15.5L18.5 12.5L12 2.5Z" fill="#627EEA"/>
+                    <path d="M12 16.5L5.5 13.5L12 22.5L18.5 13.5L12 16.5Z" fill="#627EEA"/>
                   </svg>
                 </div>
                 
                 {/* LTC */}
                 <div className="bg-[#BFBBBB] rounded px-2 py-1.5 flex items-center justify-center" style={{ minWidth: '40px', height: '32px' }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" fill="#BFBBBB"/>
-                    <path d="M8 10L7 15H16L16.5 13H9L9.5 11H17L17.5 9H8L8 10Z" fill="white"/>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="11" fill="#BFBBBB"/>
+                    <path d="M8.5 10.5L7.5 15.5H16.5L17 13.5H9.5L10 11.5H17.5L18 9.5H8L8.5 10.5Z" fill="white"/>
                   </svg>
                 </div>
                 
                 {/* USDT */}
                 <div className="bg-[#26A17B] rounded px-2.5 py-1.5 flex items-center justify-center" style={{ minWidth: '50px', height: '32px' }}>
-                  <svg width="38" height="20" viewBox="0 0 38 20" fill="none">
-                    <circle cx="19" cy="10" r="9" fill="#26A17B"/>
-                    <path d="M19 5L15 6.5V9.5C15 9.5 15 12 19 12C23 12 23 9.5 23 9.5V6.5L19 5Z" fill="white"/>
-                    <path d="M15 13.5V16.5L19 18L23 16.5V13.5L19 15.5L15 13.5Z" fill="white" opacity="0.6"/>
+                  <svg width="38" height="22" viewBox="0 0 38 22" fill="none">
+                    <circle cx="19" cy="11" r="10" fill="#26A17B"/>
+                    <path d="M19 6L15.5 7.2V9.8C15.5 9.8 15.5 11.8 19 11.8C22.5 11.8 22.5 9.8 22.5 9.8V7.2L19 6Z" fill="white"/>
+                    <path d="M15.5 13.2V15.8L19 16.8L22.5 15.8V13.2L19 14.2L15.5 13.2Z" fill="white" opacity="0.7"/>
                   </svg>
                 </div>
                 
                 {/* TRX */}
                 <div className="bg-[#EF0027] rounded px-2.5 py-1.5 flex items-center justify-center" style={{ minWidth: '45px', height: '32px' }}>
-                  <svg width="32" height="20" viewBox="0 0 32 20" fill="none">
-                    <circle cx="16" cy="10" r="9" fill="#EF0027"/>
-                    <path d="M16 5L11 7.5V12.5L16 15L21 12.5V7.5L16 5ZM16 16.5L9.5 13V17.5L16 21L22.5 17.5V13L16 16.5Z" fill="white"/>
+                  <svg width="34" height="22" viewBox="0 0 34 22" fill="none">
+                    <circle cx="17" cy="11" r="10" fill="#EF0027"/>
+                    <path d="M17 6L12.5 8.2V12.8L17 15.2L21.5 12.8V8.2L17 6ZM17 16.8L11 13.8V17.8L17 20.8L23 17.8V13.8L17 16.8Z" fill="white"/>
                   </svg>
                 </div>
               </div>
