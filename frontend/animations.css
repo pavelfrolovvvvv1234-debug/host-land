@@ -317,26 +317,18 @@ details.group > p {
    9. NAVIGATION MICRO-ANIMATIONS
    ============================================ */
 
-/* Menu underline */
+/* Menu underline - disabled */
 .nav-link {
   position: relative;
   transition: color 0.2s ease;
 }
 
 .nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: rgba(66, 104, 255, 0.8);
-  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: width;
+  display: none;
 }
 
 .nav-link:hover::after {
-  width: 100%;
+  display: none;
 }
 
 /* Logo glow on hover */
