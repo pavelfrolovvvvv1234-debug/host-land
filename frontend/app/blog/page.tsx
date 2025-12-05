@@ -1,4 +1,10 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { ScrollReveal } from "../../components/motion/ScrollReveal";
+import { fadeInUp, staggerContainer, cardHover } from "../../lib/motion";
 
 const blogIntro = {
   title: "Bulletproof Hosting Insights",
@@ -100,59 +106,123 @@ const blogPosts: BlogCard[] = [
 ];
 
 export default function BlogIndexPage() {
-  return (
-    <div>
-      <section className="bg-black/50 border border-white/10 rounded-2xl p-6">
-        <h1 className="text-3xl font-bold">{blogIntro.title}</h1>
-        <p className="mt-2 text-white/70">{blogIntro.summary}</p>
-      </section>
+  const [mounted, setMounted] = useState(false);
 
-      <section className="mt-8">
-        <div className="flex items-center justify-between flex-wrap gap-4">
-          <h2 className="text-2xl font-semibold">Latest articles</h2>
-          <div className="text-sm text-white/60 flex gap-2 items-center">
-            <span>Tags:</span>
-            <span className="uppercase tracking-wide text-white/80 text-xs">
-              VPS · DMCA · DNS · Compliance
-            </span>
-          </div>
-        </div>
-        <div className="mt-6 grid gap-6 md:grid-cols-2">
-          {blogPosts.map((post) => (
-            <article
-              key={post.slug}
-              className="bg-black/40 border border-white/10 rounded-xl p-5 flex flex-col gap-4"
-            >
-              <div className="text-xs uppercase tracking-wide text-white/50">
-                Article
-              </div>
-              <h3 className="text-xl font-semibold text-white">{post.title}</h3>
-              <p className="text-sm text-white/70">{post.summary}</p>
-              <Link
-                className="mt-auto inline-flex items-center gap-2 text-blue-300 hover:text-white transition"
-                href={`/blog/articles/${post.slug}`}
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  return (
+    <main className="relative overflow-hidden">
+      {/* Background Glows */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-hero-glow blur-[100px] pointer-events-none opacity-50"></div>
+
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 relative z-10">
+        {/* Hero Section */}
+        <ScrollReveal>
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={mounted ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="relative rounded-2xl border border-white/5 bg-surface/50 p-8 sm:p-12 shadow-2xl overflow-hidden backdrop-blur-sm mb-12"
+          >
+            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent skew-x-12 opacity-30"></div>
+            
+            <div className="relative z-10">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={mounted ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.15 }}
+                className="text-3xl sm:text-4xl font-semibold tracking-tight text-white mb-4"
               >
-                Read article
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="size-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
+                {blogIntro.title}
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={mounted ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-base sm:text-lg text-white/70 leading-relaxed"
+              >
+                {blogIntro.summary}
+              </motion.p>
+            </div>
+          </motion.section>
+        </ScrollReveal>
+
+        {/* Articles Section */}
+        <ScrollReveal delay={0.2}>
+          <section className="mt-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex items-center justify-between flex-wrap gap-4 mb-8"
+            >
+              <h2 className="text-2xl sm:text-3xl font-semibold text-white">Latest articles</h2>
+              <div className="text-sm text-white/60 flex gap-2 items-center">
+                <span>Tags:</span>
+                <span className="uppercase tracking-wide text-white/80 text-xs">
+                  VPS · DMCA · DNS · Compliance
+                </span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              animate={mounted ? "visible" : "hidden"}
+              className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+            >
+              {blogPosts.map((post, index) => (
+                <motion.article
+                  key={post.slug}
+                  variants={fadeInUp}
+                  custom={index}
+                  whileHover={{ y: -4, scale: 1.02 }}
+                  className="group relative flex flex-col rounded-xl border border-white/10 bg-card-gradient p-1 hover:border-primary/50 transition-all duration-300"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M13.5 4.5 21 12l-7.5 7.5M21 12H3"
-                  />
-                </svg>
-              </Link>
-            </article>
-          ))}
-        </div>
-      </section>
-    </div>
+                  <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none"></div>
+                  <div className="relative flex h-full flex-col justify-between rounded-lg bg-black/40 p-6 hover:bg-black/60 transition-all">
+                    <div>
+                      <div className="text-xs uppercase tracking-wide text-white/50 mb-3">
+                        Article
+                      </div>
+                      <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-primary transition-colors">
+                        {post.title}
+                      </h3>
+                      <p className="text-sm text-white/70 leading-relaxed mb-4">
+                        {post.summary}
+                      </p>
+                    </div>
+                    <Link
+                      className="mt-auto inline-flex items-center gap-2 text-blue-300 hover:text-white transition-colors group/link"
+                      href={`/blog/articles/${post.slug}`}
+                    >
+                      Read article
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="size-4 transition-transform group-hover/link:translate-x-1"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M13.5 4.5 21 12l-7.5 7.5M21 12H3"
+                        />
+                      </svg>
+                    </Link>
+                  </div>
+                </motion.article>
+              ))}
+            </motion.div>
+          </section>
+        </ScrollReveal>
+      </div>
+    </main>
   );
 }
 
