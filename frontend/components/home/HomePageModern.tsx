@@ -241,22 +241,6 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
               {content.hero.description}
             </p>
 
-            <motion.button
-              type="button"
-              onClick={() => {
-                const servicesSection = document.getElementById("services-section");
-                if (servicesSection) {
-                  servicesSection.scrollIntoView({ behavior: "smooth", block: "start" });
-                }
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={ready ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.45 }}
-              className="mx-auto mt-6 px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-300"
-            >
-              {locale === "ru" ? "Выберите сервис" : "Choose Your Service"}
-            </motion.button>
-
             <div className="animate-float mt-8">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
