@@ -74,7 +74,7 @@ export function Footer() {
                       <rect width="36" height="24" rx="3" fill="#000000"/>
                       <circle cx="13.5" cy="12" r="6" fill="#EB001B"/>
                       <circle cx="22.5" cy="12" r="6" fill="#F79E1B"/>
-                      <path d="M18 8.5C19.2 9.3 20 10.4 20 12C20 13.6 19.2 14.7 18 15.5C16.8 14.7 16 13.6 16 12C16 10.4 16.8 9.3 18 8.5Z" fill="#FF5F00"/>
+                      <path d="M18 8.5C19.2 9.3 20 10.4 20 12C20 13.6 19.2 14.7 18 15.5C16.8 14.7 16 13.6 16 12C16 10.4 16.8 9.3 18 8.5Z" fill="#FF5F00" opacity="0.8"/>
                     </svg>
                   </div>
                   
@@ -82,8 +82,7 @@ export function Footer() {
                   <div className="flex items-center justify-center p-2 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all group">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <circle cx="12" cy="12" r="12" fill="#F7931A"/>
-                      <path d="M12 5V7M12 17V19M10 8.5C10 7.7 10.6 7 11.4 7H12.6C13.4 7 14 7.7 14 8.5C14 9.3 13.4 10 12.6 10H10V8.5ZM10 10H13.2C14 10 14.6 10.7 14.6 11.5C14.6 12.3 14 13 13.2 13H10V10ZM10 15.5C10 16.3 10.6 17 11.4 17H12.6C13.4 17 14 16.3 14 15.5C14 14.7 13.4 14 12.6 14H10V15.5Z" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M10 7H14M10 17H14" stroke="white" strokeWidth="1" strokeLinecap="round"/>
+                      <text x="12" y="16" fontFamily="Arial, sans-serif" fontSize="14" fontWeight="bold" fill="white" textAnchor="middle">₿</text>
                     </svg>
                   </div>
                   
@@ -115,7 +114,7 @@ export function Footer() {
                   <div className="flex items-center justify-center p-2 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all group">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <circle cx="12" cy="12" r="12" fill="#FF001B"/>
-                      <path d="M12 7L9 10H11L12 9L13 10H15L12 7ZM9 10V16H11V12L13 14H15L12 11L9 14H11L13 12V16H15V10H13L12 11L11 10H9Z" fill="white"/>
+                      <text x="12" y="16" fontFamily="Arial, sans-serif" fontSize="12" fontWeight="bold" fill="white" textAnchor="middle">T</text>
                     </svg>
                   </div>
                   
@@ -123,7 +122,7 @@ export function Footer() {
                   <div className="flex items-center justify-center p-2 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all group">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <circle cx="12" cy="12" r="12" fill="#0088CC"/>
-                      <path d="M12 7L9 10H11L12 9L13 10H15L12 7ZM9 10V14H11V12L13 14.5H15L12 11.5L9 14.5H11L13 12V14H15V10H13L12 11.5L11 10H9Z" fill="white"/>
+                      <text x="12" y="16" fontFamily="Arial, sans-serif" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">TON</text>
                     </svg>
                   </div>
                 </div>
