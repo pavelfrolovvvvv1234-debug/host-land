@@ -62,6 +62,9 @@ export function Header() {
                     />
                   </g>
                 </svg>
+                <p className="text-[10px] text-white/60 mt-0.5 leading-tight hidden lg:block">
+                  Offshore Bulletproof Infrastructure Provider
+                </p>
               </Link>
             </div>
             <div className="hidden md:block">

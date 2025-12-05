@@ -47,6 +47,9 @@ export function Footer() {
                 />
               </g>
             </svg>
+            <p className="text-xs mt-2 text-white/70">
+              Offshore Bulletproof Infrastructure Provider
+            </p>
           </Link>
           <p className="text-xs mt-2 text-[#3a3a3a]">
             Copyright by DiorHost © {year}.
