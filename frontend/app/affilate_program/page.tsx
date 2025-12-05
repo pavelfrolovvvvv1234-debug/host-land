@@ -355,7 +355,6 @@ export default function AffiliateProgramPage() {
 
             <StaggerContainer>
               {content.howItWorks.steps.map((step, index) => {
-                const Icon: IconComponentType = (iconMap[step.icon] || LinkIcon) as IconComponentType;
                 return (
                   <motion.div
                     key={step.number}
@@ -368,18 +367,10 @@ export default function AffiliateProgramPage() {
                       whileHover="hover"
                       className="bg-black/40 border border-blue-500/30 rounded-xl p-6 relative flex items-center gap-6"
                     >
-                      <div className="flex-shrink-0 flex flex-col items-center gap-4">
+                      <div className="flex-shrink-0">
                         <div className="w-16 h-16 rounded-full bg-blue-500/20 border-2 border-blue-500/50 flex items-center justify-center">
                           <span className="text-2xl font-bold text-blue-400">{step.number}</span>
                         </div>
-                        <motion.div
-                          variants={scaleOnHover}
-                          initial="rest"
-                          whileHover="hover"
-                          className="w-12 h-12 text-blue-400 flex items-center justify-center"
-                        >
-                          <Icon className="w-full h-full" />
-                        </motion.div>
                       </div>
                       <div className="flex-1 min-w-0">
                         <h3 className="text-xl font-semibold mb-2 text-white">{step.title}</h3>
