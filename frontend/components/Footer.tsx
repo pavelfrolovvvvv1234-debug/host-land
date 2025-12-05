@@ -53,6 +53,81 @@ export function Footer() {
               <p className="text-xs text-white/70 mb-4 leading-relaxed">
                 Offshore Bulletproof Infrastructure Provider
               </p>
+              
+              {/* Payment Methods */}
+              <div className="mb-4">
+                <div className="grid grid-cols-4 gap-2">
+                  {/* VISA */}
+                  <div className="flex items-center justify-center p-2 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all group">
+                    <svg width="36" height="24" viewBox="0 0 36 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="36" height="24" rx="3" fill="#1434CB"/>
+                      <path d="M15.2 8.5L13.2 15.5H11.2L10.2 10.5L9.2 15.5H7.2L5.2 8.5H7.2L7.9 12.5L8.9 8.5H10.7L11.5 12.5L12.2 8.5H15.2Z" fill="white"/>
+                      <path d="M20.2 8.5H18.2L16.2 15.5H18.2L18.7 13.5H20.7L21.2 15.5H23.2L21.2 8.5H20.2ZM19.2 11.5L20.2 9.5L21.2 11.5H19.2Z" fill="white"/>
+                      <path d="M23.2 8.5H21.2V15.5H23.2V8.5Z" fill="white"/>
+                      <path d="M27.2 8.5H25.2L24.2 12.5L23.2 8.5H21.2L23.2 15.5H25.2L26.2 11.5L27.2 15.5H29.2L27.2 8.5Z" fill="white"/>
+                    </svg>
+                  </div>
+                  
+                  {/* Mastercard */}
+                  <div className="flex items-center justify-center p-2 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all group">
+                    <svg width="36" height="24" viewBox="0 0 36 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="36" height="24" rx="3" fill="#000000"/>
+                      <circle cx="13.5" cy="12" r="6" fill="#EB001B"/>
+                      <circle cx="22.5" cy="12" r="6" fill="#F79E1B"/>
+                      <path d="M18 8C19.5 9 20.5 10.5 20.5 12C20.5 13.5 19.5 15 18 16C16.5 15 15.5 13.5 15.5 12C15.5 10.5 16.5 9 18 8Z" fill="#FF5F00"/>
+                    </svg>
+                  </div>
+                  
+                  {/* Bitcoin */}
+                  <div className="flex items-center justify-center p-2 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all group">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="12" fill="#F7931A"/>
+                      <path d="M16.5 9.5C16.7 8.3 16.1 7.5 14.7 7.2L15.2 5.5H13.8L13.3 7.2C13 7.1 12.7 7 12.4 7H11.9L12.4 5.5H11L10.5 7.2C10.2 7.2 9.9 7.2 9.6 7.3L10.1 5.5H8.7L8.2 7.2C7.5 7.3 7 7.7 7.2 8.4L6.5 8.6C6.3 8.7 6.4 8.9 6.5 9L7.2 9.2C7.1 9.5 7 9.8 7 10.2C7 10.8 7.2 11.3 7.6 11.6L6.8 14.8C6.7 15 6.8 15.2 6.9 15.3L7.6 15.5C7.7 15.6 7.9 15.5 8 15.4L8.8 12.2C9 12.3 9.2 12.4 9.5 12.4L10 15.8C10 15.9 10.1 16 10.2 16.1L10.9 16.3C11 16.4 11.2 16.3 11.3 16.2L11.8 12.8C12.1 12.8 12.4 12.9 12.7 12.9L13.2 16.3C13.2 16.4 13.3 16.5 13.4 16.6L14.1 16.8C14.2 16.9 14.4 16.8 14.5 16.7L15 13.3C16.1 13.1 16.7 12.5 16.5 11.3C16.5 11.1 16.4 10.9 16.3 10.7C16.5 10.3 16.6 9.9 16.5 9.5ZM13.5 10.5C13.6 11.2 12.9 11.5 12.3 11.6L12.8 13.8C13.4 13.7 14.1 13.5 14 12.8C14 12.2 13.3 11.9 12.7 11.8L12.2 9.6C12.8 9.7 13.5 9.9 13.5 10.5ZM14.2 12.1C14.3 12.8 13.5 13.1 12.9 13.2L13.4 15.4C14 15.3 14.8 15.1 14.7 14.4C14.6 13.7 13.8 13.4 13.2 13.3L12.7 11.1C13.3 11.2 14.1 11.4 14.2 12.1Z" fill="white"/>
+                    </svg>
+                  </div>
+                  
+                  {/* Ethereum */}
+                  <div className="flex items-center justify-center p-2 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all group">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 0L5.5 12.25L12 16.5L18.5 12.25L12 0Z" fill="#627EEA"/>
+                      <path d="M5.5 13.5L12 24L18.5 13.5L12 17.75L5.5 13.5Z" fill="#627EEA"/>
+                    </svg>
+                  </div>
+                  
+                  {/* Litecoin */}
+                  <div className="flex items-center justify-center p-2 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all group">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="12" fill="#345D9D"/>
+                      <path d="M10.5 6L8.5 13.5H15.5L16.5 17H6.5L7.5 13.5H10.5L12.5 6H10.5Z" fill="white"/>
+                    </svg>
+                  </div>
+                  
+                  {/* USDT */}
+                  <div className="flex items-center justify-center p-2 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all group">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="12" fill="#26A17B"/>
+                      <path d="M13.5 9V7.5H16.5V6H7.5V7.5H10.5V9C7.5 9.2 5.5 10.1 5.5 11.2C5.5 12.3 7.5 13.2 10.5 13.4V18H13.5V13.4C16.5 13.2 18.5 12.3 18.5 11.2C18.5 10.1 16.5 9.2 13.5 9ZM12 12.5C9.5 12.5 7.5 12 7.5 11.2C7.5 10.4 9.5 9.9 12 9.9C14.5 9.9 16.5 10.4 16.5 11.2C16.5 12 14.5 12.5 12 12.5Z" fill="white"/>
+                    </svg>
+                  </div>
+                  
+                  {/* Tron */}
+                  <div className="flex items-center justify-center p-2 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all group">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="12" fill="#FF001B"/>
+                      <path d="M12 4L8 8H10.5L12 6.5L13.5 8H16L12 4ZM8 8V16H10.5V11.5L13.5 14.5H16L12 10.5L8 14.5H10.5L13.5 11.5V16H16V8H13.5L12 9.5L10.5 8H8Z" fill="white"/>
+                    </svg>
+                  </div>
+                  
+                  {/* TON */}
+                  <div className="flex items-center justify-center p-2 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all group">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="12" fill="#0088CC"/>
+                      <path d="M12 6L8 10H10.5L12 8.5L13.5 10H16L12 6ZM8 10V14H10.5V12L13.5 14.5H16L12 11L8 14.5H10.5L13.5 12V14H16V10H13.5L12 11.5L10.5 10H8Z" fill="white"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              
               <p className="text-xs text-white/40">
                 Copyright by DiorHost © {year}
               </p>
