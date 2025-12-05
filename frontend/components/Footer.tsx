@@ -156,6 +156,55 @@ export function Footer() {
             </li>
           </ul>
 
+          <ul>
+            <li>
+              <span className="font-bold text-sm">{isRu ? "Способы оплаты" : "Payment Methods"}</span>
+            </li>
+            <li className="mt-2">
+              <div className="flex flex-wrap gap-2 items-center">
+                {/* VISA */}
+                <div className="bg-white rounded px-3 py-1.5 flex items-center justify-center border border-gray-200" style={{ minWidth: '55px', height: '32px' }}>
+                  <span className="text-[#1434CB] font-bold text-sm tracking-tight">VISA</span>
+                </div>
+                
+                {/* Mastercard */}
+                <div className="bg-white rounded px-3 py-1.5 flex items-center justify-center border border-gray-200" style={{ minWidth: '55px', height: '32px' }}>
+                  <span className="text-[#EB001B] font-bold text-xs">MC</span>
+                </div>
+                
+                {/* CryptoBot */}
+                <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded px-3 py-1.5 flex items-center justify-center" style={{ minWidth: '70px', height: '32px' }}>
+                  <span className="text-white font-semibold text-xs">CryptoBot</span>
+                </div>
+                
+                {/* BTC */}
+                <div className="bg-[#F7931A] rounded px-2.5 py-1.5 flex items-center justify-center" style={{ minWidth: '42px', height: '32px' }}>
+                  <span className="text-white font-bold text-sm">₿</span>
+                </div>
+                
+                {/* ETH */}
+                <div className="bg-[#627EEA] rounded px-2.5 py-1.5 flex items-center justify-center" style={{ minWidth: '42px', height: '32px' }}>
+                  <span className="text-white font-bold text-sm">Ξ</span>
+                </div>
+                
+                {/* LTC */}
+                <div className="bg-[#BFBBBB] rounded px-2.5 py-1.5 flex items-center justify-center" style={{ minWidth: '42px', height: '32px' }}>
+                  <span className="text-white font-bold text-sm">Ł</span>
+                </div>
+                
+                {/* USDT */}
+                <div className="bg-[#26A17B] rounded px-2.5 py-1.5 flex items-center justify-center" style={{ minWidth: '50px', height: '32px' }}>
+                  <span className="text-white font-bold text-xs">USDT</span>
+                </div>
+                
+                {/* TRX */}
+                <div className="bg-[#EF0027] rounded px-2.5 py-1.5 flex items-center justify-center" style={{ minWidth: '45px', height: '32px' }}>
+                  <span className="text-white font-bold text-xs">TRX</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+
           <div className="p-4 mx-auto">
             <ul className="text-xs text-zinc-600 space-y-1">
               <li>
