@@ -20,9 +20,9 @@ const bingVerification = process.env.NEXT_PUBLIC_BING_VERIFICATION;
 const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 const metadataBase: Metadata = {
-  title: "Bulletproof VPS, VDS & Offshore Hosting | Dior Host",
+  title: "Bulletproof VPS/VDS, Offshore Domains, CDN & Hosting — Secure, No-Logs, Bulletproof Solutions",
   description:
-    "bulletproof VPS, VDS, dedicated servers and domains in offshore EU & US locations with DMCA-ignored policies, 24/7 support and privacy-first operations.",
+    "Bulletproof VPS, VDS, dedicated servers and offshore domains with DMCA-ignored policies, strict no-logs, private networking, secure CDN options and 24/7 expert support for any high-risk workloads.",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "32x32", type: "image/x-icon" },
