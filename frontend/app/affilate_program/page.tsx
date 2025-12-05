@@ -350,9 +350,6 @@ export default function AffiliateProgramPage() {
             {content.howItWorks.title}
           </h2>
           <div className="flex flex-col gap-6 max-w-2xl mx-auto relative">
-            {/* Vertical line connecting steps */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-blue-500/30 to-transparent z-0" />
-
             <StaggerContainer>
               {content.howItWorks.steps.map((step, index) => {
                 return (
