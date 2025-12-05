@@ -122,7 +122,8 @@ export function Footer() {
                   <div className="flex items-center justify-center p-2 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all group">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <circle cx="12" cy="12" r="12" fill="#0088CC"/>
-                      <path d="M12 6L8 10H10.5L12 8.5L13.5 10H16L12 6ZM8 10V14H10.5V12L13.5 14.5H16L12 11L8 14.5H10.5L13.5 12V14H16V10H13.5L12 11.5L10.5 10H8Z" fill="white"/>
+                      <path d="M9.5 10.5L12 8.5L14.5 10.5L14.5 13.5L12 15.5L9.5 13.5L9.5 10.5Z" stroke="white" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M12 8.5L12 13.5" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
                     </svg>
                   </div>
                 </div>
