@@ -74,7 +74,7 @@ export function Footer() {
                       <rect width="36" height="24" rx="3" fill="#000000"/>
                       <circle cx="13.5" cy="12" r="6" fill="#EB001B"/>
                       <circle cx="22.5" cy="12" r="6" fill="#F79E1B"/>
-                      <path d="M18 8C19.5 9 20.5 10.5 20.5 12C20.5 13.5 19.5 15 18 16C16.5 15 15.5 13.5 15.5 12C15.5 10.5 16.5 9 18 8Z" fill="#FF5F00"/>
+                      <path d="M18 8.5C19.2 9.3 20 10.4 20 12C20 13.6 19.2 14.7 18 15.5C16.8 14.7 16 13.6 16 12C16 10.4 16.8 9.3 18 8.5Z" fill="#FF5F00"/>
                     </svg>
                   </div>
                   
@@ -82,7 +82,8 @@ export function Footer() {
                   <div className="flex items-center justify-center p-2 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all group">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <circle cx="12" cy="12" r="12" fill="#F7931A"/>
-                      <path d="M16.5 9.5C16.7 8.3 16.1 7.5 14.7 7.2L15.2 5.5H13.8L13.3 7.2C13 7.1 12.7 7 12.4 7H11.9L12.4 5.5H11L10.5 7.2C10.2 7.2 9.9 7.2 9.6 7.3L10.1 5.5H8.7L8.2 7.2C7.5 7.3 7 7.7 7.2 8.4L6.5 8.6C6.3 8.7 6.4 8.9 6.5 9L7.2 9.2C7.1 9.5 7 9.8 7 10.2C7 10.8 7.2 11.3 7.6 11.6L6.8 14.8C6.7 15 6.8 15.2 6.9 15.3L7.6 15.5C7.7 15.6 7.9 15.5 8 15.4L8.8 12.2C9 12.3 9.2 12.4 9.5 12.4L10 15.8C10 15.9 10.1 16 10.2 16.1L10.9 16.3C11 16.4 11.2 16.3 11.3 16.2L11.8 12.8C12.1 12.8 12.4 12.9 12.7 12.9L13.2 16.3C13.2 16.4 13.3 16.5 13.4 16.6L14.1 16.8C14.2 16.9 14.4 16.8 14.5 16.7L15 13.3C16.1 13.1 16.7 12.5 16.5 11.3C16.5 11.1 16.4 10.9 16.3 10.7C16.5 10.3 16.6 9.9 16.5 9.5ZM13.5 10.5C13.6 11.2 12.9 11.5 12.3 11.6L12.8 13.8C13.4 13.7 14.1 13.5 14 12.8C14 12.2 13.3 11.9 12.7 11.8L12.2 9.6C12.8 9.7 13.5 9.9 13.5 10.5ZM14.2 12.1C14.3 12.8 13.5 13.1 12.9 13.2L13.4 15.4C14 15.3 14.8 15.1 14.7 14.4C14.6 13.7 13.8 13.4 13.2 13.3L12.7 11.1C13.3 11.2 14.1 11.4 14.2 12.1Z" fill="white"/>
+                      <path d="M12 5V7M12 17V19M10 8.5C10 7.7 10.6 7 11.4 7H12.6C13.4 7 14 7.7 14 8.5C14 9.3 13.4 10 12.6 10H10V8.5ZM10 10H13.2C14 10 14.6 10.7 14.6 11.5C14.6 12.3 14 13 13.2 13H10V10ZM10 15.5C10 16.3 10.6 17 11.4 17H12.6C13.4 17 14 16.3 14 15.5C14 14.7 13.4 14 12.6 14H10V15.5Z" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M10 7H14M10 17H14" stroke="white" strokeWidth="1" strokeLinecap="round"/>
                     </svg>
                   </div>
                   
@@ -114,7 +115,7 @@ export function Footer() {
                   <div className="flex items-center justify-center p-2 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all group">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <circle cx="12" cy="12" r="12" fill="#FF001B"/>
-                      <path d="M12 4L8 8H10.5L12 6.5L13.5 8H16L12 4ZM8 8V16H10.5V11.5L13.5 14.5H16L12 10.5L8 14.5H10.5L13.5 11.5V16H16V8H13.5L12 9.5L10.5 8H8Z" fill="white"/>
+                      <path d="M12 7L9 10H11L12 9L13 10H15L12 7ZM9 10V16H11V12L13 14H15L12 11L9 14H11L13 12V16H15V10H13L12 11L11 10H9Z" fill="white"/>
                     </svg>
                   </div>
                   
@@ -122,7 +123,7 @@ export function Footer() {
                   <div className="flex items-center justify-center p-2 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all group">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <circle cx="12" cy="12" r="12" fill="#0088CC"/>
-                      <path d="M12 6L8 10H10.5L12 8.5L13.5 10H16L12 6ZM8 10V14H10.5V12L13.5 14.5H16L12 11L8 14.5H10.5L13.5 12V14H16V10H13.5L12 11.5L10.5 10H8Z" fill="white"/>
+                      <path d="M12 7L9 10H11L12 9L13 10H15L12 7ZM9 10V14H11V12L13 14.5H15L12 11.5L9 14.5H11L13 12V14H15V10H13L12 11.5L11 10H9Z" fill="white"/>
                     </svg>
                   </div>
                 </div>
