@@ -163,43 +163,68 @@ export function Footer() {
             <li className="mt-2">
               <div className="flex flex-wrap gap-2 items-center">
                 {/* VISA */}
-                <div className="bg-white rounded px-3 py-1.5 flex items-center justify-center border border-gray-200" style={{ minWidth: '55px', height: '32px' }}>
-                  <span className="text-[#1434CB] font-bold text-sm tracking-tight">VISA</span>
+                <div className="bg-white rounded px-2.5 py-1.5 flex items-center justify-center border border-gray-200" style={{ minWidth: '50px', height: '32px' }}>
+                  <svg width="45" height="14" viewBox="0 0 45 14" fill="none">
+                    <path d="M19.5 2.5L17.2 11.5H15L17.3 2.5H19.5ZM28.5 2.8C29.2 2.5 30 2.3 30.8 2.3C31.8 2.3 32.5 2.7 32.5 3.5C32.5 4.5 31.5 5 30 5.5C28.8 6 28.2 6.3 28.2 7C28.2 7.5 28.6 8 29.5 8C30.2 8 30.8 7.8 31.3 7.5L31.8 9.2C31.2 9.6 30.3 10 29.2 10C28 10 27.2 9.5 27.2 8.5C27.2 7.3 28.3 6.8 29.8 6.3C31 5.9 31.5 5.6 31.5 5C31.5 4.5 31 4 30 4C29.2 4 28.5 4.2 28 4.5L27.5 2.8H28.5ZM35.5 2.5L32.5 9.5L32 7.5L30.5 2.5H28L31 11.5H33.5L37 2.5H35.5ZM23.5 2.5L20.5 11.5H22.8L23.2 9.5H26.2L26.5 11.5H28.8L25.5 2.5H23.5ZM24.5 6.5L25.5 4.5L26.2 6.5H24.5Z" fill="#1434CB"/>
+                    <path d="M12.5 2.5L9.5 8.5L9.2 6.5L7.5 2.5H5L8.5 11.5H10.8L14.5 2.5H12.5Z" fill="#1434CB"/>
+                  </svg>
                 </div>
                 
                 {/* Mastercard */}
-                <div className="bg-white rounded px-3 py-1.5 flex items-center justify-center border border-gray-200" style={{ minWidth: '55px', height: '32px' }}>
-                  <span className="text-[#EB001B] font-bold text-xs">MC</span>
+                <div className="bg-white rounded px-2.5 py-1.5 flex items-center justify-center border border-gray-200" style={{ minWidth: '50px', height: '32px' }}>
+                  <svg width="40" height="24" viewBox="0 0 40 24" fill="none">
+                    <circle cx="14" cy="12" r="8" fill="#EB001B"/>
+                    <circle cx="26" cy="12" r="8" fill="#F79E1B"/>
+                    <path d="M20 6.5C18.8 7.3 18 8.5 18 10C18 11.5 18.8 12.7 20 13.5C21.2 12.7 22 11.5 22 10C22 8.5 21.2 7.3 20 6.5Z" fill="#FF5F00"/>
+                  </svg>
                 </div>
                 
                 {/* CryptoBot */}
-                <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded px-3 py-1.5 flex items-center justify-center" style={{ minWidth: '70px', height: '32px' }}>
-                  <span className="text-white font-semibold text-xs">CryptoBot</span>
+                <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded px-2.5 py-1.5 flex items-center justify-center" style={{ minWidth: '70px', height: '32px' }}>
+                  <svg width="65" height="18" viewBox="0 0 65 18" fill="none">
+                    <text x="2" y="14" fill="white" fontSize="12" fontWeight="600" fontFamily="Arial, sans-serif">CryptoBot</text>
+                  </svg>
                 </div>
                 
                 {/* BTC */}
-                <div className="bg-[#F7931A] rounded px-2.5 py-1.5 flex items-center justify-center" style={{ minWidth: '42px', height: '32px' }}>
-                  <span className="text-white font-bold text-sm">₿</span>
+                <div className="bg-[#F7931A] rounded px-2 py-1.5 flex items-center justify-center" style={{ minWidth: '40px', height: '32px' }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" fill="#F7931A"/>
+                    <path d="M12.5 6.5C15.5 6.5 17.5 7.5 17.5 9.5C17.5 11 16.5 12 14.5 12.5C15.5 13 16 14 16 15C16 17 14 18 11 18H7.5V6.5H12.5ZM11 9.5V11.5H13C14 11.5 14.5 11 14.5 10.5C14.5 9.5 13.5 9.5 13 9.5H11ZM11 13.5V15.5H13.5C14.5 15.5 15 15 15 14.5C15 13.5 14 13.5 13.5 13.5H11Z" fill="white"/>
+                  </svg>
                 </div>
                 
                 {/* ETH */}
-                <div className="bg-[#627EEA] rounded px-2.5 py-1.5 flex items-center justify-center" style={{ minWidth: '42px', height: '32px' }}>
-                  <span className="text-white font-bold text-sm">Ξ</span>
+                <div className="bg-[#627EEA] rounded px-2 py-1.5 flex items-center justify-center" style={{ minWidth: '40px', height: '32px' }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L5 12L12 15L19 12L12 2Z" fill="#627EEA"/>
+                    <path d="M12 16L5 13L12 22L19 13L12 16Z" fill="#627EEA"/>
+                  </svg>
                 </div>
                 
                 {/* LTC */}
-                <div className="bg-[#BFBBBB] rounded px-2.5 py-1.5 flex items-center justify-center" style={{ minWidth: '42px', height: '32px' }}>
-                  <span className="text-white font-bold text-sm">Ł</span>
+                <div className="bg-[#BFBBBB] rounded px-2 py-1.5 flex items-center justify-center" style={{ minWidth: '40px', height: '32px' }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" fill="#BFBBBB"/>
+                    <path d="M8 10L7 15H16L16.5 13H9L9.5 11H17L17.5 9H8L8 10Z" fill="white"/>
+                  </svg>
                 </div>
                 
                 {/* USDT */}
                 <div className="bg-[#26A17B] rounded px-2.5 py-1.5 flex items-center justify-center" style={{ minWidth: '50px', height: '32px' }}>
-                  <span className="text-white font-bold text-xs">USDT</span>
+                  <svg width="38" height="20" viewBox="0 0 38 20" fill="none">
+                    <circle cx="19" cy="10" r="9" fill="#26A17B"/>
+                    <path d="M19 5L15 6.5V9.5C15 9.5 15 12 19 12C23 12 23 9.5 23 9.5V6.5L19 5Z" fill="white"/>
+                    <path d="M15 13.5V16.5L19 18L23 16.5V13.5L19 15.5L15 13.5Z" fill="white" opacity="0.6"/>
+                  </svg>
                 </div>
                 
                 {/* TRX */}
                 <div className="bg-[#EF0027] rounded px-2.5 py-1.5 flex items-center justify-center" style={{ minWidth: '45px', height: '32px' }}>
-                  <span className="text-white font-bold text-xs">TRX</span>
+                  <svg width="32" height="20" viewBox="0 0 32 20" fill="none">
+                    <circle cx="16" cy="10" r="9" fill="#EF0027"/>
+                    <path d="M16 5L11 7.5V12.5L16 15L21 12.5V7.5L16 5ZM16 16.5L9.5 13V17.5L16 21L22.5 17.5V13L16 16.5Z" fill="white"/>
+                  </svg>
                 </div>
               </div>
             </li>
