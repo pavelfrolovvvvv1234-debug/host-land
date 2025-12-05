@@ -102,26 +102,6 @@ export function Header() {
           </div>
 
           <div className="hidden md:flex gap-2 items-center">
-            <Link
-              href={isRu ? "/ru/search" : "/search"}
-              className="border rounded border-[#303030] p-2 bg-zinc-950 text-white block"
-              aria-label="Search"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="19"
-                height="19"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#ffffff"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.3-4.3" />
-              </svg>
-            </Link>
             <a
               href="https://my.dior.host/billmgr?func=logon"
               className="flex justify-center items-center border rounded border-[#303030] px-2 h-[37px] bg-zinc-950 text-white text-sm"
@@ -263,13 +243,6 @@ export function Header() {
               className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-blue-700 hover:text-white"
             >
               {isRu ? "Реферальная система" : "Affiliate program"}
-            </Link>
-            <Link
-              href={isRu ? "/ru/search" : "/search"}
-              onClick={closeMenu}
-              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-blue-700 hover:text-white"
-            >
-              {isRu ? "Поиск" : "Search"}
             </Link>
             
             <div className="border-t border-white/10 pt-4 pb-3">
