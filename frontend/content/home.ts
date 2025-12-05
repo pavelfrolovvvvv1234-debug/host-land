@@ -254,7 +254,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       { type: "link", label: "offshore web hosting", href: "/bulletproof/web-hosting" },
       { type: "text", value: "." }
     ],
-    domainSectionTitle: "Domain registration",
+    domainSectionTitle: "Bulletproof Domain Registration",
     domainZones: [
       { title: ".com", price: 80 },
       { title: ".net", price: 80 },
