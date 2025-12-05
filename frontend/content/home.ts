@@ -318,15 +318,15 @@ export const homeContent: Record<Locale, HomeContent> = {
     sections: [
       {
         title: "What is bulletproof hosting?",
-        body: "Bulletproof hosting is a bulletproof infrastructure model that prioritizes uptime, privacy and due-process reviews. Dior Host deploys compute in offshore facilities throughout the Netherlands, Germany, Romania and USA-friendly routes, escalates DMCA complaints manually and works with you before taking action.",
+        body: "Bulletproof hosting is a bulletproof infrastructure model that prioritizes uptime, privacy and due-process reviews. Dior Host deploys compute in offshore facilities in the Netherlands (more locations coming soon), escalates DMCA complaints manually and works with you before taking action.",
         bullets: [
           "DMCA-ignored by default with legal escalation only when a court order arrives.",
-          "Offshore routing with redundant AS paths in NL, DE, RO and USA-friendly locations.",
+          "Offshore routing with redundant AS paths in Netherlands (more locations coming soon).",
           "Privacy-first billing with crypto, SEPA wire and anonymous ticketing."
         ]
       },
       {
-        title: "Is bulletproof VPS legal in the USA & EU?",
+        title: "Is bulletproof VPS legal?",
         body: "Operating a bulletproof VPS is legal as long as your workloads do not break criminal law. Dior Host balances offshore protections with US/EU readiness so legitimate marketing, cybersecurity and fintech teams stay online without false-positive suspensions.",
         bullets: [
           "We only suspend workloads that violate zero-tolerance rules (malware, child abuse, terrorism).",
@@ -377,7 +377,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       },
       {
         title: "Pick jurisdictions close to your audience",
-        description: "Choose offshore data centers (NL, DE, RO, MD, US-friendly) that balance latency to USA, UK and EU regions."
+        description: "Choose Netherlands data centers (more locations coming soon) that provide optimal connectivity."
       },
       {
         title: "Match workloads to resources",
@@ -441,7 +441,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       {
         question: "Which locations are popular for bulletproof hosting?",
         answer:
-          "Netherlands, Germany, Romania, Moldova and Caribbean or USA-friendly offshore networks with resilient telecom partners."
+          "Netherlands (more locations coming soon). Our infrastructure uses resilient telecom partners with offshore-friendly policies."
       },
       {
         question: "Do you require KYC for bulletproof VPS?",
@@ -670,7 +670,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       {
         question: "Какие локации доступны?",
         answer:
-          "Нидерланды. Скоро: Румыния, Германия и дружественные США офшорные площадки с устойчивыми телеком-партнёрами."
+          "Нидерланды (скоро будут другие локации). Наша инфраструктура использует устойчивых телеком-партнёров с офшорными политиками."
       },
       {
         question: "Есть ли KYC?",

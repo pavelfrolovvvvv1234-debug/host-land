@@ -34,16 +34,16 @@ const sections = [
     body: "Bulletproof VDS nodes prioritise uptime, privacy and flexible acceptable use so growth campaigns, privacy tools and security labs survive aggressive takedown attempts.",
     bullets: [
       "DMCA ignored by default with manual review and mediation.",
-      "Offshore routing in NL, DE, MD and USA-friendly peers with 150+ Gbps capacity.",
+      "Offshore routing in Netherlands (more locations coming soon) with 150+ Gbps capacity.",
       "Crypto, wire and anonymous support channels without forced KYC."
     ]
   },
   {
     title: "Where are the servers located?",
-    body: "Dior Host maintains multi-homed VPS clusters in Amsterdam, Rotterdam, Frankfurt and Chisinau with uplinks toward New York, London and Warsaw.",
+    body: "Dior Host maintains multi-homed VPS clusters in Netherlands (more locations coming soon) with excellent connectivity.",
     bullets: [
       "Redundant AS paths and proactive DDoS filtering.",
-      "Localised IP pools for USA, UK, NL, DE and EU-targeted workloads.",
+      "Localised IP pools for Netherlands (more locations coming soon).",
       "Private peering to ad networks, affiliate trackers and fintech APIs."
     ]
   },
