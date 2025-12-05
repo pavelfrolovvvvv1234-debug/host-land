@@ -68,32 +68,32 @@ export function Header() {
               <div className="ml-10 flex items-baseline space-x-4 text-sm">
                 <Link
                   href={isRu ? "/ru" : "/"}
-                  className="rounded-md px-3 py-2 font-medium text-white"
+                  className="rounded-md px-3 py-2 font-medium text-white transition-colors duration-300"
                   aria-current="page"
                 >
                   {isRu ? "Главная" : "Home"}
                 </Link>
                 <Link
                   href={isRu ? "/ru/services" : "/services"}
-                  className="rounded-md px-3 py-2 font-medium text-gray-300"
+                  className="rounded-md px-3 py-2 font-medium text-gray-300 hover:text-white transition-colors duration-300"
                 >
                   {isRu ? "Услуги" : "Services"}
                 </Link>
                 <Link
                   href={isRu ? "/ru/blog" : "/blog"}
-                  className="rounded-md px-3 py-2 font-medium text-gray-300"
+                  className="rounded-md px-3 py-2 font-medium text-gray-300 hover:text-white transition-colors duration-300"
                 >
                   {isRu ? "Блог" : "Blog"}
                 </Link>
                 <Link
                   href={isRu ? "/ru/wiki" : "/wiki"}
-                  className="rounded-md px-3 py-2 font-medium text-gray-300"
+                  className="rounded-md px-3 py-2 font-medium text-gray-300 hover:text-white transition-colors duration-300"
                 >
                   {isRu ? "База знаний" : "Knowledge base"}
                 </Link>
                 <Link
                   href={isRu ? "/ru/affilate_program" : "/affilate_program"}
-                  className="rounded-md px-3 py-2 font-medium text-gray-300"
+                  className="rounded-md px-3 py-2 font-medium text-gray-300 hover:text-white transition-colors duration-300"
                 >
                   {isRu ? "Реферальная система" : "Affiliate program"}
                 </Link>
@@ -212,35 +212,35 @@ export function Header() {
             <Link
               href={isRu ? "/ru" : "/"}
               onClick={closeMenu}
-              className="block rounded-md px-3 py-2 text-base font-medium text-white"
+              className="block rounded-md px-3 py-2 text-base font-medium text-white transition-colors duration-300"
             >
               {isRu ? "Главная" : "Home"}
             </Link>
             <Link
               href={isRu ? "/ru/services" : "/services"}
               onClick={closeMenu}
-              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300"
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:text-white transition-colors duration-300"
             >
               {isRu ? "Услуги" : "Services"}
             </Link>
             <Link
               href={isRu ? "/ru/blog" : "/blog"}
               onClick={closeMenu}
-              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300"
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:text-white transition-colors duration-300"
             >
               {isRu ? "Блог" : "Blog"}
             </Link>
             <Link
               href={isRu ? "/ru/wiki" : "/wiki"}
               onClick={closeMenu}
-              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300"
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:text-white transition-colors duration-300"
             >
               {isRu ? "База знаний" : "Knowledge base"}
             </Link>
             <Link
               href={isRu ? "/ru/affilate_program" : "/affilate_program"}
               onClick={closeMenu}
-              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300"
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:text-white transition-colors duration-300"
             >
               {isRu ? "Реферальная система" : "Affiliate program"}
             </Link>
