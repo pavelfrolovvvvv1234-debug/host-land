@@ -103,7 +103,7 @@ export function Footer() {
                   <div className="flex items-center justify-center p-2 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all group">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <circle cx="12" cy="12" r="12" fill="#26A17B"/>
-                      <text x="12" y="17" fontFamily="Arial, sans-serif" fontSize="12" fontWeight="bold" fill="white" textAnchor="middle">USDT</text>
+                      <path d="M12.5 9V7.5H15.5V6H8.5V7.5H11.5V9C8.5 9.2 6.5 10.1 6.5 11.2C6.5 12.3 8.5 13.2 11.5 13.4V18H12.5V13.4C15.5 13.2 17.5 12.3 17.5 11.2C17.5 10.1 15.5 9.2 12.5 9ZM12 12.5C9.5 12.5 7.5 12 7.5 11.2C7.5 10.4 9.5 9.9 12 9.9C14.5 9.9 16.5 10.4 16.5 11.2C16.5 12 14.5 12.5 12 12.5Z" fill="white"/>
                     </svg>
                   </div>
                   
@@ -111,7 +111,7 @@ export function Footer() {
                   <div className="flex items-center justify-center p-2 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all group">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <circle cx="12" cy="12" r="12" fill="#FF001B"/>
-                      <text x="12" y="17" fontFamily="Arial, sans-serif" fontSize="14" fontWeight="bold" fill="white" textAnchor="middle">T</text>
+                      <path d="M12 6L8 10H10.5L12 8.5L13.5 10H16L12 6ZM8 10V16H10.5V11.5L13.5 14.5H16L12 10.5L8 14.5H10.5L13.5 11.5V16H16V10H13.5L12 11.5L10.5 10H8Z" fill="white"/>
                     </svg>
                   </div>
                   
@@ -119,7 +119,7 @@ export function Footer() {
                   <div className="flex items-center justify-center p-2 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all group">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <circle cx="12" cy="12" r="12" fill="#0088CC"/>
-                      <text x="12" y="17" fontFamily="Arial, sans-serif" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">TON</text>
+                      <path d="M12 6L8 10H10.5L12 8.5L13.5 10H16L12 6ZM8 10V14H10.5V12L13.5 14.5H16L12 11L8 14.5H10.5L13.5 12V14H16V10H13.5L12 11.5L10.5 10H8Z" fill="white"/>
                     </svg>
                   </div>
                 </div>
