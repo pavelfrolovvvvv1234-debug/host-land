@@ -2,12 +2,55 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function Header() {
   const pathname = usePathname();
   const isRu = pathname?.startsWith("/ru") ?? false;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [loginUrl, setLoginUrl] = useState("https://my.diorhost.com/billmgr?func=logon");
+  
+  // Получаем URL для входа на основе текущего домена
+  // Поддерживаемые домены: diorhost.com, diorhost.net, diors.host, d1or.host, d1ior.com
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const hostname = window.location.hostname;
+      
+      // Если localhost или локальный IP, используем дефолтный домен
+      if (hostname === "localhost" || hostname === "127.0.0.1" || hostname.startsWith("192.168.") || hostname.startsWith("10.")) {
+        setLoginUrl("https://my.diorhost.com/billmgr?func=logon");
+        return;
+      }
+      
+      // Убираем порт если есть
+      let cleanHostname = hostname.split(':')[0];
+      
+      // Убираем поддомены если есть (www., app. и т.д.), оставляем только основной домен
+      // Но сохраняем поддомены my. и vm. если они уже есть
+      if (cleanHostname.startsWith("my.") || cleanHostname.startsWith("vm.")) {
+        // Если уже на my. или vm., просто используем текущий домен
+        setLoginUrl(`https://${cleanHostname}/billmgr?func=logon`);
+        return;
+      }
+      
+      // Убираем www. и другие поддомены для получения основного домена
+      const parts = cleanHostname.split('.');
+      if (parts.length > 2 && !['my', 'vm'].includes(parts[0])) {
+        // Если есть поддомен (например, www.diorhost.com), берем основной домен
+        cleanHostname = parts.slice(-2).join('.');
+      }
+      
+      // Формируем URL с my. + текущий домен
+      // Работает для: diorhost.com -> my.diorhost.com, diorhost.net -> my.diorhost.net,
+      // diors.host -> my.diors.host, d1or.host -> my.d1or.host, d1ior.com -> my.d1ior.com
+      const myDomain = `my.${cleanHostname}`;
+      const url = `https://${myDomain}/billmgr?func=logon`;
+      
+      // Отладка
+      console.log("Login URL:", url, "Hostname:", hostname, "Clean hostname:", cleanHostname);
+      setLoginUrl(url);
+    }
+  }, []);
 
   const basePath =
     isRu && pathname
@@ -103,7 +146,7 @@ export function Header() {
 
           <div className="hidden md:flex gap-2 items-center">
             <a
-              href="https://my.dior.host/billmgr?func=logon"
+              href={loginUrl}
               className="flex justify-center items-center border rounded border-[#303030] px-2 h-[37px] bg-zinc-950 text-white text-sm"
             >
               {isRu ? "Войти" : "Log in"}
@@ -247,7 +290,7 @@ export function Header() {
             
             <div className="border-t border-white/10 pt-4 pb-3">
               <a
-                href="https://my.dior.host/billmgr?func=logon"
+                href={loginUrl}
                 className="block rounded-md px-3 py-2 text-base font-medium text-white bg-blue-600 hover:bg-blue-700"
               >
                 {isRu ? "Войти" : "Log in"}

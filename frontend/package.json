@@ -8,7 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --runInBand"
+    "test": "jest --runInBand",
+    "optimize": "powershell -ExecutionPolicy Bypass -File ./optimize.ps1",
+    "optimize:clean": "powershell -ExecutionPolicy Bypass -File ./optimize.ps1"
   },
   "dependencies": {
     "framer-motion": "^12.23.24",

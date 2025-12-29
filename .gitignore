@@ -7,3 +7,14 @@ coverage/
 *.log
 .DS_Store
 
+# Archives and temporary files
+*.tar.gz
+*.zip
+site*.tar.gz
+host-land*.tar.gz
+temp_*.txt
+
+# Cache directories
+.next/cache/
+.next/standalone/
+

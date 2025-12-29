@@ -52,3 +52,16 @@ errors.log
 dummy
 hosting-landing/
 *.log
+
+# Archives and temporary files
+*.tar.gz
+*.zip
+*.gz
+site*.tar.gz
+host-land*.tar.gz
+temp_*.txt
+
+# Next.js cache (already excluded but being explicit)
+.next/cache/
+.next/standalone/
+.next/trace
