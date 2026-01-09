@@ -1,0 +1,36 @@
+# Команды для выполнения на сервере (скопируйте и выполните по порядку)
+
+# 1. Создайте директорию и клонируйте репозиторий
+mkdir -p /var/www/dior-host
+cd /var/www/dior-host
+git clone https://github.com/pavelfrolovvvvv1234-debug/host-land.git .
+
+# 2. Перейдите в frontend
+cd frontend
+
+# 3. Установите зависимости
+npm install
+
+# 4. Создайте .env.production (если его нет)
+cat > .env.production << 'EOF'
+NODE_ENV=production
+NEXT_TELEMETRY_DISABLED=1
+NEXT_PUBLIC_FRONTEND_URL=https://diorhost.com
+EOF
+
+# 5. Соберите проект
+npm run build
+
+# 6. Остановите старый PM2 процесс (если запущен)
+pm2 stop dior-host
+pm2 delete dior-host
+
+# 7. Запустите новый процесс
+pm2 start npm --name "dior-host" -- start
+pm2 save
+
+# 8. Проверьте статус
+pm2 status
+pm2 logs dior-host --lines 20
+
+
