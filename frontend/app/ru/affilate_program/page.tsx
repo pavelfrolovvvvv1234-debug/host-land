@@ -208,13 +208,12 @@ function FAQAccordion() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.1, duration: 0.3 }}
                 className="border border-white/10 rounded-lg overflow-hidden bg-black/30"
                 animate={{
                   backgroundColor: isOpen ? "rgba(0, 0, 0, 0.5)" : "rgba(0, 0, 0, 0.3)",
                   borderColor: isOpen ? "rgba(66, 104, 255, 0.2)" : "rgba(255, 255, 255, 0.1)",
                 }}
-                transition={{ duration: 0.3 }}
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : index)}
