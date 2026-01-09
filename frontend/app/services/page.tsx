@@ -57,7 +57,7 @@ const services = [
     title: "Virtual servers (VDS)",
     description:
       'Regular servers for "white" or "gray" operation. Complaints are not ignored! The ability to install any OS',
-    href: "/bulletproof-vds",
+    href: "/services/vds",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +114,7 @@ const services = [
     title: "Dedicated Servers",
     description:
       'Dedicated servers for "white" or "gray" operation. Complaints are not ignored! The ability to install any OS.',
-    href: "/bulletproof-dedicated",
+    href: "/services/dedicated",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
