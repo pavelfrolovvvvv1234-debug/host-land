@@ -9,7 +9,8 @@ const services = [
     title: "Bulletproof VDS",
     description:
       "On these servers, you can keep everything. We ignore any type of complaint. The ability to deliver any OS. Anonymity is 100%",
-    href: "/bulletproof/vds",
+    href: "/bulletproof-vds",
+    comingSoon: false,
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +35,7 @@ const services = [
     title: "Bulletproof Domains",
     description:
       "Bulletproof domains. No blocking and the warranty is for the whole period! Transfer is possible, if desired. All domains from $80",
-    href: "/bulletproof/domains",
+    href: "/bulletproof-domains",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +57,7 @@ const services = [
     title: "Virtual servers (VDS)",
     description:
       'Regular servers for "white" or "gray" operation. Complaints are not ignored! The ability to install any OS',
-    href: "/services/vds",
+    href: "/bulletproof-vds",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +81,7 @@ const services = [
     title: "Bulletproof Dedicated Servers",
     description:
       "Dedicated servers with a 100% guarantee of anonymity. No blocking and no complaints. The ability to deliver any OS.",
-    href: "/bulletproof/dedicated",
+    href: "/bulletproof-dedicated",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -113,7 +114,7 @@ const services = [
     title: "Dedicated Servers",
     description:
       'Dedicated servers for "white" or "gray" operation. Complaints are not ignored! The ability to install any OS.',
-    href: "/services/dedicated",
+    href: "/bulletproof-dedicated",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -146,7 +147,7 @@ const services = [
     title: "TurboVDS",
     description:
       "Servers for parsing, mass-checking, SEO, security analysis, and other high-load network tasks. With up to 10 Gbps bandwidth, they deliver lightning-fast performance and stability. Ideal for port scanning, host availability checks, automation, and API-driven operations. Outperforms standard bulletproof VDS thanks to superior network throughput.",
-    href: "/services/vdsturbo",
+    href: "/bulletproof-vds-turbo",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -171,7 +172,7 @@ const services = [
     title: "Dedicated Servers IPHM",
     description:
       "IPHM servers allow users to hide their real IP address by masking it with another. This can be useful for privacy protection, bypassing geographical restrictions, or conducting network security testing. Bandwidth up to 10 Gbps.",
-    href: "/services/iphm",
+    href: "/bulletproof-iphm",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -194,7 +195,8 @@ const services = [
     title: "CDN",
     description:
       "Content Delivery Network service for fast content delivery worldwide. Accelerate your website performance with global edge servers and smart caching.",
-    href: "/services/cdn",
+    href: "/bulletproof-cdn",
+    comingSoon: true,
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -223,7 +225,8 @@ const services = [
     title: "Minecraft Hosting",
     description:
       "High-performance Minecraft server hosting with optimized Java runtime, mod support, and automatic backups. Perfect for survival, creative, and custom game modes.",
-    href: "/services/minecraft",
+    href: "/bulletproof-minecraft",
+    comingSoon: true,
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -246,7 +249,8 @@ const services = [
     title: "Web Hosting",
     description:
       "Reliable shared hosting with cPanel, one-click installs, and 99.9% uptime guarantee. Perfect for websites, blogs, and business applications.",
-    href: "/services/web-hosting",
+    href: "/bulletproof-web-hosting",
+    comingSoon: true,
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -269,7 +273,8 @@ const services = [
     title: "VPN",
     description:
       "Virtual Private Network service for secure and private internet access. Bypass geo-restrictions, protect your data, and browse anonymously with our VPN infrastructure.",
-    href: "/services/vpn",
+    href: "/bulletproof-vpn",
+    comingSoon: true,
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -349,9 +354,18 @@ export default function ServicesPage() {
                       <div className="rounded-lg p-2 bg-primary/10 border border-primary/20 text-primary group-hover:border-primary/40 group-hover:bg-primary/20 transition-all">
                         {service.icon}
                       </div>
-                      <h2 className="text-lg font-semibold text-white group-hover:text-primary transition-colors">
-                        {service.title}
-                      </h2>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <h2 className="text-lg font-semibold text-white group-hover:text-primary transition-colors">
+                            {service.title}
+                          </h2>
+                          {service.comingSoon && (
+                            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-primary/20 text-primary border border-primary/30">
+                              Soon
+                            </span>
+                          )}
+                        </div>
+                      </div>
                     </div>
                     <p className="text-sm text-white/60 leading-relaxed line-clamp-4">
                       {service.description}

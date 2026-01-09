@@ -1,0 +1,390 @@
+"use client";
+
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { ScrollReveal } from "../../../components/motion/ScrollReveal";
+import { fadeInUp, staggerContainer } from "../../../lib/motion";
+
+const toolsIntro = {
+  title: "Профессиональные инструменты и сервисы",
+  summary:
+    "Комплексная коллекция продвинутых инструментов, сервисов и утилит для крипто-операций, верификации, приватности и управления цифровой инфраструктурой."
+};
+
+type ToolCard = {
+  title: string;
+  description: string;
+  href?: string;
+  icon: React.ReactNode;
+  comingSoon?: boolean;
+};
+
+const tools: ToolCard[] = [
+  {
+    title: "Маркетплейс Tron Energy",
+        description:
+          "Покупка энергии и пропускной способности сети TRON для выполнения смарт-контрактов и обработки транзакций по конкурентным ценам.",
+        icon: (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+          </svg>
+        ),
+        comingSoon: true
+      },
+      {
+        title: "Криптовалютный обменник в Telegram",
+        description:
+          "Автоматизированный сервис обмена криптовалют в Telegram с мгновенными свопами, конкурентными курсами и поддержкой основных цифровых активов.",
+        icon: (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="2" y="6" width="20" height="12" rx="2" />
+            <path d="M12 2v4M12 18v4M6 12h.01M18 12h.01" />
+          </svg>
+        ),
+        comingSoon: true
+  },
+  {
+    title: "AML Сканер соответствия",
+        description:
+          "Продвинутый инструмент верификации против отмывания денег для проверки соответствия транзакций, оценки рисков и регуляторного статуса в различных юрисдикциях.",
+        icon: (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <path d="M9 12l2 2 4-4" />
+          </svg>
+        ),
+        comingSoon: true
+      },
+      {
+        title: "Валидатор банковских карт",
+        description:
+          "Сервис проверки банковских карт в реальном времени с BIN-поиском, определением типа карты и проверками валидности для безопасной обработки платежей.",
+        icon: (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+            <line x1="1" y1="10" x2="23" y2="10" />
+          </svg>
+        ),
+        comingSoon: true
+  },
+  {
+    title: "Платформа OSINT",
+        description:
+          "Профессиональный инструмент сбора открытой разведывательной информации, аналогичный GB/Sherlock, для комплексного сбора данных, межплатформенного поиска и анализа цифрового следа.",
+        icon: (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+        ),
+        comingSoon: true
+  },
+  {
+    title: "Сервис верификации личности",
+        description:
+          "Комплексный сервис верификации личности для проверки SSN, DOB и водительских прав с перекрестной проверкой данных из нескольких источников и проверкой точности.",
+        icon: (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+        ),
+        comingSoon: true
+  },
+  {
+    title: "Мульти-источник разведки",
+        description:
+          "Универсальная платформа разведки, аналогичная zl0y.team, предоставляющая агрегированные данные из множества источников, поиск в даркнете и комплексные проверки биографии.",
+        icon: (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+            <line x1="12" y1="22.08" x2="12" y2="12" />
+          </svg>
+        ),
+        comingSoon: true
+  },
+  {
+    title: "Маркетплейс Telegram Stars",
+        description:
+          "Покупка Telegram Stars для премиум-функций, бустов каналов и внутриигровых покупок с мгновенной доставкой и безопасной обработкой платежей.",
+        icon: (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+          </svg>
+        ),
+        comingSoon: true
+  },
+  {
+    title: "Распознавание и скачивание музыки",
+        description:
+          "Бот для Telegram с распознаванием музыки на базе Shazam с мгновенным определением песен, получением метаданных и возможностью скачивания аудио высокого качества.",
+        icon: (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M9 18V5l12-2v13" />
+            <circle cx="6" cy="16" r="3" />
+            <circle cx="18" cy="16" r="3" />
+          </svg>
+        ),
+        comingSoon: true
+  },
+  {
+    title: "Сервис цифровой отрисовки",
+        description:
+          "Профессиональный сервис цифрового искусства и отрисовки изображений с улучшением на базе ИИ, созданием кастомных дизайнов и выводом в высоком разрешении для различных применений.",
+        icon: (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+            <line x1="12" y1="22.08" x2="12" y2="12" />
+          </svg>
+        ),
+        comingSoon: true
+  },
+  {
+    title: "Абузоустойчивая почта",
+        description:
+          "Безопасный почтовый сервис с фокусом на приватность с политикой игнорирования DMCA, продвинутой фильтрацией спама и гарантированной доставкой сообщений для высокорисковых коммуникаций.",
+        icon: (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+        ),
+        comingSoon: true
+  },
+  {
+    title: "SMS верификация",
+        description:
+          "Продвинутый сервис SMS-верификации и сообщений с поддержкой нескольких операторов, глобальным покрытием и мгновенной доставкой для верификации аккаунтов и уведомлений.",
+        icon: (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+          </svg>
+        ),
+        comingSoon: true
+  },
+  {
+    title: "Резидентские и статические прокси",
+        description:
+          "Премиум-сервис прокси с резидентскими IP и статическими дата-центровыми прокси с высокой анонимностью, геотаргетингом и безлимитной пропускной способностью для различных применений.",
+        icon: (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+            <path d="M2 12h20" />
+          </svg>
+        ),
+        comingSoon: true
+  },
+  {
+    title: "Сервис сокращения ссылок",
+        description:
+          "Профессиональный сервис сокращения ссылок с кастомными доменами, аналитикой, генерацией QR-кодов и продвинутым управлением редиректами для маркетинговых кампаний.",
+        icon: (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+          </svg>
+        ),
+        comingSoon: true
+  },
+  {
+    title: "Платформа виртуальных карт",
+        description:
+          "Сервис виртуальных карт в стиле FlexCard с мгновенной выдачей, поддержкой мультивалют, контролем расходов и интеграцией с основными платежными процессорами для безопасных онлайн-транзакций.",
+        icon: (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+            <line x1="1" y1="10" x2="23" y2="10" />
+          </svg>
+        ),
+        comingSoon: true
+  },
+  {
+    title: "Сервис разблокировки бирж",
+        description:
+          "Профессиональный сервис для разблокировки ограниченных аккаунтов криптовалютных бирж с документацией соответствия, помощью в KYC и поддержкой восстановления аккаунтов.",
+        icon: (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <path d="M9 12l2 2 4-4" />
+          </svg>
+        ),
+        comingSoon: true
+  },
+  {
+    title: "Агентство веб-разработки",
+        description:
+          "Полнофункциональные услуги веб-разработки, включая кастомные приложения, интеграцию API, фронтенд/бэкенд разработку и постоянное обслуживание для бизнеса любого размера.",
+        icon: (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+            <line x1="8" y1="21" x2="16" y2="21" />
+            <line x1="12" y1="17" x2="12" y2="21" />
+          </svg>
+        ),
+        comingSoon: true
+  },
+  {
+    title: "Каталог форумов",
+        description:
+          "Кураторский каталог активных форумов, сообществ и дискуссионных платформ с категоризированными ссылками, метриками активности и проверенной информацией о доступе.",
+        icon: (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+          </svg>
+        ),
+        comingSoon: true
+  },
+  {
+    title: "Валидатор банковских карт",
+    description:
+      "Сервис проверки банковских карт в реальном времени с BIN-поиском, определением типа карты и проверками валидности для безопасной обработки платежей.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+        <line x1="1" y1="10" x2="23" y2="10" />
+      </svg>
+    ),
+    comingSoon: true
+  },
+  {
+    title: "Криптовалютный обменник в Telegram",
+    description:
+      "Автоматизированный сервис обмена криптовалют в Telegram с мгновенными свопами, конкурентными курсами и поддержкой основных цифровых активов.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="6" width="20" height="12" rx="2" />
+        <path d="M12 2v4M12 18v4M6 12h.01M18 12h.01" />
+      </svg>
+    ),
+    comingSoon: true
+  }
+];
+
+export default function ToolsPageRu() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  return (
+    <main className="relative overflow-hidden">
+      {/* Background Glows */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-hero-glow blur-[100px] pointer-events-none opacity-50"></div>
+
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 relative z-10">
+        {/* Hero Section */}
+        <ScrollReveal>
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={mounted ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="relative rounded-2xl border border-white/5 bg-surface/50 p-8 sm:p-12 shadow-2xl overflow-hidden backdrop-blur-sm mb-12"
+          >
+            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent skew-x-12 opacity-30"></div>
+            
+            <div className="relative z-10">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={mounted ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.15 }}
+                className="text-3xl sm:text-4xl font-semibold tracking-tight text-white mb-4"
+              >
+                {toolsIntro.title}
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={mounted ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-base sm:text-lg text-white/70 leading-relaxed"
+              >
+                {toolsIntro.summary}
+              </motion.p>
+            </div>
+          </motion.section>
+        </ScrollReveal>
+
+        {/* Tools Section */}
+        <ScrollReveal delay={0.2}>
+          <section className="mt-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex items-center justify-between flex-wrap gap-4 mb-8"
+            >
+              <h2 className="text-2xl sm:text-3xl font-semibold text-white">Доступные инструменты</h2>
+            </motion.div>
+
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              animate={mounted ? "visible" : "hidden"}
+              className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+            >
+              {tools.map((tool, index) => (
+                    <motion.div
+                      key={tool.title}
+                      variants={fadeInUp}
+                      custom={index}
+                      whileHover={{ y: -4, scale: 1.02 }}
+                      className="group relative flex flex-col rounded-xl border border-white/10 bg-card-gradient p-1 hover:border-primary/50 transition-all duration-300"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none"></div>
+                      <div className="relative flex h-full flex-col justify-between rounded-lg bg-black/40 p-6 hover:bg-black/60 transition-all">
+                        <div>
+                          <div className="flex items-center gap-3 mb-4">
+                            <div className="text-primary">
+                              {tool.icon}
+                            </div>
+                            {tool.comingSoon && (
+                              <span className="text-xs uppercase tracking-wide text-primary/80 bg-primary/10 px-2 py-1 rounded">
+                                Скоро
+                              </span>
+                            )}
+                          </div>
+                          <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-primary transition-colors">
+                            {tool.title}
+                          </h3>
+                          <p className="text-sm text-white/70 leading-relaxed mb-4">
+                            {tool.description}
+                          </p>
+                        </div>
+                        {tool.href && (
+                          <Link
+                            className="mt-auto inline-flex items-center gap-2 text-blue-300 hover:text-white transition-colors group/link"
+                            href={tool.href}
+                          >
+                            Использовать
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="size-4 transition-transform group-hover/link:translate-x-1"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              strokeWidth={1.5}
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M13.5 4.5 21 12l-7.5 7.5M21 12H3"
+                              />
+                            </svg>
+                          </Link>
+                        )}
+                      </div>
+                    </motion.div>
+              ))}
+            </motion.div>
+          </section>
+        </ScrollReveal>
+      </div>
+    </main>
+  );
+}

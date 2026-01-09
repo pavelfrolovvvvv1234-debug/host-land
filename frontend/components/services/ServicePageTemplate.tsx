@@ -2,12 +2,14 @@
 
 import { motion } from "framer-motion";
 import { useState, useEffect, ReactNode } from "react";
+import { FAQItem } from "../motion/FAQItem";
 
 interface ServicePageTemplateProps {
   hero: {
     heading: string;
     subheading?: string;
     summary: string;
+    comingSoon?: boolean;
   };
   sections?: Array<{
     title: string;
@@ -56,14 +58,26 @@ export function ServicePageTemplate({
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent skew-x-12 opacity-30"></div>
 
           <div className="relative z-10 text-center">
-            <motion.h1
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
-              className="mx-auto max-w-4xl text-3xl sm:text-5xl font-semibold tracking-tight text-white mb-6 leading-tight"
+              className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-6"
             >
-              {hero.heading}
-            </motion.h1>
+              <h1 className="text-3xl sm:text-5xl font-semibold tracking-tight text-white leading-tight">
+                {hero.heading}
+              </h1>
+              {hero.comingSoon && (
+                <motion.span
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={mounted ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.4, delay: 0.3 }}
+                  className="inline-flex items-center px-3 py-1 rounded-full text-xs sm:text-sm font-semibold bg-primary/20 text-primary border border-primary/30 whitespace-nowrap"
+                >
+                  Coming Soon
+                </motion.span>
+              )}
+            </motion.div>
             {hero.subheading && (
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -204,21 +218,12 @@ export function ServicePageTemplate({
               </motion.h2>
               <div className="space-y-4">
                 {faqs.map((faq, index) => (
-                  <motion.details
+                  <FAQItem
                     key={faq.question}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={mounted ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.1 * index }}
-                    className="group border border-white/10 rounded-lg bg-black/40 hover:border-primary/30 transition-all"
-                  >
-                    <summary className="cursor-pointer p-4 font-semibold text-white flex items-center justify-between hover:text-primary transition-colors">
-                      <span>{faq.question}</span>
-                      <span className="ml-2 transition-transform group-open:rotate-90">▶</span>
-                    </summary>
-                    <div className="px-4 pb-4">
-                      <p className="text-sm text-white/70">{faq.answer}</p>
-                    </div>
-                  </motion.details>
+                    question={faq.question}
+                    answer={faq.answer}
+                    index={index}
+                  />
                 ))}
               </div>
             </div>

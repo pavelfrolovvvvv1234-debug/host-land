@@ -226,3 +226,4 @@ wrangler pages deployment list --project-name=your-project-name
 
 **Готово!** Ваш сайт теперь задеплоен на Cloudflare Pages 🎉
 
+

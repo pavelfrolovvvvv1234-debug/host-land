@@ -123,6 +123,12 @@ export function Header() {
                   {isRu ? "Услуги" : "Services"}
                 </Link>
                 <Link
+                  href={isRu ? "/ru/tools" : "/tools"}
+                  className="rounded-md px-3 py-2 font-medium text-gray-200 hover:text-white transition-colors duration-300"
+                >
+                  {isRu ? "Инструменты" : "Tools"}
+                </Link>
+                <Link
                   href={isRu ? "/ru/blog" : "/blog"}
                   className="rounded-md px-3 py-2 font-medium text-gray-200 hover:text-white transition-colors duration-300"
                 >
@@ -265,6 +271,13 @@ export function Header() {
               className="block rounded-md px-3 py-2 text-base font-medium text-gray-200 hover:text-white transition-colors duration-300"
             >
               {isRu ? "Услуги" : "Services"}
+            </Link>
+            <Link
+              href={isRu ? "/ru/tools" : "/tools"}
+              onClick={closeMenu}
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-200 hover:text-white transition-colors duration-300"
+            >
+              {isRu ? "Инструменты" : "Tools"}
             </Link>
             <Link
               href={isRu ? "/ru/blog" : "/blog"}

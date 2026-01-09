@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ScrollReveal } from "../../../components/motion/ScrollReveal";
@@ -169,6 +169,25 @@ const iconMap: Record<string, IconComponentType> = {
 // FAQ Accordion Component
 function FAQAccordion() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [heights, setHeights] = useState<{ [key: number]: number }>({});
+
+  useEffect(() => {
+    // Измеряем высоту всех контентов после монтирования
+    const measureHeights = () => {
+      const newHeights: { [key: number]: number } = {};
+      content.faq.items.forEach((_, index) => {
+        const element = document.getElementById(`faq-content-${index}`);
+        if (element) {
+          newHeights[index] = element.scrollHeight;
+        }
+      });
+      setHeights(newHeights);
+    };
+    
+    // Небольшая задержка для гарантии, что DOM готов
+    setTimeout(measureHeights, 100);
+    measureHeights();
+  }, []);
 
   return (
     <ScrollReveal>
@@ -180,6 +199,8 @@ function FAQAccordion() {
           {content.faq.items.map((item, index) => {
             const isOpen = openIndex === index;
             const Icon: IconComponentType = (index % 2 === 0 ? LinkIcon : ChartIcon) as IconComponentType;
+            const contentHeight = heights[index] || 0;
+            
             return (
               <motion.div
                 key={index}
@@ -189,6 +210,11 @@ function FAQAccordion() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: index * 0.1 }}
                 className="border border-white/10 rounded-lg overflow-hidden bg-black/30"
+                animate={{
+                  backgroundColor: isOpen ? "rgba(0, 0, 0, 0.5)" : "rgba(0, 0, 0, 0.3)",
+                  borderColor: isOpen ? "rgba(66, 104, 255, 0.2)" : "rgba(255, 255, 255, 0.1)",
+                }}
+                transition={{ duration: 0.3 }}
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : index)}
@@ -201,8 +227,15 @@ function FAQAccordion() {
                     <span className="font-semibold text-white">{item.question}</span>
                   </div>
                   <motion.span
-                    animate={{ rotate: isOpen ? 90 : 0 }}
-                    transition={{ duration: 0.3 }}
+                    animate={{ 
+                      rotate: isOpen ? 90 : 0,
+                      scale: isOpen ? 1.1 : 1,
+                    }}
+                    transition={{ 
+                      duration: 0.4, 
+                      ease: [0.4, 0, 0.2, 1],
+                      scale: { duration: 0.2 }
+                    }}
                     className="text-blue-400 flex-shrink-0 ml-4"
                   >
                     ▶
@@ -210,16 +243,40 @@ function FAQAccordion() {
                 </button>
                 <motion.div
                   id={`faq-answer-${index}`}
-                  initial={false}
                   animate={{
-                    height: isOpen ? "auto" : 0,
-                    opacity: isOpen ? 1 : 0
+                    height: isOpen ? contentHeight : 0,
+                    opacity: isOpen ? 1 : 0,
                   }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ 
+                    height: {
+                      duration: 0.5,
+                      ease: [0.4, 0, 0.2, 1],
+                    },
+                    opacity: {
+                      duration: 0.3,
+                      ease: [0.4, 0, 0.2, 1],
+                    }
+                  }}
                   className="overflow-hidden"
                 >
-                  <div className="px-6 pb-4 pt-0 text-white/70 text-sm">
-                    {item.answer}
+                  <div 
+                    id={`faq-content-${index}`}
+                    className="px-6 pb-4 pt-0 text-white/70 text-sm leading-relaxed"
+                  >
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ 
+                        opacity: isOpen ? 1 : 0,
+                        y: isOpen ? 0 : -10,
+                      }}
+                      transition={{ 
+                        delay: isOpen ? 0.15 : 0,
+                        duration: 0.3,
+                        ease: [0.4, 0, 0.2, 1],
+                      }}
+                    >
+                      {item.answer}
+                    </motion.div>
                   </div>
                 </motion.div>
               </motion.div>

@@ -98,7 +98,7 @@ const blogPosts: BlogCard[] = [
       "Complete technical guide to Minecraft server hosting, Java performance optimization, Paper/Spigot/Purpur configuration, BungeeCord/Velocity scaling, and production deployment strategies."
   },
   {
-    slug: "bulletproof-vps-complete-guide",
+    slug: "abuse-resistant-vps-complete-guide",
     title: "bulletproof VPS/VDS: How bulletproof Data Centers Work and Who Really Needs Them",
     summary:
       "Complete technical guide to bulletproof hosting, abuse request handling mechanics, IPHM, SLA policies, policy-friendly jurisdictions, and use cases for high-risk projects."

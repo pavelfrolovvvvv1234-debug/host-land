@@ -28,7 +28,7 @@ const articleSlugs = [
   "cdn-complete-guide",
   "vpn-infrastructure-guide",
   "minecraft-hosting-architecture",
-  "bulletproof-vps-complete-guide",
+  "abuse-resistant-vps-complete-guide",
   // Existing articles (MD)
   "bulletproof-domains-guide",
   "bulletproof-security-controls",
