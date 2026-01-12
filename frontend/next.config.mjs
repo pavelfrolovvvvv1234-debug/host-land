@@ -7,9 +7,10 @@ const nextConfig = {
   
   // Performance optimizations
   swcMinify: true,
-  experimental: {
-    optimizeCss: true,
-  },
+  // optimizeCss disabled - requires critters module which may cause build issues
+  // experimental: {
+  //   optimizeCss: true,
+  // },
   
   // Image optimization
   images: {
