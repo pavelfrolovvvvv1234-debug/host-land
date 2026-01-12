@@ -47,7 +47,9 @@ function extractJsonLd(content: string): string | null {
         .trim();
       return JSON.parse(jsonStr);
     } catch (e) {
-      console.error("Failed to parse JSON-LD:", e);
+      if (process.env.NODE_ENV === 'development') {
+        console.error("Failed to parse JSON-LD:", e);
+      }
       return null;
     }
   }
@@ -90,8 +92,11 @@ export default function WikiArticlePage({ params }: PageProps) {
   const filePath = getWikiArticlePath(slug);
 
   if (!existsSync(filePath)) {
-    console.error(`Wiki article not found: ${slug}`);
-    console.error(`Searched at: ${filePath}`);
+    // Article not found - return 404
+    if (process.env.NODE_ENV === 'development') {
+      console.error(`Wiki article not found: ${slug}`);
+      console.error(`Searched at: ${filePath}`);
+    }
     notFound();
   }
 
@@ -129,8 +134,14 @@ export default function WikiArticlePage({ params }: PageProps) {
         );
       }
       // External links
+      const isExternal = href && (href.startsWith('http://') || href.startsWith('https://') || href.startsWith('//'));
       return (
-        <a href={href} className="text-blue-300 hover:text-white transition" {...props}>
+        <a 
+          href={href} 
+          className="text-blue-300 hover:text-white transition" 
+          {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          {...props}
+        >
           {children}
         </a>
       );

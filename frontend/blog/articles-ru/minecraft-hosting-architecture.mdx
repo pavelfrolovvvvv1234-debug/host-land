@@ -1,26 +1,851 @@
-# Minecraft Hosting: Архитектура и оптимизация
-
-Руководство по хостингу серверов Minecraft с оптимальной производительностью.
-
-## Требования
-
-- CPU: минимум 2 cores
-- RAM: от 2 GB (зависит от модов)
-- SSD: быстрые диски
-- Сеть: стабильное подключение
-
-## Оптимизация
-
-- Использование Paper/Spigot
-- Настройка JVM параметров
-- Оптимизация конфигов
-- Регулярные бэкапы
-
+---
+title: "Minecraft Hosting: Архитектура, Оптимизация, Управление Нагрузкой, Безопасность и Масштабируемость"
+description: "Полное техническое руководство по хостингу серверов Minecraft, оптимизации производительности Java, конфигурации Paper/Spigot/Purpur, масштабированию BungeeCord/Velocity и стратегиям развёртывания в продакшене."
+date: "2025-01-27"
+author: "Техническая команда Dior Host"
 ---
 
-**Заказать:** [Minecraft хостинг](/ru/services/minecraft)
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Minecraft Hosting: Архитектура, Оптимизация, Управление Нагрузкой, Безопасность и Масштабируемость",
+  "description": "Полное техническое руководство по хостингу серверов Minecraft, оптимизации производительности Java, конфигурации Paper/Spigot/Purpur, масштабированию BungeeCord/Velocity и стратегиям развёртывания в продакшене.",
+  "author": {{
+    "@type": "Organization",
+    "name": "Dior Host"
+  }},
+  "publisher": {{
+    "@type": "Organization",
+    "name": "Dior Host",
+    "logo": {{
+      "@type": "ImageObject",
+      "url": "https://dior.host/logo.png"
+    }}
+  }},
+  "datePublished": "2025-01-27",
+  "dateModified": "2025-01-27",
+  "mainEntityOfPage": {{
+    "@type": "WebPage",
+    "@id": "https://dior.host/ru/blog/articles/minecraft-hosting-architecture"
+  }}
+}}
+</script>
 
+# Minecraft Hosting: Архитектура, Оптимизация, Управление Нагрузкой, Безопасность и Масштабируемость
 
+Хостинг серверов Minecraft представляет уникальные вызовы из-за управления памятью Java, однопоточного обработки тиков и взаимодействий игроков в реальном времени. Запуск продакшн-серверов Minecraft требует понимания настройки виртуальной машины Java (JVM), оптимизации серверного ПО, сетевой архитектуры и стратегий масштабирования.
 
+Это руководство предоставляет всесторонний технический анализ инфраструктуры серверов Minecraft, от настройки сборки мусора JVM до многосерверных сетевых архитектур, с практическими примерами конфигурации для высокопроизводительного хостинга Minecraft.
 
+## Характеристики нагрузки Java и TPS (Ticks Per Second)
 
+### Понимание производительности сервера Minecraft
+
+Серверы Minecraft работают на основе тиковой системы, где игровая логика выполняется 20 раз в секунду (20 TPS). Каждый тик обрабатывает:
+- Движение сущностей и ИИ
+- Обновления блоков и схемы редстоуна
+- Загрузку и генерацию чанков
+- Действия игроков и инвентарь
+- Логику плагинов/сервера
+
+**Узкие места производительности:**
+
+1. **Блокировка основного потока**: Однопоточный игровой цикл блокируется на:
+   - Операциях I/O чанков
+   - Синхронных операциях плагинов
+   - Сложных схемах редстоуна
+   - Поиске пути сущностей
+
+2. **Давление памяти**: Паттерны выделения кучи Java:
+   - Данные чанков: ~1-2 МБ на загруженный чанк
+   - Данные сущностей: ~1-5 КБ на сущность
+   - Данные игроков: ~10-50 КБ на игрока
+   - Накладные расходы плагинов: Переменные (10-100 МБ на плагин)
+
+3. **Операции I/O**: Доступ к диску для:
+   - Сохранений мира (синхронные, блокируют основной поток)
+   - Файлов логов
+   - Файлов данных плагинов
+
+### Измерение и мониторинг TPS
+
+**Расчёт TPS:**
+
+```java
+// Расчёт TPS для Bukkit/Spigot
+long[] tickTimes = server.getTickTimes();
+double averageTickTime = Arrays.stream(tickTimes).average().orElse(0.0);
+double tps = 1000.0 / (averageTickTime / 1000000.0);
+```
+
+**Целевые метрики производительности:**
+
+| Метрика | Цель | Предупреждение | Критично |
+|---------|------|----------------|----------|
+| **TPS** | 20.0 | 19.5 | < 19.0 |
+| **Среднее время тика** | < 50мс | 50-100мс | > 100мс |
+| **Использование памяти** | < 80% | 80-90% | > 90% |
+| **Время загрузки чанков** | < 100мс | 100-500мс | > 500мс |
+| **Количество сущностей** | < 500 | 500-1000 | > 1000 |
+
+**Скрипт мониторинга:**
+
+```bash
+#!/bin/bash
+# minecraft-monitor.sh
+
+SERVER_LOG="/opt/minecraft/server/logs/latest.log"
+
+# Извлечь TPS из лога сервера (если используется Paper/Spigot)
+tps=$(grep "TPS" "$SERVER_LOG" | tail -1 | grep -oP '\d+\.\d+' | head -1)
+
+# Проверить, отвечает ли сервер
+if timeout 1 bash -c "echo > /dev/tcp/localhost/25565" 2>/dev/null; then
+    echo "Сервер: ОНЛАЙН"
+else
+    echo "Сервер: ОФФЛАЙН"
+fi
+
+# Проверить использование памяти
+memory=$(free | grep Mem | awk '{printf "%.1f", $3/$2 * 100.0}')
+echo "Использование памяти: ${memory}%"
+
+# Проверить использование CPU
+cpu=$(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1}')
+echo "Использование CPU: ${cpu}%"
+
+# Количество игроков (если сервер онлайн)
+players=$(timeout 1 nc localhost 25565 < /dev/null 2>/dev/null | grep -oP 'players online: \K\d+' || echo "N/A")
+echo "Игроков онлайн: ${players}"
+```
+
+## Серверное ПО: Paper, Spigot и Purpur
+
+### Paper: Рекомендуется для продакшена
+
+Paper — это высокопроизводительный форк Spigot, который включает оптимизации для:
+- Асинхронной загрузки чанков
+- Улучшенного обнаружения столкновений сущностей
+- Оптимизированных схем редстоуна
+- Лучшего API плагинов
+
+**Установка Paper:**
+
+```bash
+#!/bin/bash
+# install-paper.sh
+
+MC_VERSION="1.20.1"
+PAPER_BUILD="latest"
+
+# Скачать Paper
+curl -o paper.jar "https://api.papermc.io/v2/projects/paper/versions/${MC_VERSION}/builds/${PAPER_BUILD}/downloads/paper-${MC_VERSION}-${PAPER_BUILD}.jar"
+
+# Создать директорию сервера
+mkdir -p /opt/minecraft/server
+cd /opt/minecraft/server
+
+# Переместить JAR
+mv paper.jar server.jar
+
+# Принять EULA
+echo "eula=true" > eula.txt
+
+# Создать скрипт запуска
+cat > start.sh <<'EOF'
+#!/bin/bash
+java -Xms4G -Xmx4G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -jar server.jar nogui
+EOF
+
+chmod +x start.sh
+```
+
+### Spigot: Наследие производительности
+
+Spigot был оригинальным форком производительности CraftBukkit. Хотя Paper обычно превосходит, Spigot всё ещё используется по причинам совместимости.
+
+**Инструменты сборки Spigot:**
+
+```bash
+# Собрать Spigot из исходников
+git clone https://hub.spigotmc.org/stash/scm/spigot/buildtools.git
+cd buildtools
+java -jar BuildTools.jar --rev 1.20.1
+```
+
+### Purpur: Максимальная производительность
+
+Purpur — это форк Paper с дополнительными оптимизациями и функциями:
+- Расширенные настройки производительности
+- Настраиваемые лимиты сущностей
+- Лучшая загрузка чанков
+- Больше опций конфигурации
+
+**Основные моменты конфигурации Purpur:**
+
+```yaml
+# purpur.yml
+settings:
+  tick-when-empty: false
+  entities-target-with-skull: 0
+  
+chunks:
+  entity-per-chunk:
+    save:
+      zombie: 32
+      skeleton: 32
+      creeper: 16
+      
+world-settings:
+  default:
+    entity-activation-range:
+      animals: 16
+      monsters: 24
+      raiders: 48
+      misc: 8
+      water: 8
+      villagers: 16
+      flying-monsters: 48
+```
+
+### Сравнение серверного ПО
+
+| Функция | Vanilla | Spigot | Paper | Purpur |
+|---------|---------|--------|-------|--------|
+| **Производительность** | Базовый | +30% | +50-80% | +80-100% |
+| **Поддержка плагинов** | Нет | Да | Да | Да |
+| **Асинхронные операции** | Нет | Ограничено | Да | Да |
+| **Настраиваемость** | Низкая | Средняя | Высокая | Очень высокая |
+| **Частота обновлений** | Регулярно | Медленно | Быстро | Быстро |
+| **Эффективность памяти** | Плохая | Хорошая | Отличная | Отличная |
+
+## Оптимизация серверов Paper/Spigot/Purpur
+
+### Аргументы JVM для оптимальной производительности
+
+**Флаги Aikar (Рекомендуется):**
+
+```bash
+java -Xms4G -Xmx4G \
+  -XX:+UseG1GC \
+  -XX:+ParallelRefProcEnabled \
+  -XX:MaxGCPauseMillis=200 \
+  -XX:+UnlockExperimentalVMOptions \
+  -XX:+DisableExplicitGC \
+  -XX:+AlwaysPreTouch \
+  -XX:G1NewSizePercent=30 \
+  -XX:G1MaxNewSizePercent=40 \
+  -XX:G1HeapRegionSize=8M \
+  -XX:G1ReservePercent=20 \
+  -XX:G1HeapWastePercent=5 \
+  -XX:G1MixedGCCountTarget=4 \
+  -XX:InitiatingHeapOccupancyPercent=15 \
+  -XX:G1MixedGCLiveThresholdPercent=90 \
+  -XX:G1RSetUpdatingPauseTimePercent=5 \
+  -XX:SurvivorRatio=32 \
+  -XX:+PerfDisableSharedMem \
+  -XX:MaxTenuringThreshold=1 \
+  -Dusing.aikars.flags=https://mcflags.emc.gs \
+  -Daikars.new.flags=true \
+  -jar server.jar nogui
+```
+
+**Объяснение ключевых флагов:**
+
+- `-Xms4G -Xmx4G`: Выделить 4GB кучи (установить равными, чтобы предотвратить изменение размера)
+- `-XX:+UseG1GC`: Использовать сборщик мусора G1 (оптимально для Minecraft)
+- `-XX:MaxGCPauseMillis=200`: Целевая максимальная пауза GC 200мс
+- `-XX:G1NewSizePercent=30`: Выделить 30% кучи для новых объектов
+- `-XX:+AlwaysPreTouch`: Предварительно выделить память для снижения задержки
+- `-XX:MaxTenuringThreshold=1`: Быстро перемещать объекты в старое поколение
+
+### Оптимизация конфигурации Paper
+
+**paper-global.yml:**
+
+```yaml
+# paper-global.yml
+chunk-loading:
+  enable-frustum-priority: true
+  global-max-chunk-load-rate: -1
+  max-concurrent-sends: 2
+  min-load-radius: 2
+  player-max-chunk-load-rate: 100.0
+  target-player-chunk-send-rate: 100.0
+
+misc:
+  compression-level: -1  # -1 to 9, -1 = default (6)
+  log-player-ip-addresses: false
+  max-joins-per-tick: 5
+  player-auto-save-interval: -1
+  save-player-data: true
+  use-alternative-luck-formula: true
+
+timings:
+  enabled: true
+  hidden-config-entries: []
+  history-interval: 300
+  server-name: "Minecraft Server"
+  server-ip: ""
+  verbose: true
+```
+
+**paper-world-defaults.yml:**
+
+```yaml
+# paper-world-defaults.yml
+chunk-loading:
+  autoconfig-send-distance: true
+  enable-frustum-priority: true
+  max-concurrent-sends: 2
+  min-load-radius: 2
+  player-max-chunk-load-rate: 100.0
+  target-player-chunk-send-rate: 100.0
+
+entity-per-chunk:
+  max-entities-per-chunk:
+    area-effect-cloud: 8
+    arrow: 16
+    dragon-fireball: 3
+    egg: 8
+    ender-pearl: 8
+    experience-orb: 16
+    fireball: 8
+    firework: 8
+    llama-spit: 3
+    shulker-bullet: 8
+    small-fireball: 8
+    snowball: 8
+    spectral-arrow: 16
+    trident: 16
+    wither-skull: 4
+
+entities:
+  entities:
+    arrow:
+      despawn-rate: -1
+    ender-pearl:
+      despawn-rate: -1
+    experience-orb:
+      despawn-rate: -1
+    item:
+      despawn-rate: -1
+      ignore-items:
+      - DIAMOND
+      - NETHERITE_INGOT
+```
+
+### Оптимизация server.properties
+
+```properties
+# server.properties
+max-players=100
+view-distance=10  # Уменьшить с 32 до 10 для производительности
+simulation-distance=8  # Уменьшить с 32 до 8
+entity-broadcast-range-percentage=100
+max-world-size=29999984
+network-compression-threshold=256
+online-mode=true
+prevent-proxy-connections=false
+server-ip=
+server-port=25565
+use-native-transport=true
+enable-jmx-monitoring=false
+enable-status=true
+broadcast-rcon-to-ops=true
+broadcast-console-to-ops=true
+enable-command-block=false
+enable-query=false
+enable-rcon=false
+sync-chunk-writes=true
+enable-whitelist=false
+enforce-whitelist=false
+white-list=false
+spawn-npcs=true
+spawn-animals=true
+spawn-monsters=true
+spawn-protection=16
+max-tick-time=60000
+use-native-transport=true
+max-chained-neighbor-updates=1000000
+rate-limit=0
+```
+
+## Развёртывание серверов Minecraft на VPS/VDS
+
+### Требования к серверу по количеству игроков
+
+| Игроки | RAM | Ядра CPU | Хранилище | Пропускная способность |
+|--------|-----|----------|-----------|------------------------|
+| 1-10 | 2GB | 2 | 10GB | 10 Mbps |
+| 10-25 | 4GB | 2-4 | 25GB | 25 Mbps |
+| 25-50 | 6-8GB | 4 | 50GB | 50 Mbps |
+| 50-100 | 8-12GB | 4-6 | 100GB | 100 Mbps |
+| 100-200 | 12-16GB | 6-8 | 200GB | 150+ Mbps |
+| 200+ | 16GB+ | 8+ | 500GB+ | 200+ Mbps |
+
+### Скрипт установки для VPS
+
+```bash
+#!/bin/bash
+# minecraft-server-setup.sh
+
+set -e
+
+MC_VERSION="1.20.1"
+SERVER_DIR="/opt/minecraft/server"
+RAM_ALLOCATION="4G"
+
+# Обновить систему
+apt update && apt upgrade -y
+
+# Установить Java 17 (требуется для Minecraft 1.17+)
+apt install -y openjdk-17-jdk openjdk-17-jre
+
+# Создать пользователя minecraft
+useradd -r -s /bin/false -d "$SERVER_DIR" minecraft
+mkdir -p "$SERVER_DIR"
+chown minecraft:minecraft "$SERVER_DIR"
+
+# Скачать Paper
+cd "$SERVER_DIR"
+wget -O server.jar "https://api.papermc.io/v2/projects/paper/versions/${MC_VERSION}/builds/latest/downloads/paper-${MC_VERSION}-latest.jar"
+
+# Принять EULA
+echo "eula=true" > eula.txt
+
+# Создать скрипт запуска
+cat > start.sh <<EOF
+#!/bin/bash
+cd "$SERVER_DIR"
+java -Xms${RAM_ALLOCATION} -Xmx${RAM_ALLOCATION} -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -jar server.jar nogui
+EOF
+
+chmod +x start.sh
+chown -R minecraft:minecraft "$SERVER_DIR"
+
+# Создать systemd сервис
+cat > /etc/systemd/system/minecraft.service <<EOF
+[Unit]
+Description=Minecraft Server
+After=network.target
+
+[Service]
+Type=simple
+User=minecraft
+WorkingDirectory=$SERVER_DIR
+ExecStart=/bin/bash $SERVER_DIR/start.sh
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl daemon-reload
+systemctl enable minecraft
+systemctl start minecraft
+
+echo "Сервер Minecraft установлен и запущен!"
+echo "Проверить статус: systemctl status minecraft"
+echo "Просмотреть логи: journalctl -u minecraft -f"
+```
+
+### Конфигурация файрвола
+
+```bash
+# Разрешить порт Minecraft
+ufw allow 25565/tcp comment 'Minecraft Server'
+
+# Разрешить RCON, если включён (опционально)
+ufw allow 25575/tcp comment 'Minecraft RCON'
+
+# Разрешить порт запросов (опционально)
+ufw allow 25565/udp comment 'Minecraft Query'
+```
+
+### Скрипт резервного копирования
+
+```bash
+#!/bin/bash
+# minecraft-backup.sh
+
+SERVER_DIR="/opt/minecraft/server"
+BACKUP_DIR="/opt/minecraft/backups"
+RETENTION_DAYS=7
+
+# Создать директорию резервных копий
+mkdir -p "$BACKUP_DIR"
+
+# Создать резервную копию с меткой времени
+TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+BACKUP_FILE="${BACKUP_DIR}/world_${TIMESTAMP}.tar.gz"
+
+# Отправить команду save-all на сервер
+screen -S minecraft -X stuff "save-all$(printf \\r)"
+
+# Подождать завершения сохранения
+sleep 5
+
+# Создать сжатую резервную копию
+tar -czf "$BACKUP_FILE" -C "$SERVER_DIR" world world_nether world_the_end
+
+# Удалить старые резервные копии
+find "$BACKUP_DIR" -name "world_*.tar.gz" -mtime +$RETENTION_DAYS -delete
+
+echo "Резервная копия создана: $BACKUP_FILE"
+```
+
+**Автоматические резервные копии (Cron):**
+
+```bash
+# Добавить в crontab (crontab -e)
+0 */6 * * * /opt/minecraft/scripts/backup.sh  # Каждые 6 часов
+0 0 * * * /opt/minecraft/scripts/backup.sh     # Ежедневно в полночь
+```
+
+## Масштабирование: BungeeCord и Velocity
+
+### BungeeCord: Традиционный прокси
+
+BungeeCord — это прокси-сервер, который соединяет несколько серверов Minecraft вместе, позволяя игрокам переключаться между серверами без отключения.
+
+**Архитектура:**
+
+```
+                    Интернет
+                       ↓
+                  BungeeCord
+                  (Порт 25565)
+                       ↓
+        ┌──────────────┼──────────────┐
+        ↓              ↓              ↓
+   Лобби-сервер   Игровой сервер    Сервер выживания
+   (Порт 25566)   (Порт 25567)   (Порт 25568)
+```
+
+**Конфигурация BungeeCord:**
+
+```yaml
+# config.yml
+listeners:
+- query_port: 25577
+  motd: '&1Моя Minecraft Сеть'
+  tab_list: GLOBAL_PING
+  query_enabled: false
+  proxy_protocol: false
+  forced_hosts:
+    pvp.md-5.net: pvp
+  ping_passthrough: false
+  priorities:
+  - lobby
+  bind_local_address: true
+  host: 0.0.0.0:25565
+  max_players: 100
+  tab_size: 60
+  force_default_server: false
+
+servers:
+  lobby:
+    address: localhost:25566
+    restricted: false
+    motd: '&1Просто ещё одно лобби - Используйте /server для присоединения к игре!'
+  game:
+    address: localhost:25567
+    restricted: false
+    motd: '&1Сервер мини-игр'
+  survival:
+    address: localhost:25568
+    restricted: false
+    motd: '&1Сервер выживания'
+
+ip_forward: true
+online_mode: true
+```
+
+**Установка BungeeCord:**
+
+```bash
+#!/bin/bash
+# install-bungeecord.sh
+
+BUNGEE_VERSION="latest"
+BUNGEE_DIR="/opt/minecraft/bungeecord"
+
+mkdir -p "$BUNGEE_DIR"
+cd "$BUNGEE_DIR"
+
+# Скачать BungeeCord
+wget -O bungeecord.jar "https://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar"
+
+# Создать скрипт запуска
+cat > start.sh <<EOF
+#!/bin/bash
+java -Xms512M -Xmx512M -jar bungeecord.jar
+EOF
+
+chmod +x start.sh
+```
+
+### Velocity: Современный высокопроизводительный прокси
+
+Velocity — это современный прокси, разработанный для производительности, заменяющий BungeeCord во многих продакшн-окружениях.
+
+**Преимущества Velocity:**
+- **Производительность**: В 2-3 раза быстрее, чем BungeeCord
+- **Современный API**: Построен для Paper/Spigot 1.13+
+- **Лучшая экосистема плагинов**: Современная разработка плагинов
+- **Сниженное использование памяти**: Более эффективное использование ресурсов
+
+**Конфигурация Velocity:**
+
+```toml
+# velocity.toml
+config-version = "2.6"
+
+[servers]
+lobby = "127.0.0.1:25566"
+game = "127.0.0.1:25567"
+survival = "127.0.0.1:25568"
+
+[forced-hosts]
+"lobby.example.com" = ["lobby"]
+"game.example.com" = ["game"]
+
+try = ["lobby"]
+
+[advanced]
+compression-threshold = 256
+compression-level = -1
+login-ratelimit = 3000
+connection-timeout = 5000
+read-timeout = 30000
+haproxy-protocol = false
+tcp-fast-open = true
+bungee-plugin-message-channel = true
+show-ping-requests = false
+failover-on-unexpected-server-disconnect = true
+announce-proxy-commands = true
+log-command-executions = false
+log-player-connections = true
+
+[query]
+enabled = true
+port = 25577
+map = "Velocity Network"
+show-plugins = false
+```
+
+**Установка Velocity:**
+
+```bash
+#!/bin/bash
+# install-velocity.sh
+
+VELOCITY_VERSION="3.2.0-SNAPSHOT"
+VELOCITY_DIR="/opt/minecraft/velocity"
+
+mkdir -p "$VELOCITY_DIR"
+cd "$VELOCITY_DIR"
+
+# Скачать Velocity
+wget -O velocity.jar "https://api.papermc.io/v2/projects/velocity/versions/${VELOCITY_VERSION}/builds/latest/downloads/velocity-${VELOCITY_VERSION}-latest.jar"
+
+# Создать скрипт запуска
+cat > start.sh <<EOF
+#!/bin/bash
+java -Xms512M -Xmx512M -XX:+UseG1GC -jar velocity.jar
+EOF
+
+chmod +x start.sh
+```
+
+### Настройка многосерверной сети
+
+**Сетевая архитектура:**
+
+```
+                    Интернет
+                       ↓
+                Балансировщик нагрузки
+                (Опционально)
+                       ↓
+                  Прокси Velocity
+                  (Порт 25565)
+                       ↓
+        ┌──────────────┼──────────────┐
+        ↓              ↓              ↓
+   Лобби-сервер   Игровой сервер 1    Игровой сервер 2
+   (4GB RAM)      (8GB RAM)        (8GB RAM)
+```
+
+**Выделение серверов:**
+
+- **Лобби**: 4GB RAM, 2 ядра CPU (лёгкий, много игроков)
+- **Игровые серверы**: 8GB RAM, 4 ядра CPU каждый (ресурсоёмкие)
+- **Прокси Velocity**: 1GB RAM, 1 ядро CPU (низкое использование ресурсов)
+
+## Безопасность и защита
+
+### Защита от DDoS
+
+Серверы Minecraft часто становятся целями DDoS-атак. Реализуйте защиту:
+
+```bash
+# Установить fail2ban
+apt install -y fail2ban
+
+# Настроить fail2ban для Minecraft
+cat > /etc/fail2ban/jail.local <<EOF
+[minecraft]
+enabled = true
+port = 25565
+filter = minecraft
+logpath = /opt/minecraft/server/logs/latest.log
+maxretry = 5
+bantime = 3600
+EOF
+
+cat > /etc/fail2ban/filter.d/minecraft.conf <<EOF
+[Definition]
+failregex = ^.*\[.*\]: <.*> lost connection: Disconnected
+            ^.*\[.*\]: <.*> lost connection: Timed out
+ignoreregex =
+EOF
+
+systemctl restart fail2ban
+```
+
+### Усиление файрвола
+
+```bash
+# Разрешить только необходимые порты
+ufw default deny incoming
+ufw default allow outgoing
+ufw allow ssh
+ufw allow 25565/tcp
+ufw enable
+
+# Ограничить скорость соединений
+iptables -A INPUT -p tcp --dport 25565 -m connlimit --connlimit-above 10 -j REJECT
+```
+
+### Безопасность плагинов
+
+**Рекомендуемые плагины безопасности:**
+
+- **AuthMe**: Аутентификация по паролю
+- **AntiVPN**: Блокировка VPN-соединений
+- **AdvancedBan**: Управление банами
+- **CoreProtect**: Логирование и откат
+
+## SEO-оптимизация для хостинга Minecraft
+
+### Целевые ключевые слова
+
+**Основные ключевые слова:**
+- хостинг minecraft
+- minecraft vds
+- хостинг серверов minecraft
+- дешёвый хостинг minecraft
+- minecraft server vps
+
+**Длинные ключевые слова:**
+- лучший хостинг minecraft 2025
+- хостинг серверов minecraft с модами
+- хостинг minecraft с плагинами
+- minecraft vps хостинг европа
+
+### Стратегия контента
+
+Создавайте SEO-оптимизированный контент:
+- Руководства по настройке сервера
+- Учебники по установке плагинов
+- Руководства по оптимизации производительности
+- Руководства по настройке многосерверной сети
+
+## FAQ
+
+### Каковы минимальные требования к серверу для 50 игроков?
+
+**Минимальные требования:**
+- **RAM**: 6-8GB
+- **CPU**: 4 ядра (2.5+ GHz)
+- **Хранилище**: 50GB SSD
+- **Пропускная способность**: 50 Mbps
+
+**Рекомендуемые требования:**
+- **RAM**: 8-12GB
+- **CPU**: 4-6 ядер (3.0+ GHz)
+- **Хранилище**: 100GB NVMe SSD
+- **Пропускная способность**: 100 Mbps
+
+### Как оптимизировать TPS на лагающем сервере?
+
+1. **Уменьшить дальность обзора**: Установить `view-distance=10` в server.properties
+2. **Ограничить сущности**: Использовать лимиты Paper на сущности на чанк
+3. **Оптимизировать JVM**: Использовать флаги Aikar для G1GC
+4. **Обновить плагины**: Удалить или обновить устаревшие плагины
+5. **Предгенерировать мир**: Использовать плагин WorldBorder для предгенерации чанков
+6. **Мониторить с timings**: Использовать `/timings report` для выявления узких мест
+
+### Следует ли использовать BungeeCord или Velocity?
+
+**Выберите Velocity, если:**
+- Вы используете Paper/Spigot 1.13+
+- Вы хотите максимальную производительность
+- Вам нужна современная поддержка плагинов
+
+**Выберите BungeeCord, если:**
+- Вы используете старые версии сервера
+- Вам нужны специфические плагины BungeeCord
+- Вы предпочитаете более устоявшуюся экосистему
+
+### Как предотвратить сбои сервера?
+
+1. **Правильные флаги JVM**: Использовать рекомендуемые настройки памяти и GC
+2. **Регулярные резервные копии**: Автоматические резервные копии каждые 6 часов
+3. **Обновления плагинов**: Держать плагины обновлёнными
+4. **Мониторинг логов**: Проверять на ошибки и предупреждения
+5. **Лимиты ресурсов**: Установить правильные лимиты CPU и памяти
+6. **Автоперезапуск**: Использовать systemd или screen с скриптом автоперезапуска
+
+### Могу ли я хостить несколько серверов Minecraft на одном VPS?
+
+Да, но тщательно распределяйте ресурсы:
+
+- **2 сервера (по 50 игроков каждый)**: 12GB RAM, 6 ядер CPU
+- **3 сервера (по 25 игроков каждый)**: 12GB RAM, 6 ядер CPU
+- **4+ сервера**: Рассмотрите выделенные серверы или несколько экземпляров VPS
+
+Используйте Velocity/BungeeCord для соединения серверов и балансировки нагрузки.
+
+### Какое серверное ПО лучше всего для производительности?
+
+**Paper** рекомендуется для большинства случаев использования:
+- Лучшая производительность (улучшение на 50-80% по сравнению с Vanilla)
+- Активная разработка
+- Большая экосистема плагинов
+- Простая конфигурация
+
+**Purpur** предлагает ещё лучшую производительность, но с большей сложностью конфигурации.
+
+## Заключение
+
+Хостинг серверов Minecraft требует понимания производительности Java, оптимизации серверного ПО и стратегий масштабирования. Серверы Paper/Purpur с оптимизированными настройками JVM могут обрабатывать 100+ игроков на одном VPS, в то время как прокси Velocity позволяет создавать многосерверные сети для тысяч игроков.
+
+Ключевые выводы:
+- **Настройка Java** критична: Используйте G1GC с флагами Aikar
+- **Paper/Purpur** предлагают улучшение производительности на 50-100% по сравнению с Vanilla
+- **Дальность обзора** имеет наибольшее влияние на производительность
+- **Velocity** превосходит BungeeCord для современных развёртываний
+- **Мониторинг** TPS и использования памяти предотвращает сбои
+
+Для продакшн-хостинга Minecraft абузоустойчивая инфраструктура от Dior Host гарантирует, что серверы остаются онлайн даже при высоких нагрузках игроков и DDoS-атаках. Наш [хостинг VPS](/ru/bulletproof-vds) и [хостинг VDS](/ru/bulletproof-vds) предоставляют CPU, RAM и пропускную способность, необходимые для высокопроизводительных серверов Minecraft.
+
+**Готовы хостить свой сервер Minecraft?**
+
+Dior Host предлагает высокопроизводительный [хостинг VDS](/ru/bulletproof-vds), оптимизированный для серверов Minecraft. Наша инфраструктура предоставляет CPU, RAM и пропускную способность, необходимые для серверов с 100+ игроками со стабильной производительностью 20 TPS.
+
+[Изучить планы VDS для хостинга Minecraft](/ru/bulletproof-vds) → | [Просмотреть варианты VPS](/ru/bulletproof-vds) → | [Поддержка хостинга Minecraft](mailto:support@dior.host) →

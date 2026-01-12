@@ -44,34 +44,39 @@ export function Analytics() {
       )}
 
       {/* Yandex Metrika */}
-      <Script id="yandex-metrika" strategy="afterInteractive">
-        {`
-          (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-          })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105570768', 'ym');
-          
-          ym(105570768, 'init', {
-            ssr:true,
-            webvisor:true,
-            clickmap:true,
-            ecommerce:"dataLayer",
-            accurateTrackBounce:true,
-            trackLinks:true
-          });
-        `}
-      </Script>
-      <noscript>
-        <div>
-          <img
-            src="https://mc.yandex.ru/watch/105570768"
-            style={{ position: "absolute", left: "-9999px" }}
-            alt=""
-          />
-        </div>
-      </noscript>
+      {yandexId && (
+        <>
+          <Script id="yandex-metrika" strategy="afterInteractive">
+            {`
+              (function(m,e,t,r,i,k,a){
+                m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+                m[i].l=1*new Date();
+                for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+                k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+              })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=${yandexId}', 'ym');
+              
+              ym(${yandexId}, 'init', {
+                ssr:true,
+                webvisor:true,
+                clickmap:true,
+                ecommerce:"dataLayer",
+                accurateTrackBounce:true,
+                trackLinks:true
+              });
+            `}
+          </Script>
+          <noscript>
+            <div>
+              <img
+                src={`https://mc.yandex.ru/watch/${yandexId}`}
+                style={{ position: "absolute", left: "-9999px" }}
+                alt="Yandex Metrika tracking pixel"
+                aria-hidden="true"
+              />
+            </div>
+          </noscript>
+        </>
+      )}
 
       {/* Bing Webmaster Tools - Meta tag will be added via metadata in layout */}
       {/* Script verification is handled via meta tag */}

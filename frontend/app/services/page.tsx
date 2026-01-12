@@ -57,7 +57,7 @@ const services = [
     title: "Virtual servers (VDS)",
     description:
       'Regular servers for "white" or "gray" operation. Complaints are not ignored! The ability to install any OS',
-    href: "/services/vds",
+    href: "/virtual-services",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +114,7 @@ const services = [
     title: "Dedicated Servers",
     description:
       'Dedicated servers for "white" or "gray" operation. Complaints are not ignored! The ability to install any OS.',
-    href: "/services/dedicated",
+    href: "/dedicated-servers",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"

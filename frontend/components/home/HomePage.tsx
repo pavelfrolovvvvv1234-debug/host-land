@@ -120,7 +120,7 @@ export function HomePage({ locale, content = homeContent[locale] }: HomePageProp
 
       <div style={{ display: ready ? "block" : "none" }}>
         <div className="relative rounded-lg p-10 py-20 shadow-[0px_21px_295px_89px_rgba(10,_77,_146,_0.18)] overflow-hidden bg-black">
-          <Image src={back2} alt="" fill priority className="object-cover opacity-80 pointer-events-none" />
+          <Image src={back2} alt="Background decorative pattern" fill priority className="object-cover opacity-80 pointer-events-none" />
           <DigitalGrain />
           <HeroGlowSweep />
 

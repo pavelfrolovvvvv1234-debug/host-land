@@ -15,8 +15,8 @@ const urlMappings: Record<string, string> = {
   "/bulletproof/web-hosting": "/bulletproof-web-hosting",
   
   // Regular services (from /services/)
-  "/services/vds": "/bulletproof-vds",
-  "/services/dedicated": "/bulletproof-dedicated",
+  "/services/vds": "/virtual-services",
+  "/services/dedicated": "/dedicated-servers",
   "/services/vdsturbo": "/bulletproof-vds-turbo",
   "/services/iphm": "/bulletproof-iphm",
   "/services/cdn": "/bulletproof-cdn",
@@ -29,8 +29,8 @@ const urlMappings: Record<string, string> = {
   "/ru/bulletproof/dedicated": "/ru/bulletproof-dedicated",
   "/ru/bulletproof/domains": "/ru/bulletproof-domains",
   "/ru/bulletproof/web-hosting": "/ru/bulletproof-web-hosting",
-  "/ru/services/vds": "/ru/bulletproof-vds",
-  "/ru/services/dedicated": "/ru/bulletproof-dedicated",
+  "/ru/services/vds": "/ru/virtual-services",
+  "/ru/services/dedicated": "/ru/dedicated-servers",
   "/ru/services/vdsturbo": "/ru/bulletproof-vds-turbo",
   "/ru/services/iphm": "/ru/bulletproof-iphm",
   "/ru/services/cdn": "/ru/bulletproof-cdn",

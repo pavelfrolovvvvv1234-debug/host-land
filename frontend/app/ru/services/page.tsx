@@ -9,7 +9,8 @@ const services = [
     title: "Абузоустойчивые VDS",
     description:
       "На этих серверах вы можете сохранить все. Мы игнорируем любые жалобы. Возможность установки любой ОС. Анонимность 100%",
-    href: "/ru/bulletproof/vds",
+    href: "/ru/bulletproof-vds",
+    comingSoon: false,
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +35,8 @@ const services = [
     title: "Абузоустойчивые домены",
     description:
       "При желании возможен перенос. Все домены от 80$",
-    href: "/ru/bulletproof/domains",
+    href: "/ru/bulletproof-domains",
+    comingSoon: false,
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +58,8 @@ const services = [
     title: "Виртуальные сервера (VDS)",
     description:
       'Обычные серверы для «белой» или «серой» эксплуатации. Жалобы не остаются без внимания! Возможность установки любой ОС',
-    href: "/ru/services/vds",
+    href: "/ru/virtual-services",
+    comingSoon: false,
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +83,8 @@ const services = [
     title: "Абузоустойчивые выделенные сервера",
     description:
       "Выделенные серверы со 100% гарантией анонимности. Никаких блокировок и жалоб. Возможность доставки на любую ОС.",
-    href: "/ru/bulletproof/dedicated",
+    href: "/ru/bulletproof-dedicated",
+    comingSoon: false,
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -113,7 +117,8 @@ const services = [
     title: "Выделенные сервера",
     description:
       'Выделенные серверы для «белой» или «серой» работы. Жалобы не остаются без внимания! Возможность установки любой ОС.',
-    href: "/ru/services/dedicated",
+    href: "/ru/dedicated-servers",
+    comingSoon: false,
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -146,7 +151,8 @@ const services = [
     title: "TurboVDS",
     description:
       "Серверы для парсинга, mass-check, SEO, анализа безопасности и других задач с высокой сетевой активностью. Скорость до 10 Гбит/сек обеспечивает молниеносную работу без потерь в стабильности. Подходят для порт-сканирования, проверки доступности хостов, автоматизации и API-запросов. Лучше стандартных абузоустойчивых VDS за счёт высокой пропускной способности.",
-    href: "/ru/services/vdsturbo",
+    href: "/ru/bulletproof-vds-turbo",
+    comingSoon: false,
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -171,7 +177,8 @@ const services = [
     title: "Выделенные Серверы IPHM",
     description:
       "Сервера с IPHM предоставляют возможность скрывать настоящий IP-адрес пользователя, маскируя его под другой. Это может быть полезно для защиты приватности, обхода географических блокировок или проведения тестирования безопасности сети. Канал до 10гб/сек",
-    href: "/ru/services/iphm",
+    href: "/ru/bulletproof-iphm",
+    comingSoon: false,
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -194,7 +201,8 @@ const services = [
     title: "CDN",
     description:
       "Сеть доставки контента для быстрой загрузки сайтов по всему миру. Ускорьте работу вашего проекта с помощью глобальных edge-серверов и умного кеширования.",
-    href: "/ru/services/cdn",
+    href: "/ru/bulletproof-cdn",
+    comingSoon: true,
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -223,7 +231,8 @@ const services = [
     title: "Хостинг Minecraft",
     description:
       "Высокопроизводительный хостинг для серверов Minecraft с оптимизированной Java-средой, поддержкой модов и автоматическими бэкапами. Идеально для выживания, креатива и кастомных режимов игры.",
-    href: "/ru/services/minecraft",
+    href: "/ru/bulletproof-minecraft",
+    comingSoon: true,
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -246,7 +255,8 @@ const services = [
     title: "Веб-хостинг",
     description:
       "Надёжный виртуальный хостинг с cPanel, установкой в один клик и гарантией аптайма 99.9%. Идеально подходит для сайтов, блогов и бизнес-приложений.",
-    href: "/ru/services/web-hosting",
+    href: "/ru/bulletproof-web-hosting",
+    comingSoon: true,
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -269,7 +279,8 @@ const services = [
     title: "VPN",
     description:
       "Виртуальная частная сеть для безопасного и приватного доступа в интернет. Обходите географические блокировки, защищайте свои данные и серфите анонимно с нашей VPN-инфраструктурой.",
-    href: "/ru/services/vpn",
+    href: "/ru/bulletproof-vpn",
+    comingSoon: true,
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -349,9 +360,18 @@ export default function ServicesPageRu() {
                       <div className="rounded-lg p-2 bg-primary/10 border border-primary/20 text-primary group-hover:border-primary/40 group-hover:bg-primary/20 transition-all">
                         {service.icon}
                       </div>
-                      <h2 className="text-lg font-semibold text-white group-hover:text-primary transition-colors">
-                        {service.title}
-                      </h2>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <h2 className="text-lg font-semibold text-white group-hover:text-primary transition-colors">
+                            {service.title}
+                          </h2>
+                          {service.comingSoon && (
+                            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-primary/20 text-primary border border-primary/30">
+                              Скоро
+                            </span>
+                          )}
+                        </div>
+                      </div>
                     </div>
                     <p className="text-sm text-white/60 leading-relaxed line-clamp-4">
                       {service.description}

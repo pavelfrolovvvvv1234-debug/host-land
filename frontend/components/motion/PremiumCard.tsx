@@ -1,7 +1,9 @@
 "use client";
 
+"use client";
+
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { ReactNode, useRef, useState } from "react";
+import { ReactNode, useRef, useState, useCallback } from "react";
 import { premiumCardHover } from "../../lib/motion";
 
 interface PremiumCardProps {
@@ -22,7 +24,7 @@ export function PremiumCard({ children, className = "", glowColor = "rgba(66, 10
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["2deg", "-2deg"]);
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-2deg", "2deg"]);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
 
     const rect = ref.current.getBoundingClientRect();
@@ -36,12 +38,12 @@ export function PremiumCard({ children, className = "", glowColor = "rgba(66, 10
     x.set(xPct);
     y.set(yPct);
     setMousePosition({ x: (mouseX / width) * 100, y: (mouseY / height) * 100 });
-  };
+  }, [x, y]);
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     x.set(0);
     y.set(0);
-  };
+  }, [x, y]);
 
   return (
     <motion.div

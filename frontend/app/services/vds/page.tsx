@@ -245,7 +245,7 @@ export default function VirtualServersPage() {
                 </p>
                 <p className="text-gray-300">
                   Need bulletproof hosting? Check out our{" "}
-                  <a href="/bulletproof/vds" className="text-purple-400 hover:text-purple-300 underline">
+                  <a href="/bulletproof-vds" className="text-purple-400 hover:text-purple-300 underline">
                     Bulletproof VDS
                   </a>{" "}
                   with DMCA-ignored policies.
@@ -372,7 +372,7 @@ export default function VirtualServersPage() {
 
               <div className="mt-8 text-center">
                 <a
-                  href="/bulletproof/vds"
+                  href="/bulletproof-vds"
                   className="inline-block px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold rounded-xl transition-all"
                 >
                   View Bulletproof VDS Plans →
@@ -465,7 +465,7 @@ export default function VirtualServersPage() {
                 Contact on Telegram
               </a>
               <a
-                href="/bulletproof/vds"
+                href="/bulletproof-vds"
                 className="px-8 py-4 bg-purple-600 hover:bg-purple-500 text-white font-semibold rounded-xl transition-colors"
               >
                 View Bulletproof VDS

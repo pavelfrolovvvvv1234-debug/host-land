@@ -46,8 +46,7 @@ export function Header() {
       const myDomain = `my.${cleanHostname}`;
       const url = `https://${myDomain}/billmgr?func=logon`;
       
-      // Отладка
-      console.log("Login URL:", url, "Hostname:", hostname, "Clean hostname:", cleanHostname);
+      // Set login URL (debug logging removed for production)
       setLoginUrl(url);
     }
   }, []);

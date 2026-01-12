@@ -15,8 +15,8 @@ export const urlMapping: Record<string, string> = {
   "/bulletproof/web-hosting": "/bulletproof-web-hosting",
   
   // Regular services (from /services/)
-  "/services/vds": "/bulletproof-vds", // Regular VDS -> flat URL (content will indicate it's regular)
-  "/services/dedicated": "/bulletproof-dedicated", // Regular dedicated -> flat URL
+  "/services/vds": "/virtual-services", // Regular VDS -> new URL
+  "/services/dedicated": "/dedicated-servers", // Regular dedicated -> new URL
   "/services/vdsturbo": "/bulletproof-vds-turbo",
   "/services/iphm": "/bulletproof-iphm",
   "/services/cdn": "/bulletproof-cdn",
@@ -29,8 +29,8 @@ export const urlMapping: Record<string, string> = {
   "/ru/bulletproof/dedicated": "/ru/bulletproof-dedicated",
   "/ru/bulletproof/domains": "/ru/bulletproof-domains",
   "/ru/bulletproof/web-hosting": "/ru/bulletproof-web-hosting",
-  "/ru/services/vds": "/ru/bulletproof-vds",
-  "/ru/services/dedicated": "/ru/bulletproof-dedicated",
+  "/ru/services/vds": "/ru/virtual-services",
+  "/ru/services/dedicated": "/ru/dedicated-servers",
   "/ru/services/vdsturbo": "/ru/bulletproof-vds-turbo",
   "/ru/services/iphm": "/ru/bulletproof-iphm",
   "/ru/services/cdn": "/ru/bulletproof-cdn",

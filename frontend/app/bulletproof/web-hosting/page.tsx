@@ -204,21 +204,21 @@ export default function BulletproofWebHostingPage() {
           Pair your web stack with{" "}
           <a
             className="text-blue-300 hover:text-white"
-            href="/bulletproof/domains"
+            href="/bulletproof-domains"
           >
             bulletproof domains
           </a>
           ,{" "}
           <a
             className="text-blue-300 hover:text-white"
-            href="/bulletproof/vds"
+            href="/bulletproof-vds"
           >
             VDS
           </a>{" "}
           and{" "}
           <a
             className="text-blue-300 hover:text-white"
-            href="/bulletproof/dedicated"
+            href="/bulletproof-dedicated"
           >
             dedicated servers
           </a>{" "}

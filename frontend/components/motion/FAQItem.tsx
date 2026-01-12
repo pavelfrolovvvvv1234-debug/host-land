@@ -27,14 +27,21 @@ export function FAQItem({ question, answer, index }: FAQItemProps) {
       }
     };
 
+    // Debounce для resize
+    let resizeTimer: NodeJS.Timeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(updateHeight, 150);
+    };
+
     // Измеряем сразу и с задержками для надежности
     updateHeight();
     const timer1 = setTimeout(updateHeight, 10);
     const timer2 = setTimeout(updateHeight, 50);
     const timer3 = setTimeout(updateHeight, 100);
 
-    // Измеряем при изменении размера окна
-    window.addEventListener("resize", updateHeight);
+    // Измеряем при изменении размера окна (debounced)
+    window.addEventListener("resize", handleResize);
     
     // Измеряем при изменении isOpen (на случай изменения контента)
     if (isOpen) {
@@ -44,7 +51,8 @@ export function FAQItem({ question, answer, index }: FAQItemProps) {
         clearTimeout(timer2);
         clearTimeout(timer3);
         clearTimeout(timer4);
-        window.removeEventListener("resize", updateHeight);
+        clearTimeout(resizeTimer);
+        window.removeEventListener("resize", handleResize);
       };
     }
 
@@ -52,7 +60,8 @@ export function FAQItem({ question, answer, index }: FAQItemProps) {
       clearTimeout(timer1);
       clearTimeout(timer2);
       clearTimeout(timer3);
-      window.removeEventListener("resize", updateHeight);
+      clearTimeout(resizeTimer);
+      window.removeEventListener("resize", handleResize);
     };
   }, [answer, isOpen]);
 
