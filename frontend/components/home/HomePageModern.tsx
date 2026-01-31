@@ -338,7 +338,7 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
               {content.domainZones.map((zone, index) => (
                 <motion.a
                   key={zone.title}
-                  href="https://my.dior.host/billmgr?startform=domain"
+                  href="https://my.dior.host"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={ready ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.3, delay: index * 0.05 }}

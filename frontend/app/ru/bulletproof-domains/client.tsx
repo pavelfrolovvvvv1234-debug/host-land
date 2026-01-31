@@ -114,22 +114,22 @@ const domainsPrices = {
 };
 
 const zones: Zone[] = [
-  { title: ".com", price: 80, url: "https://my.diorhost.com/billmgr?startform=domain" },
-  { title: ".net", price: 80, url: "https://my.diorhost.com/billmgr?startform=domain" },
-  { title: ".org", price: 80, url: "https://my.diorhost.com/billmgr?startform=domain" },
-  { title: ".info", price: 80, url: "https://my.diorhost.com/billmgr?startform=domain" },
-  { title: ".biz", price: 80, url: "https://my.diorhost.com/billmgr?startform=domain" },
-  { title: ".club", price: 80, url: "https://my.diorhost.com/billmgr?startform=domain" },
-  { title: ".pro", price: 80, url: "https://my.diorhost.com/billmgr?startform=domain" },
-  { title: ".uk", price: 80, url: "https://my.diorhost.com/billmgr?startform=domain" },
-  { title: ".guru", price: 80, url: "https://my.diorhost.com/billmgr?startform=domain" },
-  { title: ".ca", price: 80, url: "https://my.diorhost.com/billmgr?startform=domain" },
-  { title: ".at", price: 80, url: "https://my.diorhost.com/billmgr?startform=domain" },
-  { title: ".io", price: 99, url: "https://my.diorhost.com/billmgr?startform=domain" },
-  { title: ".cc", price: 80, url: "https://my.diorhost.com/billmgr?startform=domain" },
-  { title: ".us", price: 80, url: "https://my.diorhost.com/billmgr?startform=domain" },
-  { title: ".link", price: 80, url: "https://my.diorhost.com/billmgr?startform=domain" },
-  { title: ".bz", price: 80, url: "https://my.diorhost.com/billmgr?startform=domain" }
+  { title: ".com", price: 80, url: "https://my.dior.host" },
+  { title: ".net", price: 80, url: "https://my.dior.host" },
+  { title: ".org", price: 80, url: "https://my.dior.host" },
+  { title: ".info", price: 80, url: "https://my.dior.host" },
+  { title: ".biz", price: 80, url: "https://my.dior.host" },
+  { title: ".club", price: 80, url: "https://my.dior.host" },
+  { title: ".pro", price: 80, url: "https://my.dior.host" },
+  { title: ".uk", price: 80, url: "https://my.dior.host" },
+  { title: ".guru", price: 80, url: "https://my.dior.host" },
+  { title: ".ca", price: 80, url: "https://my.dior.host" },
+  { title: ".at", price: 80, url: "https://my.dior.host" },
+  { title: ".io", price: 99, url: "https://my.dior.host" },
+  { title: ".cc", price: 80, url: "https://my.dior.host" },
+  { title: ".us", price: 80, url: "https://my.dior.host" },
+  { title: ".link", price: 80, url: "https://my.dior.host" },
+  { title: ".bz", price: 80, url: "https://my.dior.host" }
 ];
 
 const faqs = [

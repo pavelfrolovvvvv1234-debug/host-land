@@ -38,7 +38,7 @@ const tarifs: Tarif[] = [
     ],
     price: 1935,
     url:
-      "https://my.diorhost.com?func=register&redirect=startform%3Dquickorder%26redirect%3Dbasket%26pricelist%3D286%26period%3D1%26project%3D2"
+      "https://my.dior.host?func=register&redirect=startform%3Dquickorder%26redirect%3Dbasket%26pricelist%3D286%26period%3D1%26project%3D2"
   },
   {
     title: "2X E5 2673 V3",
@@ -53,7 +53,7 @@ const tarifs: Tarif[] = [
     ],
     price: 2275,
     url:
-      "https://my.diorhost.com?func=register&redirect=startform%3Dquickorder%26redirect%3Dbasket%26pricelist%3D288%26period%3D1%26project%3D2"
+      "https://my.dior.host?func=register&redirect=startform%3Dquickorder%26redirect%3Dbasket%26pricelist%3D288%26period%3D1%26project%3D2"
   },
   {
     title: "2X E5 2673 V3",
@@ -68,7 +68,7 @@ const tarifs: Tarif[] = [
     ],
     price: 3189,
     url:
-      "https://my.diorhost.com?func=register&redirect=startform%3Dquickorder%26redirect%3Dbasket%26pricelist%3D290%26period%3D1%26project%3D2"
+      "https://my.dior.host?func=register&redirect=startform%3Dquickorder%26redirect%3Dbasket%26pricelist%3D290%26period%3D1%26project%3D2"
   },
   {
     title: "2X E5 2673 V3",
@@ -83,7 +83,7 @@ const tarifs: Tarif[] = [
     ],
     price: 4785,
     url:
-      "https://my.diorhost.com?func=register&redirect=startform%3Dquickorder%26redirect%3Dbasket%26pricelist%3D292%26period%3D1%26project%3D2"
+      "https://my.dior.host?func=register&redirect=startform%3Dquickorder%26redirect%3Dbasket%26pricelist%3D292%26period%3D1%26project%3D2"
   },
   {
     title: "2X E5 2673 V3",
@@ -98,7 +98,7 @@ const tarifs: Tarif[] = [
     ],
     price: 7745,
     url:
-      "https://my.diorhost.com?func=register&redirect=startform%3Dquickorder%26redirect%3Dbasket%26pricelist%3D296%26period%3D1%26project%3D2"
+      "https://my.dior.host?func=register&redirect=startform%3Dquickorder%26redirect%3Dbasket%26pricelist%3D296%26period%3D1%26project%3D2"
   }
 ];
 

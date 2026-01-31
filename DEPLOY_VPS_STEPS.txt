@@ -15,7 +15,7 @@ npm install
 cat > .env.production << 'EOF'
 NODE_ENV=production
 NEXT_TELEMETRY_DISABLED=1
-NEXT_PUBLIC_FRONTEND_URL=https://diorhost.com
+NEXT_PUBLIC_FRONTEND_URL=https://dior.host
 EOF
 
 # 5. Соберите проект

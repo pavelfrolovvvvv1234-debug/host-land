@@ -112,7 +112,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 189,
-    url: "https://my.diorhost.com/billmgr?datacenter=1&fperiod=null&period_240=1&period_242=1&period_244=1&period_246=1&period_248=1&period_250=1&period_252=1&period_254=1&period_256=1&pricelist=240&startform=v2.dedic.order.param"
+    url: "https://my.dior.host"
   },
   {
     title: "Intel Xeon E3-1240v2",
@@ -124,7 +124,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 215,
-    url: "https://my.diorhost.com/billmgr?datacenter=1&fperiod=null&period_240=1&period_242=1&period_244=1&period_246=1&period_248=1&period_250=1&period_252=1&period_254=1&period_256=1&pricelist=242&startform=v2.dedic.order.param"
+    url: "https://my.dior.host"
   },
   {
     title: "2x Intel Xeon X5670",
@@ -136,7 +136,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 235,
-    url: "https://my.diorhost.com/billmgr?datacenter=1&fperiod=null&period_240=1&period_242=1&period_244=1&period_246=1&period_248=1&period_250=1&period_252=1&period_254=1&period_256=1&pricelist=244&startform=v2.dedic.order.param"
+    url: "https://my.dior.host"
   },
   {
     title: "2x Intel Xeon X5670",
@@ -148,7 +148,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 265,
-    url: "https://my.diorhost.com/billmgr?datacenter=1&fperiod=null&period_240=1&period_242=1&period_244=1&period_246=1&period_248=1&period_250=1&period_252=1&period_254=1&period_256=1&pricelist=246&startform=v2.dedic.order.param"
+    url: "https://my.dior.host"
   },
   {
     title: "2x Intel Xeon 2699v4",
@@ -160,7 +160,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 435,
-    url: "https://my.diorhost.com/billmgr?datacenter=1&fperiod=null&period_240=1&period_242=1&period_244=1&period_246=1&period_248=1&period_250=1&period_252=1&period_254=1&period_256=1&pricelist=248&startform=v2.dedic.order.param"
+    url: "https://my.dior.host"
   },
   {
     title: "2x Intel Xeon 2699v4",
@@ -172,7 +172,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 520,
-    url: "https://my.diorhost.com/billmgr?datacenter=1&fperiod=null&period_240=1&period_242=1&period_244=1&period_246=1&period_248=1&period_250=1&period_252=1&period_254=1&period_256=1&pricelist=250&startform=v2.dedic.order.param"
+    url: "https://my.dior.host"
   },
   {
     title: "2x Intel Xeon 2699v4",
@@ -184,7 +184,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 620,
-    url: "https://my.diorhost.com/billmgr?datacenter=1&fperiod=null&period_240=1&period_242=1&period_244=1&period_246=1&period_248=1&period_250=1&period_252=1&period_254=1&period_256=1&pricelist=252&startform=v2.dedic.order.param"
+    url: "https://my.dior.host"
   },
   {
     title: "2x Intel Gold 6138",
@@ -196,7 +196,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 345,
-    url: "https://my.diorhost.com/billmgr?datacenter=1&fperiod=null&period_240=1&period_242=1&period_244=1&period_246=1&period_248=1&period_250=1&period_252=1&period_254=1&period_256=1&pricelist=254&startform=v2.dedic.order.param"
+    url: "https://my.dior.host"
   },
   {
     title: "2x Intel Gold 6138",
@@ -208,7 +208,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 429,
-    url: "https://my.diorhost.com/billmgr?datacenter=1&fperiod=null&period_240=1&period_242=1&period_244=1&period_246=1&period_248=1&period_250=1&period_252=1&period_254=1&period_256=1&pricelist=256&startform=v2.dedic.order.param"
+    url: "https://my.dior.host"
   }
 ];
 

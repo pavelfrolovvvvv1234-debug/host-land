@@ -65,7 +65,7 @@ git push origin main
 5. **Настройте домен:**
    - После первого деплоя перейдите в **Custom domains**
    - Добавьте домены:
-     - `diorhost.com`
+     - `dior.host`
      - `diorhost.net`
      - `diors.host`
      - `d1or.host`
@@ -86,7 +86,7 @@ compatibility_date = "2024-01-01"
 
 [env.production]
 routes = [
-  { pattern = "diorhost.com/*", zone_name = "diorhost.com" },
+  { pattern = "dior.host/*", zone_name = "dior.host" },
   { pattern = "diorhost.net/*", zone_name = "diorhost.net" },
   { pattern = "diors.host/*", zone_name = "diors.host" },
   { pattern = "d1or.host/*", zone_name = "d1or.host" },
@@ -115,8 +115,8 @@ const nextConfig = {
   },
   
   env: {
-    API_BASE_URL: process.env.API_BASE_URL || process.env.NEXT_PUBLIC_API_URL || 'https://api.diorhost.com/api/v1',
-    FRONTEND_URL: process.env.FRONTEND_URL || process.env.NEXT_PUBLIC_FRONTEND_URL || 'https://diorhost.com',
+    API_BASE_URL: process.env.API_BASE_URL || process.env.NEXT_PUBLIC_API_URL || 'https://api.dior.host/api/v1',
+    FRONTEND_URL: process.env.FRONTEND_URL || process.env.NEXT_PUBLIC_FRONTEND_URL || 'https://dior.host',
   },
 };
 
@@ -130,7 +130,7 @@ export default nextConfig;
 1. **Добавьте домены в Cloudflare Pages:**
    - Перейдите в проект → **Custom domains**
    - Добавьте каждый домен:
-     - `diorhost.com`
+     - `dior.host`
      - `diorhost.net`
      - `diors.host`
      - `d1or.host`

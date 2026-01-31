@@ -75,12 +75,12 @@ npm run build  # Должно собраться без ошибок
 ```env
 NODE_ENV=production
 NEXT_TELEMETRY_DISABLED=1
-NEXT_PUBLIC_FRONTEND_URL=https://diorhost.com
+NEXT_PUBLIC_FRONTEND_URL=https://dior.host
 ```
 
 ### 3. Убедитесь, что домены настроены:
 
-- `diorhost.com`
+- `dior.host`
 - `diorhost.net`
 - `diors.host`
 - `d1or.host`

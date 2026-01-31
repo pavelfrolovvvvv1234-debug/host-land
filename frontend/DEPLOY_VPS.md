@@ -82,8 +82,8 @@ NODE_ENV=production
 NEXT_TELEMETRY_DISABLED=1
 
 # URLs (замените на ваши домены)
-NEXT_PUBLIC_FRONTEND_URL=https://diorhost.com
-NEXT_PUBLIC_API_URL=https://api.diorhost.com
+NEXT_PUBLIC_FRONTEND_URL=https://dior.host
+NEXT_PUBLIC_API_URL=https://api.dior.host
 
 # Analytics (опционально)
 NEXT_PUBLIC_GA_MEASUREMENT_ID=G-V906RRPH8Z
@@ -165,22 +165,22 @@ upstream nextjs {
     keepalive 64;
 }
 
-# HTTP -> HTTPS редирект для diorhost.com
+# HTTP -> HTTPS редирект для dior.host
 server {
     listen 80;
     listen [::]:80;
-    server_name diorhost.com www.diorhost.com;
+    server_name dior.host www.dior.host;
     return 301 https://$server_name$request_uri;
 }
 
-# HTTPS для diorhost.com
+# HTTPS для dior.host
 server {
     listen 443 ssl http2;
     listen [::]:443 ssl http2;
-    server_name diorhost.com www.diorhost.com;
+    server_name dior.host www.dior.host;
 
-    ssl_certificate /etc/letsencrypt/live/diorhost.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/diorhost.com/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/dior.host/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/dior.host/privkey.pem;
     ssl_protocols TLSv1.2 TLSv1.3;
     ssl_ciphers HIGH:!aNULL:!MD5;
 
@@ -221,7 +221,7 @@ systemctl reload nginx
 
 ```bash
 # Для каждого домена (или используйте wildcard)
-certbot --nginx -d diorhost.com -d www.diorhost.com
+certbot --nginx -d dior.host -d www.dior.host
 certbot --nginx -d diorhost.net -d www.diorhost.net
 certbot --nginx -d diors.host -d www.diors.host
 certbot --nginx -d d1or.host -d www.d1or.host

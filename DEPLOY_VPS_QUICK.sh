@@ -59,7 +59,7 @@ ssh $SERVER_USER@$SERVER_IP << 'ENDSSH'
         cat > .env.production << EOF
 NODE_ENV=production
 NEXT_TELEMETRY_DISABLED=1
-NEXT_PUBLIC_FRONTEND_URL=https://diorhost.com
+NEXT_PUBLIC_FRONTEND_URL=https://dior.host
 EOF
         echo "⚠️  Файл .env.production создан. Отредактируйте его при необходимости!"
     fi

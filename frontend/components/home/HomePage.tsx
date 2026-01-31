@@ -248,7 +248,7 @@ export function HomePage({ locale, content = homeContent[locale] }: HomePageProp
                       delay={index * 0.1}
                       className="select-none border-transparent hover:border-white inline-block p-2 border rounded domain-link"
                     >
-                      <a href="https://my.dior.host/billmgr?startform=domain" className="block">
+                      <a href="https://my.dior.host" className="block">
                         {zone.title} <span className="text-red-400">{zone.price} $</span>
                       </a>
                     </TLDCloud>

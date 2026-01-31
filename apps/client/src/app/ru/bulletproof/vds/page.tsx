@@ -114,7 +114,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 17.29,
-    url: "https://my.diorhost.com/billmgr?datacenter=1&pricelist=77&startform=v2.vds.order.param"
+    url: "https://my.dior.host"
   },
   {
     title: "Lite 2",
@@ -125,7 +125,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 32.29,
-    url: "https://my.diorhost.com/billmgr?datacenter=1&pricelist=83&startform=v2.vds.order.param"
+    url: "https://my.dior.host"
   },
   {
     title: "Lite 3",
@@ -136,7 +136,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 37.29,
-    url: "https://my.diorhost.com/billmgr?datacenter=1&pricelist=89&startform=v2.vds.order.param"
+    url: "https://my.dior.host"
   },
   {
     title: "Lite 4",
@@ -147,7 +147,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 57.29,
-    url: "https://my.diorhost.com/billmgr?datacenter=1&pricelist=95&startform=v2.vds.order.param"
+    url: "https://my.dior.host"
   },
   {
     title: "Elite 1",
@@ -158,7 +158,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 66.66,
-    url: "https://my.diorhost.com/billmgr?datacenter=1&pricelist=101&startform=v2.vds.order.param"
+    url: "https://my.dior.host"
   },
   {
     title: "Elite 2",
@@ -169,7 +169,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 76.29,
-    url: "https://my.diorhost.com/billmgr?datacenter=1&pricelist=107&startform=v2.vds.order.param"
+    url: "https://my.dior.host"
   },
   {
     title: "Elite 3",
@@ -180,7 +180,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 95.29,
-    url: "https://my.diorhost.com/billmgr?datacenter=1&pricelist=113&startform=v2.vds.order.param"
+    url: "https://my.dior.host"
   },
   {
     title: "Elite 4",
@@ -191,7 +191,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 115.29,
-    url: "https://my.diorhost.com/billmgr?datacenter=1&pricelist=119&startform=v2.vds.order.param"
+    url: "https://my.dior.host"
   },
   {
     title: "Mega 1",
@@ -202,7 +202,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 145.29,
-    url: "https://my.diorhost.com/billmgr?datacenter=1&pricelist=125&startform=v2.vds.order.param"
+    url: "https://my.dior.host"
   },
   {
     title: "Mega 2",
@@ -213,7 +213,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 175.29,
-    url: "https://my.diorhost.com/billmgr?datacenter=1&pricelist=131&startform=v2.vds.order.param"
+    url: "https://my.dior.host"
   },
   {
     title: "Mega 3",
@@ -224,7 +224,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 199.99,
-    url: "https://my.diorhost.com/billmgr?datacenter=1&pricelist=137&startform=v2.vds.order.param"
+    url: "https://my.dior.host"
   },
   {
     title: "Mega 4",
@@ -235,7 +235,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 265.29,
-    url: "https://my.diorhost.com/billmgr?datacenter=1&pricelist=143&startform=v2.vds.order.param"
+    url: "https://my.dior.host"
   }
 ];
 
