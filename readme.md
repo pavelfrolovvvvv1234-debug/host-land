@@ -191,3 +191,70 @@ networks:
 2.  CI: GitHub Actions собирает образы и пушит в GHCR (Container Registry).
 3.  CD: На сервере Watchtower или скрипт в cron, который делает docker compose pull && docker compose up -d.
 4.  Migrations: Запускаются отдельным контейнером или командой в entrypoint API перед стартом.
+
+---
+
+## Деплой на VPS (как грузить сайт)
+
+Рабочий проект — Next.js в папке **frontend**. На VPS нужны: Node.js 20+, git, nginx (опционально), PM2 для запуска.
+
+### Первый раз (установка на VPS)
+
+1. **Подключись к серверу:**
+   ```bash
+   ssh root@IP_СЕРВЕРА
+   ```
+   (или `ssh user@IP_СЕРВЕРА` — как у тебя настроено.)
+
+2. **Обнови систему и поставь Node.js 20:**
+   ```bash
+   apt update && apt upgrade -y
+   curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+   apt install -y nodejs git nginx certbot python3-certbot-nginx
+   npm install -g pm2
+   ```
+
+3. **Создай папку и склонируй репозиторий:**
+   ```bash
+   mkdir -p /var/www/dior-host
+   cd /var/www/dior-host
+   git clone https://github.com/pavelfrolovvvvv1234-debug/host-land.git .
+   ```
+   Если репо в подпапке — после клона перейди в неё, например: `cd frontend`.
+
+4. **Установи зависимости и собери проект:**
+   ```bash
+   cd frontend
+   npm install
+   cp env.production.example .env.production
+   nano .env.production   # при необходимости поправь домен и переменные
+   npm run build
+   ```
+
+5. **Запусти через PM2:**
+   ```bash
+   pm2 start npm --name "dior-host" -- start
+   pm2 save
+   pm2 startup
+   ```
+
+6. **Nginx:** настрой виртуальный хост на порт 3000 (или на сокет), SSL через certbot. Либо отдавай сайт напрямую с Node (без nginx) на 80/443.
+
+### Обновление (каждый раз после пуша в GitHub)
+
+На VPS выполни:
+
+```bash
+cd /var/www/dior-host
+git pull origin main
+
+cd frontend
+npm install
+npm run build
+
+pm2 restart dior-host
+```
+
+(Если проект изначально клонирован в `/var/www/dior-host/frontend`, то после `git pull` делай его из корня: `cd /var/www/dior-host && git pull`, затем `cd frontend` и дальше как выше.)
+
+Проверь в браузере: сайт открывается, кнопки ведут на https://my.dior.host.

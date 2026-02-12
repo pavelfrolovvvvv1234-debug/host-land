@@ -5,17 +5,17 @@ Write-Host "Начинаю оптимизацию проекта..." -Foreground
 
 $totalFreed = 0
 
-# 1. Очистка кеша Next.js
+# 1. Удаление всей папки .next (сборка и кеш Next.js) - ~244 MB
 Write-Host ""
-Write-Host "1. Очистка кеша Next.js..." -ForegroundColor Yellow
-if (Test-Path ".next/cache") {
-    $cacheSize = (Get-ChildItem -Path ".next/cache" -Recurse -ErrorAction SilentlyContinue | Measure-Object -Property Length -Sum).Sum
-    Remove-Item ".next/cache" -Recurse -Force -ErrorAction SilentlyContinue
-    $totalFreed += $cacheSize
-    $cacheSizeMB = [math]::Round($cacheSize/1MB, 2)
-    Write-Host "   [OK] Очищено: $cacheSizeMB MB" -ForegroundColor Green
+Write-Host "1. Очистка Next.js (.next)..." -ForegroundColor Yellow
+if (Test-Path ".next") {
+    $nextSize = (Get-ChildItem -Path ".next" -Recurse -ErrorAction SilentlyContinue | Measure-Object -Property Length -Sum).Sum
+    Remove-Item ".next" -Recurse -Force -ErrorAction SilentlyContinue
+    $totalFreed += $nextSize
+    $nextSizeMB = [math]::Round($nextSize/1MB, 2)
+    Write-Host "   [OK] Удалено .next: $nextSizeMB MB (пересоздастся при npm run build)" -ForegroundColor Green
 } else {
-    Write-Host "   [INFO] Кеш уже очищен" -ForegroundColor Gray
+    Write-Host "   [INFO] Папка .next уже удалена" -ForegroundColor Gray
 }
 
 # 2. Удаление архивных файлов
@@ -51,15 +51,18 @@ if ($tempFiles) {
     Write-Host "   [INFO] Временные файлы не найдены" -ForegroundColor Gray
 }
 
-# 4. Очистка старых build файлов
+# 4. Удаление дубликата docs (PDF в public/docs достаточно)
 Write-Host ""
-Write-Host "4. Очистка старых build файлов..." -ForegroundColor Yellow
-if (Test-Path ".next/standalone") {
-    $standaloneSize = (Get-ChildItem -Path ".next/standalone" -Recurse -ErrorAction SilentlyContinue | Measure-Object -Property Length -Sum).Sum
-    Remove-Item ".next/standalone" -Recurse -Force -ErrorAction SilentlyContinue
-    $totalFreed += $standaloneSize
-    $standaloneSizeMB = [math]::Round($standaloneSize/1MB, 2)
-    Write-Host "   [OK] Очищено standalone build: $standaloneSizeMB MB" -ForegroundColor Green
+Write-Host "4. Проверка дубликатов docs..." -ForegroundColor Yellow
+if (Test-Path "docs") {
+    $docsSize = (Get-ChildItem -Path "docs" -Recurse -File -ErrorAction SilentlyContinue | Measure-Object -Property Length -Sum).Sum
+    if ($docsSize -gt 0 -and (Test-Path "public/docs")) {
+        Remove-Item "docs" -Recurse -Force -ErrorAction SilentlyContinue
+        $totalFreed += $docsSize
+        Write-Host "   [OK] Удалён дубликат docs: $([math]::Round($docsSize/1KB,1)) KB" -ForegroundColor Green
+    }
+} else {
+    Write-Host "   [INFO] Дубликат docs не найден" -ForegroundColor Gray
 }
 
 # Итоги
