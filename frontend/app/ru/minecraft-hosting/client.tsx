@@ -1,12 +1,11 @@
 "use client";
 
 import { ServicePageTemplate } from "../../../components/services/ServicePageTemplate";
-import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
 
 const hero = {
   heading: "Хостинг Minecraft",
-  summary: "Высокопроизводительный хостинг для серверов Minecraft с оптимизированной Java-средой, поддержкой модов и автоматическими бэкапами. Идеально для выживания, креатива и кастомных режимов игры."
+  summary: "Высокопроизводительный хостинг для серверов Minecraft с оптимизированной Java-средой, поддержкой модов и автоматическими бэкапами. Идеально для выживания, креатива и кастомных режимов игры.",
+  comingSoon: true
 };
 
 const sections = [
@@ -77,7 +76,7 @@ const faqs = [
   }
 ];
 
-export default function BulletproofMinecraftPageClient() {
+export default function MinecraftHostingPageClientRu() {
   return (
     <ServicePageTemplate
       hero={hero}

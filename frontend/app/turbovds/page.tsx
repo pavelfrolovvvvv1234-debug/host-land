@@ -6,12 +6,12 @@ export const metadata: Metadata = {
   description: "TurboVDS servers for parsing, mass-checking, SEO, security analysis, and high-load network tasks. Up to 10 Gbps bandwidth with lightning-fast performance and stability.",
   keywords: "turbovds, turbo vds, high performance vds, network intensive servers, 10 gbps vds, parsing servers",
   alternates: {
-    canonical: "https://dior.host/bulletproof-vds-turbo",
+    canonical: "https://dior.host/turbovds",
   },
   openGraph: {
     title: "TurboVDS | High-Performance Servers",
     description: "TurboVDS servers with up to 10 Gbps bandwidth for network-intensive tasks.",
-    url: "https://dior.host/bulletproof-vds-turbo",
+    url: "https://dior.host/turbovds",
     type: "website",
   },
   twitter: {

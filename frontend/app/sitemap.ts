@@ -126,13 +126,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/bulletproof-vds-turbo`,
+      url: `${baseUrl}/turbovds`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/bulletproof-iphm`,
+      url: `${baseUrl}/dedicated-iphm`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
@@ -144,13 +144,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/bulletproof-minecraft`,
+      url: `${baseUrl}/minecraft-hosting`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/bulletproof-vpn`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/proxy`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
@@ -181,13 +187,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/ru/bulletproof-vds-turbo`,
+      url: `${baseUrl}/ru/turbovds`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/ru/bulletproof-iphm`,
+      url: `${baseUrl}/ru/dedicated-iphm`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
@@ -199,13 +205,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/ru/bulletproof-minecraft`,
+      url: `${baseUrl}/ru/minecraft-hosting`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/ru/bulletproof-vpn`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/ru/proxy`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,

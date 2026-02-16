@@ -22,225 +22,79 @@ type ToolCard = {
 
 const tools: ToolCard[] = [
   {
-    title: "Маркетплейс Tron Energy",
-        description:
-          "Покупка энергии и пропускной способности сети TRON для выполнения смарт-контрактов и обработки транзакций по конкурентным ценам.",
-        icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-          </svg>
-        ),
-        comingSoon: true
-      },
-      {
-        title: "Криптовалютный обменник в Telegram",
-        description:
-          "Автоматизированный сервис обмена криптовалют в Telegram с мгновенными свопами, конкурентными курсами и поддержкой основных цифровых активов.",
-        icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="2" y="6" width="20" height="12" rx="2" />
-            <path d="M12 2v4M12 18v4M6 12h.01M18 12h.01" />
-          </svg>
-        ),
-        comingSoon: true
+    title: "Аренда Энергии Трон",
+    description:
+      "Покупка энергии и пропускной способности сети TRON для выполнения смарт-контрактов и обработки транзакций по конкурентным ценам.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+      </svg>
+    ),
+    comingSoon: true
   },
   {
-    title: "AML Сканер соответствия",
-        description:
-          "Продвинутый инструмент верификации против отмывания денег для проверки соответствия транзакций, оценки рисков и регуляторного статуса в различных юрисдикциях.",
-        icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-            <path d="M9 12l2 2 4-4" />
-          </svg>
-        ),
-        comingSoon: true
-      },
-      {
-        title: "Валидатор банковских карт",
-        description:
-          "Сервис проверки банковских карт в реальном времени с BIN-поиском, определением типа карты и проверками валидности для безопасной обработки платежей.",
-        icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
-            <line x1="1" y1="10" x2="23" y2="10" />
-          </svg>
-        ),
-        comingSoon: true
+    title: "Агентство Веб-Разработки",
+    description:
+      "Полнофункциональные услуги веб-разработки, включая кастомные приложения, интеграцию API, фронтенд/бэкенд разработку и постоянное обслуживание для бизнеса любого размера.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+        <line x1="8" y1="21" x2="16" y2="21" />
+        <line x1="12" y1="17" x2="12" y2="21" />
+      </svg>
+    ),
+    comingSoon: true
   },
   {
     title: "Платформа OSINT",
-        description:
-          "Профессиональный инструмент сбора открытой разведывательной информации, аналогичный GB/Sherlock, для комплексного сбора данных, межплатформенного поиска и анализа цифрового следа.",
-        icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="11" cy="11" r="8" />
-            <path d="m21 21-4.35-4.35" />
-          </svg>
-        ),
-        comingSoon: true
+    description:
+      "Профессиональный инструмент сбора открытой разведывательной информации, аналогичный GB/Sherlock, для комплексного сбора данных, межплатформенного поиска и анализа цифрового следа.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="11" cy="11" r="8" />
+        <path d="m21 21-4.35-4.35" />
+      </svg>
+    ),
+    comingSoon: true
   },
   {
-    title: "Сервис верификации личности",
-        description:
-          "Комплексный сервис верификации личности для проверки SSN, DOB и водительских прав с перекрестной проверкой данных из нескольких источников и проверкой точности.",
-        icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-            <circle cx="9" cy="7" r="4" />
-            <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-          </svg>
-        ),
-        comingSoon: true
+    title: "Каталог Форумов",
+    description:
+      "Кураторский каталог активных форумов, сообществ и дискуссионных платформ с категоризированными ссылками, метриками активности и проверенной информацией о доступе.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+      </svg>
+    ),
+    comingSoon: true
   },
   {
-    title: "Мульти-источник разведки",
-        description:
-          "Универсальная платформа разведки, аналогичная zl0y.team, предоставляющая агрегированные данные из множества источников, поиск в даркнете и комплексные проверки биографии.",
-        icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-            <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-            <line x1="12" y1="22.08" x2="12" y2="12" />
-          </svg>
-        ),
-        comingSoon: true
+    title: "Сервис Сокращения Ссылок",
+    description:
+      "Профессиональный сервис сокращения ссылок с кастомными доменами, аналитикой, генерацией QR-кодов и продвинутым управлением редиректами для маркетинговых кампаний.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+      </svg>
+    ),
+    comingSoon: true
   },
   {
-    title: "Маркетплейс Telegram Stars",
-        description:
-          "Покупка Telegram Stars для премиум-функций, бустов каналов и внутриигровых покупок с мгновенной доставкой и безопасной обработкой платежей.",
-        icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-          </svg>
-        ),
-        comingSoon: true
+    title: "Резидентские И Статические Прокси",
+    description:
+      "Премиум-сервис прокси с резидентскими IP и статическими дата-центровыми прокси с высокой анонимностью, геотаргетингом и безлимитной пропускной способностью для различных применений.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+        <path d="M2 12h20" />
+      </svg>
+    ),
+    comingSoon: true
   },
   {
-    title: "Распознавание и скачивание музыки",
-        description:
-          "Бот для Telegram с распознаванием музыки на базе Shazam с мгновенным определением песен, получением метаданных и возможностью скачивания аудио высокого качества.",
-        icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M9 18V5l12-2v13" />
-            <circle cx="6" cy="16" r="3" />
-            <circle cx="18" cy="16" r="3" />
-          </svg>
-        ),
-        comingSoon: true
-  },
-  {
-    title: "Сервис цифровой отрисовки",
-        description:
-          "Профессиональный сервис цифрового искусства и отрисовки изображений с улучшением на базе ИИ, созданием кастомных дизайнов и выводом в высоком разрешении для различных применений.",
-        icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-            <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-            <line x1="12" y1="22.08" x2="12" y2="12" />
-          </svg>
-        ),
-        comingSoon: true
-  },
-  {
-    title: "Абузоустойчивая почта",
-        description:
-          "Безопасный почтовый сервис с фокусом на приватность с политикой игнорирования DMCA, продвинутой фильтрацией спама и гарантированной доставкой сообщений для высокорисковых коммуникаций.",
-        icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-            <polyline points="22,6 12,13 2,6" />
-          </svg>
-        ),
-        comingSoon: true
-  },
-  {
-    title: "SMS верификация",
-        description:
-          "Продвинутый сервис SMS-верификации и сообщений с поддержкой нескольких операторов, глобальным покрытием и мгновенной доставкой для верификации аккаунтов и уведомлений.",
-        icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-          </svg>
-        ),
-        comingSoon: true
-  },
-  {
-    title: "Резидентские и статические прокси",
-        description:
-          "Премиум-сервис прокси с резидентскими IP и статическими дата-центровыми прокси с высокой анонимностью, геотаргетингом и безлимитной пропускной способностью для различных применений.",
-        icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="10" />
-            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
-            <path d="M2 12h20" />
-          </svg>
-        ),
-        comingSoon: true
-  },
-  {
-    title: "Сервис сокращения ссылок",
-        description:
-          "Профессиональный сервис сокращения ссылок с кастомными доменами, аналитикой, генерацией QR-кодов и продвинутым управлением редиректами для маркетинговых кампаний.",
-        icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-          </svg>
-        ),
-        comingSoon: true
-  },
-  {
-    title: "Платформа виртуальных карт",
-        description:
-          "Сервис виртуальных карт в стиле FlexCard с мгновенной выдачей, поддержкой мультивалют, контролем расходов и интеграцией с основными платежными процессорами для безопасных онлайн-транзакций.",
-        icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
-            <line x1="1" y1="10" x2="23" y2="10" />
-          </svg>
-        ),
-        comingSoon: true
-  },
-  {
-    title: "Сервис разблокировки бирж",
-        description:
-          "Профессиональный сервис для разблокировки ограниченных аккаунтов криптовалютных бирж с документацией соответствия, помощью в KYC и поддержкой восстановления аккаунтов.",
-        icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-            <path d="M9 12l2 2 4-4" />
-          </svg>
-        ),
-        comingSoon: true
-  },
-  {
-    title: "Агентство веб-разработки",
-        description:
-          "Полнофункциональные услуги веб-разработки, включая кастомные приложения, интеграцию API, фронтенд/бэкенд разработку и постоянное обслуживание для бизнеса любого размера.",
-        icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-            <line x1="8" y1="21" x2="16" y2="21" />
-            <line x1="12" y1="17" x2="12" y2="21" />
-          </svg>
-        ),
-        comingSoon: true
-  },
-  {
-    title: "Каталог форумов",
-        description:
-          "Кураторский каталог активных форумов, сообществ и дискуссионных платформ с категоризированными ссылками, метриками активности и проверенной информацией о доступе.",
-        icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-          </svg>
-        ),
-        comingSoon: true
-  },
-  {
-    title: "Валидатор банковских карт",
+    title: "Чекер Карт",
     description:
       "Сервис проверки банковских карт в реальном времени с BIN-поиском, определением типа карты и проверками валидности для безопасной обработки платежей.",
     icon: (
@@ -252,13 +106,61 @@ const tools: ToolCard[] = [
     comingSoon: true
   },
   {
-    title: "Криптовалютный обменник в Telegram",
+    title: "Сервис верификации личности",
+    description:
+      "Комплексный сервис верификации личности для проверки SSN, DOB и водительских прав с перекрестной проверкой данных из нескольких источников и проверкой точности.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+      </svg>
+    ),
+    comingSoon: true
+  },
+  {
+    title: "СМС И Мейл Бомбер",
+    description:
+      "Мощный и функциональный смс и мейл бомбер в доступе 24/7",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <path d="M9 12l2 2 4-4" />
+      </svg>
+    ),
+    comingSoon: true
+  },
+  {
+    title: "Бот Криптообмена Dior",
     description:
       "Автоматизированный сервис обмена криптовалют в Telegram с мгновенными свопами, конкурентными курсами и поддержкой основных цифровых активов.",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="6" width="20" height="12" rx="2" />
         <path d="M12 2v4M12 18v4M6 12h.01M18 12h.01" />
+      </svg>
+    ),
+    comingSoon: true
+  },
+  {
+    title: "Виртуальные Карты Dior",
+    description:
+      "Сервис виртуальных карт в стиле FlexCard с мгновенной выдачей, поддержкой мультивалют, контролем расходов и интеграцией с основными платежными процессорами для безопасных онлайн-транзакций.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+        <line x1="1" y1="10" x2="23" y2="10" />
+      </svg>
+    ),
+    comingSoon: true
+  },
+  {
+    title: "Сервис SMS Верификации",
+    description:
+      "Продвинутый сервис SMS-верификации и сообщений с поддержкой нескольких операторов, глобальным покрытием и мгновенной доставкой для верификации аккаунтов и уведомлений.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
       </svg>
     ),
     comingSoon: true

@@ -4,7 +4,7 @@ url: /services/
 currentPage: Services
 layout: layouts/services.vto
 servicesList:
-  - title: Bulletproof VDS
+  - title: Bulletproof VPS/VDS
     description: >-
       On these servers, you can keep everything. We ignore any type of
       complaint. The ability to deliver any OS. Anonymity is 100%
@@ -30,7 +30,7 @@ servicesList:
       r="4"></circle><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4
       8"></path></svg>
     id: domains
-  - title: Virtual servers (VDS)
+  - title: VPS/VDS
     description: >-
       Regular servers for "white" or "gray" operation. Complaints are not
       ignored! The ability to install any OS

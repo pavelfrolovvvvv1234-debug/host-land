@@ -1,17 +1,17 @@
 import { Metadata } from "next";
-import BulletproofMinecraftPageClient from "./client";
+import MinecraftHostingPageClientRu from "./client";
 
 export const metadata: Metadata = {
   title: "Хостинг Minecraft | Высокопроизводительный хостинг серверов Minecraft | Dior Host",
   description: "Высокопроизводительный хостинг для серверов Minecraft с оптимизированной Java-средой, поддержкой модов и автоматическими бэкапами. Идеально для выживания, креатива и кастомных режимов игры.",
   keywords: "хостинг minecraft, абузоустойчивый хост, абузоустойчивые сервера, хостинг серверов minecraft, minecraft vps, сервер minecraft, хостинг модов minecraft, абузоустойчивый minecraft хостинг, абузоустойчивый хостинг minecraft серверов, абузоустойчивый minecraft сервер",
   alternates: {
-    canonical: "https://dior.host/ru/bulletproof-minecraft",
+    canonical: "https://dior.host/ru/minecraft-hosting",
   },
   openGraph: {
     title: "Хостинг Minecraft | Высокопроизводительный хостинг серверов",
     description: "Хостинг серверов Minecraft с оптимизированной Java-средой и поддержкой модов.",
-    url: "https://dior.host/ru/bulletproof-minecraft",
+    url: "https://dior.host/ru/minecraft-hosting",
     type: "website",
   },
   twitter: {
@@ -21,6 +21,6 @@ export const metadata: Metadata = {
   },
 };
 
-export default function BulletproofMinecraftPageRu() {
-  return <BulletproofMinecraftPageClient />;
+export default function MinecraftHostingPageRu() {
+  return <MinecraftHostingPageClientRu />;
 }

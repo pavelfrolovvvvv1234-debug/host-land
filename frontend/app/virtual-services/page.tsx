@@ -16,8 +16,8 @@ type Tarif = {
 };
 
 const hero = {
-  heading: "Virtual Servers (VDS)",
-  subheading: "Reliable VDS hosting for white and gray projects",
+  heading: "Virtual Servers (VPS/VDS)",
+  subheading: "Reliable VPS/VDS hosting for white and gray projects",
   summary:
     'Regular virtual servers for "white" or "gray" operation. Standard abuse policies apply - complaints are handled according to datacenter rules. Perfect for low-risk projects that don\'t expect abuse complaints or DMCA notices.'
 };

@@ -151,7 +151,7 @@ const services = [
     title: "TurboVDS",
     description:
       "Серверы для парсинга, mass-check, SEO, анализа безопасности и других задач с высокой сетевой активностью. Скорость до 10 Гбит/сек обеспечивает молниеносную работу без потерь в стабильности. Подходят для порт-сканирования, проверки доступности хостов, автоматизации и API-запросов. Лучше стандартных абузоустойчивых VDS за счёт высокой пропускной способности.",
-    href: "/ru/bulletproof-vds-turbo",
+    href: "/ru/turbovds",
     comingSoon: false,
     icon: (
       <svg
@@ -177,7 +177,7 @@ const services = [
     title: "Выделенные Серверы IPHM",
     description:
       "Сервера с IPHM предоставляют возможность скрывать настоящий IP-адрес пользователя, маскируя его под другой. Это может быть полезно для защиты приватности, обхода географических блокировок или проведения тестирования безопасности сети. Канал до 10гб/сек",
-    href: "/ru/bulletproof-iphm",
+    href: "/ru/dedicated-iphm",
     comingSoon: false,
     icon: (
       <svg
@@ -231,7 +231,7 @@ const services = [
     title: "Хостинг Minecraft",
     description:
       "Высокопроизводительный хостинг для серверов Minecraft с оптимизированной Java-средой, поддержкой модов и автоматическими бэкапами. Идеально для выживания, креатива и кастомных режимов игры.",
-    href: "/ru/bulletproof-minecraft",
+    href: "/ru/minecraft-hosting",
     comingSoon: true,
     icon: (
       <svg
@@ -295,6 +295,30 @@ const services = [
       >
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
         <path d="M9 12l2 2 4-4" />
+      </svg>
+    )
+  },
+  {
+    title: "Прокси",
+    description:
+      "Премиум-сервис прокси с резидентскими и статическими IP. Высокая анонимность, геотаргетинг и безлимитная пропускная способность для приватности, обхода ограничений и веб-автоматизации.",
+    href: "/ru/proxy",
+    comingSoon: true,
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+        <path d="M2 12h20" />
       </svg>
     )
   }

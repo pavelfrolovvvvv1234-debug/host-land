@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const services = [
   {
-    title: "Bulletproof VDS",
+    title: "Bulletproof VPS/VDS",
     description:
       "On these servers, you can keep everything. We ignore any type of complaint. The ability to deliver any OS. Anonymity is 100%",
     href: "/bulletproof-vds",
@@ -54,7 +54,7 @@ const services = [
     )
   },
   {
-    title: "Virtual servers (VDS)",
+    title: "VPS/VDS",
     description:
       'Regular servers for "white" or "gray" operation. Complaints are not ignored! The ability to install any OS',
     href: "/virtual-services",
@@ -147,7 +147,7 @@ const services = [
     title: "TurboVDS",
     description:
       "Servers for parsing, mass-checking, SEO, security analysis, and other high-load network tasks. With up to 10 Gbps bandwidth, they deliver lightning-fast performance and stability. Ideal for port scanning, host availability checks, automation, and API-driven operations. Outperforms standard bulletproof VDS thanks to superior network throughput.",
-    href: "/bulletproof-vds-turbo",
+    href: "/turbovds",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -172,7 +172,7 @@ const services = [
     title: "Dedicated Servers IPHM",
     description:
       "IPHM servers allow users to hide their real IP address by masking it with another. This can be useful for privacy protection, bypassing geographical restrictions, or conducting network security testing. Bandwidth up to 10 Gbps.",
-    href: "/bulletproof-iphm",
+    href: "/dedicated-iphm",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -225,7 +225,7 @@ const services = [
     title: "Minecraft Hosting",
     description:
       "High-performance Minecraft server hosting with optimized Java runtime, mod support, and automatic backups. Perfect for survival, creative, and custom game modes.",
-    href: "/bulletproof-minecraft",
+    href: "/minecraft-hosting",
     comingSoon: true,
     icon: (
       <svg
@@ -289,6 +289,30 @@ const services = [
       >
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
         <path d="M9 12l2 2 4-4" />
+      </svg>
+    )
+  },
+  {
+    title: "Proxy",
+    description:
+      "Premium proxy service with residential and static datacenter IPs. High anonymity, geo-targeting, and unlimited bandwidth for privacy, bypassing restrictions, and web automation.",
+    href: "/proxy",
+    comingSoon: true,
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+        <path d="M2 12h20" />
       </svg>
     )
   }

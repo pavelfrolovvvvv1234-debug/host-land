@@ -22,8 +22,8 @@ type Tarif = {
 };
 
 const hero = {
-  heading: "Bulletproof VDS Hosting (bulletproof VPS)",
-  subheading: "Offshore VPS with DMCA-ignored policies and instant delivery",
+  heading: "Bulletproof VPS/VDS Hosting",
+  subheading: "Offshore VPS/VDS with DMCA-ignored policies and instant delivery",
   summary:
     "In simple terms, bulletproof VPS hosting is a service that keeps your virtual servers online even when complaints, DMCA notices or abuse reports are filed against your content thanks to offshore-friendly networks in the USA, Netherlands, Germany and the wider EU."
 };

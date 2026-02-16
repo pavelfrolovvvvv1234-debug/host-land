@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { FAQItem } from "../../components/motion/FAQItem";
 
 type Prop = {
   name: string;
@@ -100,6 +101,50 @@ const tarifs: Tarif[] = [
     url:
       "https://my.dior.host?func=register&redirect=startform%3Dquickorder%26redirect%3Dbasket%26pricelist%3D296%26period%3D1%26project%3D2"
   }
+];
+
+const sections = [
+  {
+    title: "What is IP spoofing on a server for?",
+    body: "Allows sending network traffic from a spoofed IP address, used for network security testing, distributed load scenarios, or developing network solutions.",
+    bullets: [
+      "High speed and stability under intensive traffic.",
+      "Full control over network settings and IP addresses.",
+      "Safe testing of your own services and networks"
+    ]
+  },
+  {
+    title: "Why choose a dedicated server for IPHM?",
+    body: "A dedicated server gives full control over resources and network settings, which is impossible on standard VPS.",
+    bullets: [
+      "Unlimited network interface configuration options.",
+      "High bandwidth for load testing.",
+      "Dedicated IP for traffic reputation management."
+    ]
+  },
+  {
+    title: "Can the server be used for anonymization and geo-block bypass?",
+    body: "Yes, a dedicated IPHM server allows changing outgoing IPs and connecting through different locations worldwide.",
+    bullets: [
+      "Access to resources from different locations.",
+      "Reduced risk of IP-based blocking.",
+      "Support for custom network protocols."
+    ]
+  }
+];
+
+const steps = [
+  { title: "Choose configuration", description: "Select a server model (E5 2673 V3) based on CPU, RAM, storage, and network speed (1 or 10 Gbps)." },
+  { title: "Order and deploy", description: "Complete the order—server is provisioned with full root access and IPHM support." },
+  { title: "Configure IP spoofing", description: "Set up IPHM tools, configure network interfaces, and configure outgoing IP spoofing for your use case." },
+  { title: "Start your operations", description: "Run security testing, load testing, anonymization, or geo-bypass with dedicated IP and full control." }
+];
+
+const faqs = [
+  { question: "What is IPHM?", answer: "IPHM (IP Header Manipulation) allows you to send traffic with a spoofed source IP. On a dedicated server, this enables network security testing, distributed load scenarios, and development of network solutions with full control." },
+  { question: "Why use a dedicated server for IPHM instead of VPS?", answer: "A dedicated server provides full control over network interfaces, unlimited configuration options, and dedicated resources. VPS typically restricts raw socket access and network configuration required for IP spoofing." },
+  { question: "What can I use the IPHM server for?", answer: "Typical uses include network security testing, load testing, anonymization, bypassing geo-restrictions, and development of distributed systems or custom network protocols." },
+  { question: "What bandwidth is available?", answer: "Plans include either UNMETERED (1 Gbps) or 500TB (10 Gbps) options. Bandwidth and network speed depend on the chosen configuration." }
 ];
 
 export default function IPHMPageClient() {
@@ -201,6 +246,102 @@ export default function IPHMPageClient() {
               </div>
             </motion.div>
           ))}
+        </div>
+
+        <div className="relative rounded-2xl border border-white/5 bg-surface/50 p-8 sm:p-12 shadow-2xl overflow-hidden backdrop-blur-sm mb-12">
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10" />
+          <div className="relative z-10">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="text-2xl sm:text-3xl font-semibold text-white mb-8"
+            >
+              How to get started
+            </motion.h2>
+            <div className="grid gap-6 md:grid-cols-2">
+              {steps.map((step, index) => (
+                <motion.div
+                  key={step.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={mounted ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.1 * index }}
+                  className="flex gap-4"
+                >
+                  <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full border-2 border-primary/30 bg-primary/10 text-lg font-bold text-primary">
+                    {index + 1}
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-white mb-1">{step.title}</h3>
+                    <p className="text-sm text-white/70">{step.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="relative rounded-2xl border border-white/5 bg-surface/50 p-8 sm:p-12 shadow-2xl overflow-hidden backdrop-blur-sm mb-12">
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10" />
+          <div className="relative z-10">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="text-2xl sm:text-3xl font-semibold text-white mb-8"
+            >
+              Why dedicated IPHM?
+            </motion.h2>
+            <div className="grid gap-6 md:grid-cols-3">
+              {sections.map((section, index) => (
+                <motion.div
+                  key={section.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={mounted ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.1 * index }}
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  className="group relative"
+                >
+                  <div className="relative rounded-xl border border-white/10 bg-card-gradient p-1 hover:border-primary/50 transition-all duration-300 h-full">
+                    <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none" />
+                    <div className="relative flex flex-col h-full rounded-lg bg-black/40 p-6 hover:bg-black/60 transition-all">
+                      <h3 className="text-lg font-semibold text-white group-hover:text-primary transition-colors mb-4">{section.title}</h3>
+                      <p className="text-sm text-white/70 mb-4 flex-1">{section.body}</p>
+                      {section.bullets && (
+                        <ul className="space-y-2">
+                          {section.bullets.map((bullet, idx) => (
+                            <li key={idx} className="text-sm text-white/80 flex items-start gap-2">
+                              <span className="text-primary mt-1 flex-shrink-0">•</span>
+                              <span>{bullet}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="relative rounded-2xl border border-white/5 bg-surface/50 p-8 shadow-2xl overflow-hidden backdrop-blur-sm">
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10" />
+          <div className="relative z-10">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="text-2xl sm:text-3xl font-semibold text-white mb-8"
+            >
+              FAQ
+            </motion.h2>
+            <div className="space-y-4">
+              {faqs.map((faq, index) => (
+                <FAQItem key={faq.question} question={faq.question} answer={faq.answer} index={index} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </main>
