@@ -115,7 +115,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 189,
-    url: "https://my.dior.host"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "Intel Xeon E3-1240v2",
@@ -127,7 +127,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 215,
-    url: "https://my.dior.host"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "2x Intel Xeon X5670",
@@ -139,7 +139,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 235,
-    url: "https://my.dior.host"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "2x Intel Xeon X5670",
@@ -151,7 +151,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 265,
-    url: "https://my.dior.host"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "2x Intel Xeon 2699v4",
@@ -163,7 +163,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 435,
-    url: "https://my.dior.host"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "2x Intel Xeon 2699v4",
@@ -175,7 +175,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 520,
-    url: "https://my.dior.host"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "2x Intel Xeon 2699v4",
@@ -187,7 +187,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 620,
-    url: "https://my.dior.host"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "2x Intel Gold 6138",
@@ -199,7 +199,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 345,
-    url: "https://my.dior.host"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "2x Intel Gold 6138",
@@ -211,7 +211,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 429,
-    url: "https://my.dior.host"
+    url: "https://t.me/diorhost_bot"
   }
 ];
 

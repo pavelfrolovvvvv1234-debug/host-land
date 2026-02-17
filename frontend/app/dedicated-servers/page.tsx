@@ -33,7 +33,7 @@ const tarifs: Tarif[] = [
     os: "Linux, Windows",
     price: 119,
     url:
-      "https://my.dior.host"
+      "https://t.me/diorhost_bot"
   },
   {
     title: "Intel Xeon E3-1240v2",
@@ -46,7 +46,7 @@ const tarifs: Tarif[] = [
     os: "Linux, Windows",
     price: 145,
     url:
-      "https://my.dior.host"
+      "https://t.me/diorhost_bot"
   },
   {
     title: "2x Intel Xeon X5670",
@@ -59,7 +59,7 @@ const tarifs: Tarif[] = [
     os: "Linux, Windows",
     price: 165,
     url:
-      "https://my.dior.host"
+      "https://t.me/diorhost_bot"
   },
   {
     title: "2x Intel Xeon X5670",
@@ -72,7 +72,7 @@ const tarifs: Tarif[] = [
     os: "Linux, Windows",
     price: 195,
     url:
-      "https://my.dior.host"
+      "https://t.me/diorhost_bot"
   },
   {
     title: "2x Intel Xeon 2699v4",
@@ -85,7 +85,7 @@ const tarifs: Tarif[] = [
     os: "Linux, Windows",
     price: 365,
     url:
-      "https://my.dior.host"
+      "https://t.me/diorhost_bot"
   },
   {
     title: "2x Intel Xeon 2699v4",
@@ -98,7 +98,7 @@ const tarifs: Tarif[] = [
     os: "Linux, Windows",
     price: 450,
     url:
-      "https://my.dior.host"
+      "https://t.me/diorhost_bot"
   },
   {
     title: "2x Intel Xeon 2699v4",
@@ -111,7 +111,7 @@ const tarifs: Tarif[] = [
     os: "Linux, Windows",
     price: 550,
     url:
-      "https://my.dior.host"
+      "https://t.me/diorhost_bot"
   },
   {
     title: "2x Intel Gold 6138",
@@ -124,7 +124,7 @@ const tarifs: Tarif[] = [
     os: "Linux, Windows",
     price: 265,
     url:
-      "https://my.dior.host"
+      "https://t.me/diorhost_bot"
   },
   {
     title: "2x Intel Gold 6138",
@@ -137,7 +137,7 @@ const tarifs: Tarif[] = [
     os: "Linux, Windows",
     price: 349,
     url:
-      "https://my.dior.host"
+      "https://t.me/diorhost_bot"
   }
 ];
 

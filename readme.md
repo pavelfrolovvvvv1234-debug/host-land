@@ -257,4 +257,4 @@ pm2 restart dior-host
 
 (Если проект изначально клонирован в `/var/www/dior-host/frontend`, то после `git pull` делай его из корня: `cd /var/www/dior-host && git pull`, затем `cd frontend` и дальше как выше.)
 
-Проверь в браузере: сайт открывается, кнопки ведут на https://my.dior.host.
+Проверь в браузере: сайт открывается, кнопки ведут на Telegram-бота @diorhost_bot (https://t.me/diorhost_bot).

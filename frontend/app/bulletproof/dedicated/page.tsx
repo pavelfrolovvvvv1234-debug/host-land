@@ -117,7 +117,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 189,
-    url: "https://my.dior.host"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "Intel Xeon E3-1240v2",
@@ -129,7 +129,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 215,
-    url: "https://my.dior.host"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "2x Intel Xeon X5670",
@@ -141,7 +141,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 235,
-    url: "https://my.dior.host"
+    url: "https://t.me/diorhost_bot"
   }
 ];
 

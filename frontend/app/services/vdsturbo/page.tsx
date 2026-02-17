@@ -40,7 +40,7 @@ const tarifs: Tarif[] = [
     os: "Linux, Windows",
     price: 99,
     url:
-      "https://my.dior.host?func=register&redirect=startform%3Dquickorder%26redirect%3Dbasket%26pricelist%3D301%26period%3D1%26project%3D2",
+      "https://t.me/diorhost_bot",
     pps: "~450-800"
   },
   {
@@ -56,7 +56,7 @@ const tarifs: Tarif[] = [
     os: "Linux, Windows",
     price: 159,
     url:
-      "https://my.dior.host?func=register&redirect=startform%3Dquickorder%26redirect%3Dbasket%26pricelist%3D307%26period%3D1%26project%3D2",
+      "https://t.me/diorhost_bot",
     pps: "~450-800"
   },
   {
@@ -72,7 +72,7 @@ const tarifs: Tarif[] = [
     os: "Linux, Windows",
     price: 199,
     url:
-      "https://my.dior.host?func=register&redirect=startform%3Dquickorder%26redirect%3Dbasket%26pricelist%3D313%26period%3D1%26project%3D2",
+      "https://t.me/diorhost_bot",
     pps: "~450-800"
   }
 ];

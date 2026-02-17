@@ -106,22 +106,22 @@ const domainsPrices = {
 };
 
 const zones: Zone[] = [
-  { title: ".com", price: 80, url: "https://my.dior.host" },
-  { title: ".net", price: 80, url: "https://my.dior.host" },
-  { title: ".org", price: 80, url: "https://my.dior.host" },
-  { title: ".info", price: 80, url: "https://my.dior.host" },
-  { title: ".biz", price: 80, url: "https://my.dior.host" },
-  { title: ".club", price: 80, url: "https://my.dior.host" },
-  { title: ".pro", price: 80, url: "https://my.dior.host" },
-  { title: ".uk", price: 80, url: "https://my.dior.host" },
-  { title: ".guru", price: 80, url: "https://my.dior.host" },
-  { title: ".ca", price: 80, url: "https://my.dior.host" },
-  { title: ".at", price: 80, url: "https://my.dior.host" },
-  { title: ".io", price: 99, url: "https://my.dior.host" },
-  { title: ".cc", price: 80, url: "https://my.dior.host" },
-  { title: ".us", price: 80, url: "https://my.dior.host" },
-  { title: ".link", price: 80, url: "https://my.dior.host" },
-  { title: ".bz", price: 80, url: "https://my.dior.host" }
+  { title: ".com", price: 80, url: "https://t.me/diorhost_bot" },
+  { title: ".net", price: 80, url: "https://t.me/diorhost_bot" },
+  { title: ".org", price: 80, url: "https://t.me/diorhost_bot" },
+  { title: ".info", price: 80, url: "https://t.me/diorhost_bot" },
+  { title: ".biz", price: 80, url: "https://t.me/diorhost_bot" },
+  { title: ".club", price: 80, url: "https://t.me/diorhost_bot" },
+  { title: ".pro", price: 80, url: "https://t.me/diorhost_bot" },
+  { title: ".uk", price: 80, url: "https://t.me/diorhost_bot" },
+  { title: ".guru", price: 80, url: "https://t.me/diorhost_bot" },
+  { title: ".ca", price: 80, url: "https://t.me/diorhost_bot" },
+  { title: ".at", price: 80, url: "https://t.me/diorhost_bot" },
+  { title: ".io", price: 99, url: "https://t.me/diorhost_bot" },
+  { title: ".cc", price: 80, url: "https://t.me/diorhost_bot" },
+  { title: ".us", price: 80, url: "https://t.me/diorhost_bot" },
+  { title: ".link", price: 80, url: "https://t.me/diorhost_bot" },
+  { title: ".bz", price: 80, url: "https://t.me/diorhost_bot" }
 ];
 
 const faqs = [

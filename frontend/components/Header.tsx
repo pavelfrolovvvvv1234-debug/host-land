@@ -2,54 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export function Header() {
   const pathname = usePathname();
   const isRu = pathname?.startsWith("/ru") ?? false;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [loginUrl, setLoginUrl] = useState("https://my.dior.host");
-  
-  // Получаем URL для входа на основе текущего домена
-  // Поддерживаемые домены: dior.host, diorhost.net, diors.host, d1or.host, d1ior.com
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const hostname = window.location.hostname;
-      
-      // Если localhost или локальный IP, используем дефолтный домен
-      if (hostname === "localhost" || hostname === "127.0.0.1" || hostname.startsWith("192.168.") || hostname.startsWith("10.")) {
-        setLoginUrl("https://my.dior.host");
-        return;
-      }
-      
-      // Убираем порт если есть
-      let cleanHostname = hostname.split(':')[0];
-      
-      // Убираем поддомены если есть (www., app. и т.д.), оставляем только основной домен
-      // Но сохраняем поддомены my. и vm. если они уже есть
-      if (cleanHostname.startsWith("my.") || cleanHostname.startsWith("vm.")) {
-        // Если уже на my. или vm., просто используем текущий домен
-        setLoginUrl(`https://${cleanHostname}`);
-        return;
-      }
-      
-      // Убираем www. и другие поддомены для получения основного домена
-      const parts = cleanHostname.split('.');
-      if (parts.length > 2 && !['my', 'vm'].includes(parts[0])) {
-        // Если есть поддомен (например, www.dior.host), берем основной домен
-        cleanHostname = parts.slice(-2).join('.');
-      }
-      
-      // Формируем URL с my. + текущий домен
-      // Работает для: dior.host -> my.dior.host, diorhost.net -> my.diorhost.net,
-      // diors.host -> my.diors.host, d1or.host -> my.d1or.host, d1ior.com -> my.d1ior.com
-      const myDomain = `my.${cleanHostname}`;
-      const url = `https://${myDomain}`;
-      
-      // Set login URL (debug logging removed for production)
-      setLoginUrl(url);
-    }
-  }, []);
+  /** Ссылка на бота в Telegram — весь вход/панель через @diorhost_bot */
+  const loginUrl = "https://t.me/diorhost_bot";
 
   const basePath =
     isRu && pathname

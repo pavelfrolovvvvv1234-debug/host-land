@@ -33,7 +33,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Безлимитный",
     os: "Linux, Windows",
     price: 3.69,
-    url: "https://my.dior.host/"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "Lite 2",
@@ -44,7 +44,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Безлимитный",
     os: "Linux, Windows",
     price: 5.99,
-    url: "https://my.dior.host/"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "Lite 3",
@@ -55,7 +55,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Безлимитный",
     os: "Linux, Windows",
     price: 7.49,
-    url: "https://my.dior.host/"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "Lite 4",
@@ -66,7 +66,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Безлимитный",
     os: "Linux, Windows",
     price: 9.49,
-    url: "https://my.dior.host/"
+    url: "https://t.me/diorhost_bot"
   },
   // Elite Plans
   {
@@ -78,7 +78,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Безлимитный",
     os: "Linux, Windows",
     price: 16.66,
-    url: "https://my.dior.host/"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "Elite 2",
@@ -89,7 +89,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Безлимитный",
     os: "Linux, Windows",
     price: 23.79,
-    url: "https://my.dior.host/"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "Elite 3",
@@ -100,7 +100,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Безлимитный",
     os: "Linux, Windows",
     price: 37.79,
-    url: "https://my.dior.host/"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "Elite 4",
@@ -111,7 +111,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Безлимитный",
     os: "Linux, Windows",
     price: 42.29,
-    url: "https://my.dior.host/"
+    url: "https://t.me/diorhost_bot"
   },
   // Mega Plans
   {
@@ -123,7 +123,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Безлимитный",
     os: "Linux, Windows",
     price: 69.29,
-    url: "https://my.dior.host/"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "Mega 2",
@@ -134,7 +134,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Безлимитный",
     os: "Linux, Windows",
     price: 87.29,
-    url: "https://my.dior.host/"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "Mega 3",
@@ -145,7 +145,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Безлимитный",
     os: "Linux, Windows",
     price: 119.29,
-    url: "https://my.dior.host/"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "Mega 4",
@@ -156,7 +156,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Безлимитный",
     os: "Linux, Windows",
     price: 195.29,
-    url: "https://my.dior.host/"
+    url: "https://t.me/diorhost_bot"
   }
 ];
 

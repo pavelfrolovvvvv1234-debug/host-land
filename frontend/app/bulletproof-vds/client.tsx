@@ -120,7 +120,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 17.29,
-    url: "https://my.dior.host"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "Lite 2",
@@ -131,7 +131,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 32.29,
-    url: "https://my.dior.host"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "Lite 3",
@@ -142,7 +142,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 37.29,
-    url: "https://my.dior.host"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "Lite 4",
@@ -153,7 +153,7 @@ const tarifs: Tarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 57.29,
-    url: "https://my.dior.host"
+    url: "https://t.me/diorhost_bot"
   }
 ];
 

@@ -130,7 +130,7 @@ const sharedVdsTariffs: ReadonlyArray<VdsTariff> = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 17.29,
-    url: "https://my.dior.host"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "Lite 2",
@@ -141,7 +141,7 @@ const sharedVdsTariffs: ReadonlyArray<VdsTariff> = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 32.29,
-    url: "https://my.dior.host"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "Lite 3",
@@ -152,7 +152,7 @@ const sharedVdsTariffs: ReadonlyArray<VdsTariff> = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 37.29,
-    url: "https://my.dior.host"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "Lite 4",
@@ -163,7 +163,7 @@ const sharedVdsTariffs: ReadonlyArray<VdsTariff> = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 57.29,
-    url: "https://my.dior.host"
+    url: "https://t.me/diorhost_bot"
   }
 ];
 
@@ -180,7 +180,7 @@ const sharedIphmTariffs: ReadonlyArray<IphmTariff> = [
       { name: "Network Speed", value: "1 gbit/s" }
     ],
     price: 1935,
-    url: "https://my.dior.host?func=register&redirect=startform%3Dquickorder%26redirect%3Dbasket%26pricelist%3D286%26period%3D1%26project%3D2"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "2X E5 2673 V3",
@@ -194,7 +194,7 @@ const sharedIphmTariffs: ReadonlyArray<IphmTariff> = [
       { name: "Network Speed", value: "1 gbit/s" }
     ],
     price: 2275,
-    url: "https://my.dior.host?func=register&redirect=startform%3Dquickorder%26redirect%3Dbasket%26pricelist%3D288%26period%3D1%26project%3D2"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "2X E5 2673 V3",
@@ -208,7 +208,7 @@ const sharedIphmTariffs: ReadonlyArray<IphmTariff> = [
       { name: "Network Speed", value: "1 gbit/s" }
     ],
     price: 3189,
-    url: "https://my.dior.host?func=register&redirect=startform%3Dquickorder%26redirect%3Dbasket%26pricelist%3D290%26period%3D1%26project%3D2"
+    url: "https://t.me/diorhost_bot"
   },
   {
     title: "2X E5 2673 V3",
@@ -222,7 +222,7 @@ const sharedIphmTariffs: ReadonlyArray<IphmTariff> = [
       { name: "Network Speed", value: "10 gbit/s" }
     ],
     price: 4785,
-    url: "https://my.dior.host?func=register&redirect=startform%3Dquickorder%26redirect%3Dbasket%26pricelist%3D292%26period%3D1%26project%3D2"
+    url: "https://t.me/diorhost_bot"
   }
 ];
 
