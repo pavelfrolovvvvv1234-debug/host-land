@@ -19,7 +19,7 @@ const faqs = [
   {
     question: "Как получить API ключ?",
     answer:
-      "Войдите в панель управления на my.dior.host, перейдите в настройки API и создайте новый API ключ. Храните его в безопасности и никогда не публикуйте публично."
+      "Войдите в панель управления на @diorhost_bot в Telegram, перейдите в настройки API и создайте новый API ключ. Храните его в безопасности и никогда не публикуйте публично."
   },
   {
     question: "Какой лимит запросов API?",
@@ -69,7 +69,7 @@ export default function ApiPage() {
           Authorization: Bearer YOUR_API_KEY
         </code>
         <p className="text-white/70 text-sm mt-4">
-          Получите ваш API ключ из панели управления: my.dior.host
+          Получите ваш API ключ из панели управления: @diorhost_bot в Telegram
         </p>
         <div className="bg-black/30 p-4 rounded-lg mt-4">
           <h3 className="font-semibold mb-2">Лимит запросов</h3>
