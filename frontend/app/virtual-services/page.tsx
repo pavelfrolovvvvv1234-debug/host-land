@@ -457,7 +457,7 @@ export default function VirtualServicesPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="https://t.me/diorhost"
+                  href="https://t.me/diorhost_bot"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl transition-colors"

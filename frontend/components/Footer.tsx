@@ -149,7 +149,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://t.me/diorhost"
+                  href="https://t.me/diorhost_bot"
                   className="text-sm text-white/60 hover:text-[#7a83f3] transition-colors duration-200"
                 >
                   Telegram
