@@ -8,6 +8,7 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { Analytics } from "../components/Analytics";
 import { NavigationTracker } from "../components/NavigationTracker";
+import { PRIMARY_ORIGIN } from "../lib/canonical";
 
 const commissioner = Commissioner({
   subsets: ["latin"],
@@ -20,6 +21,7 @@ const bingVerification = process.env.NEXT_PUBLIC_BING_VERIFICATION;
 const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 const metadataBase: Metadata = {
+  metadataBase: new URL(PRIMARY_ORIGIN),
   title: "Bulletproof VPS/VDS, Offshore Domains, CDN & Hosting — Secure, No-Logs, Bulletproof Solutions",
   description:
     "Bulletproof VPS, VDS, dedicated servers and offshore domains with DMCA-ignored policies, strict no-logs, private networking, secure CDN options and 24/7 expert support for any high-risk workloads.",

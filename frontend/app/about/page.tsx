@@ -1,11 +1,11 @@
 "use client";
 
-import type { Metadata } from "next";
 import { LegalLayout } from "../../components/LegalLayout";
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "../../lib/motion";
 import { StaggerContainer } from "../../components/motion/StaggerContainer";
 import Link from "next/link";
+import { PRIMARY_ORIGIN } from "../../lib/canonical";
 
 const hero = {
   heading: "About Dior Host",
@@ -119,8 +119,8 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Dior Host",
-  "url": "https://dior.host",
-  "logo": "https://dior.host/favicon.png",
+  "url": PRIMARY_ORIGIN,
+  "logo": `${PRIMARY_ORIGIN}/favicon.png`,
   "foundingDate": "2020",
   "description": "Offshore infrastructure provider with bulletproof policies",
   "address": {

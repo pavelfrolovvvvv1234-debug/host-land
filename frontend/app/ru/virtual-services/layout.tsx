@@ -1,15 +1,18 @@
 import { Metadata } from "next";
+import { toPrimaryUrl, getHreflangAlternates } from "../../../lib/canonical";
 
+const pathname = "/ru/virtual-services";
 export const metadata: Metadata = {
   title: "Виртуальные серверы (VDS) - Обычный VDS хостинг | DiorHost",
   description: 'Обычные виртуальные серверы для «белой» или «серой» эксплуатации. Применяются стандартные политики обработки жалоб - жалобы обрабатываются согласно правилам дата-центра.',
   alternates: {
-    canonical: "https://dior.host/ru/virtual-services",
+    canonical: toPrimaryUrl(pathname),
+    languages: getHreflangAlternates(pathname),
   },
   openGraph: {
     title: "Виртуальные серверы (VDS) - Обычный VDS хостинг | DiorHost",
     description: 'Обычные виртуальные серверы для «белой» или «серой» эксплуатации.',
-    url: "https://dior.host/ru/virtual-services",
+    url: toPrimaryUrl(pathname),
     siteName: "DiorHost",
     type: "website",
   },

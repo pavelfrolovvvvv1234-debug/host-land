@@ -1,9 +1,19 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+const PRIMARY_HOST = "dior.host";
+
+/**
+ * Secondary domains that must 301 to primary. Preserves pathname and query string.
+ */
+function isSecondaryHost(host: string): boolean {
+  const h = host.toLowerCase().replace(/^www\./, "");
+  return h === "diorhost.com" || h === "diorhost.net";
+}
+
 /**
  * URL Migration Redirects
- * 
+ *
  * Redirects old URL structure (/services/* and /bulletproof/*) to new flat structure (/bulletproof-*)
  * All redirects are 301 (permanent) for SEO purposes
  */
@@ -50,20 +60,23 @@ const urlMappings: Record<string, string> = {
 };
 
 export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-  
-  // Check if this path needs a redirect
+  const { pathname, search } = request.nextUrl;
+  const host = request.headers.get("host") ?? "";
+
+  // 1) Secondary domain -> 301 to primary (dior.host). Path and query preserved; assets then load from dior.host.
+  if (isSecondaryHost(host)) {
+    const primaryUrl = new URL(pathname + search, `https://${PRIMARY_HOST}`);
+    return NextResponse.redirect(primaryUrl, 301);
+  }
+
+  // 2) URL migration: old paths -> new flat structure
   const newPath = urlMappings[pathname];
-  
   if (newPath) {
     const url = request.nextUrl.clone();
     url.pathname = newPath;
-    // Preserve query parameters
-    return NextResponse.redirect(url, {
-      status: 301, // Permanent redirect for SEO
-    });
+    return NextResponse.redirect(url, 301);
   }
-  
+
   return NextResponse.next();
 }
 

@@ -4,6 +4,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { toPrimaryUrl, getHreflangAlternates } from "../../../lib/canonical";
 
 interface PageProps {
   params: {
@@ -203,9 +204,17 @@ export async function generateMetadata({ params }: PageProps) {
     }
   }
 
+  const pathname = `/ru/wiki/articles/${slug}`;
   return {
     title: `${title} | База знаний | Dior Host`,
-    description: description || `Статья базы знаний: ${title}`
+    description: description || `Статья базы знаний: ${title}`,
+    alternates: {
+      canonical: toPrimaryUrl(pathname),
+      languages: getHreflangAlternates(pathname),
+    },
+    openGraph: {
+      url: toPrimaryUrl(pathname),
+    },
   };
 }
 

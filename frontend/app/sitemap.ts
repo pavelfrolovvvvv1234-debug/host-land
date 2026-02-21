@@ -1,26 +1,37 @@
 import { MetadataRoute } from "next";
 import fs from "fs";
 import path from "path";
+import { PRIMARY_ORIGIN } from "../lib/canonical";
 
 /**
- * Sitemap.xml generator
- * Next.js automatically serves this at: https://dior.host/sitemap.xml
+ * Sitemap.xml generator. Emits only primary domain (dior.host) URLs; no .com/.net, no .html.
+ * Next.js serves this at: https://dior.host/sitemap.xml
  */
+function normalizeSitemapUrl(url: string): string {
+  try {
+    const u = new URL(url);
+    const pathname = u.pathname.replace(/\.html$/i, "");
+    return `${PRIMARY_ORIGIN}${pathname}${u.search}`;
+  } catch {
+    return url.startsWith("/") ? `${PRIMARY_ORIGIN}${url}` : url;
+  }
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://dior.host";
+  const baseUrl = PRIMARY_ORIGIN;
   const now = new Date().toISOString().split("T")[0];
 
   // Try to read sitemap from public directory if exists
-  let staticSitemap: any[] = [];
+  let staticSitemap: MetadataRoute.Sitemap = [];
   try {
     const sitemapPath = path.join(process.cwd(), "public", "sitemap.xml");
     if (fs.existsSync(sitemapPath)) {
       const sitemapContent = fs.readFileSync(sitemapPath, "utf-8");
-      // Parse XML and extract URLs (simplified - better to use XML parser)
       const urlMatches = sitemapContent.match(/<loc>(.*?)<\/loc>/g);
       if (urlMatches) {
         staticSitemap = urlMatches.map((match) => {
-          const url = match.replace(/<\/?loc>/g, "");
+          const rawUrl = match.replace(/<\/?loc>/g, "");
+          const url = normalizeSitemapUrl(rawUrl);
           return {
             url,
             lastModified: now,
@@ -31,12 +42,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       }
     }
   } catch (error) {
-    if (process.env.NODE_ENV === 'development') {
+    if (process.env.NODE_ENV === "development") {
       console.error("Error reading static sitemap:", error);
     }
   }
 
-  // If we have static sitemap, use it
   if (staticSitemap.length > 0) {
     return staticSitemap;
   }

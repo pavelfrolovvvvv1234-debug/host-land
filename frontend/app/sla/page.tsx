@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { LegalLayout } from "../../components/LegalLayout";
 import Link from "next/link";
+import { PRIMARY_ORIGIN } from "../../lib/canonical";
 
 export const metadata: Metadata = {
   title: "SLA - Service Level Agreement | 99.9% Uptime Guarantee | Dior Host",
@@ -27,7 +28,7 @@ const jsonLd = {
   "provider": {
     "@type": "Organization",
     "name": "Dior Host",
-    "url": "https://dior.host"
+    "url": PRIMARY_ORIGIN
   },
   "serviceType": "Hosting Services",
   "areaServed": ["Netherlands", "Germany", "Romania", "Moldova"]

@@ -1,8 +1,9 @@
 import { MetadataRoute } from "next";
+import { PRIMARY_ORIGIN } from "../lib/canonical";
 
 /**
- * Robots.txt generator
- * Next.js automatically serves this at: https://dior.host/robots.txt
+ * Robots.txt generator. Sitemap points to primary domain only.
+ * Next.js serves this at: https://dior.host/robots.txt
  */
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -11,7 +12,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/search", "/admin", "/internal"],
     },
-    sitemap: "https://dior.host/sitemap.xml",
+    sitemap: `${PRIMARY_ORIGIN}/sitemap.xml`,
   };
 }
 

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { LegalLayout } from "../../../components/LegalLayout";
 import Link from "next/link";
+import { PRIMARY_ORIGIN } from "../../../lib/canonical";
 
 export const metadata: Metadata = {
   title: "Политика конфиденциальности - Защита данных и соответствие GDPR | Dior Host",
@@ -26,7 +27,7 @@ const jsonLd = {
   "publisher": {
     "@type": "Organization",
     "name": "Dior Host",
-    "url": "https://dior.host"
+    "url": PRIMARY_ORIGIN
   }
 };
 
