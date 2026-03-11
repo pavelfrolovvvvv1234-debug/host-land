@@ -52,42 +52,41 @@ export function LegalLayout({ children, title, description }: LegalLayoutProps) 
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#080808]">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Sidebar Navigation */}
-          <aside className="lg:col-span-1">
-            <nav className="sticky top-8">
-              <div className="bg-black/40 border border-white/10 rounded-xl p-4">
-                <h2 className="text-sm font-semibold text-white/60 uppercase tracking-wide mb-4">
-                  {isRu ? "Юридические документы" : "Legal Documents"}
-                </h2>
-                <ul className="space-y-2">
-                  {legalPages.map((page) => {
-                    const isActive = pathname === page.href || pathname === `/ru${page.href}`;
-                    return (
-                      <li key={page.href}>
-                        <Link
-                          href={isRu ? `/ru${page.href}` : page.href}
-                          className={`block px-3 py-2 rounded-lg text-sm transition-colors ${
-                            isActive
-                              ? "bg-blue-500/20 text-blue-300 border border-blue-500/30"
-                              : "text-white/70 hover:text-white hover:bg-white/5"
-                          }`}
-                        >
-                          {isRu ? page.titleRu : page.title}
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            </nav>
-          </aside>
+    <div className="min-h-full">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        {/* Sidebar Navigation */}
+        <aside className="lg:col-span-1">
+          <nav className="sticky top-24">
+            <div className="rounded-2xl border border-white/10 bg-surface/60 p-4 backdrop-blur-sm">
+              <h2 className="text-sm font-semibold text-white/60 uppercase tracking-wide mb-4">
+                {isRu ? "Юридические документы" : "Legal Documents"}
+              </h2>
+              <ul className="space-y-2">
+                {legalPages.map((page) => {
+                  const isActive = pathname === page.href || pathname === `/ru${page.href}`;
+                  return (
+                    <li key={page.href}>
+                      <Link
+                        href={isRu ? `/ru${page.href}` : page.href}
+                        className={`block px-3 py-2 rounded-lg text-sm transition-colors ${
+                          isActive
+                            ? "bg-primary/20 text-primary border border-primary/30"
+                            : "text-white/70 hover:text-white hover:bg-white/5"
+                        }`}
+                      >
+                        {isRu ? page.titleRu : page.title}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </nav>
+        </aside>
 
-          {/* Main Content */}
-          <main className="lg:col-span-3">
-            <div className="bg-black/40 border border-white/10 rounded-xl p-8 prose prose-invert max-w-none">
+        {/* Main Content */}
+        <main className="lg:col-span-3">
+          <div className="rounded-2xl border border-white/10 bg-surface/60 p-8 sm:p-10 prose prose-invert max-w-none backdrop-blur-sm">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -109,7 +108,6 @@ export function LegalLayout({ children, title, description }: LegalLayoutProps) 
               <div className="legal-content">{children}</div>
             </div>
           </main>
-        </div>
       </div>
     </div>
   );

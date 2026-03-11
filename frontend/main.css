@@ -79,6 +79,14 @@
   pointer-events: none !important;
 }
 
+/* Hide header and footer when preloader is active */
+body.preloader-active header,
+body.preloader-active footer {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 .preloader-content {
   display: flex;
   align-items: center;

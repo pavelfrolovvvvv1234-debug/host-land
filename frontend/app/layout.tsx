@@ -8,7 +8,6 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { Analytics } from "../components/Analytics";
 import { NavigationTracker } from "../components/NavigationTracker";
-import { SplineBackground } from "../components/SplineBackground";
 import { PRIMARY_ORIGIN } from "../lib/canonical";
 
 const commissioner = Commissioner({
@@ -65,13 +64,20 @@ export default function RootLayout({
         <NavigationTracker />
         <Analytics />
         <div className="min-h-screen flex flex-col justify-between items-stretch max-w-screen">
-          <SplineBackground />
           <header className="relative z-20">
             <Header />
           </header>
           <main className="flex-1 h-full relative z-10">
-            <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 h-full relative">
-              {children}
+            <div className="home-container relative mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8 min-h-full">
+              {/* Shared ambient background glows — same as homepage */}
+              <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-hero-glow blur-[100px] opacity-50" />
+                <div className="absolute top-1/3 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[120px]" />
+                <div className="absolute bottom-1/4 left-0 w-80 h-80 bg-primary/5 rounded-full blur-[100px]" />
+              </div>
+              <div className="relative z-10">
+                {children}
+              </div>
             </div>
           </main>
           <footer className="relative z-20">

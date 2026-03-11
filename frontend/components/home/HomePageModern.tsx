@@ -1,7 +1,7 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               "use client";
 
 import Link from "next/link";
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState, useLayoutEffect } from "react";
 import { motion } from "framer-motion";
 import { homeContent, type HomeContent, type ParagraphSegment } from "../../content/home";
 import { localizePath, type Locale } from "../../lib/localization";
@@ -19,7 +19,7 @@ interface HomePageModernProps {
 export function HomePageModern({ locale, content = homeContent[locale] }: HomePageModernProps) {
   const [ready, setReady] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (typeof window === 'undefined') {
       setReady(true);
       return;
@@ -43,6 +43,9 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
     preloaderElement.classList.add("preloader-visible");
     preloaderElement.classList.remove("preloader-removed");
     preloaderElement.style.cssText = "display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; z-index: 9999 !important;";
+    if (typeof document !== "undefined" && document.body) {
+      document.body.classList.add("preloader-active");
+    }
     
     // Content is hidden via style prop until ready=true
 
@@ -107,6 +110,9 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
         preloaderElement.classList.add("preloader-removed");
         preloaderElement.style.cssText =
           "display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important;";
+        if (typeof document !== "undefined" && document.body) {
+          document.body.classList.remove("preloader-active");
+        }
         // Content will fade in via Framer Motion when ready=true
         setReady(true);
         return;
@@ -120,6 +126,9 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
           preloaderElement.classList.add("preloader-removed");
           preloaderElement.style.cssText =
             "display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important;";
+          if (typeof document !== "undefined" && document.body) {
+            document.body.classList.remove("preloader-active");
+          }
           // Content will fade in via Framer Motion when ready=true
           setReady(true);
         }, 500);
@@ -136,6 +145,9 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
       clearTimeout(timeoutId);
       if (preloaderTimer) {
         clearTimeout(preloaderTimer);
+      }
+      if (typeof document !== "undefined" && document.body) {
+        document.body.classList.remove("preloader-active");
       }
     };
   }, []);
@@ -209,57 +221,31 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
 
       <motion.main
         className="relative z-10 overflow-hidden min-h-screen"
-        initial={{ opacity: 0, y: 20 }}
-        animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-        transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
-        style={{ display: ready ? "block" : "none", visibility: ready ? "visible" : "hidden", pointerEvents: ready ? "auto" : "none" }}
+        initial={{ opacity: 0 }}
+        animate={ready ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.15 }}
+        style={{
+          visibility: ready ? "visible" : "hidden",
+          pointerEvents: ready ? "auto" : "none",
+        }}
       >
-        {/* Background Glows */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-hero-glow blur-[100px] pointer-events-none opacity-50"></div>
-
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 relative z-10">
+        <div className="relative z-10">
         
-        {/* Hero Section - NO IMAGE */}
-        <div className="relative rounded-2xl border border-white/5 bg-surface/50 p-8 sm:p-20 shadow-2xl overflow-hidden backdrop-blur-sm">
-          {/* Inner decoration */}
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent skew-x-12 opacity-30"></div>
-
+        {/* Hero Section */}
+        <div className="relative rounded-2xl border border-white/10 bg-surface/80 p-8 sm:p-12 lg:p-16 shadow-2xl overflow-hidden backdrop-blur-md">
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.07]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5" />
           <div className="relative z-10 text-center">
-            <h1 className="mx-auto max-w-4xl text-3xl sm:text-5xl font-semibold tracking-tight text-white mb-6 leading-tight">
+            <h1 className="mx-auto max-w-4xl text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white mb-6 leading-[1.1]">
               {content.hero.title}
             </h1>
-            
-            <div className="flex justify-center mb-8">
-              <span className="inline-flex items-center rounded-full border border-white/10 bg-black/40 px-4 py-1.5 text-sm text-white/80 backdrop-blur-md shadow-lg">
-                <span className="flex h-2 w-2 rounded-full bg-green-500 mr-2 animate-pulse"></span>
-                {content.hero.subtitle}
-              </span>
-            </div>
-
-            <p className="mx-auto max-w-2xl text-base sm:text-lg text-white/60 mb-10 leading-relaxed bg-black/40 p-6 rounded-xl border border-white/5 backdrop-blur-sm shadow-xl">
+            <p className="mx-auto max-w-2xl text-lg sm:text-xl text-white/70 mb-6">
+              {content.hero.subtitle}
+            </p>
+            <p className="mx-auto max-w-2xl text-base text-white/55 mb-10 leading-relaxed">
               {content.hero.description}
             </p>
-
-            <div className="animate-float mt-8">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="mx-auto h-6 w-6 text-white/30"
-              >
-                <path d="m6 9 6 6 6-6" />
-              </svg>
-            </div>
-
-            {/* Quick Benefits Pills */}
-            <div className="mt-12 flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3 mb-10">
               {content.quickBenefits.map((text, index) => {
                 let icon: JSX.Element;
                 if (text.includes("AML") || text.includes("KYC") || text.includes("CFT")) {
@@ -290,13 +276,13 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
                   );
                 }
                 return (
-                  <div
+                  <span
                     key={index}
-                    className="flex items-center gap-2 rounded-lg border border-primary/30 bg-primary/10 px-4 py-2 text-sm text-blue-200"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/85"
                   >
                     {icon}
-                    <span>{text}</span>
-                  </div>
+                    {text}
+                  </span>
                 );
               })}
             </div>
@@ -324,38 +310,117 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
           </div>
         </div>
 
-        {/* Quick Links */}
-        <div className="mt-6 rounded-xl border border-white/10 bg-surface/50 p-4 text-center text-sm text-white/70">
+        {/* Features / Benefits */}
+        {content.whyUsCards && content.whyUsCards.length > 0 && (
+          <section className="mt-16 home-section" aria-labelledby="features-heading">
+            <h2 id="features-heading" className="text-2xl sm:text-3xl font-semibold tracking-tight text-white mb-8">
+              {content.whyUsTitle}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+              {content.whyUsCards.map((card, index) => (
+                <motion.article
+                  key={card.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={ready ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.4, delay: index * 0.08 }}
+                  className="group relative rounded-2xl border border-white/10 bg-surface/60 p-6 sm:p-8 backdrop-blur-sm hover:border-primary/30 transition-colors duration-300"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/15 border border-primary/20 text-primary">
+                      {index === 0 && (
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                      )}
+                      {index === 1 && (
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                        </svg>
+                      )}
+                      {index === 2 && (
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+                          <circle cx="12" cy="12" r="3" />
+                        </svg>
+                      )}
+                      {index === 3 && (
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
+                        </svg>
+                      )}
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-white mb-2">{card.title}</h3>
+                      <p className="text-sm text-white/65 leading-relaxed">{card.description}</p>
+                      <span className="mt-3 inline-block rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-white/50">
+                        {card.tag}
+                      </span>
+                    </div>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Quick links — ready plans */}
+        <div className="mt-6 rounded-xl border border-white/10 bg-surface/40 p-4 text-center text-sm text-white/70">
           {planParagraph(content.readyPlansSegments)}
         </div>
 
+        {/* Performance / Reliability */}
+        <section className="mt-12 home-section" aria-labelledby="performance-heading">
+          <h2 id="performance-heading" className="sr-only">Performance</h2>
+          <div className="rounded-2xl border border-white/10 bg-surface/40 p-6 sm:p-8">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+              <div>
+                <div className="text-3xl sm:text-4xl font-bold text-white mb-1">99.98%</div>
+                <div className="text-sm text-white/55">Uptime SLA</div>
+              </div>
+              <div>
+                <div className="text-3xl sm:text-4xl font-bold text-white mb-1">150</div>
+                <div className="text-sm text-white/55">Mbit/s standard</div>
+              </div>
+              <div>
+                <div className="text-3xl sm:text-4xl font-bold text-white mb-1">24/7</div>
+                <div className="text-sm text-white/55">Support & NOC</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Domains Section */}
-        <div id="services-section" className="mt-12">
-          <div className="rounded-xl border border-white/10 bg-black/60 p-8 text-center shadow-lg relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
-            <h2 className="text-2xl font-semibold tracking-tight text-white mb-6">{content.domainSectionTitle}</h2>
-            <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+        <div id="services-section" className="mt-12 home-section">
+          <div className="rounded-2xl border border-white/10 bg-surface/50 p-8 text-center shadow-lg relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+            <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-white mb-6">{content.domainSectionTitle}</h2>
+            <div className="flex flex-wrap justify-center gap-2 max-w-4xl mx-auto">
               {content.domainZones.map((zone, index) => (
                 <motion.a
                   key={zone.title}
                   href="https://t.me/diorhost_bot"
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
                   animate={ready ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  className="group flex items-center gap-2 rounded border border-white/10 bg-white/5 px-3 py-2 text-sm font-medium hover:bg-white/10 hover:border-white/30 transition-all"
+                  transition={{ duration: 0.25, delay: index * 0.02 }}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm font-medium text-white hover:bg-white/10 hover:border-white/20 transition-all"
                 >
-                  <span className="text-white">{zone.title}</span>{" "}
-                  <span className="text-red-400 group-hover:text-red-300">{zone.price} $</span>
+                  <span>{zone.title}</span>
+                  <span className="text-primary">{zone.price}$</span>
                 </motion.a>
               ))}
             </div>
           </div>
         </div>
 
-        {/* VDS Section */}
-        <div className="mt-12 text-center">
-          <h2 className="text-2xl font-semibold tracking-tight text-white mb-8">{content.vdsSectionTitle}</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* VDS Section — Pricing overview */}
+        <section id="pricing" className="mt-16 home-section" aria-labelledby="pricing-heading">
+          <h2 id="pricing-heading" className="text-2xl sm:text-3xl font-semibold text-center text-white mb-2">
+            {content.vdsSectionTitle}
+          </h2>
+          <p className="text-center text-white/60 text-sm mb-8 max-w-lg mx-auto">
+            From VDS to dedicated — choose the right plan. All plans include manual abuse review and offshore routing.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {content.vdsTariffs.map((tariff, index) => (
               <motion.div
                 key={tariff.title}
@@ -413,15 +478,12 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
               </motion.div>
             ))}
           </div>
-          <div className="mt-6">
-            <Link
-              href={localizeHref("/bulletproof/vds")}
-              className="inline-flex items-center text-sm text-white/70 hover:text-white hover:border-b border-white transition-all"
-            >
+          <p className="mt-6 text-center">
+            <Link href={localizeHref("/bulletproof/vds")} className="text-sm text-primary hover:text-primary/80 underline underline-offset-4">
               {content.vdsShowMoreLabel}
             </Link>
-          </div>
-        </div>
+          </p>
+        </section>
 
         {/* IPHM Section */}
         {content.iphmTariffs && content.iphmTariffs.length > 0 && (
@@ -510,54 +572,7 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
           </div>
         )}
 
-        {/* Why Us Section */}
-        {content.whyUsCards && content.whyUsCards.length > 0 && (
-          <div className="mt-16 rounded-2xl border border-white/10 bg-surface/50 p-8 shadow-2xl backdrop-blur-sm">
-            <h2 className="text-2xl font-semibold tracking-tight text-white mb-8">{content.whyUsTitle}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {content.whyUsCards.map((card, index) => (
-                <motion.div
-                  key={card.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={ready ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="flex flex-col gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
-                      {index === 0 && (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                        </svg>
-                      )}
-                      {index === 1 && (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-                        </svg>
-                      )}
-                      {index === 2 && (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
-                          <circle cx="12" cy="12" r="3" />
-                        </svg>
-                      )}
-                      {index === 3 && (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
-                        </svg>
-                      )}
-                    </div>
-                    <h3 className="text-lg font-semibold text-white">{card.title}</h3>
-                  </div>
-                  <p className="text-sm text-white/60 leading-relaxed">{card.description}</p>
-                  <div className="mt-auto inline-flex items-center rounded bg-white/5 px-3 py-1 text-xs text-white/40 border border-white/5">
-                    {card.tag}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        )}
+        {/* Why Us Section — removed (content moved to Features above) */}
 
         {/* Informational Articles */}
         {content.sections && content.sections.length > 0 && (
@@ -582,10 +597,12 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
           </div>
         )}
 
-        {/* Testimonials */}
+        {/* Testimonials — Trust / Social proof */}
         {content.testimonials && content.testimonials.length > 0 && (
-          <section className="mt-16 rounded-2xl border border-white/10 bg-surface/30 p-8">
-            <h2 className="text-2xl font-semibold text-center text-white mb-8">{content.testimonialsTitle}</h2>
+          <section className="mt-16 home-section rounded-2xl border border-white/10 bg-surface/30 p-8" aria-labelledby="testimonials-heading">
+            <h2 id="testimonials-heading" className="text-2xl sm:text-3xl font-semibold text-center text-white mb-8">
+              {content.testimonialsTitle}
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {content.testimonials.map((testimonial, index) => (
                 <motion.div
@@ -677,15 +694,45 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
 
         {/* FAQ */}
         {content.faqs && content.faqs.length > 0 && (
-          <section className="mt-16 bg-black/20 rounded-2xl border border-white/10 p-8">
-            <h2 className="text-2xl font-semibold text-white mb-8">{content.faqTitle}</h2>
-            <div className="space-y-4">
+          <section className="mt-12 home-section bg-black/20 rounded-2xl border border-white/10 px-6 py-6 sm:px-8 sm:py-7" aria-labelledby="faq-heading">
+            <h2 id="faq-heading" className="text-2xl sm:text-3xl font-semibold text-white mb-6 text-center">
+              {content.faqTitle}
+            </h2>
+            <div className="space-y-3 w-full max-w-4xl mx-auto">
               {content.faqs.map((item, index) => (
                 <FAQItem key={item.question} question={item.question} answer={item.answer} index={index} />
               ))}
             </div>
           </section>
         )}
+
+        {/* Final CTA */}
+        <section className="mt-10 home-section" aria-labelledby="final-cta-heading">
+          <div className="relative rounded-2xl border border-primary/30 bg-primary/10 p-10 sm:p-14 text-center overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent" />
+            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10" />
+            <h2 id="final-cta-heading" className="relative text-2xl sm:text-3xl font-semibold text-white mb-4">
+              Ready to deploy on bulletproof infrastructure?
+            </h2>
+            <p className="relative text-white/70 mb-8 max-w-xl mx-auto text-sm sm:text-base">
+              Get VPS, VDS, or dedicated servers with manual abuse review, offshore routing, and 24/7 support.
+            </p>
+            <div className="relative flex flex-wrap items-center justify-center gap-4">
+              <a
+                href="https://t.me/diorhost_bot"
+                className="inline-flex items-center justify-center rounded-xl bg-primary px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all"
+              >
+                {content.hero.ctaPrimary ?? "Get started"}
+              </a>
+              <Link
+                href={localizeHref("/bulletproof/vds")}
+                className="inline-flex items-center justify-center rounded-xl border border-white/25 bg-white/10 px-7 py-3.5 text-base font-medium text-white hover:bg-white/15 transition-all"
+              >
+                {content.hero.ctaSecondary ?? "View plans"}
+              </Link>
+            </div>
+          </div>
+        </section>
 
       </div>
       </motion.main>

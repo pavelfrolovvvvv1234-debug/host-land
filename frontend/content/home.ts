@@ -86,6 +86,8 @@ export interface HeroContent {
   readonly subtitle: string;
   readonly description: string;
   readonly highlightPills: ReadonlyArray<string>;
+  readonly ctaPrimary?: string;
+  readonly ctaSecondary?: string;
 }
 
 export interface HomeContent {
@@ -233,7 +235,9 @@ export const homeContent: Record<Locale, HomeContent> = {
       subtitle: "Offshore bulletproof infrastructure for global teams",
       description:
         "Bulletproof hosting stays operational under sustained abuse, DMCA notices, and external pressure. Its servers remain online thanks to hardened infrastructure, offshore failover zones, and custom complaint-processing policies designed to keep services running without interruption.",
-      highlightPills: ["No AML/KYC/CFT", "Instant delivery", "Data encryption", "The best prices"]
+      highlightPills: ["No AML/KYC/CFT", "Instant delivery", "Data encryption", "The best prices"],
+      ctaPrimary: "Get started",
+      ctaSecondary: "View plans"
     },
     heroScrollLabel: "Scroll down",
     quickBenefits: ["No AML/KYC/CFT", "Instant delivery", "Data encryption", "The best prices"],
@@ -461,7 +465,9 @@ export const homeContent: Record<Locale, HomeContent> = {
       subtitle: "Офшорная инфраструктура, устойчивая к любым злоупотреблениям и жалобам, идеально подходящая для командной и индивидуальной работы",
       description:
         "Bulletproof-хостинг остаётся онлайн, даже под давлением абузов и DMCA. Bulletproof-серверы сохраняют работоспособность за счёт использования устойчивой инфраструктуры, распределённых оффшорных площадок и собственных правил обработки жалоб.",
-      highlightPills: ["Без AML/KYC/CFT", "Мгновенная выдача", "Шифрование данных", "Лучшие цены"]
+      highlightPills: ["Без AML/KYC/CFT", "Мгновенная выдача", "Шифрование данных", "Лучшие цены"],
+      ctaPrimary: "Начать",
+      ctaSecondary: "Тарифы"
     },
     heroScrollLabel: "Прокрутите вниз",
     quickBenefits: ["Без AML/KYC/CFT", "Мгновенная выдача", "Шифрование данных", "Лучшие цены"],

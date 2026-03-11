@@ -175,68 +175,63 @@ export default function ToolsPage() {
   }, []);
 
   return (
-    <main className="relative overflow-hidden">
-      {/* Background Glows */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-hero-glow blur-[100px] pointer-events-none opacity-50"></div>
-
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 relative z-10">
-        {/* Hero Section */}
-        <ScrollReveal>
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            animate={mounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="relative rounded-2xl border border-white/5 bg-surface/50 p-8 sm:p-12 shadow-2xl overflow-hidden backdrop-blur-sm mb-12"
-          >
-            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent skew-x-12 opacity-30"></div>
-            
-            <div className="relative z-10">
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={mounted ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.15 }}
-                className="text-3xl sm:text-4xl font-semibold tracking-tight text-white mb-4"
-              >
-                {toolsIntro.title}
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={mounted ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-base sm:text-lg text-white/70 leading-relaxed"
-              >
-                {toolsIntro.summary}
-              </motion.p>
-            </div>
-          </motion.section>
-        </ScrollReveal>
-
-        {/* Tools Section */}
-        <ScrollReveal delay={0.2}>
-          <section className="mt-12">
-            <motion.div
+    <>
+      {/* Hero — glows from root layout */}
+      <ScrollReveal>
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={mounted ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="relative rounded-2xl border border-white/10 bg-surface/80 p-8 sm:p-12 shadow-2xl overflow-hidden backdrop-blur-md mb-10 sm:mb-12"
+        >
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.07]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5" />
+          <div className="relative z-10">
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex items-center justify-between flex-wrap gap-4 mb-8"
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="text-3xl sm:text-4xl font-semibold tracking-tight text-white mb-4"
             >
-              <h2 className="text-2xl sm:text-3xl font-semibold text-white">Available Tools</h2>
-            </motion.div>
+              {toolsIntro.title}
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={mounted ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-base sm:text-lg text-white/70 leading-relaxed"
+            >
+              {toolsIntro.summary}
+            </motion.p>
+          </div>
+        </motion.section>
+      </ScrollReveal>
 
-            <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              animate={mounted ? "visible" : "hidden"}
-              className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
-            >
+      {/* Tools Section */}
+      <ScrollReveal delay={0.2}>
+        <section className="mt-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={mounted ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex items-center justify-between flex-wrap gap-4 mb-8"
+          >
+            <h2 className="text-2xl sm:text-3xl font-semibold text-white">Available Tools</h2>
+          </motion.div>
+
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            animate={mounted ? "visible" : "hidden"}
+            className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+          >
               {tools.map((tool, index) => (
                     <motion.div
                       key={tool.title}
                       variants={fadeInUp}
                       custom={index}
                       whileHover={{ y: -4, scale: 1.02 }}
-                      className="group relative flex flex-col rounded-xl border border-white/10 bg-card-gradient p-1 hover:border-primary/50 transition-all duration-300"
+                      className="group relative flex flex-col rounded-xl border border-white/10 bg-surface/50 p-1 hover:border-primary/40 transition-all duration-300"
                     >
                       <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none"></div>
                       <div className="relative flex h-full flex-col justify-between rounded-lg bg-black/40 p-6 hover:bg-black/60 transition-all">
@@ -286,7 +281,6 @@ export default function ToolsPage() {
             </motion.div>
           </section>
         </ScrollReveal>
-      </div>
-    </main>
+    </>
   );
 }

@@ -113,45 +113,40 @@ export default function WikiIndexPage() {
   }, []);
 
   return (
-    <main className="relative overflow-hidden">
-      {/* Background Glows */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-hero-glow blur-[100px] pointer-events-none opacity-50"></div>
-
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 relative z-10">
-        {/* Hero Section */}
-        <div className="relative rounded-2xl border border-white/5 bg-surface/50 p-8 sm:p-20 shadow-2xl overflow-hidden backdrop-blur-sm mb-12">
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent skew-x-12 opacity-30"></div>
-
-          <div className="relative z-10 text-center">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={mounted ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6 }}
-              className="mx-auto max-w-4xl text-3xl sm:text-5xl font-semibold tracking-tight text-white mb-6 leading-tight"
-            >
-              {wikiIntro.title}
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={mounted ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              className="mx-auto max-w-2xl text-base sm:text-lg text-white/60 leading-relaxed"
-            >
-              {wikiIntro.intro}
-            </motion.p>
-          </div>
+    <>
+      {/* Hero — glows from root layout */}
+      <section className="relative rounded-2xl border border-white/10 bg-surface/80 p-8 sm:p-12 lg:p-16 shadow-2xl overflow-hidden backdrop-blur-md mb-10 sm:mb-12">
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.07]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5" />
+        <div className="relative z-10 text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={mounted ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="mx-auto max-w-4xl text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-6 leading-tight"
+          >
+            {wikiIntro.title}
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={mounted ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="mx-auto max-w-2xl text-base sm:text-lg text-white/60 leading-relaxed"
+          >
+            {wikiIntro.intro}
+          </motion.p>
         </div>
+      </section>
 
-        {/* Categories Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* Categories Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {wikiCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
               initial={{ opacity: 0, y: 20 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
-              className="relative flex flex-col rounded-xl border border-white/10 bg-card-gradient p-1"
+              className="relative flex flex-col rounded-2xl border border-white/10 bg-surface/50 p-1 hover:border-primary/30 transition-all"
             >
               <div className="relative flex h-full flex-col rounded-lg bg-black/40 p-6">
                 <div className="flex items-center gap-3 mb-6">
@@ -195,9 +190,8 @@ export default function WikiIndexPage() {
               </div>
             </motion.div>
           ))}
-        </div>
       </div>
-    </main>
+    </>
   );
 }
 
