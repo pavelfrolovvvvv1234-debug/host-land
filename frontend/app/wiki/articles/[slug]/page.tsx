@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { toPrimaryUrl, getHreflangAlternates } from "../../../lib/canonical";
+import { toPrimaryUrl, getHreflangAlternates } from "../../../../lib/canonical";
 
 interface PageProps {
   params: {

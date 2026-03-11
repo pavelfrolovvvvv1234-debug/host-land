@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import BulletproofVdsPageClient from "./client";
-import { toPrimaryUrl, getHreflangAlternates } from "../lib/canonical";
+import { toPrimaryUrl, getHreflangAlternates } from "../../lib/canonical";
 
 const pathname = "/bulletproof-vds";
 export const metadata: Metadata = {

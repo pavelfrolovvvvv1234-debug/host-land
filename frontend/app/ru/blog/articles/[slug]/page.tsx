@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { toPrimaryUrl, getHreflangAlternates } from "../../../lib/canonical";
+import { toPrimaryUrl, getHreflangAlternates } from "../../../../lib/canonical";
 
 interface PageProps {
   params: {
@@ -51,21 +51,6 @@ export async function generateStaticParams() {
   return articleSlugs.map((slug) => ({
     slug
   }));
-}
-
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = params;
-  if (!articleSlugs.includes(slug)) return {};
-  const pathname = `/ru/blog/articles/${slug}`;
-  return {
-    alternates: {
-      canonical: toPrimaryUrl(pathname),
-      languages: getHreflangAlternates(pathname),
-    },
-    openGraph: {
-      url: toPrimaryUrl(pathname),
-    },
-  };
 }
 
 function extractJsonLd(content: string): any | null {
@@ -423,9 +408,17 @@ export async function generateMetadata({ params }: PageProps) {
     }
   }
 
+  const pathname = `/ru/blog/articles/${slug}`;
   return {
     title: `${title} | Блог | Dior Host`,
-    description: description || `Статья блога: ${title}`
+    description: description || `Статья блога: ${title}`,
+    alternates: {
+      canonical: toPrimaryUrl(pathname),
+      languages: getHreflangAlternates(pathname),
+    },
+    openGraph: {
+      url: toPrimaryUrl(pathname),
+    },
   };
 }
 
