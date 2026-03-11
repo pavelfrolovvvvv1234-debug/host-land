@@ -207,8 +207,19 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
         </div>
       </div>
 
+      {/* Spline 3D background - full viewport, behind content */}
+      <iframe
+        src="https://my.spline.design/thresholddarkambientui-VbfLWmdSZ5JzGYPuQPp8PkLD/"
+        frameBorder="0"
+        width="100%"
+        height="100%"
+        className="fixed inset-0 w-full h-full z-0 pointer-events-none"
+        title="Spline background"
+        aria-hidden
+      />
+
       <motion.main
-        className="relative overflow-hidden"
+        className="relative z-10 overflow-hidden min-h-screen"
         initial={{ opacity: 0, y: 20 }}
         animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
