@@ -8,6 +8,7 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { Analytics } from "../components/Analytics";
 import { NavigationTracker } from "../components/NavigationTracker";
+import { SplineBackground } from "../components/SplineBackground";
 import { PRIMARY_ORIGIN } from "../lib/canonical";
 
 const commissioner = Commissioner({
@@ -64,6 +65,7 @@ export default function RootLayout({
         <NavigationTracker />
         <Analytics />
         <div className="min-h-screen flex flex-col justify-between items-stretch max-w-screen">
+          <SplineBackground />
           <header className="relative z-20">
             <Header />
           </header>
