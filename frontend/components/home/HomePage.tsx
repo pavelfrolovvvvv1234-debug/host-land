@@ -126,7 +126,7 @@ export function HomePage({ locale, content = homeContent[locale] }: HomePageProp
 
           <div className="relative z-20">
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
               className="text-3xl sm:text-4xl font-bold tracking-tight text-center"
@@ -134,7 +134,7 @@ export function HomePage({ locale, content = homeContent[locale] }: HomePageProp
               {content.hero.title}
             </motion.h1>
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15, ease: [0.4, 0, 0.2, 1] }}
               className="text-center text-lg mt-4 text-white/90 max-w-2xl mx-auto bg-black/50 px-4 py-2 rounded-full shadow shadow-black/40"
@@ -142,7 +142,7 @@ export function HomePage({ locale, content = homeContent[locale] }: HomePageProp
               {content.hero.subtitle}
             </motion.p>
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
               className="mt-6 text-base sm:text-lg text-center text-white/90 max-w-3xl mx-auto bg-black/60 px-5 py-4 rounded-2xl shadow-lg shadow-black/40 backdrop-blur"
@@ -152,7 +152,7 @@ export function HomePage({ locale, content = homeContent[locale] }: HomePageProp
             <motion.button
               type="button"
               aria-label={content.heroScrollLabel}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={{
                 opacity: 1,
                 y: [0, 8, 0]
@@ -191,7 +191,7 @@ export function HomePage({ locale, content = homeContent[locale] }: HomePageProp
 
             <motion.section
               id="better"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
               className="mt-10 w-full relative"
@@ -201,7 +201,7 @@ export function HomePage({ locale, content = homeContent[locale] }: HomePageProp
                   {content.quickBenefits.map((text, index) => (
                     <motion.li
                       key={text}
-                      initial={{ opacity: 0, y: 10 }}
+                      initial={{ opacity: 0 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 0.7 + index * 0.1, ease: [0.4, 0, 0.2, 1] }}
                       className="border border-blue bg-black/50 p-2 rounded flex-grow flex-basis-400 text-center list-none"

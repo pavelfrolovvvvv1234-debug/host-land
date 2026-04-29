@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Commissioner } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import "../animations.css";
 import "../main.css";
@@ -12,13 +13,14 @@ import { PRIMARY_ORIGIN } from "../lib/canonical";
 
 const commissioner = Commissioner({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-commissioner"
 });
 
 // Build metadata with verification meta tags
 const bingVerification = process.env.NEXT_PUBLIC_BING_VERIFICATION;
 const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
+const yandexVerification = process.env.NEXT_PUBLIC_YANDEX_VERIFICATION;
 
 const metadataBase: Metadata = {
   metadataBase: new URL(PRIMARY_ORIGIN),
@@ -45,6 +47,9 @@ if (bingVerification) {
 if (googleSiteVerification) {
   verificationMetaTags["google-site-verification"] = googleSiteVerification;
 }
+if (yandexVerification) {
+  verificationMetaTags["yandex-verification"] = yandexVerification;
+}
 
 export const metadata: Metadata = {
   ...metadataBase,
@@ -61,6 +66,43 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" data-theme="dark">
       <body className={`${commissioner.variable} bg-[#080808] text-white min-h-screen`} style={{ fontFamily: "var(--font-commissioner), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
+        <Script
+          id="ld-org"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Dior Host",
+              url: PRIMARY_ORIGIN,
+              logo: `${PRIMARY_ORIGIN}/favicon.png`,
+              contactPoint: [
+                {
+                  "@type": "ContactPoint",
+                  contactType: "customer support",
+                  email: "support@dior.host",
+                  availableLanguage: ["English", "Russian"]
+                }
+              ],
+              sameAs: ["https://t.me/diorhost_bot", "https://t.me/diorhost_news"]
+            })
+          }}
+        />
+        <Script
+          id="ld-website"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Dior Host",
+              url: PRIMARY_ORIGIN,
+              inLanguage: ["en", "ru"]
+            })
+          }}
+        />
         <NavigationTracker />
         <Analytics />
         <div className="min-h-screen flex flex-col justify-between items-stretch max-w-screen">

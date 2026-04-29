@@ -7,6 +7,9 @@ const nextConfig = {
   
   // Performance optimizations
   swcMinify: true,
+  experimental: {
+    optimizePackageImports: ['framer-motion', 'react-markdown'],
+  },
   // optimizeCss disabled - requires critters module which may cause build issues
   // experimental: {
   //   optimizeCss: true,

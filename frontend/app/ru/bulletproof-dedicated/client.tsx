@@ -8,9 +8,8 @@ type ComparisonRow = { label: string; bulletproof: string; regular: string };
 type DedicatedTarif = {
   title: string;
   cpu: number;
-  threads: number;
   ram: number;
-  ssd: number;
+  storage: string;
   networkSpeed: number;
   bandwidth: string;
   os: string;
@@ -108,109 +107,89 @@ const tarifs: DedicatedTarif[] = [
   {
     title: "Intel Xeon E3-1240v2",
     cpu: 4,
-    threads: 8,
     ram: 16,
-    ssd: 250,
+    storage: "SSD / NVMe",
     networkSpeed: 1,
     bandwidth: "Unlimited",
     os: "Linux, Windows",
-    price: 189,
+    price: 180,
     url: "https://t.me/diorhost_bot"
   },
   {
     title: "Intel Xeon E3-1240v2",
     cpu: 4,
-    threads: 8,
     ram: 32,
-    ssd: 250,
+    storage: "250 GB",
     networkSpeed: 1,
     bandwidth: "Unlimited",
     os: "Linux, Windows",
-    price: 215,
+    price: 220,
     url: "https://t.me/diorhost_bot"
   },
   {
-    title: "2x Intel Xeon X5670",
-    cpu: 12,
-    threads: 24,
-    ram: 64,
-    ssd: 250,
+    title: "2x Intel Xeon E5-2650 v2",
+    cpu: 16,
+    ram: 192,
+    storage: "480 GB SATA SSD",
     networkSpeed: 1,
     bandwidth: "Unlimited",
     os: "Linux, Windows",
-    price: 235,
+    price: 470,
     url: "https://t.me/diorhost_bot"
   },
   {
-    title: "2x Intel Xeon X5670",
-    cpu: 12,
-    threads: 24,
-    ram: 144,
-    ssd: 500,
-    networkSpeed: 1,
-    bandwidth: "Unlimited",
-    os: "Linux, Windows",
-    price: 265,
-    url: "https://t.me/diorhost_bot"
-  },
-  {
-    title: "2x Intel Xeon 2699v4",
-    cpu: 44,
-    threads: 88,
-    ram: 256,
-    ssd: 1000,
-    networkSpeed: 1,
-    bandwidth: "Unlimited",
-    os: "Linux, Windows",
-    price: 435,
-    url: "https://t.me/diorhost_bot"
-  },
-  {
-    title: "2x Intel Xeon 2699v4",
-    cpu: 44,
-    threads: 88,
-    ram: 512,
-    ssd: 2000,
-    networkSpeed: 1,
-    bandwidth: "Unlimited",
-    os: "Linux, Windows",
-    price: 520,
-    url: "https://t.me/diorhost_bot"
-  },
-  {
-    title: "2x Intel Xeon 2699v4",
-    cpu: 44,
-    threads: 88,
-    ram: 768,
-    ssd: 4000,
-    networkSpeed: 1,
-    bandwidth: "Unlimited",
-    os: "Linux, Windows",
-    price: 620,
-    url: "https://t.me/diorhost_bot"
-  },
-  {
-    title: "2x Intel Gold 6138",
-    cpu: 32,
-    threads: 64,
+    title: "2x Intel Xeon E5-2680 v4",
+    cpu: 28,
     ram: 128,
-    ssd: 500,
+    storage: "480 GB SATA SSD",
     networkSpeed: 1,
     bandwidth: "Unlimited",
     os: "Linux, Windows",
-    price: 345,
+    price: 499,
     url: "https://t.me/diorhost_bot"
   },
   {
-    title: "2x Intel Gold 6138",
-    cpu: 32,
-    threads: 64,
+    title: "2x Intel Xeon E5-2690 v4",
+    cpu: 28,
     ram: 256,
-    ssd: 500,
+    storage: "800 GB NVMe",
     networkSpeed: 1,
     bandwidth: "Unlimited",
     os: "Linux, Windows",
-    price: 429,
+    price: 639,
+    url: "https://t.me/diorhost_bot"
+  },
+  {
+    title: "2x Intel Xeon Platinum 8168",
+    cpu: 48,
+    ram: 512,
+    storage: "2 TB NVMe",
+    networkSpeed: 1,
+    bandwidth: "Unlimited",
+    os: "Linux, Windows",
+    price: 890,
+    url: "https://t.me/diorhost_bot"
+  },
+  {
+    title: "2x Intel Xeon Platinum 8168",
+    cpu: 48,
+    ram: 768,
+    storage: "2 TB NVMe",
+    networkSpeed: 1,
+    bandwidth: "Unlimited",
+    os: "Linux, Windows",
+    price: 1350,
+    url: "https://t.me/diorhost_bot"
+  },
+  {
+    title: "2x Intel Xeon Platinum 8168",
+    cpu: 48,
+    ram: 1024,
+    storage: "2 TB NVMe",
+    networkSpeed: 1,
+    bandwidth: "Unlimited",
+    os: "Linux, Windows",
+    price: 1625,
     url: "https://t.me/diorhost_bot"
   }
 ];
@@ -263,7 +242,7 @@ export default function BulletproofDedicatedPageClient() {
 
           <div className="relative z-10 text-center">
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
               className="mx-auto max-w-4xl text-3xl sm:text-5xl font-semibold tracking-tight text-white mb-6 leading-tight"
@@ -271,7 +250,7 @@ export default function BulletproofDedicatedPageClient() {
               {hero.heading}
             </motion.h1>
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 }}
               className="mx-auto max-w-2xl text-base sm:text-lg text-white/70 leading-relaxed"
@@ -283,7 +262,7 @@ export default function BulletproofDedicatedPageClient() {
 
         {/* Quick Info Banner */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0 }}
           animate={mounted ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="relative rounded-xl border border-white/10 bg-black/40 p-4 text-center text-sm text-white/70 mb-12"
@@ -304,7 +283,7 @@ export default function BulletproofDedicatedPageClient() {
           {tarifs.map((tarif, index) => (
             <motion.div
               key={`${tarif.title}-${tarif.ram}`}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.05 }}
               whileHover={{ scale: 1.02, y: -4 }}
@@ -338,7 +317,7 @@ export default function BulletproofDedicatedPageClient() {
                   <div className="flex-1 space-y-3 mb-6">
                     <div className="flex justify-between text-sm">
                       <span className="text-white/60">CPU</span>
-                      <span className="text-white font-semibold">{tarif.cpu} cores / {tarif.threads} threads</span>
+                      <span className="text-white font-semibold">{tarif.cpu} ядер</span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-white/60">RAM</span>
@@ -346,7 +325,7 @@ export default function BulletproofDedicatedPageClient() {
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-white/60">SSD</span>
-                      <span className="text-white font-semibold">{tarif.ssd} GB</span>
+                      <span className="text-white font-semibold">{tarif.storage}</span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-white/60">Сеть</span>
@@ -375,7 +354,7 @@ export default function BulletproofDedicatedPageClient() {
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
             <div className="relative z-10">
               <motion.h2
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0 }}
                 animate={mounted ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6 }}
                 className="text-2xl sm:text-3xl font-semibold text-white mb-8"
@@ -386,7 +365,7 @@ export default function BulletproofDedicatedPageClient() {
                 {steps.map((step, index) => (
                   <motion.div
                     key={step.title}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0 }}
                     animate={mounted ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.5, delay: 0.1 * index }}
                     className="flex gap-4"
@@ -411,7 +390,7 @@ export default function BulletproofDedicatedPageClient() {
             {sections.map((section, index) => (
               <motion.div
                 key={section.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0 }}
                 animate={mounted ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.1 * index }}
                 className="relative rounded-xl border border-white/10 bg-card-gradient p-6 hover:border-primary/30 transition-all"
@@ -439,7 +418,7 @@ export default function BulletproofDedicatedPageClient() {
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
             <div className="relative z-10">
               <motion.h2
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0 }}
                 animate={mounted ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6 }}
                 className="text-2xl sm:text-3xl font-semibold text-white mb-2"
@@ -477,7 +456,7 @@ export default function BulletproofDedicatedPageClient() {
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
             <div className="relative z-10">
               <motion.h2
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0 }}
                 animate={mounted ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6 }}
                 className="text-2xl sm:text-3xl font-semibold text-white mb-8"
@@ -488,7 +467,7 @@ export default function BulletproofDedicatedPageClient() {
                 {faqs.map((faq, index) => (
                   <motion.details
                     key={faq.question}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0 }}
                     animate={mounted ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.5, delay: 0.1 * index }}
                     className="group border border-white/10 rounded-lg bg-black/40 hover:border-primary/30 transition-all"

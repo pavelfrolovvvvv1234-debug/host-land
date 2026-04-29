@@ -152,7 +152,7 @@ export default function IPHMPageRu() {
 
           <div className="relative z-10 text-center">
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
               className="mx-auto max-w-4xl text-3xl sm:text-5xl font-semibold tracking-tight text-white mb-6 leading-tight"
@@ -160,7 +160,7 @@ export default function IPHMPageRu() {
               {hero.heading}
             </motion.h1>
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mx-auto max-w-2xl text-base sm:text-lg text-white/60 leading-relaxed bg-black/40 p-6 rounded-xl border border-white/5 backdrop-blur-sm shadow-xl"
@@ -175,7 +175,7 @@ export default function IPHMPageRu() {
           {tarifs.map((tarif, index) => (
             <motion.div
               key={`${tarif.title}-${tarif.ram}-${tarif.ssd}-${index}`}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.02, y: -4 }}
@@ -241,7 +241,7 @@ export default function IPHMPageRu() {
           {sections.map((section, index) => (
             <motion.div
               key={section.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.1 * index }}
               className="relative rounded-xl border border-white/10 bg-card-gradient p-6 hover:border-primary/30 transition-all"

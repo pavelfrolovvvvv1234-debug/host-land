@@ -120,7 +120,7 @@ export default function WikiIndexPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5" />
         <div className="relative z-10 text-center">
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0 }}
             animate={mounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
             className="mx-auto max-w-4xl text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-6 leading-tight"
@@ -128,7 +128,7 @@ export default function WikiIndexPage() {
             {wikiIntro.title}
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0 }}
             animate={mounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.15 }}
             className="mx-auto max-w-2xl text-base sm:text-lg text-white/60 leading-relaxed"
@@ -143,7 +143,7 @@ export default function WikiIndexPage() {
           {wikiCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
               className="relative flex flex-col rounded-2xl border border-white/10 bg-surface/50 p-1 hover:border-primary/30 transition-all"

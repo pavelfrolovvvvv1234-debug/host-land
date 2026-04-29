@@ -117,7 +117,7 @@ export default function BlogIndexPage() {
       {/* Hero — glows from root layout */}
       <ScrollReveal>
         <motion.section
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0 }}
           animate={mounted ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="relative rounded-2xl border border-white/10 bg-surface/80 p-8 sm:p-12 shadow-2xl overflow-hidden backdrop-blur-md mb-10 sm:mb-12"
@@ -126,7 +126,7 @@ export default function BlogIndexPage() {
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5" />
           <div className="relative z-10">
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.15 }}
               className="text-3xl sm:text-4xl font-semibold tracking-tight text-white mb-4"
@@ -134,7 +134,7 @@ export default function BlogIndexPage() {
               {blogIntro.title}
             </motion.h1>
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-base sm:text-lg text-white/70 leading-relaxed"
@@ -149,7 +149,7 @@ export default function BlogIndexPage() {
       <ScrollReveal delay={0.2}>
         <section className="mt-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0 }}
             animate={mounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex items-center justify-between flex-wrap gap-4 mb-8"

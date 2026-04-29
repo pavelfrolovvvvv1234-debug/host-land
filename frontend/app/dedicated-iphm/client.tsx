@@ -165,7 +165,7 @@ export default function IPHMPageClient() {
 
           <div className="relative z-10 text-center">
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
               className="mx-auto max-w-4xl text-3xl sm:text-5xl font-semibold tracking-tight text-white mb-6 leading-tight"
@@ -173,7 +173,7 @@ export default function IPHMPageClient() {
               {hero.heading}
             </motion.h1>
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mx-auto max-w-2xl text-base sm:text-lg text-white/60 leading-relaxed bg-black/40 p-6 rounded-xl border border-white/5 backdrop-blur-sm shadow-xl"
@@ -187,7 +187,7 @@ export default function IPHMPageClient() {
           {tarifs.map((tarif, index) => (
             <motion.div
               key={`${tarif.title}-${tarif.ram}-${tarif.ssd}-${index}`}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.02, y: -4 }}
@@ -252,7 +252,7 @@ export default function IPHMPageClient() {
           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10" />
           <div className="relative z-10">
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
               className="text-2xl sm:text-3xl font-semibold text-white mb-8"
@@ -263,7 +263,7 @@ export default function IPHMPageClient() {
               {steps.map((step, index) => (
                 <motion.div
                   key={step.title}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0 }}
                   animate={mounted ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.1 * index }}
                   className="flex gap-4"
@@ -285,7 +285,7 @@ export default function IPHMPageClient() {
           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10" />
           <div className="relative z-10">
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
               className="text-2xl sm:text-3xl font-semibold text-white mb-8"
@@ -296,7 +296,7 @@ export default function IPHMPageClient() {
               {sections.map((section, index) => (
                 <motion.div
                   key={section.title}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0 }}
                   animate={mounted ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.1 * index }}
                   whileHover={{ scale: 1.02, y: -2 }}
@@ -329,7 +329,7 @@ export default function IPHMPageClient() {
           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10" />
           <div className="relative z-10">
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
               className="text-2xl sm:text-3xl font-semibold text-white mb-8"

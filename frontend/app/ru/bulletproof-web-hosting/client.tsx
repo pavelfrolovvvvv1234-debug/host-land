@@ -141,7 +141,7 @@ export default function BulletproofWebHostingPageClient() {
 
           <div className="relative z-10 text-center">
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
               className="mx-auto max-w-4xl text-3xl sm:text-5xl font-semibold tracking-tight text-white mb-6 leading-tight"
@@ -149,7 +149,7 @@ export default function BulletproofWebHostingPageClient() {
               {hero.heading}
             </motion.h1>
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 }}
               className="mx-auto max-w-2xl text-base sm:text-lg text-white/70 leading-relaxed mb-4"
@@ -157,7 +157,7 @@ export default function BulletproofWebHostingPageClient() {
               {hero.subheading}
             </motion.p>
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mx-auto max-w-2xl text-base sm:text-lg text-white/60 leading-relaxed bg-black/40 p-6 rounded-xl border border-white/5 backdrop-blur-sm shadow-xl"
@@ -173,7 +173,7 @@ export default function BulletproofWebHostingPageClient() {
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
             <div className="relative z-10">
               <motion.h2
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0 }}
                 animate={mounted ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6 }}
                 className="text-2xl sm:text-3xl font-semibold text-white mb-8"
@@ -184,7 +184,7 @@ export default function BulletproofWebHostingPageClient() {
                 {steps.map((step, index) => (
                   <motion.div
                     key={step.title}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0 }}
                     animate={mounted ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.5, delay: 0.1 * index }}
                     className="flex gap-4"
@@ -209,7 +209,7 @@ export default function BulletproofWebHostingPageClient() {
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
             <div className="relative z-10">
               <motion.h2
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0 }}
                 animate={mounted ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6 }}
                 className="text-2xl sm:text-3xl font-semibold text-white mb-2"
@@ -247,7 +247,7 @@ export default function BulletproofWebHostingPageClient() {
             {sections.map((section, index) => (
               <motion.div
                 key={section.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0 }}
                 animate={mounted ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.1 * index }}
                 className="relative rounded-xl border border-white/10 bg-card-gradient p-6 hover:border-primary/30 transition-all"
@@ -271,7 +271,7 @@ export default function BulletproofWebHostingPageClient() {
 
         {/* Quick Info Banner */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0 }}
           animate={mounted ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="relative rounded-xl border border-white/10 bg-black/40 p-4 text-center text-sm text-white/70 mb-12"
@@ -297,7 +297,7 @@ export default function BulletproofWebHostingPageClient() {
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
             <div className="relative z-10">
               <motion.h2
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0 }}
                 animate={mounted ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6 }}
                 className="text-2xl sm:text-3xl font-semibold text-white mb-8"
@@ -308,7 +308,7 @@ export default function BulletproofWebHostingPageClient() {
                 {faqs.map((faq, index) => (
                   <motion.details
                     key={faq.question}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0 }}
                     animate={mounted ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.5, delay: 0.1 * index }}
                     className="group border border-white/10 rounded-lg bg-black/40 hover:border-primary/30 transition-all"

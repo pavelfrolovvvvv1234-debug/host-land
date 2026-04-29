@@ -127,11 +127,11 @@ const sharedVdsTariffs: ReadonlyArray<VdsTariff> = [
     title: "Lite 1",
     cpu: 1,
     ram: 1,
-    ssd: 20,
+    ssd: 10,
     networkSpeed: 150,
     bandwidth: "Unlimited",
     os: "Linux, Windows",
-    price: 17.29,
+    price: 25,
     url: "https://t.me/diorhost_bot"
   },
   {
@@ -142,29 +142,95 @@ const sharedVdsTariffs: ReadonlyArray<VdsTariff> = [
     networkSpeed: 150,
     bandwidth: "Unlimited",
     os: "Linux, Windows",
-    price: 32.29,
+    price: 27,
     url: "https://t.me/diorhost_bot"
   },
   {
     title: "Lite 3",
     cpu: 2,
     ram: 4,
-    ssd: 40,
+    ssd: 50,
     networkSpeed: 150,
     bandwidth: "Unlimited",
     os: "Linux, Windows",
-    price: 37.29,
+    price: 39,
     url: "https://t.me/diorhost_bot"
   },
   {
-    title: "Lite 4",
-    cpu: 2,
-    ram: 6,
-    ssd: 40,
+    title: "Elite 1",
+    cpu: 4,
+    ram: 8,
+    ssd: 80,
     networkSpeed: 150,
     bandwidth: "Unlimited",
     os: "Linux, Windows",
-    price: 57.29,
+    price: 65,
+    url: "https://t.me/diorhost_bot"
+  },
+  {
+    title: "Elite 2",
+    cpu: 8,
+    ram: 16,
+    ssd: 150,
+    networkSpeed: 150,
+    bandwidth: "Unlimited",
+    os: "Linux, Windows",
+    price: 99,
+    url: "https://t.me/diorhost_bot"
+  },
+  {
+    title: "Elite 3",
+    cpu: 8,
+    ram: 24,
+    ssd: 200,
+    networkSpeed: 150,
+    bandwidth: "Unlimited",
+    os: "Linux, Windows",
+    price: 115,
+    url: "https://t.me/diorhost_bot"
+  },
+  {
+    title: "Mega 1",
+    cpu: 12,
+    ram: 32,
+    ssd: 250,
+    networkSpeed: 150,
+    bandwidth: "Unlimited",
+    os: "Linux, Windows",
+    price: 159,
+    url: "https://t.me/diorhost_bot"
+  },
+  {
+    title: "Mega 2",
+    cpu: 16,
+    ram: 64,
+    ssd: 300,
+    networkSpeed: 150,
+    bandwidth: "Unlimited",
+    os: "Linux, Windows",
+    price: 199,
+    url: "https://t.me/diorhost_bot"
+  },
+  {
+    title: "Ultra 1",
+    cpu: 24,
+    ram: 96,
+    ssd: 500,
+    networkSpeed: 150,
+    bandwidth: "Unlimited",
+    os: "Linux, Windows",
+    price: 285,
+    url: "https://t.me/diorhost_bot"
+  },
+  {
+    title: "Ultra 2",
+    cpu: 24,
+    ram: 128,
+    ssd: 700,
+    networkSpeed: 150,
+    bandwidth: "Unlimited",
+    os: "Linux, Windows",
+    price: 340,
     url: "https://t.me/diorhost_bot"
   }
 ];

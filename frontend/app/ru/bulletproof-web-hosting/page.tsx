@@ -1,17 +1,21 @@
 import { Metadata } from "next";
 import BulletproofWebHostingPageClient from "./client";
+import { toPrimaryUrl, getHreflangAlternates } from "../../../lib/canonical";
+
+const pathname = "/ru/bulletproof-web-hosting";
 
 export const metadata: Metadata = {
   title: "Абузоустойчивый веб-хостинг | Оффшорный shared и managed хостинг | Dior Host",
   description: "Абузоустойчивый веб-хостинг сохраняет ваши сайты онлайн даже при получении DMCA или жалоб о злоупотреблениях. Оффшорная инфраструктура в США, Великобритании, Нидерландах, Германии и ЕС с управляемыми сервисами и медиацией абузов.",
   keywords: "абузоустойчивый веб-хостинг, абузоустойчивый хост, абузоустойчивые сервера, абузоустойчивый хостинг, оффшорный хостинг, dmca игнорируемый хостинг, абузоустойчивый web хостинг, абузоустойчивый shared хостинг, абузоустойчивый managed хостинг, абузоустойчивый хостинг провайдер, абузоустойчивый веб хостинг провайдер, абузоустойчивый сайт хостинг",
   alternates: {
-    canonical: "https://dior.host/ru/bulletproof-web-hosting",
+    canonical: toPrimaryUrl(pathname),
+    languages: getHreflangAlternates(pathname),
   },
   openGraph: {
     title: "Абузоустойчивый веб-хостинг | Оффшорный shared и managed хостинг",
     description: "Оффшорные shared и managed стеки с DMCA-устойчивой политикой.",
-    url: "https://dior.host/ru/bulletproof-web-hosting",
+    url: toPrimaryUrl(pathname),
     type: "website",
   },
   twitter: {

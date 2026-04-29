@@ -106,23 +106,43 @@ const domainsPrices = {
   transfer: 80
 };
 
+const BOT_URL = "https://t.me/diorhost_bot";
+
 const zones: Zone[] = [
-  { title: ".com", price: 80, url: "https://t.me/diorhost_bot" },
-  { title: ".net", price: 80, url: "https://t.me/diorhost_bot" },
-  { title: ".org", price: 80, url: "https://t.me/diorhost_bot" },
-  { title: ".info", price: 80, url: "https://t.me/diorhost_bot" },
-  { title: ".biz", price: 80, url: "https://t.me/diorhost_bot" },
-  { title: ".club", price: 80, url: "https://t.me/diorhost_bot" },
-  { title: ".pro", price: 80, url: "https://t.me/diorhost_bot" },
-  { title: ".uk", price: 80, url: "https://t.me/diorhost_bot" },
-  { title: ".guru", price: 80, url: "https://t.me/diorhost_bot" },
-  { title: ".ca", price: 80, url: "https://t.me/diorhost_bot" },
-  { title: ".at", price: 80, url: "https://t.me/diorhost_bot" },
-  { title: ".io", price: 99, url: "https://t.me/diorhost_bot" },
-  { title: ".cc", price: 80, url: "https://t.me/diorhost_bot" },
-  { title: ".us", price: 80, url: "https://t.me/diorhost_bot" },
-  { title: ".link", price: 80, url: "https://t.me/diorhost_bot" },
-  { title: ".bz", price: 80, url: "https://t.me/diorhost_bot" }
+  { title: ".com", price: 80, url: BOT_URL },
+  { title: ".net", price: 80, url: BOT_URL },
+  { title: ".club", price: 80, url: BOT_URL },
+  { title: ".uk", price: 80, url: BOT_URL },
+  { title: ".io", price: 99, url: BOT_URL },
+  { title: ".at", price: 80, url: BOT_URL },
+  { title: ".guru", price: 80, url: BOT_URL },
+  { title: ".info", price: 80, url: BOT_URL },
+  { title: ".app", price: 80, url: BOT_URL },
+  { title: ".bot", price: 80, url: BOT_URL },
+  { title: ".co", price: 80, url: BOT_URL },
+  { title: ".energy", price: 80, url: BOT_URL },
+  { title: ".money", price: 80, url: BOT_URL },
+  { title: ".one", price: 80, url: BOT_URL },
+  { title: ".shop", price: 80, url: BOT_URL },
+  { title: ".skin", price: 80, url: BOT_URL },
+  { title: ".top", price: 80, url: BOT_URL },
+  { title: ".org", price: 80, url: BOT_URL },
+  { title: ".biz", price: 80, url: BOT_URL },
+  { title: ".pro", price: 80, url: BOT_URL },
+  { title: ".cc", price: 80, url: BOT_URL },
+  { title: ".us", price: 80, url: BOT_URL },
+  { title: ".ca", price: 80, url: BOT_URL },
+  { title: ".link", price: 80, url: BOT_URL },
+  { title: ".ac", price: 80, url: BOT_URL },
+  { title: ".bio", price: 80, url: BOT_URL },
+  { title: ".cash", price: 80, url: BOT_URL },
+  { title: ".dev", price: 80, url: BOT_URL },
+  { title: ".host", price: 80, url: BOT_URL },
+  { title: ".my", price: 80, url: BOT_URL },
+  { title: ".pw", price: 80, url: BOT_URL },
+  { title: ".site", price: 80, url: BOT_URL },
+  { title: ".team", price: 80, url: BOT_URL },
+  { title: ".vip", price: 80, url: BOT_URL }
 ];
 
 const faqs = [
@@ -170,7 +190,7 @@ export default function BulletproofDomainsPageClient() {
 
           <div className="relative z-10 text-center">
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
               className="mx-auto max-w-4xl text-3xl sm:text-5xl font-semibold tracking-tight text-white mb-6 leading-tight"
@@ -178,7 +198,7 @@ export default function BulletproofDomainsPageClient() {
               {hero.heading}
             </motion.h1>
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-base sm:text-lg text-white/70 mb-4"
@@ -186,7 +206,7 @@ export default function BulletproofDomainsPageClient() {
               {hero.subheading}
             </motion.p>
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mx-auto max-w-2xl text-base sm:text-lg text-white/60 leading-relaxed bg-black/40 p-6 rounded-xl border border-white/5 backdrop-blur-sm shadow-xl"
@@ -204,7 +224,7 @@ export default function BulletproofDomainsPageClient() {
           ].map((item, index) => (
             <motion.div
               key={item.label}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="relative rounded-xl border border-white/10 bg-card-gradient p-6 hover:border-primary/30 transition-all"
@@ -222,7 +242,7 @@ export default function BulletproofDomainsPageClient() {
           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
           <div className="relative z-10">
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
               className="text-2xl sm:text-3xl font-semibold text-white mb-8 text-center"
@@ -252,7 +272,7 @@ export default function BulletproofDomainsPageClient() {
           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
           <div className="relative z-10">
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
               className="text-2xl sm:text-3xl font-semibold text-white mb-8"
@@ -263,7 +283,7 @@ export default function BulletproofDomainsPageClient() {
               {steps.map((step, index) => (
                 <motion.div
                   key={step.title}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0 }}
                   animate={mounted ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.1 * index }}
                   className="flex gap-4"
@@ -285,7 +305,7 @@ export default function BulletproofDomainsPageClient() {
           {sections.map((section, index) => (
             <motion.div
               key={section.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.1 * index }}
               className="relative rounded-xl border border-white/10 bg-card-gradient p-6 hover:border-primary/30 transition-all"
@@ -310,7 +330,7 @@ export default function BulletproofDomainsPageClient() {
           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
           <div className="relative z-10">
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
               className="text-2xl sm:text-3xl font-semibold text-white mb-2"
@@ -345,7 +365,7 @@ export default function BulletproofDomainsPageClient() {
           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
           <div className="relative z-10">
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
               className="text-2xl sm:text-3xl font-semibold text-white mb-8"

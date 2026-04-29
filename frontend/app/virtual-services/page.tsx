@@ -211,7 +211,7 @@ export default function VirtualServicesPage() {
           
           <div className="max-w-7xl mx-auto relative z-10">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
@@ -229,7 +229,7 @@ export default function VirtualServicesPage() {
 
             {/* Important Notice */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="max-w-4xl mx-auto mb-12 p-6 rounded-2xl bg-yellow-500/10 border border-yellow-500/30"
@@ -292,7 +292,7 @@ export default function VirtualServicesPage() {
                 {tarifs.map((tarif, index) => (
                   <motion.div
                     key={tarif.title}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                     className="bg-gradient-to-br from-gray-900 to-gray-800 p-6 rounded-2xl border border-gray-700 hover:border-purple-500 transition-all"
@@ -391,7 +391,7 @@ export default function VirtualServicesPage() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 className="p-6 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700"
@@ -406,7 +406,7 @@ export default function VirtualServicesPage() {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
@@ -422,7 +422,7 @@ export default function VirtualServicesPage() {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
@@ -444,7 +444,7 @@ export default function VirtualServicesPage() {
         <section className="py-20 px-6">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="p-8 rounded-2xl bg-gradient-to-br from-purple-900/30 to-pink-900/30 border border-purple-500/30"

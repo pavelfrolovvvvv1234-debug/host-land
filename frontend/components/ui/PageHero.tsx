@@ -40,7 +40,7 @@ export function PageHero({
       <div className={`relative z-10 ${centered ? "text-center" : ""}`}>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-4">
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0 }}
             animate={mounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
             className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-white leading-tight"
@@ -51,7 +51,7 @@ export function PageHero({
         </div>
         {subtitle && (
           <motion.p
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0 }}
             animate={mounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.08 }}
             className="text-base sm:text-lg text-white/70 mb-4"
@@ -61,7 +61,7 @@ export function PageHero({
         )}
         {description && (
           <motion.p
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0 }}
             animate={mounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.12 }}
             className={`text-base sm:text-lg text-white/60 leading-relaxed ${centered ? "mx-auto max-w-2xl" : ""}`}

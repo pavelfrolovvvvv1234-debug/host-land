@@ -6,9 +6,8 @@ import { useState, useEffect } from "react";
 type Tarif = {
   title: string;
   cpu: number;
-  threads: number;
   ram: number;
-  ssd: number;
+  storage: string;
   networkSpeed: number;
   bandwidth: string;
   os: string;
@@ -23,119 +22,74 @@ const hero = {
 
 const tarifs: Tarif[] = [
   {
-    title: "Intel Xeon E3-1240v2",
+    title: "Intel Core i7-6700",
     cpu: 4,
-    threads: 8,
-    ram: 16,
-    ssd: 250,
-    networkSpeed: 1,
-    bandwidth: "Unlimited",
-    os: "Linux, Windows",
-    price: 119,
-    url:
-      "https://t.me/diorhost_bot"
-  },
-  {
-    title: "Intel Xeon E3-1240v2",
-    cpu: 4,
-    threads: 8,
-    ram: 32,
-    ssd: 250,
-    networkSpeed: 1,
-    bandwidth: "Unlimited",
-    os: "Linux, Windows",
-    price: 145,
-    url:
-      "https://t.me/diorhost_bot"
-  },
-  {
-    title: "2x Intel Xeon X5670",
-    cpu: 12,
-    threads: 24,
     ram: 64,
-    ssd: 250,
+    storage: "500 GB SSD / NVMe",
     networkSpeed: 1,
     bandwidth: "Unlimited",
     os: "Linux, Windows",
-    price: 165,
+    price: 90,
     url:
       "https://t.me/diorhost_bot"
   },
   {
-    title: "2x Intel Xeon X5670",
+    title: "Intel Core i7-8700",
+    cpu: 6,
+    ram: 64,
+    storage: "SSD / NVMe",
+    networkSpeed: 1,
+    bandwidth: "Unlimited",
+    os: "Linux, Windows",
+    price: 110,
+    url:
+      "https://t.me/diorhost_bot"
+  },
+  {
+    title: "Intel Xeon E3-1240v2",
+    cpu: 4,
+    ram: 64,
+    storage: "500 GB SSD / NVMe",
+    networkSpeed: 1,
+    bandwidth: "Unlimited",
+    os: "Linux, Windows",
+    price: 120,
+    url:
+      "https://t.me/diorhost_bot"
+  },
+  {
+    title: "Ryzen 7 3700X",
+    cpu: 8,
+    ram: 64,
+    storage: "2000 GB SSD / NVMe",
+    networkSpeed: 1,
+    bandwidth: "Unlimited",
+    os: "Linux, Windows",
+    price: 140,
+    url:
+      "https://t.me/diorhost_bot"
+  },
+  {
+    title: "Ryzen 9 3900",
     cpu: 12,
-    threads: 24,
-    ram: 144,
-    ssd: 500,
+    ram: 64,
+    storage: "2000 GB SSD / NVMe",
     networkSpeed: 1,
     bandwidth: "Unlimited",
     os: "Linux, Windows",
-    price: 195,
+    price: 150,
     url:
       "https://t.me/diorhost_bot"
   },
   {
-    title: "2x Intel Xeon 2699v4",
-    cpu: 44,
-    threads: 88,
-    ram: 256,
-    ssd: 1000,
-    networkSpeed: 1,
-    bandwidth: "Unlimited",
-    os: "Linux, Windows",
-    price: 365,
-    url:
-      "https://t.me/diorhost_bot"
-  },
-  {
-    title: "2x Intel Xeon 2699v4",
-    cpu: 44,
-    threads: 88,
-    ram: 512,
-    ssd: 2000,
-    networkSpeed: 1,
-    bandwidth: "Unlimited",
-    os: "Linux, Windows",
-    price: 450,
-    url:
-      "https://t.me/diorhost_bot"
-  },
-  {
-    title: "2x Intel Xeon 2699v4",
-    cpu: 44,
-    threads: 88,
-    ram: 768,
-    ssd: 4000,
-    networkSpeed: 1,
-    bandwidth: "Unlimited",
-    os: "Linux, Windows",
-    price: 550,
-    url:
-      "https://t.me/diorhost_bot"
-  },
-  {
-    title: "2x Intel Gold 6138",
-    cpu: 32,
-    threads: 64,
+    title: "Ryzen 9 5950X",
+    cpu: 16,
     ram: 128,
-    ssd: 500,
+    storage: "2000 GB SSD / NVMe",
     networkSpeed: 1,
     bandwidth: "Unlimited",
     os: "Linux, Windows",
-    price: 265,
-    url:
-      "https://t.me/diorhost_bot"
-  },
-  {
-    title: "2x Intel Gold 6138",
-    cpu: 32,
-    threads: 64,
-    ram: 256,
-    ssd: 500,
-    networkSpeed: 1,
-    bandwidth: "Unlimited",
-    os: "Linux, Windows",
-    price: 349,
+    price: 190,
     url:
       "https://t.me/diorhost_bot"
   }
@@ -161,7 +115,7 @@ export default function DedicatedServersPageRu() {
 
           <div className="relative z-10 text-center">
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
               className="mx-auto max-w-4xl text-3xl sm:text-5xl font-semibold tracking-tight text-white mb-6 leading-tight"
@@ -169,7 +123,7 @@ export default function DedicatedServersPageRu() {
               {hero.heading}
             </motion.h1>
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mx-auto max-w-2xl text-base sm:text-lg text-white/60 leading-relaxed bg-black/40 p-6 rounded-xl border border-white/5 backdrop-blur-sm shadow-xl"
@@ -183,8 +137,8 @@ export default function DedicatedServersPageRu() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {tarifs.map((tarif, index) => (
             <motion.div
-              key={`${tarif.title}-${tarif.ram}-${tarif.ssd}`}
-              initial={{ opacity: 0, y: 20 }}
+              key={`${tarif.title}-${tarif.ram}-${tarif.storage}`}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.05 }}
               whileHover={{ scale: 1.02, y: -4 }}
@@ -218,7 +172,7 @@ export default function DedicatedServersPageRu() {
                   <div className="flex-1 space-y-3 mb-6">
                     <div className="flex justify-between text-sm">
                       <span className="text-white/60">CPU</span>
-                      <span className="text-white font-semibold">{tarif.cpu} ядер / {tarif.threads} потоков</span>
+                      <span className="text-white font-semibold">{tarif.cpu} ядер</span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-white/60">RAM</span>
@@ -226,7 +180,7 @@ export default function DedicatedServersPageRu() {
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-white/60">Хранилище</span>
-                      <span className="text-white font-semibold">{tarif.ssd} GB</span>
+                      <span className="text-white font-semibold">{tarif.storage}</span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-white/60">Сеть</span>

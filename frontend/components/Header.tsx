@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 export function Header() {
   const pathname = usePathname();
+  const router = useRouter();
   const isRu = pathname?.startsWith("/ru") ?? false;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const loginUrl = "https://t.me/diorhost_bot";
@@ -23,21 +24,26 @@ export function Header() {
 
   const navLinks = [
     { href: isRu ? "/ru" : "/", label: isRu ? "Главная" : "Home" },
-    { href: isRu ? "/ru/bulletproof/vds" : "/bulletproof/vds", label: isRu ? "Тарифы" : "Pricing" },
     { href: isRu ? "/ru/services" : "/services", label: isRu ? "Услуги" : "Services" },
     { href: isRu ? "/ru/tools" : "/tools", label: isRu ? "Инструменты" : "Tools" },
     { href: isRu ? "/ru/blog" : "/blog", label: "Blog" },
     { href: isRu ? "/ru/wiki" : "/wiki", label: isRu ? "База знаний" : "Knowledge base" },
-    { href: isRu ? "/ru/affilate_program" : "/affilate_program", label: isRu ? "Партнёрка" : "Affiliate" },
+    { href: isRu ? "/ru/affilate_program" : "/affilate_program", label: isRu ? "Партнёрка" : "Affiliate" }
   ];
+
+  const handleLanguageChange = (nextValue: string) => {
+    if (nextValue && nextValue !== pathname) {
+      router.push(nextValue);
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full">
       <nav
-        className="relative border-b border-white/[0.06] bg-[#080808]/80 backdrop-blur-xl supports-[backdrop-filter]:bg-[#080808]/70"
+        className="relative border-b border-white/[0.05] bg-[#080808]/80 backdrop-blur-xl supports-[backdrop-filter]:bg-[#080808]/70"
         aria-label="Main navigation"
       >
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
           {/* Logo */}
           <div className="flex min-w-0 shrink-0 items-center">
             <Link
@@ -80,64 +86,61 @@ export function Header() {
           </div>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex md:items-center md:gap-0.5 md:flex-1 md:justify-center">
-            {navLinks.map(({ href, label }) => {
-              const isHome = href === (isRu ? "/ru" : "/");
-              const isActive = isHome ? pathname === "/" || pathname === "/ru" : pathname === href || (isRu && pathname?.startsWith(href));
-              return (
+          <div className="hidden md:flex md:flex-1 md:justify-center">
+            <div className="inline-flex items-center rounded-xl border border-white/[0.08] bg-white/[0.04] px-1.5 py-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] backdrop-blur-sm">
+              {navLinks.map(({ href, label, external }) => {
+                const isActive = !external && (pathname === href || (isRu && pathname?.startsWith(href)));
+                const classes = `relative rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors focus:outline-none ${
+                  isActive ? "text-white bg-white/[0.06]" : "text-white/70 hover:text-white hover:bg-white/[0.05]"
+                }`;
+                if (external) {
+                  return (
+                    <a key={href} href={href} className={classes}>
+                      {label}
+                    </a>
+                  );
+                }
+                return (
+                  <Link key={href} href={href} className={classes}>
+                    {label}
+                  </Link>
+                );
+              })}
+              <div className="ml-2 flex items-center gap-1 border-l border-white/[0.08] pl-2">
                 <Link
-                  key={href}
-                  href={href}
-                  className={`relative rounded-lg px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary/40 focus:ring-offset-2 focus:ring-offset-[#080808] ${
-                    isActive
-                      ? "text-white"
-                      : "text-white/70 hover:text-white"
+                  href={enHref}
+                  locale={false}
+                  className={`inline-flex h-8 min-w-[36px] items-center justify-center rounded-lg px-2 text-xs font-semibold transition-colors ${
+                    !isRu ? "bg-white/[0.08] text-white" : "text-white/60 hover:bg-white/[0.05] hover:text-white"
                   }`}
+                  aria-label="English"
+                  aria-current={!isRu ? "page" : undefined}
                 >
-                  {label}
+                  EN
                 </Link>
-              );
-            })}
+                <Link
+                  href={ruHref}
+                  locale={false}
+                  className={`inline-flex h-8 min-w-[36px] items-center justify-center rounded-lg px-2 text-xs font-semibold transition-colors ${
+                    isRu ? "bg-white/[0.08] text-white" : "text-white/60 hover:bg-white/[0.05] hover:text-white"
+                  }`}
+                  aria-label="Русский"
+                  aria-current={isRu ? "page" : undefined}
+                >
+                  RU
+                </Link>
+              </div>
+            </div>
           </div>
 
-          {/* Right: CTA + Lang */}
+          {/* Right: CTA + Mobile menu button */}
           <div className="flex shrink-0 items-center gap-2">
             <a
               href={loginUrl}
-              className="inline-flex h-9 items-center justify-center rounded-xl bg-primary px-4 text-sm font-semibold text-white shadow-lg shadow-primary/20 transition-all hover:bg-primary/90 hover:shadow-primary/30"
+              className="hidden sm:inline-flex h-9 items-center justify-center rounded-xl bg-primary px-4 text-sm font-semibold text-white shadow-lg shadow-primary/20 transition-all hover:bg-primary/90 hover:shadow-primary/30"
             >
-              {isRu ? "Начать" : "Get started"}
+              {isRu ? "Контакт" : "Contact"} <span aria-hidden className="ml-1">→</span>
             </a>
-            <div className="hidden sm:flex items-center gap-1 border-l border-white/10 pl-2 ml-1">
-              <Link
-                href={enHref}
-                locale={false}
-                className="flex h-8 w-8 items-center justify-center rounded-lg text-white/60 transition-colors hover:bg-white/5 hover:text-white"
-                aria-label="English"
-                aria-current={!isRu ? "page" : undefined}
-              >
-                <svg className="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" aria-hidden>
-                  <path fill="#012169" d="M0 0h640v480H0z" />
-                  <path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0z" />
-                  <path fill="#C8102E" d="m424 281 216 159v40L369 281zm-184 20 6 35L54 480H0zM640 0v3L391 191l2-44L590 0zM0 0l239 176h-60L0 42z" />
-                  <path fill="#FFF" d="M241 0v480h160V0zM0 160v160h640V160z" />
-                  <path fill="#C8102E" d="M0 193v96h640v-96zM273 0v480h96V0z" />
-                </svg>
-              </Link>
-              <Link
-                href={ruHref}
-                locale={false}
-                className="flex h-8 w-8 items-center justify-center rounded-lg text-white/60 transition-colors hover:bg-white/5 hover:text-white"
-                aria-label="Русский"
-                aria-current={isRu ? "page" : undefined}
-              >
-                <svg className="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" aria-hidden>
-                  <path fill="#fff" d="M0 0h640v160H0z" />
-                  <path fill="#0039a6" d="M0 160h640v160H0z" />
-                  <path fill="#d52b1e" d="M0 320h640v160H0z" />
-                </svg>
-              </Link>
-            </div>
 
             {/* Mobile menu button */}
             <button
@@ -164,43 +167,61 @@ export function Header() {
         {isMenuOpen && (
           <div className="md:hidden border-t border-white/[0.06] bg-[#080808]/95 backdrop-blur-xl">
             <div className="mx-auto max-w-7xl space-y-0.5 px-4 py-4">
-              {navLinks.map(({ href, label }) => (
-                <Link
-                  key={href}
-                  href={href}
-                  onClick={closeMenu}
-                  className="block rounded-lg px-3 py-2.5 text-sm font-medium text-white/90 hover:bg-white/5 hover:text-white"
-                >
-                  {label}
-                </Link>
-              ))}
+              {navLinks.map(({ href, label, external }) => {
+                if (external) {
+                  return (
+                    <a
+                      key={href}
+                      href={href}
+                      onClick={closeMenu}
+                      className="block rounded-lg px-3 py-2.5 text-sm font-medium text-white/90 hover:bg-white/[0.05] hover:text-white"
+                    >
+                      {label}
+                    </a>
+                  );
+                }
+                return (
+                  <Link
+                    key={href}
+                    href={href}
+                    onClick={closeMenu}
+                    className="block rounded-lg px-3 py-2.5 text-sm font-medium text-white/90 hover:bg-white/[0.05] hover:text-white"
+                  >
+                    {label}
+                  </Link>
+                );
+              })}
               <div className="mt-4 flex flex-col gap-2 border-t border-white/10 pt-4">
                 <a
                   href={loginUrl}
                   onClick={closeMenu}
                   className="flex h-10 items-center justify-center rounded-xl bg-primary text-sm font-semibold text-white"
                 >
-                  {isRu ? "Начать" : "Get started"}
+                  {isRu ? "Контакт" : "Contact"}
                 </a>
                 <div className="flex gap-2">
-                  <Link
-                    href={enHref}
-                    locale={false}
-                    onClick={closeMenu}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      handleLanguageChange(enHref);
+                      closeMenu();
+                    }}
                     className="flex h-9 flex-1 items-center justify-center rounded-lg border border-white/10 text-white/80"
                     aria-label="English"
                   >
                     EN
-                  </Link>
-                  <Link
-                    href={ruHref}
-                    locale={false}
-                    onClick={closeMenu}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      handleLanguageChange(ruHref);
+                      closeMenu();
+                    }}
                     className="flex h-9 flex-1 items-center justify-center rounded-lg border border-white/10 text-white/80"
                     aria-label="Русский"
                   >
                     RU
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>

@@ -111,50 +111,16 @@ const comparisonRows: ComparisonRow[] = [
 ];
 
 const tarifs: Tarif[] = [
-  {
-    title: "Lite 1",
-    cpu: 1,
-    ram: 1,
-    ssd: 20,
-    networkSpeed: 150,
-    bandwidth: "Unlimited",
-    os: "Linux, Windows",
-    price: 17.29,
-    url: "https://t.me/diorhost_bot"
-  },
-  {
-    title: "Lite 2",
-    cpu: 2,
-    ram: 2,
-    ssd: 40,
-    networkSpeed: 150,
-    bandwidth: "Unlimited",
-    os: "Linux, Windows",
-    price: 32.29,
-    url: "https://t.me/diorhost_bot"
-  },
-  {
-    title: "Lite 3",
-    cpu: 2,
-    ram: 4,
-    ssd: 40,
-    networkSpeed: 150,
-    bandwidth: "Unlimited",
-    os: "Linux, Windows",
-    price: 37.29,
-    url: "https://t.me/diorhost_bot"
-  },
-  {
-    title: "Lite 4",
-    cpu: 2,
-    ram: 6,
-    ssd: 40,
-    networkSpeed: 150,
-    bandwidth: "Unlimited",
-    os: "Linux, Windows",
-    price: 57.29,
-    url: "https://t.me/diorhost_bot"
-  }
+  { title: "Lite 1", cpu: 1, ram: 1, ssd: 10, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 25, url: "https://t.me/diorhost_bot" },
+  { title: "Lite 2", cpu: 2, ram: 2, ssd: 40, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 27, url: "https://t.me/diorhost_bot" },
+  { title: "Lite 3", cpu: 2, ram: 4, ssd: 50, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 39, url: "https://t.me/diorhost_bot" },
+  { title: "Elite 1", cpu: 4, ram: 8, ssd: 80, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 65, url: "https://t.me/diorhost_bot" },
+  { title: "Elite 2", cpu: 8, ram: 16, ssd: 150, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 99, url: "https://t.me/diorhost_bot" },
+  { title: "Elite 3", cpu: 8, ram: 24, ssd: 200, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 115, url: "https://t.me/diorhost_bot" },
+  { title: "Mega 1", cpu: 12, ram: 32, ssd: 250, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 159, url: "https://t.me/diorhost_bot" },
+  { title: "Mega 2", cpu: 16, ram: 64, ssd: 300, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 199, url: "https://t.me/diorhost_bot" },
+  { title: "Ultra 1", cpu: 24, ram: 96, ssd: 500, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 285, url: "https://t.me/diorhost_bot" },
+  { title: "Ultra 2", cpu: 24, ram: 128, ssd: 700, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 340, url: "https://t.me/diorhost_bot" }
 ];
 
 const faqs = [
@@ -205,7 +171,7 @@ export default function BulletproofVdsPageClient() {
 
           <div className="relative z-10 text-center">
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
               className="mx-auto max-w-4xl text-3xl sm:text-5xl font-semibold tracking-tight text-white mb-6 leading-tight"
@@ -213,7 +179,7 @@ export default function BulletproofVdsPageClient() {
               {hero.heading}
             </motion.h1>
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-base sm:text-lg text-white/70 mb-4"
@@ -221,7 +187,7 @@ export default function BulletproofVdsPageClient() {
               {hero.subheading}
             </motion.p>
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mx-auto max-w-2xl text-base sm:text-lg text-white/60 leading-relaxed bg-black/40 p-6 rounded-xl border border-white/5 backdrop-blur-sm shadow-xl"
@@ -236,7 +202,7 @@ export default function BulletproofVdsPageClient() {
           {tarifs.map((tarif, index) => (
             <motion.div
               key={tarif.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.02, y: -4 }}
@@ -306,7 +272,7 @@ export default function BulletproofVdsPageClient() {
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
             <div className="relative z-10">
               <motion.h2
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0 }}
                 animate={mounted ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6 }}
                 className="text-2xl sm:text-3xl font-semibold text-white mb-8"
@@ -317,7 +283,7 @@ export default function BulletproofVdsPageClient() {
                 {steps.map((step, index) => (
                   <motion.div
                     key={step.title}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0 }}
                     animate={mounted ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.5, delay: 0.1 * index }}
                     className="flex gap-4"
@@ -342,7 +308,7 @@ export default function BulletproofVdsPageClient() {
             {sections.map((section, index) => (
               <motion.div
                 key={section.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0 }}
                 animate={mounted ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.1 * index }}
                 className="relative rounded-xl border border-white/10 bg-card-gradient p-6 hover:border-primary/30 transition-all"
@@ -370,7 +336,7 @@ export default function BulletproofVdsPageClient() {
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
             <div className="relative z-10">
               <motion.h2
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0 }}
                 animate={mounted ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6 }}
                 className="text-2xl sm:text-3xl font-semibold text-white mb-2"
@@ -408,7 +374,7 @@ export default function BulletproofVdsPageClient() {
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
             <div className="relative z-10">
               <motion.h2
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0 }}
                 animate={mounted ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6 }}
                 className="text-2xl sm:text-3xl font-semibold text-white mb-8"

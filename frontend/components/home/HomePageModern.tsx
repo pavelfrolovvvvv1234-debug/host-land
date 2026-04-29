@@ -18,6 +18,8 @@ interface HomePageModernProps {
  */
 export function HomePageModern({ locale, content = homeContent[locale] }: HomePageModernProps) {
   const [ready, setReady] = useState(false);
+  const PRELOADER_VISIBLE_MS = 650;
+  const PRELOADER_FADE_MS = 280;
 
   useLayoutEffect(() => {
     if (typeof window === 'undefined') {
@@ -131,18 +133,16 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
           }
           // Content will fade in via Framer Motion when ready=true
           setReady(true);
-        }, 500);
+        }, PRELOADER_FADE_MS);
       };
 
-      preloaderTimer = setTimeout(hidePreloader, 1800);
+      preloaderTimer = setTimeout(hidePreloader, PRELOADER_VISIBLE_MS);
     };
 
-    // Check immediately and also after small delay (for NavigationTracker)
+    // Check immediately.
     checkPreloader();
-    const timeoutId = setTimeout(checkPreloader, 50);
     
     return () => {
-      clearTimeout(timeoutId);
       if (preloaderTimer) {
         clearTimeout(preloaderTimer);
       }
@@ -295,7 +295,7 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
             {content.statusCards.map((card, index) => (
               <motion.div
                 key={card.name}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0 }}
                 animate={ready ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="bg-black/20 p-4 rounded-lg border border-white/5 hover:border-white/10 transition-colors"
@@ -320,7 +320,7 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
               {content.whyUsCards.map((card, index) => (
                 <motion.article
                   key={card.title}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0 }}
                   animate={ready ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.4, delay: index * 0.08 }}
                   className="group relative rounded-2xl border border-white/10 bg-surface/60 p-6 sm:p-8 backdrop-blur-sm hover:border-primary/30 transition-colors duration-300"
@@ -424,7 +424,7 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
             {content.vdsTariffs.map((tariff, index) => (
               <motion.div
                 key={tariff.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0 }}
                 animate={ready ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group relative flex flex-col rounded-xl border border-white/10 bg-card-gradient p-1 hover:border-primary/50 transition-all duration-300"
@@ -499,7 +499,7 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
               {content.iphmTariffs.map((tariff, index) => (
                 <motion.div
                   key={`${tariff.title}-${index}`}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0 }}
                   animate={ready ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="group relative flex flex-col rounded-xl border border-white/10 bg-card-gradient p-1 hover:border-primary/50 transition-all duration-300"
@@ -580,7 +580,7 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
             {content.sections.map((section, index) => (
               <motion.article
                 key={section.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0 }}
                 animate={ready ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="flex flex-col gap-4 rounded-xl border border-white/10 bg-black/60 p-6 shadow-lg hover:border-white/20 transition-all"
@@ -607,7 +607,7 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
               {content.testimonials.map((testimonial, index) => (
                 <motion.div
                   key={testimonial.name}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0 }}
                   animate={ready ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="rounded-xl border border-white/10 bg-black/40 p-6 hover:bg-black/60 transition-all"

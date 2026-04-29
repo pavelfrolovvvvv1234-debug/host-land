@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Script from "next/script";
 import BulletproofVdsPageClient from "./client";
 import { toPrimaryUrl, getHreflangAlternates } from "../../lib/canonical";
 
@@ -25,5 +26,35 @@ export const metadata: Metadata = {
 };
 
 export default function BulletproofVdsPage() {
-  return <BulletproofVdsPageClient />;
+  return (
+    <>
+      <Script
+        id="ld-service-bulletproof-vds"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            name: "Bulletproof VDS Hosting",
+            provider: {
+              "@type": "Organization",
+              name: "Dior Host",
+              url: "https://dior.host"
+            },
+            areaServed: "Worldwide",
+            serviceType: "Offshore VPS / VDS Hosting",
+            url: toPrimaryUrl(pathname),
+            offers: {
+              "@type": "Offer",
+              priceCurrency: "USD",
+              price: "25",
+              availability: "https://schema.org/InStock"
+            }
+          })
+        }}
+      />
+      <BulletproofVdsPageClient />
+    </>
+  );
 }

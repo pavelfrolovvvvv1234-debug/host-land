@@ -19,7 +19,6 @@ import Script from "next/script";
 export function Analytics() {
   const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
   const yandexId = process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID;
-  const bingVerification = process.env.NEXT_PUBLIC_BING_VERIFICATION;
 
   return (
     <>
@@ -28,9 +27,9 @@ export function Analytics() {
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-            strategy="afterInteractive"
+            strategy="lazyOnload"
           />
-          <Script id="google-analytics" strategy="afterInteractive">
+          <Script id="google-analytics" strategy="lazyOnload">
             {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
@@ -46,7 +45,7 @@ export function Analytics() {
       {/* Yandex Metrika */}
       {yandexId && (
         <>
-          <Script id="yandex-metrika" strategy="afterInteractive">
+          <Script id="yandex-metrika" strategy="lazyOnload">
             {`
               (function(m,e,t,r,i,k,a){
                 m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -57,7 +56,7 @@ export function Analytics() {
               
               ym(${yandexId}, 'init', {
                 ssr:true,
-                webvisor:true,
+                webvisor:false,
                 clickmap:true,
                 ecommerce:"dataLayer",
                 accurateTrackBounce:true,

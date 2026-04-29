@@ -88,7 +88,7 @@ export function LegalLayout({ children, title, description }: LegalLayoutProps) 
         <main className="lg:col-span-3">
           <div className="rounded-2xl border border-white/10 bg-surface/60 p-8 sm:p-10 prose prose-invert max-w-none backdrop-blur-sm">
               <motion.h1
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 className="text-4xl font-bold mb-4 text-white"
@@ -97,7 +97,7 @@ export function LegalLayout({ children, title, description }: LegalLayoutProps) 
               </motion.h1>
               {description && (
                 <motion.p
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 }}
                   className="text-xl text-white/70 mb-8"

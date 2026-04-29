@@ -338,7 +338,7 @@ export default function ServicesPageRu() {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5" />
         <div className="relative z-10 text-center">
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0 }}
             animate={mounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
             className="mx-auto max-w-4xl text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-6 leading-tight"
@@ -346,7 +346,7 @@ export default function ServicesPageRu() {
             Услуги
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0 }}
             animate={mounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.15 }}
             className="mx-auto max-w-2xl text-base sm:text-lg text-white/60 leading-relaxed"
@@ -360,7 +360,7 @@ export default function ServicesPageRu() {
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
               animate={mounted ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.02, y: -4 }}

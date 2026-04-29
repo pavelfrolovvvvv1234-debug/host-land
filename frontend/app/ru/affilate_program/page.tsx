@@ -263,7 +263,7 @@ function FAQAccordion() {
                     className="px-6 pb-4 pt-0 text-white/70 text-sm leading-relaxed"
                   >
                     <motion.div
-                      initial={{ opacity: 0, y: -10 }}
+                      initial={{ opacity: 0 }}
                       animate={{ 
                         opacity: isOpen ? 1 : 0,
                         y: isOpen ? 0 : -10,
