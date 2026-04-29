@@ -22,7 +22,7 @@ export function Header() {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
 
-  const navLinks = [
+  const navLinks: Array<{ href: string; label: string; external?: boolean }> = [
     { href: isRu ? "/ru" : "/", label: isRu ? "Главная" : "Home" },
     { href: isRu ? "/ru/services" : "/services", label: isRu ? "Услуги" : "Services" },
     { href: isRu ? "/ru/tools" : "/tools", label: isRu ? "Инструменты" : "Tools" },
