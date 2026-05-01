@@ -59,7 +59,7 @@ const services = [
     description:
       "Сеть доставки контента для быстрой загрузки сайтов по всему миру. Ускорьте работу вашего проекта с помощью глобальных edge-серверов и умного кеширования.",
     href: "/ru/bulletproof-cdn",
-    comingSoon: true,
+    comingSoon: false,
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"

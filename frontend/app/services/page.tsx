@@ -58,7 +58,7 @@ const services = [
     description:
       "Content Delivery Network service for fast content delivery worldwide. Accelerate your website performance with global edge servers and smart caching.",
     href: "/bulletproof-cdn",
-    comingSoon: true,
+    comingSoon: false,
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"

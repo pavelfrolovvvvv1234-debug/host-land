@@ -154,14 +154,6 @@ export function Footer() {
           <p className="text-xs text-white/40">
             © {year} Dior Host. {isRu ? "Все права защищены." : "All rights reserved."}
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-xs text-white/40">
-            <a href="mailto:abuse@dior.host" className="transition-colors hover:text-white/60">
-              abuse@dior.host
-            </a>
-            <a href="xmpp:diorhost@exploit.in?message" className="transition-colors hover:text-white/60">
-              Jabber
-            </a>
-          </div>
         </div>
       </div>
     </footer>
