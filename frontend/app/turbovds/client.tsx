@@ -39,7 +39,7 @@ const tarifs: Tarif[] = [
     dNet: 1,
     bandwidth: "Unlimited",
     os: "Linux, Windows",
-    price: 99,
+    price: 150,
     url:
       "https://t.me/diorhost_bot",
     pps: "~450-800"
@@ -55,7 +55,7 @@ const tarifs: Tarif[] = [
     dNet: 1,
     bandwidth: "Unlimited",
     os: "Linux, Windows",
-    price: 159,
+    price: 199,
     url:
       "https://t.me/diorhost_bot",
     pps: "~450-800"
@@ -71,7 +71,7 @@ const tarifs: Tarif[] = [
     dNet: 1,
     bandwidth: "Unlimited",
     os: "Linux, Windows",
-    price: 199,
+    price: 259,
     url:
       "https://t.me/diorhost_bot",
     pps: "~450-800"

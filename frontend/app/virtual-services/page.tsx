@@ -179,7 +179,7 @@ const comparisonData = [
   {
     label: "Jurisdiction",
     regular: "Standard datacenters",
-    bulletproof: "Netherlands (more locations coming soon)"
+    bulletproof: "Netherlands, USA, Germany, Turkey"
   },
   {
     label: "Privacy",

@@ -26,7 +26,7 @@ const hero = {
   heading: "Bulletproof VPS/VDS Hosting",
   subheading: "Offshore VPS/VDS with DMCA-ignored policies and instant delivery",
   summary:
-    "In simple terms, bulletproof VPS hosting is a service that keeps your virtual servers online even when complaints, DMCA notices or abuse reports are filed against your content thanks to offshore-friendly networks in the USA, Netherlands, Germany and the wider EU."
+    "In simple terms, bulletproof VPS hosting is a service that keeps your virtual servers online even when complaints, DMCA notices or abuse reports are filed against your content thanks to offshore-friendly networks in the Netherlands, USA, Germany and Turkey."
 };
 
 const sections = [
@@ -35,16 +35,16 @@ const sections = [
     body: "Bulletproof VDS nodes prioritise uptime, privacy and flexible acceptable use so growth campaigns, privacy tools and security labs survive aggressive takedown attempts.",
     bullets: [
       "DMCA ignored by default with manual review and mediation.",
-      "Offshore routing in Netherlands (more locations coming soon) with 150+ Gbps capacity.",
+      "Offshore routing across Netherlands, USA, Germany and Turkey with 150+ Gbps capacity.",
       "Crypto, wire and anonymous support channels without forced KYC."
     ]
   },
   {
     title: "Where are the servers located?",
-    body: "Dior Host maintains multi-homed VPS clusters in Netherlands (more locations coming soon) with excellent connectivity.",
+    body: "Dior Host maintains multi-homed VPS clusters in the Netherlands, USA, Germany and Turkey with excellent connectivity.",
     bullets: [
       "Redundant AS paths and proactive DDoS filtering.",
-      "Localised IP pools for Netherlands (more locations coming soon).",
+      "Localised IP pools across Netherlands, USA, Germany and Turkey.",
       "Private peering to ad networks, affiliate trackers and fintech APIs."
     ]
   },
@@ -68,7 +68,7 @@ const steps = [
   {
     title: "Choose jurisdictions",
     description:
-      "Select NL/DE/MD or hybrid USA-friendly nodes depending on latency to your audience."
+      "Select Netherlands, USA, Germany or Turkey nodes depending on latency to your audience."
   },
   {
     title: "Right-size resources",
@@ -90,7 +90,7 @@ const comparisonRows: ComparisonRow[] = [
   },
   {
     label: "Jurisdictions & IPs",
-    bulletproof: "NL/DE/MD/US-friendly pools, multiple ASNs and clean ranges.",
+    bulletproof: "Netherlands/USA/Germany/Turkey pools, multiple ASNs and clean ranges.",
     regular: "Single-country IPs exposed to local takedowns."
   },
   {
@@ -119,8 +119,8 @@ const tarifs: Tarif[] = [
   { title: "Elite 3", cpu: 8, ram: 24, ssd: 200, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 115, url: "https://t.me/diorhost_bot" },
   { title: "Mega 1", cpu: 12, ram: 32, ssd: 250, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 159, url: "https://t.me/diorhost_bot" },
   { title: "Mega 2", cpu: 16, ram: 64, ssd: 300, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 199, url: "https://t.me/diorhost_bot" },
-  { title: "Ultra 1", cpu: 24, ram: 96, ssd: 500, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 285, url: "https://t.me/diorhost_bot" },
-  { title: "Ultra 2", cpu: 24, ram: 128, ssd: 700, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 340, url: "https://t.me/diorhost_bot" }
+  { title: "Mega 3", cpu: 24, ram: 96, ssd: 500, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 285, url: "https://t.me/diorhost_bot" },
+  { title: "Mega 4", cpu: 24, ram: 128, ssd: 700, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 340, url: "https://t.me/diorhost_bot" }
 ];
 
 const faqs = [
@@ -137,7 +137,7 @@ const faqs = [
   {
     question: "Which locations power Dior Host VDS?",
     answer:
-      "Amsterdam, Frankfurt, Chisinau and USA-friendly peers with direct routes to New York, London and Frankfurt IX."
+      "Amsterdam, New York, Frankfurt and Turkey locations with direct routes to major exchange points."
   },
   {
     question: "Do you require KYC for bulletproof VPS?",

@@ -16,7 +16,7 @@ const hero = {
   heading: "Bulletproof Domains & Offshore Registration",
   subheading: "DMCA-ignored registrars with resilient DNS",
   summary:
-    "In simple terms, bulletproof domains are registered through offshore providers that keep DNS online even when DMCA notices or abuse complaints arrive, protecting SEO and email reputation. Servers located in Netherlands (more locations coming soon)."
+    "In simple terms, bulletproof domains are registered through offshore providers that keep DNS online even when DMCA notices or abuse complaints arrive, protecting SEO and email reputation. Servers are located in the Netherlands, USA, Germany and Turkey."
 };
 
 const sections = [

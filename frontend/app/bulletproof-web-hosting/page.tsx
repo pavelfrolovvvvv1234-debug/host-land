@@ -6,7 +6,7 @@ const pathname = "/bulletproof-web-hosting";
 
 export const metadata: Metadata = {
   title: "Bulletproof Web Hosting | Offshore Shared & Managed Hosting | Dior Host",
-  description: "Bulletproof web hosting keeps your websites online even if DMCA or abuse complaints arrive. Offshore infrastructure in USA, UK, NL, DE and EU with managed services and abuse mediation.",
+  description: "Bulletproof web hosting keeps your websites online even if DMCA or abuse complaints arrive. Offshore infrastructure in Netherlands, USA, Germany and Turkey with managed services and abuse mediation.",
   keywords: "bulletproof hosting, bulletproof web hosting, offshore hosting, dmca ignored hosting, abuse resistant hosting, managed hosting",
   alternates: {
     canonical: toPrimaryUrl(pathname),

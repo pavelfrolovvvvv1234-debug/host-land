@@ -212,7 +212,7 @@ const sharedVdsTariffs: ReadonlyArray<VdsTariff> = [
     url: "https://t.me/diorhost_bot"
   },
   {
-    title: "Ultra 1",
+    title: "Mega 3",
     cpu: 24,
     ram: 96,
     ssd: 500,
@@ -223,7 +223,7 @@ const sharedVdsTariffs: ReadonlyArray<VdsTariff> = [
     url: "https://t.me/diorhost_bot"
   },
   {
-    title: "Ultra 2",
+    title: "Mega 4",
     cpu: 24,
     ram: 128,
     ssd: 700,
@@ -311,7 +311,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       { name: "Operators", description: "Working 24/7" },
       { name: "Current status", description: "Everything works" },
       { name: "Servers", description: "450+ online" },
-      { name: "Geolocation of servers", description: "Netherlands" }
+      { name: "Geolocation of servers", description: "Netherlands, USA, Germany, Turkey" }
     ],
     readyPlansSegments: [
       { type: "text", value: "Need ready-to-run plans? Explore " },
@@ -388,10 +388,10 @@ export const homeContent: Record<Locale, HomeContent> = {
     sections: [
       {
         title: "What is bulletproof hosting?",
-        body: "Bulletproof hosting is a bulletproof infrastructure model that prioritizes uptime, privacy and due-process reviews. Dior Host deploys compute in offshore facilities in the Netherlands (more locations coming soon), escalates DMCA complaints manually and works with you before taking action.",
+        body: "Bulletproof hosting is a bulletproof infrastructure model that prioritizes uptime, privacy and due-process reviews. Dior Host deploys compute in offshore facilities across the Netherlands, USA, Germany and Turkey, escalates DMCA complaints manually and works with you before taking action.",
         bullets: [
           "DMCA-ignored by default with legal escalation only when a court order arrives.",
-          "Offshore routing with redundant AS paths in Netherlands (more locations coming soon).",
+          "Offshore routing with redundant AS paths across Netherlands, USA, Germany and Turkey.",
           "Privacy-first billing with crypto, SEPA wire and anonymous ticketing."
         ]
       },
@@ -511,7 +511,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       {
         question: "Which locations are popular for bulletproof hosting?",
         answer:
-          "Netherlands (more locations coming soon). Our infrastructure uses resilient telecom partners with offshore-friendly policies."
+          "Netherlands, USA, Germany and Turkey. Our infrastructure uses resilient telecom partners with offshore-friendly policies."
       },
       {
         question: "Do you require KYC for bulletproof VPS?",
@@ -541,7 +541,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       { name: "Операторы", description: "Работают 24/7" },
       { name: "Текущий статус", description: "Все системы в работе" },
       { name: "Серверы", description: "450+ онлайн" },
-      { name: "География", description: "Нидерланды" }
+      { name: "География", description: "Нидерланды, США, Германия, Турция" }
     ],
     readyPlansSegments: [
       { type: "text", value: "Нужны готовые тарифы? Посмотрите " },
@@ -742,7 +742,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       {
         question: "Какие локации доступны?",
         answer:
-          "Нидерланды (скоро будут другие локации). Наша инфраструктура использует устойчивых телеком-партнёров с офшорными политиками."
+          "Нидерланды, США, Германия и Турция. Наша инфраструктура использует устойчивых телеком-партнёров с офшорными политиками."
       },
       {
         question: "Есть ли KYC?",

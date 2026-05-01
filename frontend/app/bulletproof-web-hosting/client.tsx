@@ -12,7 +12,7 @@ const hero = {
   subheading:
     "Offshore shared and managed stacks with DMCA-resistant policies",
   summary:
-    "In simple terms, bulletproof web hosting keeps your websites online even if DMCA or abuse complaints arrive by placing them on offshore infrastructure in the USA, UK, NL, DE and EU, combining managed services with abuse mediation."
+    "In simple terms, bulletproof web hosting keeps your websites online even if DMCA or abuse complaints arrive by placing them on offshore infrastructure in the Netherlands, USA, Germany and Turkey, combining managed services with abuse mediation."
 };
 
 const steps = [
@@ -78,7 +78,7 @@ const sections = [
   },
   {
     title: "Where is it hosted?",
-    body: "Multi-region clusters in Amsterdam, Frankfurt and New York with Anycast routing toward EU/US eyeballs.",
+    body: "Multi-region clusters in the Netherlands, USA, Germany and Turkey with Anycast routing for global traffic.",
     bullets: [
       "150+ Gbps bandwidth and DDoS mitigation.",
       "On-demand isolation to VDS/dedicated nodes.",

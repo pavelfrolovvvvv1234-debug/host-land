@@ -117,8 +117,8 @@ const tarifs: Tarif[] = [
   { title: "Elite 3", cpu: 8, ram: 24, ssd: 200, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 115, url: "https://t.me/diorhost_bot" },
   { title: "Mega 1", cpu: 12, ram: 32, ssd: 250, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 159, url: "https://t.me/diorhost_bot" },
   { title: "Mega 2", cpu: 16, ram: 64, ssd: 300, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 199, url: "https://t.me/diorhost_bot" },
-  { title: "Ultra 1", cpu: 24, ram: 96, ssd: 500, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 285, url: "https://t.me/diorhost_bot" },
-  { title: "Ultra 2", cpu: 24, ram: 128, ssd: 700, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 340, url: "https://t.me/diorhost_bot" }
+  { title: "Mega 3", cpu: 24, ram: 96, ssd: 500, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 285, url: "https://t.me/diorhost_bot" },
+  { title: "Mega 4", cpu: 24, ram: 128, ssd: 700, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 340, url: "https://t.me/diorhost_bot" }
 ];
 
 const faqs = [

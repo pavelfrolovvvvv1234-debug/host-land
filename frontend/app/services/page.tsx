@@ -54,10 +54,11 @@ const services = [
     )
   },
   {
-    title: "VPS/VDS",
+    title: "CDN",
     description:
-      'Regular servers for "white" or "gray" operation. Complaints are not ignored! The ability to install any OS',
-    href: "/virtual-services",
+      "Content Delivery Network service for fast content delivery worldwide. Accelerate your website performance with global edge servers and smart caching.",
+    href: "/bulletproof-cdn",
+    comingSoon: true,
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -70,10 +71,15 @@ const services = [
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <rect width="20" height="8" x="2" y="2" rx="2" ry="2" />
-        <rect width="20" height="8" x="2" y="14" rx="2" ry="2" />
-        <line x1="6" x2="6.01" y1="6" y2="6" />
-        <line x1="6" x2="6.01" y1="18" y2="18" />
+        <circle cx="12" cy="12" r="10" />
+        <line x1="12" y1="2" x2="12" y2="6" />
+        <line x1="12" y1="18" x2="12" y2="22" />
+        <line x1="4.93" y1="4.93" x2="7.76" y2="7.76" />
+        <line x1="16.24" y1="16.24" x2="19.07" y2="19.07" />
+        <line x1="2" y1="12" x2="6" y2="12" />
+        <line x1="18" y1="12" x2="22" y2="12" />
+        <line x1="4.93" y1="19.07" x2="7.76" y2="16.24" />
+        <line x1="16.24" y1="7.76" x2="19.07" y2="4.93" />
       </svg>
     )
   },
@@ -171,8 +177,9 @@ const services = [
   {
     title: "Dedicated Servers IPHM",
     description:
-      "IPHM servers allow users to hide their real IP address by masking it with another. This can be useful for privacy protection, bypassing geographical restrictions, or conducting network security testing. Bandwidth up to 10 Gbps.",
+      "IPHM servers are temporarily unavailable. This option lets users mask their real IP for privacy, geo-bypass, and network testing when available again.",
     href: "/dedicated-iphm",
+    comingSoon: true,
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -188,36 +195,6 @@ const services = [
         <path d="M2 12a5 5 0 0 0 5 5 8 8 0 0 1 5 2 8 8 0 0 1 5-2 5 5 0 0 0 5-5V7h-5a8 8 0 0 0-5 2 8 8 0 0 0-5-2H2Z" />
         <path d="M6 11c1.5 0 3 .5 3 2-2 0-3 0-3-2Z" />
         <path d="M18 11c-1.5 0-3 .5-3 2 2 0 3 0 3-2Z" />
-      </svg>
-    )
-  },
-  {
-    title: "CDN",
-    description:
-      "Content Delivery Network service for fast content delivery worldwide. Accelerate your website performance with global edge servers and smart caching.",
-    href: "/bulletproof-cdn",
-    comingSoon: true,
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <circle cx="12" cy="12" r="10" />
-        <line x1="12" y1="2" x2="12" y2="6" />
-        <line x1="12" y1="18" x2="12" y2="22" />
-        <line x1="4.93" y1="4.93" x2="7.76" y2="7.76" />
-        <line x1="16.24" y1="16.24" x2="19.07" y2="19.07" />
-        <line x1="2" y1="12" x2="6" y2="12" />
-        <line x1="18" y1="12" x2="22" y2="12" />
-        <line x1="4.93" y1="19.07" x2="7.76" y2="16.24" />
-        <line x1="16.24" y1="7.76" x2="19.07" y2="4.93" />
       </svg>
     )
   },
@@ -362,6 +339,38 @@ export default function ServicesPage() {
               whileHover={{ scale: 1.02, y: -4 }}
               className="group relative"
             >
+              {service.comingSoon ? (
+                <div className="group relative flex h-full flex-col rounded-xl border border-white/10 bg-surface/50 p-1 opacity-85">
+                  <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none"></div>
+                  <div className="relative flex h-full flex-col justify-between rounded-lg bg-black/40 p-6">
+                    <div>
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="rounded-lg p-2 bg-primary/10 border border-primary/20 text-primary transition-all">
+                          {service.icon}
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <h2 className="text-lg font-semibold text-white transition-colors">
+                              {service.title}
+                            </h2>
+                            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-primary/20 text-primary border border-primary/30">
+                              Soon
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <p className="text-sm text-white/60 leading-relaxed line-clamp-4">
+                        {service.description}
+                      </p>
+                    </div>
+                    <div className="mt-6 pt-4 border-t border-white/10">
+                      <span className="inline-flex items-center text-sm text-white/50 font-medium">
+                        Temporarily unavailable
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ) : (
               <Link
                 href={service.href}
                 className="group relative flex flex-col rounded-xl border border-white/10 bg-surface/50 p-1 hover:border-primary/40 transition-all duration-300"
@@ -411,6 +420,7 @@ export default function ServicesPage() {
                   </div>
                 </div>
               </Link>
+              )}
             </motion.div>
           ))}
       </div>
