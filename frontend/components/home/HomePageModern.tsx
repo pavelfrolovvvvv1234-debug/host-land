@@ -20,6 +20,8 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
   const [ready, setReady] = useState(false);
   const PRELOADER_VISIBLE_MS = 650;
   const PRELOADER_FADE_MS = 280;
+  const trustedByTitle = locale === "ru" ? "Нам доверяют" : "Trusted by";
+  const andMoreLabel = locale === "ru" ? "и еще..." : "and more...";
 
   useLayoutEffect(() => {
     if (typeof window === 'undefined') {
@@ -597,39 +599,26 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
           </div>
         )}
 
-        {/* Testimonials — Trust / Social proof */}
-        {content.testimonials && content.testimonials.length > 0 && (
-          <section className="mt-16 home-section rounded-2xl border border-white/10 bg-surface/30 p-8" aria-labelledby="testimonials-heading">
-            <h2 id="testimonials-heading" className="text-2xl sm:text-3xl font-semibold text-center text-white mb-8">
-              {content.testimonialsTitle}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {content.testimonials.map((testimonial, index) => (
-                <motion.div
-                  key={testimonial.name}
-                  initial={{ opacity: 0 }}
-                  animate={ready ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="rounded-xl border border-white/10 bg-black/40 p-6 hover:bg-black/60 transition-all"
-                >
-                  <p className="text-sm italic text-white/80 mb-6">&quot;{testimonial.quote}&quot;</p>
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary font-bold text-xs">
-                      {testimonial.initials}
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-white">{testimonial.name}</p>
-                      <p className="text-xs text-white/50">{testimonial.role}</p>
-                    </div>
-                  </div>
-                  {testimonial.kpi && (
-                    <div className="mt-4 border-t border-white/10 pt-3 text-xs text-green-400">{testimonial.kpi}</div>
-                  )}
-                </motion.div>
-              ))}
-            </div>
-          </section>
-        )}
+        {/* Trusted by */}
+        <section className="mt-16 home-section rounded-2xl border border-white/10 bg-surface/30 p-8" aria-labelledby="trusted-by-heading">
+          <h2 id="trusted-by-heading" className="text-2xl sm:text-3xl font-semibold text-center text-white mb-8">
+            {trustedByTitle}
+          </h2>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={ready ? { opacity: 1 } : {}}
+            transition={{ duration: 0.4 }}
+            className="mx-auto flex max-w-xl items-center justify-between gap-4 rounded-xl border border-white/10 bg-black/40 p-6"
+          >
+            <img
+              src="/partners/fbkill-horizontal.svg"
+              alt="FBKill"
+              className="h-10 w-auto object-contain brightness-0 invert opacity-90"
+              loading="lazy"
+            />
+            <span className="text-sm font-medium text-white/55">{andMoreLabel}</span>
+          </motion.div>
+        </section>
 
         {/* Steps Section */}
         {content.steps && content.steps.length > 0 && (
