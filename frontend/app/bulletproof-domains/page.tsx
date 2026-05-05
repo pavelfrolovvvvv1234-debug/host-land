@@ -7,8 +7,8 @@ const pathname = "/bulletproof-domains";
 
 export const metadata: Metadata = {
   title: "Bulletproof Domains & Offshore Registration | DMCA-Ignored Registrars | Dior Host",
-  description: "Bulletproof domains registered through offshore providers that keep DNS online even when DMCA notices or abuse complaints arrive. WHOIS privacy enabled by default. All domains from $80/year.",
-  keywords: "bulletproof domains, offshore domain registration, dmca ignored domains, bulletproof registrar, domain privacy",
+  description: "Bulletproof domains and offshore domain registrar services that keep DNS online during DMCA disputes. Includes anonymous domain registration workflows, WHOIS privacy, and resilient DNS from $80/year.",
+  keywords: "bulletproof domains, offshore domain registrar, anonymous domain registration, offshore domain registration, dmca ignored domains, bulletproof registrar, domain privacy",
   alternates: {
     canonical: toPrimaryUrl(pathname),
     languages: getHreflangAlternates(pathname),

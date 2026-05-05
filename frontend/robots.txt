@@ -2,8 +2,11 @@ User-agent: *
 Allow: /
 
 Disallow: /search
+Disallow: /ru/search
 Disallow: /admin
 Disallow: /internal
+Disallow: /api
+Disallow: /ru/api
 
 Sitemap: https://dior.host/sitemap.xml
 

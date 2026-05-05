@@ -1,55 +1,9 @@
 import { MetadataRoute } from "next";
-import fs from "fs";
-import path from "path";
 import { PRIMARY_ORIGIN } from "../lib/canonical";
-
-/**
- * Sitemap.xml generator. Emits only primary domain (dior.host) URLs; no .com/.net, no .html.
- * Next.js serves this at: https://dior.host/sitemap.xml
- */
-function normalizeSitemapUrl(url: string): string {
-  try {
-    const u = new URL(url);
-    const pathname = u.pathname.replace(/\.html$/i, "");
-    return `${PRIMARY_ORIGIN}${pathname}${u.search}`;
-  } catch {
-    return url.startsWith("/") ? `${PRIMARY_ORIGIN}${url}` : url;
-  }
-}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = PRIMARY_ORIGIN;
   const now = new Date().toISOString().split("T")[0];
-
-  // Try to read sitemap from public directory if exists
-  let staticSitemap: MetadataRoute.Sitemap = [];
-  try {
-    const sitemapPath = path.join(process.cwd(), "public", "sitemap.xml");
-    if (fs.existsSync(sitemapPath)) {
-      const sitemapContent = fs.readFileSync(sitemapPath, "utf-8");
-      const urlMatches = sitemapContent.match(/<loc>(.*?)<\/loc>/g);
-      if (urlMatches) {
-        staticSitemap = urlMatches.map((match) => {
-          const rawUrl = match.replace(/<\/?loc>/g, "");
-          const url = normalizeSitemapUrl(rawUrl);
-          return {
-            url,
-            lastModified: now,
-            changeFrequency: "weekly" as const,
-            priority: 0.8,
-          };
-        });
-      }
-    }
-  } catch (error) {
-    if (process.env.NODE_ENV === "development") {
-      console.error("Error reading static sitemap:", error);
-    }
-  }
-
-  if (staticSitemap.length > 0) {
-    return staticSitemap;
-  }
 
   // Blog article slugs
   const articleSlugs = [
@@ -61,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "turbovds-blog",
     "iphm-dedicated-servers-blog",
     "offshore-hosting-blog",
-    "bulletproof-hosting-stack-blog",
+    "abuse-resistant-hosting-stack-blog",
     "dmca-ignored-hosting-blog",
     "cdn-complete-guide",
     "vpn-infrastructure-guide",
@@ -75,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "iphm-dedicated-servers-guide",
     "llm-ready-hosting-faq",
     "migrating-to-bulletproof-hosting-zero-downtime",
-    "offshore-bulletproof-vps-2025",
+    "offshore-abuse-resistant-vps-2025",
     "offshore-compliance-guide",
     "privacy-first-billing",
     "turbovds-vs-regular-vds",

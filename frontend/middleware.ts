@@ -18,6 +18,10 @@ function isSecondaryHost(host: string): boolean {
  * All redirects are 301 (permanent) for SEO purposes
  */
 const urlMappings: Record<string, string> = {
+  // Canonical typo alias kept for backward compatibility
+  "/affiliate_program": "/affilate_program",
+  "/ru/affiliate_program": "/ru/affilate_program",
+
   // Bulletproof services (from /bulletproof/)
   "/bulletproof/vds": "/bulletproof-vds",
   "/bulletproof/dedicated": "/bulletproof-dedicated",
@@ -57,6 +61,10 @@ const urlMappings: Record<string, string> = {
   "/ru/services/vpn": "/ru/bulletproof-vpn",
   "/ru/services/proxy": "/ru/proxy",
   "/ru/bulletproof-proxy": "/ru/proxy",
+
+  // Blog slug aliases to avoid legacy 404s
+  "/blog/articles/bulletproof-hosting-stack-blog": "/blog/articles/abuse-resistant-hosting-stack-blog",
+  "/blog/articles/offshore-bulletproof-vps-2025": "/blog/articles/offshore-abuse-resistant-vps-2025",
 };
 
 export function middleware(request: NextRequest) {

@@ -68,7 +68,7 @@ const blogPosts: BlogCard[] = [
       "Technical explanation of offshore hosting architecture, jurisdiction selection, DMCA ignore policies, network stability considerations, legal risks, and deployment strategies."
   },
   {
-    slug: "bulletproof-hosting-stack-blog",
+    slug: "abuse-resistant-hosting-stack-blog",
     title: "How to Build an bulletproof Hosting Stack: DNS, L4/L7 Firewalls, Routing, IP Reputation",
     summary:
       "Technical guide to building bulletproof hosting infrastructure, including DNS configuration, firewall rules, BGP routing, IP reputation monitoring, and deployment best practices."

@@ -24,7 +24,7 @@ const articleSlugs = [
   "turbovds-blog",
   "iphm-dedicated-servers-blog",
   "offshore-hosting-blog",
-  "bulletproof-hosting-stack-blog",
+  "abuse-resistant-hosting-stack-blog",
   "dmca-ignored-hosting-blog",
   // New SEO articles (MDX)
   "cdn-complete-guide",
@@ -40,7 +40,7 @@ const articleSlugs = [
   "iphm-dedicated-servers-guide",
   "llm-ready-hosting-faq",
   "migrating-to-bulletproof-hosting-zero-downtime",
-  "offshore-bulletproof-vps-2025",
+  "offshore-abuse-resistant-vps-2025",
   "offshore-compliance-guide",
   "privacy-first-billing",
   "turbovds-vs-regular-vds",
@@ -321,6 +321,23 @@ export default function BlogArticlePage({ params }: PageProps) {
           {markdownContent}
         </ReactMarkdown>
       </article>
+      <section className="mt-10 rounded-xl border border-white/10 bg-black/40 p-6">
+        <h2 className="text-xl font-semibold text-white mb-3">Continue with production pages</h2>
+        <p className="text-sm text-white/70 mb-4">
+          If you need deployment-ready infrastructure after reading this guide, start from these commercial pages:
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <Link href="/bulletproof-vds" className="rounded-lg border border-white/15 px-3 py-2 text-sm text-white/90 hover:bg-white/5">
+            Bulletproof VPS
+          </Link>
+          <Link href="/bulletproof-web-hosting" className="rounded-lg border border-white/15 px-3 py-2 text-sm text-white/90 hover:bg-white/5">
+            Offshore hosting
+          </Link>
+          <Link href="/bulletproof-domains" className="rounded-lg border border-white/15 px-3 py-2 text-sm text-white/90 hover:bg-white/5">
+            Anonymous domain registration
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }

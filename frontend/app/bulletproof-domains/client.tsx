@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { FAQItem } from "../../components/motion/FAQItem";
+import Link from "next/link";
 
 type ComparisonRow = { label: string; bulletproof: string; regular: string };
 
@@ -45,6 +46,15 @@ const sections = [
       "Zero tolerance only for malware, CSA or terrorism.",
       "Compliance liaisons for EU/US regulators and partners.",
       "Dedicated channels for advertisers and PSPs."
+    ]
+  },
+  {
+    title: "Offshore registrar and anonymous registration use cases",
+    body: "If you search for an offshore domain registrar or anonymous domain registration, this page already covers that workflow without moving to another URL.",
+    bullets: [
+      "Register domains with WHOIS privacy and minimal public ownership footprint.",
+      "Use separate billing and DNS operations for privacy-sensitive brands.",
+      "Keep legal contacts and abuse response channels isolated from marketing ops."
     ]
   }
 ];
@@ -169,6 +179,11 @@ const faqs = [
     question: "Do you support DNSSEC and vanity NS?",
     answer:
       "Yes, DNSSEC, custom glue, vanity nameservers and API automation are available."
+  },
+  {
+    question: "Do you offer anonymous domain registration?",
+    answer:
+      "Yes. We provide privacy-first onboarding with WHOIS shielding, operational separation, and offshore registrar options."
   }
 ];
 
@@ -236,6 +251,23 @@ export default function BulletproofDomainsPageClient() {
               <h3 className="text-lg font-semibold text-white">{item.label}</h3>
             </motion.div>
           ))}
+        </div>
+
+        <div className="mb-12 rounded-xl border border-white/10 bg-black/40 p-5">
+          <p className="text-sm text-white/70">
+            Build a complete stack:
+            <Link href="/bulletproof-vds" className="ml-2 text-primary hover:text-primary/80 underline">
+              bulletproof VPS
+            </Link>
+            <span className="mx-1">·</span>
+            <Link href="/bulletproof-web-hosting" className="text-primary hover:text-primary/80 underline">
+              offshore hosting
+            </Link>
+            <span className="mx-1">·</span>
+            <Link href="/blog/articles/offshore-hosting-blog" className="text-primary hover:text-primary/80 underline">
+              offshore hosting guide
+            </Link>
+          </p>
         </div>
 
         <div className="relative rounded-2xl border border-white/5 bg-surface/50 p-8 shadow-2xl overflow-hidden backdrop-blur-sm mb-12">

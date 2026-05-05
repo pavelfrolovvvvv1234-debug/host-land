@@ -26,6 +26,7 @@ const articleSlugs = [
   "offshore-hosting-blog",
   "bulletproof-hosting-stack-blog",
   "dmca-ignored-hosting-blog",
+  "abuse-resistant-hosting-stack-blog",
   // New SEO articles (MDX)
   "cdn-complete-guide",
   "vpn-infrastructure-guide",
@@ -41,6 +42,7 @@ const articleSlugs = [
   "llm-ready-hosting-faq",
   "migrating-to-bulletproof-hosting-zero-downtime",
   "offshore-bulletproof-vps-2025",
+  "offshore-abuse-resistant-vps-2025",
   "offshore-compliance-guide",
   "privacy-first-billing",
   "turbovds-vs-regular-vds",
@@ -329,6 +331,23 @@ export default function BlogArticlePage({ params }: PageProps) {
           {markdownContent}
         </ReactMarkdown>
       </article>
+      <section className="mt-10 rounded-xl border border-white/10 bg-black/40 p-6">
+        <h2 className="text-xl font-semibold text-white mb-3">Следующий шаг: рабочая инфраструктура</h2>
+        <p className="text-sm text-white/70 mb-4">
+          Для запуска продакшн-проекта используйте основные сервисные страницы:
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <Link href="/ru/bulletproof-vds" className="rounded-lg border border-white/15 px-3 py-2 text-sm text-white/90 hover:bg-white/5">
+            Абузоустойчивый VPS
+          </Link>
+          <Link href="/ru/bulletproof-web-hosting" className="rounded-lg border border-white/15 px-3 py-2 text-sm text-white/90 hover:bg-white/5">
+            Оффшорный хостинг
+          </Link>
+          <Link href="/ru/bulletproof-domains" className="rounded-lg border border-white/15 px-3 py-2 text-sm text-white/90 hover:bg-white/5">
+            Анонимная регистрация доменов
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }

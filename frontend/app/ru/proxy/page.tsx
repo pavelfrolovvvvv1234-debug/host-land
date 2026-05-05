@@ -1,5 +1,8 @@
 import { Metadata } from "next";
 import ProxyPageClientRu from "./client";
+import { toPrimaryUrl, getHreflangAlternates } from "../../../lib/canonical";
+
+const pathname = "/ru/proxy";
 
 export const metadata: Metadata = {
   title: "Прокси-сервис | Резидентские и статические прокси | Dior Host",
@@ -7,13 +10,14 @@ export const metadata: Metadata = {
     "Премиум-сервис прокси с резидентскими и статическими IP. Высокая анонимность, геотаргетинг и безлимитная пропускная способность для приватности, обхода ограничений и веб-автоматизации.",
   keywords: "прокси, резидентские прокси, статические прокси, прокси сервис",
   alternates: {
-    canonical: "https://dior.host/ru/proxy",
+    canonical: toPrimaryUrl(pathname),
+    languages: getHreflangAlternates(pathname),
   },
   openGraph: {
     title: "Прокси-сервис | Резидентские и статические прокси",
     description:
       "Премиум-сервис прокси с резидентскими и статическими IP для приватности и автоматизации.",
-    url: "https://dior.host/ru/proxy",
+    url: toPrimaryUrl(pathname),
     type: "website",
   },
   twitter: {
