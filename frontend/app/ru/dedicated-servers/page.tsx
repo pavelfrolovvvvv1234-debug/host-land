@@ -31,7 +31,7 @@ const tarifs: Tarif[] = [
     os: "Linux, Windows",
     price: 90,
     url:
-      "https://t.me/diorhost_bot"
+      "https://my.dior.host"
   },
   {
     title: "Intel Core i7-8700",
@@ -43,7 +43,7 @@ const tarifs: Tarif[] = [
     os: "Linux, Windows",
     price: 110,
     url:
-      "https://t.me/diorhost_bot"
+      "https://my.dior.host"
   },
   {
     title: "Intel Xeon E3-1240v2",
@@ -55,7 +55,7 @@ const tarifs: Tarif[] = [
     os: "Linux, Windows",
     price: 120,
     url:
-      "https://t.me/diorhost_bot"
+      "https://my.dior.host"
   },
   {
     title: "Ryzen 7 3700X",
@@ -67,7 +67,7 @@ const tarifs: Tarif[] = [
     os: "Linux, Windows",
     price: 140,
     url:
-      "https://t.me/diorhost_bot"
+      "https://my.dior.host"
   },
   {
     title: "Ryzen 9 3900",
@@ -79,7 +79,7 @@ const tarifs: Tarif[] = [
     os: "Linux, Windows",
     price: 150,
     url:
-      "https://t.me/diorhost_bot"
+      "https://my.dior.host"
   },
   {
     title: "Ryzen 9 5950X",
@@ -91,7 +91,7 @@ const tarifs: Tarif[] = [
     os: "Linux, Windows",
     price: 190,
     url:
-      "https://t.me/diorhost_bot"
+      "https://my.dior.host"
   }
 ];
 

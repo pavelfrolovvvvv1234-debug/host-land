@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
+import { BILLING_URL } from "../lib/billing";
 
 export function Header() {
   const pathname = usePathname();
   const router = useRouter();
   const isRu = pathname?.startsWith("/ru") ?? false;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const loginUrl = "https://t.me/diorhost_bot";
+  const billingUrl = BILLING_URL;
 
   const basePath =
     isRu && pathname
@@ -136,10 +137,10 @@ export function Header() {
           {/* Right: CTA + Mobile menu button */}
           <div className="flex shrink-0 items-center gap-2">
             <a
-              href={loginUrl}
+              href={billingUrl}
               className="hidden sm:inline-flex h-9 items-center justify-center rounded-xl bg-primary px-4 text-sm font-semibold text-white shadow-lg shadow-primary/20 transition-all hover:bg-primary/90 hover:shadow-primary/30"
             >
-              {isRu ? "Контакт" : "Contact"} <span aria-hidden className="ml-1">→</span>
+              {isRu ? "Личный кабинет" : "Client area"} <span aria-hidden className="ml-1">→</span>
             </a>
 
             {/* Mobile menu button */}
@@ -193,11 +194,11 @@ export function Header() {
               })}
               <div className="mt-4 flex flex-col gap-2 border-t border-white/10 pt-4">
                 <a
-                  href={loginUrl}
+                  href={billingUrl}
                   onClick={closeMenu}
                   className="flex h-10 items-center justify-center rounded-xl bg-primary text-sm font-semibold text-white"
                 >
-                  {isRu ? "Контакт" : "Contact"}
+                  {isRu ? "Личный кабинет" : "Client area"}
                 </a>
                 <div className="flex gap-2">
                   <button

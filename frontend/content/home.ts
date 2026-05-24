@@ -132,7 +132,7 @@ const sharedVdsTariffs: ReadonlyArray<VdsTariff> = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 25,
-    url: "https://t.me/diorhost_bot"
+    url: "https://my.dior.host"
   },
   {
     title: "Lite 2",
@@ -143,7 +143,7 @@ const sharedVdsTariffs: ReadonlyArray<VdsTariff> = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 27,
-    url: "https://t.me/diorhost_bot"
+    url: "https://my.dior.host"
   },
   {
     title: "Lite 3",
@@ -154,7 +154,7 @@ const sharedVdsTariffs: ReadonlyArray<VdsTariff> = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 39,
-    url: "https://t.me/diorhost_bot"
+    url: "https://my.dior.host"
   },
   {
     title: "Elite 1",
@@ -165,7 +165,7 @@ const sharedVdsTariffs: ReadonlyArray<VdsTariff> = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 65,
-    url: "https://t.me/diorhost_bot"
+    url: "https://my.dior.host"
   },
   {
     title: "Elite 2",
@@ -176,7 +176,7 @@ const sharedVdsTariffs: ReadonlyArray<VdsTariff> = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 99,
-    url: "https://t.me/diorhost_bot"
+    url: "https://my.dior.host"
   },
   {
     title: "Elite 3",
@@ -187,7 +187,7 @@ const sharedVdsTariffs: ReadonlyArray<VdsTariff> = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 115,
-    url: "https://t.me/diorhost_bot"
+    url: "https://my.dior.host"
   },
   {
     title: "Mega 1",
@@ -198,7 +198,7 @@ const sharedVdsTariffs: ReadonlyArray<VdsTariff> = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 159,
-    url: "https://t.me/diorhost_bot"
+    url: "https://my.dior.host"
   },
   {
     title: "Mega 2",
@@ -209,7 +209,7 @@ const sharedVdsTariffs: ReadonlyArray<VdsTariff> = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 199,
-    url: "https://t.me/diorhost_bot"
+    url: "https://my.dior.host"
   },
   {
     title: "Mega 3",
@@ -220,7 +220,7 @@ const sharedVdsTariffs: ReadonlyArray<VdsTariff> = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 285,
-    url: "https://t.me/diorhost_bot"
+    url: "https://my.dior.host"
   },
   {
     title: "Mega 4",
@@ -231,7 +231,7 @@ const sharedVdsTariffs: ReadonlyArray<VdsTariff> = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 340,
-    url: "https://t.me/diorhost_bot"
+    url: "https://my.dior.host"
   }
 ];
 
@@ -248,7 +248,7 @@ const sharedIphmTariffs: ReadonlyArray<IphmTariff> = [
       { name: "Network Speed", value: "1 gbit/s" }
     ],
     price: 1935,
-    url: "https://t.me/diorhost_bot"
+    url: "https://my.dior.host"
   },
   {
     title: "2X E5 2673 V3",
@@ -262,7 +262,7 @@ const sharedIphmTariffs: ReadonlyArray<IphmTariff> = [
       { name: "Network Speed", value: "1 gbit/s" }
     ],
     price: 2275,
-    url: "https://t.me/diorhost_bot"
+    url: "https://my.dior.host"
   },
   {
     title: "2X E5 2673 V3",
@@ -276,7 +276,7 @@ const sharedIphmTariffs: ReadonlyArray<IphmTariff> = [
       { name: "Network Speed", value: "1 gbit/s" }
     ],
     price: 3189,
-    url: "https://t.me/diorhost_bot"
+    url: "https://my.dior.host"
   },
   {
     title: "2X E5 2673 V3",
@@ -290,7 +290,7 @@ const sharedIphmTariffs: ReadonlyArray<IphmTariff> = [
       { name: "Network Speed", value: "10 gbit/s" }
     ],
     price: 4785,
-    url: "https://t.me/diorhost_bot"
+    url: "https://my.dior.host"
   }
 ];
 

@@ -85,7 +85,7 @@ export default function RootLayout({
                   availableLanguage: ["English", "Russian"]
                 }
               ],
-              sameAs: ["https://t.me/diorhost_bot", "https://t.me/diorhost_news"]
+              sameAs: ["https://my.dior.host", "https://t.me/diorhost_bot", "https://t.me/diorhost_news"]
             })
           }}
         />

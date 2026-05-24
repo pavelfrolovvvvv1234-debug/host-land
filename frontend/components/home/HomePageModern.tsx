@@ -400,7 +400,7 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
               {content.domainZones.map((zone, index) => (
                 <motion.a
                   key={zone.title}
-                  href="https://t.me/diorhost_bot"
+                  href="https://my.dior.host"
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={ready ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.25, delay: index * 0.02 }}
@@ -708,7 +708,7 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
             </p>
             <div className="relative flex flex-wrap items-center justify-center gap-4">
               <a
-                href="https://t.me/diorhost_bot"
+                href="https://my.dior.host"
                 className="inline-flex items-center justify-center rounded-xl bg-primary px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all"
               >
                 {content.hero.ctaPrimary ?? "Get started"}

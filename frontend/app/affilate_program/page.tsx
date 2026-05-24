@@ -375,7 +375,7 @@ export default function AffiliateProgramPage() {
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <motion.a
-                href="https://t.me/diorhost_bot"
+                href="https://my.dior.host"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.02 }}
@@ -385,7 +385,7 @@ export default function AffiliateProgramPage() {
                 {content.hero.ctaPrimary}
               </motion.a>
               <motion.a
-                href="https://t.me/diorhost_bot"
+                href="https://my.dior.host"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.02 }}
@@ -578,7 +578,7 @@ export default function AffiliateProgramPage() {
               className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             >
               <motion.a
-                href="https://t.me/diorhost_bot"
+                href="https://my.dior.host"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.02 }}

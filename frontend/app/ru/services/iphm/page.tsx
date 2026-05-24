@@ -38,7 +38,7 @@ const tarifs: Tarif[] = [
     ],
     price: 1935,
     url:
-      "https://t.me/diorhost_bot"
+      "https://my.dior.host"
   },
   {
     title: "2X E5 2673 V3",
@@ -53,7 +53,7 @@ const tarifs: Tarif[] = [
     ],
     price: 2275,
     url:
-      "https://t.me/diorhost_bot"
+      "https://my.dior.host"
   },
   {
     title: "2X E5 2673 V3",
@@ -68,7 +68,7 @@ const tarifs: Tarif[] = [
     ],
     price: 3189,
     url:
-      "https://t.me/diorhost_bot"
+      "https://my.dior.host"
   },
   {
     title: "2X E5 2673 V3",
@@ -83,7 +83,7 @@ const tarifs: Tarif[] = [
     ],
     price: 4785,
     url:
-      "https://t.me/diorhost_bot"
+      "https://my.dior.host"
   },
   {
     title: "2X E5 2673 V3",
@@ -98,7 +98,7 @@ const tarifs: Tarif[] = [
     ],
     price: 7745,
     url:
-      "https://t.me/diorhost_bot"
+      "https://my.dior.host"
   }
 ];
 

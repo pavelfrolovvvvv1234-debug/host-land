@@ -116,7 +116,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 180,
-    url: "https://t.me/diorhost_bot"
+    url: "https://my.dior.host"
   },
   {
     title: "Intel Xeon E3-1240v2",
@@ -127,7 +127,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 220,
-    url: "https://t.me/diorhost_bot"
+    url: "https://my.dior.host"
   },
   {
     title: "2x Intel Xeon E5-2650 v2",
@@ -138,7 +138,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 470,
-    url: "https://t.me/diorhost_bot"
+    url: "https://my.dior.host"
   },
   {
     title: "2x Intel Xeon E5-2680 v4",
@@ -149,7 +149,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 499,
-    url: "https://t.me/diorhost_bot"
+    url: "https://my.dior.host"
   },
   {
     title: "2x Intel Xeon E5-2690 v4",
@@ -160,7 +160,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 639,
-    url: "https://t.me/diorhost_bot"
+    url: "https://my.dior.host"
   },
   {
     title: "2x Intel Xeon Platinum 8168",
@@ -171,7 +171,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 890,
-    url: "https://t.me/diorhost_bot"
+    url: "https://my.dior.host"
   },
   {
     title: "2x Intel Xeon Platinum 8168",
@@ -182,7 +182,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 1350,
-    url: "https://t.me/diorhost_bot"
+    url: "https://my.dior.host"
   },
   {
     title: "2x Intel Xeon Platinum 8168",
@@ -193,7 +193,7 @@ const tarifs: DedicatedTarif[] = [
     bandwidth: "Unlimited",
     os: "Linux, Windows",
     price: 1625,
-    url: "https://t.me/diorhost_bot"
+    url: "https://my.dior.host"
   }
 ];
 

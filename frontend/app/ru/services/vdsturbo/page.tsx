@@ -40,7 +40,7 @@ const tarifs: Tarif[] = [
     os: "Linux, Windows",
     price: 150,
     url:
-      "https://t.me/diorhost_bot",
+      "https://my.dior.host",
     pps: "~450-800"
   },
   {
@@ -56,7 +56,7 @@ const tarifs: Tarif[] = [
     os: "Linux, Windows",
     price: 199,
     url:
-      "https://t.me/diorhost_bot",
+      "https://my.dior.host",
     pps: "~450-800"
   },
   {
@@ -72,7 +72,7 @@ const tarifs: Tarif[] = [
     os: "Linux, Windows",
     price: 259,
     url:
-      "https://t.me/diorhost_bot",
+      "https://my.dior.host",
     pps: "~450-800"
   }
 ];

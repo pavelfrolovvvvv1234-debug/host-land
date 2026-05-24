@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { BILLING_URL } from "../../../lib/billing";
 
 type ComparisonRow = { label: string; bulletproof: string; regular: string };
 
@@ -113,43 +114,43 @@ const domainsPrices = {
   transfer: 80
 };
 
-const BOT_URL = "https://t.me/diorhost_bot";
+const ORDER_URL = BILLING_URL;
 
 const zones: Zone[] = [
-  { title: ".com", price: 80, url: BOT_URL },
-  { title: ".net", price: 80, url: BOT_URL },
-  { title: ".club", price: 80, url: BOT_URL },
-  { title: ".uk", price: 80, url: BOT_URL },
-  { title: ".io", price: 99, url: BOT_URL },
-  { title: ".at", price: 80, url: BOT_URL },
-  { title: ".guru", price: 80, url: BOT_URL },
-  { title: ".info", price: 80, url: BOT_URL },
-  { title: ".app", price: 80, url: BOT_URL },
-  { title: ".bot", price: 80, url: BOT_URL },
-  { title: ".co", price: 80, url: BOT_URL },
-  { title: ".energy", price: 80, url: BOT_URL },
-  { title: ".money", price: 80, url: BOT_URL },
-  { title: ".one", price: 80, url: BOT_URL },
-  { title: ".shop", price: 80, url: BOT_URL },
-  { title: ".skin", price: 80, url: BOT_URL },
-  { title: ".top", price: 80, url: BOT_URL },
-  { title: ".org", price: 80, url: BOT_URL },
-  { title: ".biz", price: 80, url: BOT_URL },
-  { title: ".pro", price: 80, url: BOT_URL },
-  { title: ".cc", price: 80, url: BOT_URL },
-  { title: ".us", price: 80, url: BOT_URL },
-  { title: ".ca", price: 80, url: BOT_URL },
-  { title: ".link", price: 80, url: BOT_URL },
-  { title: ".ac", price: 80, url: BOT_URL },
-  { title: ".bio", price: 80, url: BOT_URL },
-  { title: ".cash", price: 80, url: BOT_URL },
-  { title: ".dev", price: 80, url: BOT_URL },
-  { title: ".host", price: 80, url: BOT_URL },
-  { title: ".my", price: 80, url: BOT_URL },
-  { title: ".pw", price: 80, url: BOT_URL },
-  { title: ".site", price: 80, url: BOT_URL },
-  { title: ".team", price: 80, url: BOT_URL },
-  { title: ".vip", price: 80, url: BOT_URL }
+  { title: ".com", price: 80, url: ORDER_URL },
+  { title: ".net", price: 80, url: ORDER_URL },
+  { title: ".club", price: 80, url: ORDER_URL },
+  { title: ".uk", price: 80, url: ORDER_URL },
+  { title: ".io", price: 99, url: ORDER_URL },
+  { title: ".at", price: 80, url: ORDER_URL },
+  { title: ".guru", price: 80, url: ORDER_URL },
+  { title: ".info", price: 80, url: ORDER_URL },
+  { title: ".app", price: 80, url: ORDER_URL },
+  { title: ".bot", price: 80, url: ORDER_URL },
+  { title: ".co", price: 80, url: ORDER_URL },
+  { title: ".energy", price: 80, url: ORDER_URL },
+  { title: ".money", price: 80, url: ORDER_URL },
+  { title: ".one", price: 80, url: ORDER_URL },
+  { title: ".shop", price: 80, url: ORDER_URL },
+  { title: ".skin", price: 80, url: ORDER_URL },
+  { title: ".top", price: 80, url: ORDER_URL },
+  { title: ".org", price: 80, url: ORDER_URL },
+  { title: ".biz", price: 80, url: ORDER_URL },
+  { title: ".pro", price: 80, url: ORDER_URL },
+  { title: ".cc", price: 80, url: ORDER_URL },
+  { title: ".us", price: 80, url: ORDER_URL },
+  { title: ".ca", price: 80, url: ORDER_URL },
+  { title: ".link", price: 80, url: ORDER_URL },
+  { title: ".ac", price: 80, url: ORDER_URL },
+  { title: ".bio", price: 80, url: ORDER_URL },
+  { title: ".cash", price: 80, url: ORDER_URL },
+  { title: ".dev", price: 80, url: ORDER_URL },
+  { title: ".host", price: 80, url: ORDER_URL },
+  { title: ".my", price: 80, url: ORDER_URL },
+  { title: ".pw", price: 80, url: ORDER_URL },
+  { title: ".site", price: 80, url: ORDER_URL },
+  { title: ".team", price: 80, url: ORDER_URL },
+  { title: ".vip", price: 80, url: ORDER_URL }
 ];
 
 const faqs = [

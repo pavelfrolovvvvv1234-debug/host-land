@@ -109,16 +109,16 @@ const comparisonRows: ComparisonRow[] = [
 ];
 
 const tarifs: Tarif[] = [
-  { title: "Lite 1", cpu: 1, ram: 1, ssd: 10, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 25, url: "https://t.me/diorhost_bot" },
-  { title: "Lite 2", cpu: 2, ram: 2, ssd: 40, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 27, url: "https://t.me/diorhost_bot" },
-  { title: "Lite 3", cpu: 2, ram: 4, ssd: 50, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 39, url: "https://t.me/diorhost_bot" },
-  { title: "Elite 1", cpu: 4, ram: 8, ssd: 80, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 65, url: "https://t.me/diorhost_bot" },
-  { title: "Elite 2", cpu: 8, ram: 16, ssd: 150, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 99, url: "https://t.me/diorhost_bot" },
-  { title: "Elite 3", cpu: 8, ram: 24, ssd: 200, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 115, url: "https://t.me/diorhost_bot" },
-  { title: "Mega 1", cpu: 12, ram: 32, ssd: 250, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 159, url: "https://t.me/diorhost_bot" },
-  { title: "Mega 2", cpu: 16, ram: 64, ssd: 300, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 199, url: "https://t.me/diorhost_bot" },
-  { title: "Mega 3", cpu: 24, ram: 96, ssd: 500, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 285, url: "https://t.me/diorhost_bot" },
-  { title: "Mega 4", cpu: 24, ram: 128, ssd: 700, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 340, url: "https://t.me/diorhost_bot" }
+  { title: "Lite 1", cpu: 1, ram: 1, ssd: 10, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 25, url: "https://my.dior.host" },
+  { title: "Lite 2", cpu: 2, ram: 2, ssd: 40, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 27, url: "https://my.dior.host" },
+  { title: "Lite 3", cpu: 2, ram: 4, ssd: 50, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 39, url: "https://my.dior.host" },
+  { title: "Elite 1", cpu: 4, ram: 8, ssd: 80, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 65, url: "https://my.dior.host" },
+  { title: "Elite 2", cpu: 8, ram: 16, ssd: 150, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 99, url: "https://my.dior.host" },
+  { title: "Elite 3", cpu: 8, ram: 24, ssd: 200, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 115, url: "https://my.dior.host" },
+  { title: "Mega 1", cpu: 12, ram: 32, ssd: 250, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 159, url: "https://my.dior.host" },
+  { title: "Mega 2", cpu: 16, ram: 64, ssd: 300, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 199, url: "https://my.dior.host" },
+  { title: "Mega 3", cpu: 24, ram: 96, ssd: 500, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 285, url: "https://my.dior.host" },
+  { title: "Mega 4", cpu: 24, ram: 128, ssd: 700, networkSpeed: 150, bandwidth: "Unlimited", os: "Linux, Windows", price: 340, url: "https://my.dior.host" }
 ];
 
 const faqs = [

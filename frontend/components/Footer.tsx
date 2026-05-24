@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { BILLING_URL } from "../lib/billing";
 
-const TELEGRAM_BOT = "https://t.me/diorhost_bot";
+const TELEGRAM_SUPPORT = "https://t.me/diorhost_bot";
 
 export function Footer() {
   const pathname = usePathname();
@@ -30,7 +31,7 @@ export function Footer() {
 
   const contactLinks = [
     { href: "mailto:support@dior.host", label: "support@dior.host" },
-    { href: "https://t.me/diorhost_bot", label: "Telegram" },
+    { href: TELEGRAM_SUPPORT, label: "Telegram" },
     { href: "https://t.me/diorhost_news", label: isRu ? "Telegram-канал" : "Telegram news" },
   ];
 
@@ -81,7 +82,7 @@ export function Footer() {
               {isRu ? "Офшорная абузоустойчивая инфраструктура" : "Offshore bulletproof infrastructure"}
             </p>
             <a
-              href={TELEGRAM_BOT}
+              href={BILLING_URL}
               className="mt-6 inline-flex h-9 items-center justify-center rounded-lg bg-primary px-4 text-sm font-semibold text-white transition-colors hover:bg-primary/90"
             >
               {isRu ? "Начать" : "Get started"}
