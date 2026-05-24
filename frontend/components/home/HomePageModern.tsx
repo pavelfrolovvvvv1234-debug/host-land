@@ -234,8 +234,7 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
         <div className="relative z-10">
         
         {/* Hero Section */}
-        <div className="relative rounded-2xl border border-white/10 bg-surface/80 p-8 sm:p-12 lg:p-16 shadow-2xl overflow-hidden backdrop-blur-md">
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.07]" />
+        <div className="relative rounded-2xl border border-white/10 bg-surface/80 p-8 sm:p-12 lg:p-16 shadow-2xl overflow-hidden backdrop-blur-md bg-noise-subtle">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5" />
           <div className="relative z-10 text-center">
             <h1 className="mx-auto max-w-4xl text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white mb-6 leading-[1.1]">
@@ -697,9 +696,8 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
 
         {/* Final CTA */}
         <section className="mt-10 home-section" aria-labelledby="final-cta-heading">
-          <div className="relative rounded-2xl border border-primary/30 bg-primary/10 p-10 sm:p-14 text-center overflow-hidden">
+          <div className="relative rounded-2xl border border-primary/30 bg-primary/10 p-10 sm:p-14 text-center overflow-hidden bg-noise-subtle">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent" />
-            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10" />
             <h2 id="final-cta-heading" className="relative text-2xl sm:text-3xl font-semibold text-white mb-4">
               Ready to deploy on bulletproof infrastructure?
             </h2>
