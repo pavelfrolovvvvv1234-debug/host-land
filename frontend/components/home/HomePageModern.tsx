@@ -21,7 +21,20 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
   const PRELOADER_VISIBLE_MS = 650;
   const PRELOADER_FADE_MS = 280;
   const trustedByTitle = locale === "ru" ? "Нам доверяют" : "Trusted by";
-  const andMoreLabel = locale === "ru" ? "и еще..." : "and more...";
+  const trustedPartners = [
+    {
+      name: "FB-Killa",
+      url: "https://fb-killa.pro/tools/diorhost/",
+      logo: "/partners/fbkill-horizontal.svg",
+      logoClassName: "h-10 w-auto max-w-full object-contain brightness-0 invert opacity-90",
+    },
+    {
+      name: "TheJavaSea",
+      url: "https://thejavasea.me/threads/%E2%9C%85-diorhost-%E2%80%94-bulletproof-rdp-vps-ignoring-spamhaus-etc-all-black-things-allowed.250264/",
+      logo: "/partners/thejavasea.png",
+      logoClassName: "h-12 w-12 object-contain opacity-95",
+    },
+  ] as const;
 
   useLayoutEffect(() => {
     if (typeof window === 'undefined') {
@@ -607,15 +620,24 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
             initial={{ opacity: 0 }}
             animate={ready ? { opacity: 1 } : {}}
             transition={{ duration: 0.4 }}
-            className="mx-auto flex max-w-xl items-center justify-between gap-4 rounded-xl border border-white/10 bg-black/40 p-6"
+            className="mx-auto grid max-w-2xl grid-cols-1 gap-4 sm:grid-cols-2"
           >
-            <img
-              src="/partners/fbkill-horizontal.svg"
-              alt="FBKill"
-              className="h-10 w-auto object-contain brightness-0 invert opacity-90"
-              loading="lazy"
-            />
-            <span className="text-sm font-medium text-white/55">{andMoreLabel}</span>
+            {trustedPartners.map((partner) => (
+              <a
+                key={partner.name}
+                href={partner.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-[4.5rem] items-center justify-center rounded-xl border border-white/10 bg-black/40 p-6 transition-colors hover:border-white/20 hover:bg-black/55"
+              >
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  className={partner.logoClassName}
+                  loading="lazy"
+                />
+              </a>
+            ))}
           </motion.div>
         </section>
 

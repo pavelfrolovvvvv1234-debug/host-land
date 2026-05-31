@@ -19,6 +19,17 @@ export const metadata: Metadata = {
   ]
 };
 
+const BULLETPROOF_TARIFF_NOTE =
+  "With bulletproof plans, complaints are fully ignored—without processing or delays—allowing any claims to be bypassed without additional cost or restrictions.";
+
+function BulletproofTariffNote() {
+  return (
+    <p className="text-white/70 leading-relaxed mt-3 border-t border-white/10 pt-3">
+      {BULLETPROOF_TARIFF_NOTE}
+    </p>
+  );
+}
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
@@ -83,18 +94,21 @@ export default function AbuseFlowPage() {
               <p className="text-white/80 leading-relaxed">
                 Copyright infringement claims handled according to our <Link href="/dmca-policy" className="text-blue-300 hover:text-white underline">DMCA Policy</Link>. All DMCA notices undergo manual review with 7-14 day mediation window.
               </p>
+              <BulletproofTariffNote />
             </div>
             <div>
               <h3 className="text-xl font-semibold mb-2 text-white">2.2. Abuse Reports</h3>
               <p className="text-white/80 leading-relaxed">
                 General abuse complaints (spam, network abuse, fraud) submitted via email to <a href="mailto:abuse@dior.host" className="text-blue-300 hover:text-white underline">abuse@dior.host</a> or through our ticket system.
               </p>
+              <BulletproofTariffNote />
             </div>
             <div>
               <h3 className="text-xl font-semibold mb-2 text-white">2.3. Law Enforcement Requests</h3>
               <p className="text-white/80 leading-relaxed">
                 Valid court orders and law enforcement requests from jurisdictions where we operate (Netherlands, Germany, Romania) are complied with immediately.
               </p>
+              <BulletproofTariffNote />
             </div>
           </div>
         </section>

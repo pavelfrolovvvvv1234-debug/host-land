@@ -19,6 +19,17 @@ export const metadata: Metadata = {
   ]
 };
 
+const BULLETPROOF_TARIFF_NOTE =
+  "Но с абузоустойчивыми тарифами обеспечивается полная игнорируемость жалоб, исключая их обработку и задержки, а также позволяя обходить любые претензии без дополнительных затрат и ограничений.";
+
+function BulletproofTariffNote() {
+  return (
+    <p className="text-white/70 leading-relaxed mt-3 border-t border-white/10 pt-3">
+      {BULLETPROOF_TARIFF_NOTE}
+    </p>
+  );
+}
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
@@ -71,6 +82,7 @@ export default function AbuseFlowPage() {
                 <li>Встречные уведомления принимаются и пересылаются</li>
                 <li>По умолчанию мы работаем с политикой игнорирования DMCA</li>
               </ul>
+              <BulletproofTariffNote />
             </div>
             <div>
               <h3 className="text-xl font-semibold mb-3 text-white">2.2. Спам / Нежелательная рассылка</h3>
@@ -83,6 +95,7 @@ export default function AbuseFlowPage() {
                 <li>Клиент уведомляется с требованием прекратить или исправить</li>
                 <li>Повторные жалобы могут привести к приостановке</li>
               </ul>
+              <BulletproofTariffNote />
             </div>
             <div>
               <h3 className="text-xl font-semibold mb-3 text-white">2.3. Фишинг / Мошенничество</h3>
@@ -94,6 +107,7 @@ export default function AbuseFlowPage() {
                 <li>Приводят к немедленной приостановке без окна медиации</li>
                 <li>Требуют доказательств (скриншоты, URL, логи)</li>
               </ul>
+              <BulletproofTariffNote />
             </div>
             <div>
               <h3 className="text-xl font-semibold mb-3 text-white">2.4. Вредоносное ПО / Ботнеты</h3>
@@ -105,6 +119,7 @@ export default function AbuseFlowPage() {
                 <li>Приводят к немедленной приостановке</li>
                 <li>Требуют технических доказательств (логи, сетевые трассировки, образцы вредоносного ПО)</li>
               </ul>
+              <BulletproofTariffNote />
             </div>
             <div>
               <h3 className="text-xl font-semibold mb-3 text-white">2.5. Сетевые злоупотребления</h3>
@@ -116,6 +131,7 @@ export default function AbuseFlowPage() {
                 <li>Клиент уведомляется с требованием прекратить</li>
                 <li>Повторные жалобы могут привести к приостановке</li>
               </ul>
+              <BulletproofTariffNote />
             </div>
             <div>
               <h3 className="text-xl font-semibold mb-3 text-white">2.6. Другие нарушения</h3>
@@ -127,6 +143,7 @@ export default function AbuseFlowPage() {
                 <li>Проверяются на соответствие применимым законам</li>
                 <li>Клиент уведомляется с окном ответа</li>
               </ul>
+              <BulletproofTariffNote />
             </div>
           </div>
         </section>
