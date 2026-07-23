@@ -26,7 +26,7 @@
 }
 
 /* Preloader visible state - highest priority - MUST override everything */
-.preloader.preloader-visible {
+.preloader.preloader-visible:not(.preloader-fadeout) {
   display: flex !important;
   visibility: visible !important;
   opacity: 1 !important;
@@ -35,9 +35,15 @@
 
 /* Fade out animation state - smooth disappearing */
 .preloader.preloader-fadeout {
+  display: flex !important;
   opacity: 0 !important;
   transition: opacity 0.5s ease-out !important;
   pointer-events: none !important;
+}
+
+.preloader.preloader-fadeout .logo-glow,
+.preloader.preloader-fadeout .preloader-logo {
+  animation: none !important;
 }
 
 /* Removed should ALWAYS override visible - highest priority */
@@ -81,10 +87,13 @@
 
 /* Hide chrome while homepage preloader runs — before React hydrates too */
 html.preloader-active,
-body.preloader-active {
+body.preloader-active,
+html:has(#preloader.preloader-visible:not(.preloader-removed)) {
   overflow: hidden !important;
 }
 
+html:has(#preloader.preloader-visible:not(.preloader-removed)) .site-header,
+html:has(#preloader.preloader-visible:not(.preloader-removed)) .site-footer,
 html.preloader-active .site-header,
 html.preloader-active .site-footer,
 html.preloader-active header.site-header,
