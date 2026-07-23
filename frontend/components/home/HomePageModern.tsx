@@ -43,7 +43,6 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
 
   useLayoutEffect(() => {
     if (typeof window === "undefined") {
-      setReady(true);
       return;
     }
 
@@ -52,14 +51,32 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
 
     if (!isHomePage) {
       setReady(true);
+      setPreloaderActive(false);
       return;
     }
 
     const preloaderElement = document.getElementById("preloader");
     if (!preloaderElement) {
       setReady(true);
+      setPreloaderActive(false);
       return;
     }
+
+    let visibleTimer: ReturnType<typeof setTimeout> | undefined;
+    let fadeTimer: ReturnType<typeof setTimeout> | undefined;
+    let finished = false;
+
+    const finishPreloader = () => {
+      if (finished) return;
+      finished = true;
+
+      preloaderElement.classList.remove("preloader-visible", "preloader-fadeout");
+      preloaderElement.classList.add("preloader-removed");
+      preloaderElement.style.cssText =
+        "display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important;";
+      setPreloaderActive(false);
+      setReady(true);
+    };
 
     preloaderElement.classList.add("preloader-visible");
     preloaderElement.classList.remove("preloader-removed", "preloader-fadeout");
@@ -67,23 +84,17 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
       "display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; z-index: 99999 !important;";
     setPreloaderActive(true);
 
-    const hidePreloader = () => {
+    visibleTimer = window.setTimeout(() => {
       preloaderElement.classList.add("preloader-fadeout");
-      window.setTimeout(() => {
-        preloaderElement.classList.remove("preloader-visible", "preloader-fadeout");
-        preloaderElement.classList.add("preloader-removed");
-        preloaderElement.style.cssText =
-          "display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important;";
-        setPreloaderActive(false);
-        setReady(true);
-      }, PRELOADER_FADE_MS);
-    };
-
-    const preloaderTimer = window.setTimeout(hidePreloader, PRELOADER_VISIBLE_MS);
+      // Reveal page while preloader fades — avoids a blank black screen gap
+      setPreloaderActive(false);
+      setReady(true);
+      fadeTimer = window.setTimeout(finishPreloader, PRELOADER_FADE_MS);
+    }, PRELOADER_VISIBLE_MS);
 
     return () => {
-      window.clearTimeout(preloaderTimer);
-      setPreloaderActive(false);
+      if (visibleTimer) window.clearTimeout(visibleTimer);
+      if (fadeTimer) window.clearTimeout(fadeTimer);
     };
   }, []);
 
