@@ -1,25 +1,84 @@
 "use client";
 
 import { createPortal } from "react-dom";
-import { useLayoutEffect } from "react";
-import { runHomePreloader } from "../../lib/homePreloader";
+import { useEffect, useRef, useState } from "react";
+
+const PRELOADER_VISIBLE_MS = 1800;
+const PRELOADER_FADE_MS = 500;
+const PRELOADER_MAX_MS = 4000;
+
+/** Module flags — survive React Strict Mode remounts. */
+let preloaderStarted = false;
+let preloaderCompleted = false;
+
+function setPreloaderActive(active: boolean) {
+  document.documentElement.classList.toggle("preloader-active", active);
+  document.body.classList.toggle("preloader-active", active);
+}
+
+function hidePreloaderElement(element: HTMLElement | null) {
+  if (!element) return;
+  element.classList.remove("preloader-visible", "preloader-fadeout");
+  element.classList.add("preloader-removed");
+  element.removeAttribute("style");
+}
 
 interface HomePreloaderProps {
   onDone: () => void;
 }
 
-/**
- * Homepage preloader portaled to body (above header) with a single shared timer.
- */
 export function HomePreloader({ onDone }: HomePreloaderProps) {
-  useLayoutEffect(() => runHomePreloader(onDone), [onDone]);
+  const [mounted, setMounted] = useState(false);
+  const onDoneRef = useRef(onDone);
+  onDoneRef.current = onDone;
 
-  if (typeof window === "undefined") {
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) {
+      return;
+    }
+
+    const complete = () => {
+      if (preloaderCompleted) {
+        return;
+      }
+      preloaderCompleted = true;
+      setPreloaderActive(false);
+      hidePreloaderElement(document.getElementById("preloader"));
+      onDoneRef.current();
+    };
+
+    if (preloaderCompleted) {
+      onDoneRef.current();
+      return;
+    }
+
+    if (preloaderStarted) {
+      // Strict Mode remount or HMR — original timers may still run; add a safety net.
+      window.setTimeout(complete, PRELOADER_MAX_MS);
+      return;
+    }
+
+    preloaderStarted = true;
+
+    setPreloaderActive(true);
+
+    window.setTimeout(complete, PRELOADER_MAX_MS);
+    window.setTimeout(() => {
+      document.getElementById("preloader")?.classList.add("preloader-fadeout");
+      window.setTimeout(complete, PRELOADER_FADE_MS);
+    }, PRELOADER_VISIBLE_MS);
+  }, [mounted]);
+
+  if (!mounted) {
     return null;
   }
 
   return createPortal(
-    <div id="preloader" className="preloader preloader-visible" aria-hidden="false" aria-busy="true">
+    <div id="preloader" className="preloader preloader-visible" aria-busy="true" aria-live="polite">
       <div className="preloader-content">
         <div className="logo-animation-group">
           <div className="preloader-logo">

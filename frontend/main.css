@@ -54,8 +54,8 @@
   pointer-events: none !important;
 }
 
-/* Inline styles should also work */
-.preloader[style*="display: flex"] {
+/* Inline styles should also work — but not when removed */
+.preloader.preloader-visible[style*="display: flex"]:not(.preloader-removed) {
   display: flex !important;
 }
 

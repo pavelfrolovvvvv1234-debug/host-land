@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Fragment, useState, useCallback } from "react";
+import { Fragment, useState, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
 import { homeContent, type HomeContent, type ParagraphSegment } from "../../content/home";
 import { localizePath, type Locale } from "../../lib/localization";
@@ -20,6 +20,11 @@ interface HomePageModernProps {
 export function HomePageModern({ locale, content = homeContent[locale] }: HomePageModernProps) {
   const [ready, setReady] = useState(false);
   const handlePreloaderDone = useCallback(() => setReady(true), []);
+
+  useEffect(() => {
+    const fallback = window.setTimeout(() => setReady(true), 4500);
+    return () => window.clearTimeout(fallback);
+  }, []);
   const trustedByTitle = locale === "ru" ? "Нам доверяют" : "Trusted by";
   const trustedPartners = [
     {
@@ -62,12 +67,8 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
       <motion.main
         className="relative z-10 overflow-hidden min-h-screen"
         initial={false}
-        animate={ready ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
-        style={{
-          visibility: ready ? "visible" : "hidden",
-          pointerEvents: ready ? "auto" : "none",
-        }}
+        animate={{ opacity: ready ? 1 : 0 }}
+        transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
       >
         <div className="relative z-10">
         
