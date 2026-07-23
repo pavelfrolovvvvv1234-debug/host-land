@@ -311,7 +311,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       { name: "Operators", description: "Working 24/7" },
       { name: "Current status", description: "Everything works" },
       { name: "Servers", description: "450+ online" },
-      { name: "Geolocation of servers", description: "Netherlands, USA, Germany, Turkey" }
+      { name: "Geolocation of servers", description: "Netherlands" }
     ],
     readyPlansSegments: [
       { type: "text", value: "Need ready-to-run plans? Explore " },
@@ -541,7 +541,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       { name: "Операторы", description: "Работают 24/7" },
       { name: "Текущий статус", description: "Все системы в работе" },
       { name: "Серверы", description: "450+ онлайн" },
-      { name: "География", description: "Нидерланды, США, Германия, Турция" }
+      { name: "География", description: "Нидерланды" }
     ],
     readyPlansSegments: [
       { type: "text", value: "Нужны готовые тарифы? Посмотрите " },

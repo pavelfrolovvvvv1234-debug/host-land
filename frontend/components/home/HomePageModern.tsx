@@ -220,23 +220,25 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
           </div>
         </div>
 
-        {/* Status Bar — Cereller-style metrics */}
-        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {content.statusCards.map((card, index) => (
-            <motion.div
-              key={card.name}
-              initial={{ opacity: 0 }}
-              animate={ready ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
-              className="premium-stat"
-            >
-              <span className="premium-stat__label">{card.name}</span>
-              <div className="flex items-center gap-2 premium-stat__value text-base sm:text-lg">
-                <div className="h-1.5 w-1.5 rounded-full bg-emerald-400 shrink-0" />
-                {card.description}
-              </div>
-            </motion.div>
-          ))}
+        {/* Status Bar */}
+        <div className="mt-6 rounded-xl border border-white/5 bg-surface/30 p-6 backdrop-blur-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {content.statusCards.map((card, index) => (
+              <motion.div
+                key={card.name}
+                initial={{ opacity: 0 }}
+                animate={ready ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-black/20 p-4 rounded-lg border border-white/5 hover:border-white/10 transition-colors"
+              >
+                <h3 className="text-xs font-bold uppercase tracking-wider text-white/40 mb-2">{card.name}</h3>
+                <div className="flex items-center gap-2 text-green-400 text-sm font-medium">
+                  <div className="h-1.5 w-1.5 rounded-full bg-green-500" />
+                  {card.description}
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* Features / Benefits */}
