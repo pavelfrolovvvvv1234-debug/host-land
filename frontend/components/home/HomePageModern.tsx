@@ -18,8 +18,8 @@ interface HomePageModernProps {
  */
 export function HomePageModern({ locale, content = homeContent[locale] }: HomePageModernProps) {
   const [ready, setReady] = useState(false);
-  const PRELOADER_VISIBLE_MS = 650;
-  const PRELOADER_FADE_MS = 280;
+  const PRELOADER_VISIBLE_MS = 1800;
+  const PRELOADER_FADE_MS = 500;
   const trustedByTitle = locale === "ru" ? "Нам доверяют" : "Trusted by";
   const trustedPartners = [
     {
@@ -37,14 +37,14 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
   ] as const;
 
   useLayoutEffect(() => {
-    if (typeof window === 'undefined') {
+    if (typeof window === "undefined") {
       setReady(true);
       return;
     }
 
     const currentPath = window.location.pathname;
-    const isHomePage = currentPath === '/' || currentPath === '/ru' || currentPath === '/en';
-    
+    const isHomePage = currentPath === "/" || currentPath === "/ru" || currentPath === "/en";
+
     if (!isHomePage) {
       setReady(true);
       return;
@@ -56,114 +56,29 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
       return;
     }
 
-    // Preloader is already visible in DOM, just ensure it's shown and content is hidden
     preloaderElement.classList.add("preloader-visible");
-    preloaderElement.classList.remove("preloader-removed");
-    preloaderElement.style.cssText = "display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; z-index: 9999 !important;";
-    if (typeof document !== "undefined" && document.body) {
-      document.body.classList.add("preloader-active");
-    }
-    
-    // Content is hidden via style prop until ready=true
+    preloaderElement.classList.remove("preloader-removed", "preloader-fadeout");
+    preloaderElement.style.cssText =
+      "display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; z-index: 9999 !important;";
+    document.body.classList.add("preloader-active");
 
-    // Small delay to let NavigationTracker update sessionStorage
-    let preloaderTimer: NodeJS.Timeout | null = null;
-    let isTimerSet = false;
-    
-    const checkPreloader = () => {
-      // Prevent multiple timer setups
-      if (isTimerSet) return;
-      isTimerSet = true;
-      
-      // Get previous path from sessionStorage (set by NavigationTracker)
-      const previousPath = sessionStorage.getItem('previous_path');
-      const currentPathInStorage = sessionStorage.getItem('current_path');
-      const navigationType = sessionStorage.getItem('navigation_type');
-    
-      // Check if this is a navigation from another page (not a refresh)
-      const shouldShowPreloader = (() => {
-        // Don't show for refresh
-        if (navigationType === 'reload') {
-          sessionStorage.removeItem('navigation_type');
-          return false;
-        }
-        
-        // Check previous_path from NavigationTracker (most reliable)
-        const isPreviousHomepage = previousPath === '/' || previousPath === '/ru' || previousPath === '/en';
-        if (previousPath && !isPreviousHomepage) {
-          return true;
-        }
-        
-        // Check current_path - if it was set and different from current, we navigated
-        if (currentPathInStorage && currentPathInStorage !== currentPath) {
-          const isCurrentPathHomepage = currentPathInStorage === '/' || currentPathInStorage === '/ru' || currentPathInStorage === '/en';
-          if (!isCurrentPathHomepage) {
-            return true;
-          }
-        }
-        
-        // Check document.referrer as fallback (works for external links or browser navigation)
-        const referrer = document.referrer;
-        if (referrer && referrer.startsWith(window.location.origin)) {
-          try {
-            const referrerUrl = new URL(referrer);
-            const referrerPath = referrerUrl.pathname;
-            const isReferrerHomepage = referrerPath === '/' || referrerPath === '/ru' || referrerPath === '/en';
-            // If referrer exists and is NOT a homepage, show preloader
-            if (referrerPath && !isReferrerHomepage && referrerPath !== currentPath) {
-              return true;
-            }
-          } catch (e) {
-            // Invalid URL, skip
-          }
-        }
-        
-        return false;
-      })();
-
-      // If we shouldn't show preloader, hide it immediately and show content
-      if (!shouldShowPreloader) {
-        preloaderElement.classList.remove("preloader-visible");
+    const hidePreloader = () => {
+      preloaderElement.classList.add("preloader-fadeout");
+      window.setTimeout(() => {
+        preloaderElement.classList.remove("preloader-visible", "preloader-fadeout");
         preloaderElement.classList.add("preloader-removed");
         preloaderElement.style.cssText =
           "display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important;";
-        if (typeof document !== "undefined" && document.body) {
-          document.body.classList.remove("preloader-active");
-        }
-        // Content will fade in via Framer Motion when ready=true
+        document.body.classList.remove("preloader-active");
         setReady(true);
-        return;
-      }
-
-      // Preloader is already shown, just set up the hide timer
-      const hidePreloader = () => {
-        preloaderElement.classList.add("preloader-fadeout");
-        setTimeout(() => {
-          preloaderElement.classList.remove("preloader-visible", "preloader-fadeout");
-          preloaderElement.classList.add("preloader-removed");
-          preloaderElement.style.cssText =
-            "display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important;";
-          if (typeof document !== "undefined" && document.body) {
-            document.body.classList.remove("preloader-active");
-          }
-          // Content will fade in via Framer Motion when ready=true
-          setReady(true);
-        }, PRELOADER_FADE_MS);
-      };
-
-      preloaderTimer = setTimeout(hidePreloader, PRELOADER_VISIBLE_MS);
+      }, PRELOADER_FADE_MS);
     };
 
-    // Check immediately.
-    checkPreloader();
-    
+    const preloaderTimer = window.setTimeout(hidePreloader, PRELOADER_VISIBLE_MS);
+
     return () => {
-      if (preloaderTimer) {
-        clearTimeout(preloaderTimer);
-      }
-      if (typeof document !== "undefined" && document.body) {
-        document.body.classList.remove("preloader-active");
-      }
+      window.clearTimeout(preloaderTimer);
+      document.body.classList.remove("preloader-active");
     };
   }, []);
 
