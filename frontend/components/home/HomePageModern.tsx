@@ -633,16 +633,12 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
                 rel="noopener noreferrer"
                 className="flex min-h-[4.5rem] items-center justify-center rounded-xl border border-white/10 bg-black/40 p-6 transition-colors hover:border-white/20 hover:bg-black/55"
               >
-                {"label" in partner ? (
-                  <span className={partner.labelClassName}>{partner.label}</span>
-                ) : (
-                  <img
-                    src={partner.logo}
-                    alt={partner.name}
-                    className={partner.logoClassName}
-                    loading="lazy"
-                  />
-                )}
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  className={partner.logoClassName}
+                  loading="lazy"
+                />
               </a>
             ))}
           </motion.div>
