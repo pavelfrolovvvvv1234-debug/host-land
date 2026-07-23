@@ -1,4 +1,4 @@
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              "use client";
+"use client";
 
 import Link from "next/link";
 import { Fragment, useState, useLayoutEffect } from "react";
@@ -247,16 +247,18 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
         <div className="relative z-10">
         
         {/* Hero Section */}
-        <div className="relative rounded-2xl border border-white/10 bg-surface/80 p-8 sm:p-12 lg:p-16 shadow-2xl overflow-hidden backdrop-blur-md bg-noise-subtle">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5" />
+        <div className="premium-panel rounded-2xl p-8 sm:p-12 lg:p-16 overflow-hidden">
           <div className="relative z-10 text-center">
-            <h1 className="mx-auto max-w-4xl text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white mb-6 leading-[1.1]">
+            <span className="section-eyebrow">
+              {locale === "ru" ? "Bulletproof инфраструктура" : "Bulletproof infrastructure"}
+            </span>
+            <h1 className="mx-auto max-w-4xl text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white mb-6 leading-[1.08]">
               {content.hero.title}
             </h1>
-            <p className="mx-auto max-w-2xl text-lg sm:text-xl text-white/70 mb-6">
+            <p className="mx-auto max-w-2xl text-lg sm:text-xl text-white/65 mb-6 font-medium">
               {content.hero.subtitle}
             </p>
-            <p className="mx-auto max-w-2xl text-base text-white/55 mb-10 leading-relaxed">
+            <p className="mx-auto max-w-2xl text-base text-white/50 mb-10 leading-relaxed">
               {content.hero.description}
             </p>
             <div className="flex flex-wrap justify-center gap-3 mb-10">
@@ -292,7 +294,7 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
                 return (
                   <span
                     key={index}
-                    className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/85"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/80"
                   >
                     {icon}
                     {text}
@@ -303,30 +305,29 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
           </div>
         </div>
 
-        {/* Status Bar */}
-        <div className="mt-6 rounded-xl border border-white/5 bg-surface/30 p-6 backdrop-blur-sm">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {content.statusCards.map((card, index) => (
-              <motion.div
-                key={card.name}
-                initial={{ opacity: 0 }}
-                animate={ready ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-black/20 p-4 rounded-lg border border-white/5 hover:border-white/10 transition-colors"
-              >
-                <h3 className="text-xs font-bold uppercase tracking-wider text-white/40 mb-2">{card.name}</h3>
-                <div className="flex items-center gap-2 text-green-400 text-sm font-medium">
-                  <div className="h-1.5 w-1.5 rounded-full bg-green-500"></div>
-                  {card.description}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        {/* Status Bar — Cereller-style metrics */}
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {content.statusCards.map((card, index) => (
+            <motion.div
+              key={card.name}
+              initial={{ opacity: 0 }}
+              animate={ready ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              className="premium-stat"
+            >
+              <span className="premium-stat__label">{card.name}</span>
+              <div className="flex items-center gap-2 premium-stat__value text-base sm:text-lg">
+                <div className="h-1.5 w-1.5 rounded-full bg-emerald-400 shrink-0" />
+                {card.description}
+              </div>
+            </motion.div>
+          ))}
         </div>
 
         {/* Features / Benefits */}
         {content.whyUsCards && content.whyUsCards.length > 0 && (
           <section className="mt-16 home-section" aria-labelledby="features-heading">
+            <span className="section-eyebrow">{locale === "ru" ? "Преимущества" : "Features"}</span>
             <h2 id="features-heading" className="text-2xl sm:text-3xl font-semibold tracking-tight text-white mb-8">
               {content.whyUsTitle}
             </h2>
@@ -337,7 +338,7 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
                   initial={{ opacity: 0 }}
                   animate={ready ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.4, delay: index * 0.08 }}
-                  className="group relative rounded-2xl border border-white/10 bg-surface/60 p-6 sm:p-8 backdrop-blur-sm hover:border-primary/30 transition-colors duration-300"
+                  className="group relative premium-panel rounded-2xl p-6 sm:p-8 hover:border-primary/25 transition-colors duration-300"
                 >
                   <div className="flex items-start gap-4">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/15 border border-primary/20 text-primary">
@@ -384,21 +385,23 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
 
         {/* Performance / Reliability */}
         <section className="mt-12 home-section" aria-labelledby="performance-heading">
+          <span className="section-eyebrow">{locale === "ru" ? "Надёжность" : "Infrastructure"}</span>
           <h2 id="performance-heading" className="sr-only">Performance</h2>
-          <div className="rounded-2xl border border-white/10 bg-surface/40 p-6 sm:p-8">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
-              <div>
-                <div className="text-3xl sm:text-4xl font-bold text-white mb-1">99.98%</div>
-                <div className="text-sm text-white/55">Uptime SLA</div>
-              </div>
-              <div>
-                <div className="text-3xl sm:text-4xl font-bold text-white mb-1">150</div>
-                <div className="text-sm text-white/55">Mbit/s standard</div>
-              </div>
-              <div>
-                <div className="text-3xl sm:text-4xl font-bold text-white mb-1">24/7</div>
-                <div className="text-sm text-white/55">Support & NOC</div>
-              </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="premium-stat text-center sm:text-left">
+              <span className="premium-stat__label">Uptime</span>
+              <div className="premium-stat__value">99.98%</div>
+              <span className="premium-stat__hint">SLA availability</span>
+            </div>
+            <div className="premium-stat text-center sm:text-left">
+              <span className="premium-stat__label">Bandwidth</span>
+              <div className="premium-stat__value">150 Mbit/s</div>
+              <span className="premium-stat__hint">Standard network</span>
+            </div>
+            <div className="premium-stat text-center sm:text-left">
+              <span className="premium-stat__label">Support</span>
+              <div className="premium-stat__value">24/7</div>
+              <span className="premium-stat__hint">NOC & engineering</span>
             </div>
           </div>
         </section>
@@ -428,25 +431,25 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
 
         {/* VDS Section — Pricing overview */}
         <section id="pricing" className="mt-16 home-section" aria-labelledby="pricing-heading">
-          <h2 id="pricing-heading" className="text-2xl sm:text-3xl font-semibold text-center text-white mb-2">
+          <span className="section-eyebrow">{locale === "ru" ? "Тарифы" : "Pricing"}</span>
+          <h2 id="pricing-heading" className="text-2xl sm:text-3xl font-semibold text-white mb-2">
             {content.vdsSectionTitle}
           </h2>
-          <p className="text-center text-white/60 text-sm mb-8 max-w-lg mx-auto">
+          <p className="text-white/50 text-sm mb-8 max-w-lg">
             From VDS to dedicated — choose the right plan. All plans include manual abuse review and offshore routing.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {content.vdsTariffs.map((tariff, index) => (
               <motion.div
                 key={tariff.title}
                 initial={{ opacity: 0 }}
                 animate={ready ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative flex flex-col rounded-xl border border-white/10 bg-card-gradient p-1 hover:border-primary/50 transition-all duration-300"
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+                className="group premium-plan-card rounded-xl p-5 flex flex-col"
               >
-                <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none"></div>
-                <div className="relative flex h-full flex-col justify-between rounded-lg bg-black/40 p-5">
+                <div className="relative flex h-full flex-col justify-between">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="rounded p-2 bg-white/5 border border-white/5 group-hover:border-primary/30 transition-colors">
+                    <div className="rounded-lg p-2 bg-white/[0.04] border border-white/[0.06] group-hover:border-primary/25 transition-colors">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -484,7 +487,7 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
                   </ul>
                   <a
                     href={tariff.url}
-                    className="block w-full rounded-lg border border-white/10 bg-white/5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary hover:border-primary transition-all"
+                    className="block w-full rounded-lg border border-white/10 bg-white/[0.04] py-2.5 text-center text-sm font-medium text-white hover:bg-primary hover:border-primary transition-all"
                   >
                     {formatPrice(tariff.price)}
                   </a>
@@ -504,7 +507,7 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
           <div className="mt-16 text-center">
             <div className="relative mb-8">
               <div className="absolute top-1/2 left-0 w-full h-px bg-white/5 -z-10"></div>
-              <h2 className="inline-block bg-[#080808] px-6 text-2xl font-semibold tracking-tight text-white">
+              <h2 className="inline-block bg-[#030304] px-6 text-2xl font-semibold tracking-tight text-white">
                 {content.iphmSectionTitle}
               </h2>
             </div>
@@ -630,12 +633,16 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
                 rel="noopener noreferrer"
                 className="flex min-h-[4.5rem] items-center justify-center rounded-xl border border-white/10 bg-black/40 p-6 transition-colors hover:border-white/20 hover:bg-black/55"
               >
-                <img
-                  src={partner.logo}
-                  alt={partner.name}
-                  className={partner.logoClassName}
-                  loading="lazy"
-                />
+                {"label" in partner ? (
+                  <span className={partner.labelClassName}>{partner.label}</span>
+                ) : (
+                  <img
+                    src={partner.logo}
+                    alt={partner.name}
+                    className={partner.logoClassName}
+                    loading="lazy"
+                  />
+                )}
               </a>
             ))}
           </motion.div>
@@ -718,10 +725,13 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
 
         {/* Final CTA */}
         <section className="mt-10 home-section" aria-labelledby="final-cta-heading">
-          <div className="relative rounded-2xl border border-primary/30 bg-primary/10 p-10 sm:p-14 text-center overflow-hidden bg-noise-subtle">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent" />
+          <div className="premium-panel relative rounded-2xl border-primary/20 p-10 sm:p-14 text-center overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-b from-primary/[0.07] to-transparent pointer-events-none" />
+            <span className="section-eyebrow relative">{locale === "ru" ? "Старт" : "Start"}</span>
             <h2 id="final-cta-heading" className="relative text-2xl sm:text-3xl font-semibold text-white mb-4">
-              Ready to deploy on bulletproof infrastructure?
+              {locale === "ru"
+                ? "Разверните bulletproof-инфраструктуру"
+                : "Ready to deploy on bulletproof infrastructure?"}
             </h2>
             <p className="relative text-white/70 mb-8 max-w-xl mx-auto text-sm sm:text-base">
               Get VPS, VDS, or dedicated servers with manual abuse review, offshore routing, and 24/7 support.

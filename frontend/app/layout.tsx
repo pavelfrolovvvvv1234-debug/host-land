@@ -65,7 +65,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark" data-theme="dark">
-      <body className={`${commissioner.variable} bg-[#080808] text-white min-h-screen`} style={{ fontFamily: "var(--font-commissioner), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
+      <body className={`${commissioner.variable} bg-[#030304] text-white min-h-screen`} style={{ fontFamily: "var(--font-commissioner), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
         <Script
           id="ld-org"
           type="application/ld+json"
@@ -112,7 +112,7 @@ export default function RootLayout({
           <main className="flex-1 h-full relative z-10">
             <div className="home-container relative mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8 min-h-full">
               {/* Shared ambient background glows — same as homepage */}
-              <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+              <div className="home-container-glows pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-hero-glow blur-[100px] opacity-50" />
                 <div className="absolute top-1/3 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[120px]" />
                 <div className="absolute bottom-1/4 left-0 w-80 h-80 bg-primary/5 rounded-full blur-[100px]" />

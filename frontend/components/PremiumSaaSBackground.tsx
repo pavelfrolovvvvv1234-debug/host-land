@@ -1,6 +1,6 @@
 /**
- * Static premium SaaS background for homepage — no WebGL, no iframe, no animation.
- * GPU-friendly gradients + subtle grid and noise only.
+ * Static premium background for homepage — Cereller-inspired quiet dark canvas.
+ * No WebGL, no side glow orbs, no heavy mesh gradients.
  */
 export function PremiumSaaSBackground() {
   return (
@@ -13,6 +13,7 @@ export function PremiumSaaSBackground() {
       <div className="premium-saas-bg__grid" />
       <div className="premium-saas-bg__noise" />
       <div className="premium-saas-bg__vignette" />
+      <div className="premium-saas-bg__accent-line" />
     </div>
   );
 }

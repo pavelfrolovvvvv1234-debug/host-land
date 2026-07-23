@@ -41,7 +41,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full">
       <nav
-        className="relative border-b border-white/[0.05] bg-transparent backdrop-blur-xl"
+        className="relative border-b border-white/[0.06] bg-[#030304]/80 backdrop-blur-xl"
         aria-label="Main navigation"
       >
         <div className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
