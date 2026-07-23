@@ -67,6 +67,13 @@ export default function RootLayout({
     <html lang="en" className="dark" data-theme="dark">
       <body className={`${commissioner.variable} bg-[#030304] text-white min-h-screen`} style={{ fontFamily: "var(--font-commissioner), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
         <Script
+          id="preloader-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var p=window.location.pathname;if(p==="/"||p==="/ru"||p==="/en"){document.documentElement.classList.add("preloader-active");}}catch(e){}})();`,
+          }}
+        />
+        <Script
           id="ld-org"
           type="application/ld+json"
           strategy="afterInteractive"
@@ -106,7 +113,7 @@ export default function RootLayout({
         <NavigationTracker />
         <Analytics />
         <div className="min-h-screen flex flex-col justify-between items-stretch max-w-screen">
-          <header className="relative z-20">
+          <header className="site-header relative z-20">
             <Header />
           </header>
           <main className="flex-1 h-full relative z-10">
@@ -122,7 +129,7 @@ export default function RootLayout({
               </div>
             </div>
           </main>
-          <footer className="relative z-20">
+          <footer className="site-footer relative z-20">
             <Footer />
           </footer>
         </div>

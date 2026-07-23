@@ -36,6 +36,11 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
     },
   ] as const;
 
+  const setPreloaderActive = (active: boolean) => {
+    document.documentElement.classList.toggle("preloader-active", active);
+    document.body.classList.toggle("preloader-active", active);
+  };
+
   useLayoutEffect(() => {
     if (typeof window === "undefined") {
       setReady(true);
@@ -59,8 +64,8 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
     preloaderElement.classList.add("preloader-visible");
     preloaderElement.classList.remove("preloader-removed", "preloader-fadeout");
     preloaderElement.style.cssText =
-      "display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; z-index: 9999 !important;";
-    document.body.classList.add("preloader-active");
+      "display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; z-index: 99999 !important;";
+    setPreloaderActive(true);
 
     const hidePreloader = () => {
       preloaderElement.classList.add("preloader-fadeout");
@@ -69,7 +74,7 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
         preloaderElement.classList.add("preloader-removed");
         preloaderElement.style.cssText =
           "display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important;";
-        document.body.classList.remove("preloader-active");
+        setPreloaderActive(false);
         setReady(true);
       }, PRELOADER_FADE_MS);
     };
@@ -78,7 +83,7 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
 
     return () => {
       window.clearTimeout(preloaderTimer);
-      document.body.classList.remove("preloader-active");
+      setPreloaderActive(false);
     };
   }, []);
 
@@ -151,9 +156,9 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
 
       <motion.main
         className="relative z-10 overflow-hidden min-h-screen"
-        initial={{ opacity: 0 }}
+        initial={false}
         animate={ready ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.15 }}
+        transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
         style={{
           visibility: ready ? "visible" : "hidden",
           pointerEvents: ready ? "auto" : "none",
