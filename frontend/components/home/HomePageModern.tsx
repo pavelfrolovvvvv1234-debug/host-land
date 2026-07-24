@@ -22,9 +22,10 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
   const handlePreloaderDone = useCallback(() => setReady(true), []);
 
   useEffect(() => {
+    setReady(false);
     const fallback = window.setTimeout(() => setReady(true), 4500);
     return () => window.clearTimeout(fallback);
-  }, []);
+  }, [locale]);
   const trustedByTitle = locale === "ru" ? "Нам доверяют" : "Trusted by";
   const trustedPartners = [
     {
@@ -62,7 +63,7 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
 
   return (
     <>
-      <HomePreloader onDone={handlePreloaderDone} />
+      <HomePreloader key={locale} onDone={handlePreloaderDone} />
 
       <motion.main
         className="relative z-10 overflow-hidden min-h-screen"

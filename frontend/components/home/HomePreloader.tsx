@@ -1,15 +1,56 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { createPortal } from "react-dom";
 import { useEffect, useRef, useState } from "react";
 
 const PRELOADER_VISIBLE_MS = 1800;
 const PRELOADER_FADE_MS = 500;
 const PRELOADER_MAX_MS = 4000;
+const SESSION_DONE_KEY = "dior_home_preloader_done";
 
-/** Module flags — survive React Strict Mode remounts. */
-let preloaderStarted = false;
-let preloaderCompleted = false;
+type RunState = {
+  started: boolean;
+  completed: boolean;
+};
+
+/** Per-path run state — survives React Strict Mode remounts on the same URL. */
+const runs = new Map<string, RunState>();
+
+/** Last visited pathname — module-level so locale remounts still detect language switches. */
+let trackedPathname: string | null = null;
+
+function isHomePath(pathname: string | null): pathname is string {
+  return pathname === "/" || pathname === "/ru" || pathname === "/en";
+}
+
+function getRun(pathname: string): RunState {
+  let run = runs.get(pathname);
+  if (!run) {
+    run = { started: false, completed: false };
+    runs.set(pathname, run);
+  }
+  return run;
+}
+
+function hasCompletedHomePreloaderThisSession(): boolean {
+  if (typeof window === "undefined") {
+    return false;
+  }
+  try {
+    return sessionStorage.getItem(SESSION_DONE_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function markHomePreloaderDoneThisSession() {
+  try {
+    sessionStorage.setItem(SESSION_DONE_KEY, "1");
+  } catch {
+    /* ignore */
+  }
+}
 
 function setPreloaderActive(active: boolean) {
   document.documentElement.classList.toggle("preloader-active", active);
@@ -23,13 +64,33 @@ function hidePreloaderElement(element: HTMLElement | null) {
   element.removeAttribute("style");
 }
 
+function preparePreloaderElement(element: HTMLElement | null) {
+  if (!element) return;
+  element.classList.remove("preloader-removed", "preloader-fadeout");
+  element.classList.add("preloader-visible");
+  element.removeAttribute("style");
+}
+
+function isHomeLanguageSwitch(previousPath: string | null, nextPath: string): boolean {
+  return (
+    previousPath !== null &&
+    isHomePath(previousPath) &&
+    isHomePath(nextPath) &&
+    previousPath !== nextPath
+  );
+}
+
 interface HomePreloaderProps {
   onDone: () => void;
 }
 
 export function HomePreloader({ onDone }: HomePreloaderProps) {
+  const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(false);
   const onDoneRef = useRef(onDone);
+  const runTokenRef = useRef(0);
+
   onDoneRef.current = onDone;
 
   useEffect(() => {
@@ -41,39 +102,67 @@ export function HomePreloader({ onDone }: HomePreloaderProps) {
       return;
     }
 
-    const complete = () => {
-      if (preloaderCompleted) {
+    const runToken = ++runTokenRef.current;
+    const previousPath = trackedPathname;
+    trackedPathname = pathname;
+
+    const finish = (options?: { markSessionDone?: boolean }) => {
+      if (runTokenRef.current !== runToken) {
         return;
       }
-      preloaderCompleted = true;
+      if (options?.markSessionDone) {
+        markHomePreloaderDoneThisSession();
+      }
       setPreloaderActive(false);
       hidePreloaderElement(document.getElementById("preloader"));
+      setShowOverlay(false);
       onDoneRef.current();
     };
 
-    if (preloaderCompleted) {
-      onDoneRef.current();
+    if (!isHomePath(pathname)) {
+      finish();
       return;
     }
 
-    if (preloaderStarted) {
-      // Strict Mode remount or HMR — original timers may still run; add a safety net.
+    const run = getRun(pathname);
+    const skipForLanguageSwitch =
+      isHomeLanguageSwitch(previousPath, pathname) && hasCompletedHomePreloaderThisSession();
+
+    if (skipForLanguageSwitch || run.completed) {
+      finish();
+      return;
+    }
+
+    const complete = () => {
+      if (runTokenRef.current !== runToken || run.completed) {
+        return;
+      }
+      run.completed = true;
+      finish({ markSessionDone: true });
+    };
+
+    if (run.started) {
       window.setTimeout(complete, PRELOADER_MAX_MS);
+      setShowOverlay(true);
       return;
     }
 
-    preloaderStarted = true;
-
+    run.started = true;
+    setShowOverlay(true);
     setPreloaderActive(true);
+    preparePreloaderElement(document.getElementById("preloader"));
 
     window.setTimeout(complete, PRELOADER_MAX_MS);
     window.setTimeout(() => {
+      if (runTokenRef.current !== runToken) {
+        return;
+      }
       document.getElementById("preloader")?.classList.add("preloader-fadeout");
       window.setTimeout(complete, PRELOADER_FADE_MS);
     }, PRELOADER_VISIBLE_MS);
-  }, [mounted]);
+  }, [mounted, pathname]);
 
-  if (!mounted) {
+  if (!mounted || !showOverlay) {
     return null;
   }
 
