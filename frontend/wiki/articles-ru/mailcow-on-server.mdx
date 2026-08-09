@@ -1,0 +1,173 @@
+# Установка Mailcow на сервер
+
+Mailcow (mailcow: dockerized) — готовый open-source комплекс для развёртывания собственного корпоративного или частного почтового сервера. В отличие от ручной настройки Postfix + Dovecot + SpamAssassin, Mailcow объединяет все компоненты в Docker-контейнеры и предоставляет удобный веб-интерфейс для администрирования.
+
+## Основные компоненты Mailcow
+
+- **Postfix** — почтовый агент передачи (MTA)
+- **Dovecot** — IMAP/POP3 сервер и Sieve-фильтры
+- **SOGo** — Webmail (почта, календарь, контакты)
+- **Rspamd** — защита от спама
+- **ClamAV** — антивирусная проверка вложений
+- **ACME / Let's Encrypt** — автоматические SSL-сертификаты
+- **Unbound** — локальный рекурсивный DNS-сервер
+- **Web Admin UI** — панель управления
+
+## Требования
+
+- Чистая ОС Linux (рекомендуется Ubuntu 22.04 / 24.04)
+- Минимум 4 GB RAM (6 GB+ для стабильной работы)
+- Root-доступ
+- Открытые порты: **25, 80, 110, 143, 443, 465, 587, 993, 995, 4190**
+- Настроенные DNS-записи: **A**, **MX**, **SPF (TXT)**, **DKIM (TXT)** и обратная запись **PTR (rDNS)**
+
+## Подробный разбор команд установки
+
+### 1. Обновление системы
+
+```bash
+apt update && apt upgrade
+```
+
+- `apt update` — обновляет локальный индекс пакетов из подключённых репозиториев
+- `&&` — выполняет следующую команду только при успешном завершении первой
+- `apt upgrade` — обновляет установленные пакеты до последних версий
+
+### 2. Установка системных утилит
+
+```bash
+apt install ca-certificates curl gnupg -y
+```
+
+- `ca-certificates` — корневые сертификаты для SSL/TLS-соединений
+- `curl` — скачивание файлов и работа с HTTP-запросами
+- `gnupg` — работа с GPG/PGP-ключами
+- `-y` — автоподтверждение установки
+
+### 3. Создание каталога для ключей
+
+```bash
+install -m 0755 -d /etc/apt/keyrings
+```
+
+- `install -m 0755 -d` — создаёт директорию с правами rwxr-xr-x
+- `/etc/apt/keyrings` — каталог для GPG-ключей внешних репозиториев
+
+### 4. Импорт GPG-ключа Docker
+
+```bash
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+```
+
+- `curl -fsSL` — тихая загрузка с поддержкой редиректов
+- `gpg --dearmor -o ...` — конвертирует ключ в бинарный формат и сохраняет в `docker.gpg`
+
+### 5. Добавление официального репозитория Docker
+
+```bash
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo $VERSION_CODENAME) stable" | tee /etc/apt/sources.list.d/docker.list >/dev/null
+```
+
+Автоматически определяет архитектуру CPU и кодовое имя версии ОС, привязывает ключ `signed-by` для проверки пакетов.
+
+### 6. Установка Docker
+
+```bash
+apt update && apt install docker-ce docker-ce-cli containerd.io -y
+```
+
+### 7. Управление службой Docker
+
+```bash
+systemctl start docker
+systemctl enable docker
+```
+
+- `systemctl start docker` — запуск демона Docker
+- `systemctl enable docker` — автозапуск при перезагрузке сервера
+
+### 8. Установка Docker Compose (standalone)
+
+```bash
+sudo curl -L "https://github.com/docker/compose/releases/download/v2.20.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+```
+
+Скачивает бинарный файл Docker Compose v2.20.2 под текущую архитектуру и делает его исполняемым.
+
+### 9. Права доступа к ключу Docker
+
+```bash
+chmod a+r /etc/apt/keyrings/docker.gpg
+```
+
+Даёт права на чтение ключа всем пользователям — необходимо для работы APT.
+
+### 10. Установка jq
+
+```bash
+apt install jq -y
+```
+
+`jq` — парсер JSON, используется скриптами Mailcow для работы с конфигурацией.
+
+### 11. Скачивание исходного кода Mailcow
+
+```bash
+git clone https://github.com/mailcow/mailcow-dockerized
+cd mailcow-dockerized
+```
+
+Клонирует официальный репозиторий в директорию `mailcow-dockerized`.
+
+### 12. Генерация конфигурации
+
+```bash
+./generate_config.sh
+```
+
+Интерактивный скрипт запрашивает FQDN почтового сервера (например, `mail.yourdomain.com`), часовой пояс и ветку обновлений. Создаёт файл `mailcow.conf` со случайными паролями БД и ключами.
+
+### 13. Запуск Mailcow
+
+```bash
+docker compose up -d
+```
+
+- `docker compose up` — скачивает образы и запускает все контейнеры из `docker-compose.yml`
+- `-d` — фоновый режим (detached)
+
+## После запуска
+
+1. Откройте почтовый домен в браузере: `https://mail.yourdomain.com`
+2. Стандартные учётные данные администратора: **admin** / **moohoo**
+3. **Сразу смените стандартный пароль администратора!**
+
+## DNS и порты
+
+Убедитесь, что открыты порты: **25, 80, 110, 143, 443, 465, 587, 993, 995, 4190**.
+
+Настройте DNS-записи:
+
+| Тип | Назначение |
+|-----|------------|
+| A | Указывает на IP сервера |
+| MX | Почтовый обменник |
+| TXT (SPF) | Политика отправки почты |
+| TXT (DKIM) | Подпись исходящих писем |
+| PTR (rDNS) | Обратная запись у хостинг-провайдера |
+
+## FAQ
+
+### Сколько RAM нужно для Mailcow?
+Минимум 4 GB, рекомендуется 6 GB и более для стабильной работы всех контейнеров.
+
+### Можно ли установить на Windows?
+Нет, Mailcow работает только на Linux с Docker.
+
+### Какие ОС поддерживаются?
+Ubuntu, Debian и другие дистрибутивы с поддержкой Docker. В руководстве используется Ubuntu.
+
+---
+
+**Нужен сервер под Mailcow?** [Заказать VDS](/ru/bulletproof/vds)

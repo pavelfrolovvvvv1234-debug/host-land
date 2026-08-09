@@ -21,6 +21,7 @@ const articleSlugs = [
   "dedicated-servers",
   "fastpanel-on-server",
   "ispmanager-on-the-server",
+  "mailcow-on-server",
   "problem-with-session-lockout-on-windows-after-multiple-failed-login-attempts-to-server",
   "site-on-the-server",
   "the-error-fatal-glibc-error-cpu-does-not-support-on-centos-9",

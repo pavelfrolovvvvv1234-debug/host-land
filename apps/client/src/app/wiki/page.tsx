@@ -47,7 +47,8 @@ const wikiCategories: WikiCategory[] = [
     articles: [
       { slug: "fastpanel-on-server", title: "FastPanel on the server" },
       { slug: "site-on-the-server", title: "Website on the server" },
-      { slug: "ispmanager-on-the-server", title: "ISPmanager on the server" }
+      { slug: "ispmanager-on-the-server", title: "ISPmanager on the server" },
+      { slug: "mailcow-on-server", title: "Mailcow on the server" }
     ]
   }
 ];

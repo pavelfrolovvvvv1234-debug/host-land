@@ -1,0 +1,171 @@
+# Mailcow on the Server
+
+Mailcow (mailcow: dockerized) is a ready-to-use open-source stack for deploying your own corporate or private mail server. Unlike manually configuring Postfix + Dovecot + SpamAssassin, Mailcow bundles all components into Docker containers and provides a convenient web interface for administration.
+
+## Mailcow Components
+
+- **Postfix** — Mail Transfer Agent (MTA)
+- **Dovecot** — IMAP/POP3 server and Sieve filters
+- **SOGo** — Webmail (email, calendar, contacts)
+- **Rspamd** — Spam protection
+- **ClamAV** — Antivirus scanning for attachments
+- **ACME / Let's Encrypt** — Automatic SSL certificates
+- **Unbound** — Local recursive DNS server
+- **Web Admin UI** — Management panel
+
+## Requirements
+
+- Clean Linux OS (Ubuntu 22.04 / 24.04 recommended)
+- Minimum 4 GB RAM (6 GB+ recommended for stable operation)
+- Root access
+- Open ports: **25, 80, 110, 143, 443, 465, 587, 993, 995, 4190**
+- Configured DNS records: **A**, **MX**, **SPF (TXT)**, **DKIM (TXT)**, and reverse **PTR (rDNS)**
+
+## Installation — Command Breakdown
+
+### Step 1: Update the System
+
+```bash
+apt update && apt upgrade
+```
+
+- `apt update` — refreshes the local package index from connected repositories
+- `&&` — runs the next command only if the first succeeds
+- `apt upgrade` — upgrades installed packages to the latest versions
+
+### Step 2: Install System Utilities
+
+```bash
+apt install ca-certificates curl gnupg -y
+```
+
+- `ca-certificates` — root certificates for SSL/TLS connections
+- `curl` — file downloads and HTTP requests from the terminal
+- `gnupg` — GPG/PGP key management
+- `-y` — auto-confirm installation prompts
+
+### Step 3: Create Keyrings Directory
+
+```bash
+install -m 0755 -d /etc/apt/keyrings
+```
+
+Creates the directory for external repository GPG keys with rwxr-xr-x permissions.
+
+### Step 4: Import Docker GPG Key
+
+```bash
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+```
+
+Downloads the Docker signing key and saves it in binary format.
+
+### Step 5: Add Official Docker Repository
+
+```bash
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo $VERSION_CODENAME) stable" | tee /etc/apt/sources.list.d/docker.list >/dev/null
+```
+
+Automatically detects CPU architecture and OS codename, binds the signing key for package verification.
+
+### Step 6: Install Docker
+
+```bash
+apt update && apt install docker-ce docker-ce-cli containerd.io -y
+```
+
+### Step 7: Manage Docker Service
+
+```bash
+systemctl start docker
+systemctl enable docker
+```
+
+- `systemctl start docker` — starts the Docker daemon
+- `systemctl enable docker` — enables autostart on reboot
+
+### Step 8: Install Docker Compose (Standalone)
+
+```bash
+sudo curl -L "https://github.com/docker/compose/releases/download/v2.20.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+```
+
+Downloads Docker Compose v2.20.2 binary for the current architecture and makes it executable.
+
+### Step 9: Fix Key Permissions
+
+```bash
+chmod a+r /etc/apt/keyrings/docker.gpg
+```
+
+Grants read access to the Docker key for all users — required for APT.
+
+### Step 10: Install jq
+
+```bash
+apt install jq -y
+```
+
+`jq` is a JSON parser used by Mailcow scripts for configuration handling.
+
+### Step 11: Clone Mailcow Repository
+
+```bash
+git clone https://github.com/mailcow/mailcow-dockerized
+cd mailcow-dockerized
+```
+
+Clones the official repository into the `mailcow-dockerized` directory.
+
+### Step 12: Generate Configuration
+
+```bash
+./generate_config.sh
+```
+
+Interactive script prompts for mail server FQDN (e.g. `mail.yourdomain.com`), timezone, and update branch. Creates `mailcow.conf` with random database passwords and keys.
+
+### Step 13: Start Mailcow
+
+```bash
+docker compose up -d
+```
+
+- `docker compose up` — pulls images and starts all containers from `docker-compose.yml`
+- `-d` — detached (background) mode
+
+## After Launch
+
+1. Open your mail domain in a browser: `https://mail.yourdomain.com`
+2. Default admin credentials: **admin** / **moohoo**
+3. **Change the default admin password immediately!**
+
+## DNS and Ports
+
+Ensure these ports are open: **25, 80, 110, 143, 443, 465, 587, 993, 995, 4190**.
+
+Configure DNS records:
+
+| Type | Purpose |
+|------|---------|
+| A | Points to server IP |
+| MX | Mail exchange |
+| TXT (SPF) | Outbound mail policy |
+| TXT (DKIM) | Outgoing message signature |
+| PTR (rDNS) | Reverse record at your hosting provider |
+
+## FAQ
+
+### How much RAM does Mailcow need?
+Minimum 4 GB; 6 GB or more is recommended for stable operation of all containers.
+
+### Can I install it on Windows?
+No. Mailcow runs only on Linux with Docker.
+
+### Which OS is supported?
+Ubuntu, Debian, and other Docker-compatible Linux distributions. This guide uses Ubuntu.
+
+---
+
+**Need a server for Mailcow?** [Order VDS](/bulletproof/vds)
