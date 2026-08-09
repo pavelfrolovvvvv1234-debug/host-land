@@ -5,8 +5,8 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const services = [
-  {
-    title: "Абузоустойчивые VDS",
+{
+    title: "Абузоустойчивые VPS/VDS",
     description:
       "На этих серверах вы можете сохранить все. Мы игнорируем любые жалобы. Возможность установки любой ОС. Анонимность 100%",
     href: "/ru/bulletproof-vds",
@@ -31,8 +31,8 @@ const services = [
       </svg>
     )
   },
-  {
-    title: "Абузоустойчивые домены",
+{
+    title: "Оффшорные Домены",
     description:
       "При желании возможен перенос. Все домены от 80$",
     href: "/ru/bulletproof-domains",
@@ -54,38 +54,8 @@ const services = [
       </svg>
     )
   },
-  {
-    title: "CDN",
-    description:
-      "Сеть доставки контента для быстрой загрузки сайтов по всему миру. Ускорьте работу вашего проекта с помощью глобальных edge-серверов и умного кеширования.",
-    href: "/ru/bulletproof-cdn",
-    comingSoon: false,
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <circle cx="12" cy="12" r="10" />
-        <line x1="12" y1="2" x2="12" y2="6" />
-        <line x1="12" y1="18" x2="12" y2="22" />
-        <line x1="4.93" y1="4.93" x2="7.76" y2="7.76" />
-        <line x1="16.24" y1="16.24" x2="19.07" y2="19.07" />
-        <line x1="2" y1="12" x2="6" y2="12" />
-        <line x1="18" y1="12" x2="22" y2="12" />
-        <line x1="4.93" y1="19.07" x2="7.76" y2="16.24" />
-        <line x1="16.24" y1="7.76" x2="19.07" y2="4.93" />
-      </svg>
-    )
-  },
-  {
-    title: "Абузоустойчивые выделенные сервера",
+{
+    title: "Абузоустойчивые Дедики",
     description:
       "Выделенные серверы со 100% гарантией анонимности. Никаких блокировок и жалоб. Возможность доставки на любую ОС.",
     href: "/ru/bulletproof-dedicated",
@@ -118,8 +88,60 @@ const services = [
       </svg>
     )
   },
+{
+    title: "TurboVDS",
+    description:
+      "Серверы для парсинга, mass-check, SEO, анализа безопасности и других задач с высокой сетевой активностью. Скорость до 10 Гбит/сек обеспечивает молниеносную работу без потерь в стабильности. Подходят для порт-сканирования, проверки доступности хостов, автоматизации и API-запросов. Лучше стандартных абузоустойчивых VDS за счёт высокой пропускной способности.",
+    href: "/ru/turbovds",
+    comingSoon: false,
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M6 10H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" />
+        <path d="M6 14H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2" />
+        <path d="M6 6h.01" />
+        <path d="M6 18h.01" />
+        <path d="m13 6-4 6h6l-4 6" />
+      </svg>
+    )
+  },
   {
-    title: "Выделенные сервера",
+    title: "VPS/VDS",
+    description:
+      "Обычные виртуальные серверы для «белой» или «серой» эксплуатации. Стандартные политики обработки жалоб — идеально для проектов без ожидания DMCA.",
+    href: "/ru/virtual-services",
+    comingSoon: false,
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M6 10H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" />
+        <path d="M6 14H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2" />
+        <path d="M6 6h.01" />
+        <path d="M6 18h.01" />
+        <path d="m13 6-4 6h6l-4 6" />
+      </svg>
+    )
+  },
+{
+    title: "Дедики",
     description:
       'Выделенные серверы для «белой» или «серой» работы. Жалобы не остаются без внимания! Возможность установки любой ОС.',
     href: "/ru/dedicated-servers",
@@ -152,11 +174,11 @@ const services = [
       </svg>
     )
   },
-  {
-    title: "TurboVDS",
+{
+    title: "CDN",
     description:
-      "Серверы для парсинга, mass-check, SEO, анализа безопасности и других задач с высокой сетевой активностью. Скорость до 10 Гбит/сек обеспечивает молниеносную работу без потерь в стабильности. Подходят для порт-сканирования, проверки доступности хостов, автоматизации и API-запросов. Лучше стандартных абузоустойчивых VDS за счёт высокой пропускной способности.",
-    href: "/ru/turbovds",
+      "Сеть доставки контента для быстрой загрузки сайтов по всему миру. Ускорьте работу вашего проекта с помощью глобальных edge-серверов и умного кеширования.",
+    href: "/ru/bulletproof-cdn",
     comingSoon: false,
     icon: (
       <svg
@@ -170,15 +192,42 @@ const services = [
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <path d="M6 10H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" />
-        <path d="M6 14H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2" />
-        <path d="M6 6h.01" />
-        <path d="M6 18h.01" />
-        <path d="m13 6-4 6h6l-4 6" />
+        <circle cx="12" cy="12" r="10" />
+        <line x1="12" y1="2" x2="12" y2="6" />
+        <line x1="12" y1="18" x2="12" y2="22" />
+        <line x1="4.93" y1="4.93" x2="7.76" y2="7.76" />
+        <line x1="16.24" y1="16.24" x2="19.07" y2="19.07" />
+        <line x1="2" y1="12" x2="6" y2="12" />
+        <line x1="18" y1="12" x2="22" y2="12" />
+        <line x1="4.93" y1="19.07" x2="7.76" y2="16.24" />
+        <line x1="16.24" y1="7.76" x2="19.07" y2="4.93" />
       </svg>
     )
   },
-  {
+{
+    title: "VPN",
+    description:
+      "Виртуальная частная сеть для безопасного и приватного доступа в интернет. Обходите географические блокировки, защищайте свои данные и серфите анонимно с нашей VPN-инфраструктурой.",
+    href: "/ru/bulletproof-vpn",
+    comingSoon: true,
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <path d="M9 12l2 2 4-4" />
+      </svg>
+    )
+  },
+{
     title: "Выделенные Серверы IPHM",
     description:
       "Серверы с IPHM временно недоступны. Эта опция позволяет скрывать настоящий IP для приватности, обхода ограничений и тестирования сети.",
@@ -202,7 +251,7 @@ const services = [
       </svg>
     )
   },
-  {
+{
     title: "Хостинг Minecraft",
     description:
       "Высокопроизводительный хостинг для серверов Minecraft с оптимизированной Java-средой, поддержкой модов и автоматическими бэкапами. Идеально для выживания, креатива и кастомных режимов игры.",
@@ -226,7 +275,7 @@ const services = [
       </svg>
     )
   },
-  {
+{
     title: "Веб-хостинг",
     description:
       "Надёжный виртуальный хостинг с cPanel, установкой в один клик и гарантией аптайма 99.9%. Идеально подходит для сайтов, блогов и бизнес-приложений.",
@@ -250,30 +299,7 @@ const services = [
       </svg>
     )
   },
-  {
-    title: "VPN",
-    description:
-      "Виртуальная частная сеть для безопасного и приватного доступа в интернет. Обходите географические блокировки, защищайте свои данные и серфите анонимно с нашей VPN-инфраструктурой.",
-    href: "/ru/bulletproof-vpn",
-    comingSoon: true,
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        <path d="M9 12l2 2 4-4" />
-      </svg>
-    )
-  },
-  {
+{
     title: "Прокси",
     description:
       "Премиум-сервис прокси с резидентскими и статическими IP. Высокая анонимность, геотаргетинг и безлимитная пропускная способность для приватности, обхода ограничений и веб-автоматизации.",

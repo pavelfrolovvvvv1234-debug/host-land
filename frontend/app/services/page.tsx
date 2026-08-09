@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const services = [
-  {
+{
     title: "Bulletproof VPS/VDS",
     description:
       "On these servers, you can keep everything. We ignore any type of complaint. The ability to deliver any OS. Anonymity is 100%",
@@ -31,8 +31,8 @@ const services = [
       </svg>
     )
   },
-  {
-    title: "Bulletproof Domains",
+{
+    title: "Offshore Domains",
     description:
       "Bulletproof domains. No blocking and the warranty is for the whole period! Transfer is possible, if desired. All domains from $80",
     href: "/bulletproof-domains",
@@ -53,38 +53,8 @@ const services = [
       </svg>
     )
   },
-  {
-    title: "CDN",
-    description:
-      "Content Delivery Network service for fast content delivery worldwide. Accelerate your website performance with global edge servers and smart caching.",
-    href: "/bulletproof-cdn",
-    comingSoon: false,
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <circle cx="12" cy="12" r="10" />
-        <line x1="12" y1="2" x2="12" y2="6" />
-        <line x1="12" y1="18" x2="12" y2="22" />
-        <line x1="4.93" y1="4.93" x2="7.76" y2="7.76" />
-        <line x1="16.24" y1="16.24" x2="19.07" y2="19.07" />
-        <line x1="2" y1="12" x2="6" y2="12" />
-        <line x1="18" y1="12" x2="22" y2="12" />
-        <line x1="4.93" y1="19.07" x2="7.76" y2="16.24" />
-        <line x1="16.24" y1="7.76" x2="19.07" y2="4.93" />
-      </svg>
-    )
-  },
-  {
-    title: "Bulletproof Dedicated Servers",
+{
+    title: "Bulletproof Dedicated",
     description:
       "Dedicated servers with a 100% guarantee of anonymity. No blocking and no complaints. The ability to deliver any OS.",
     href: "/bulletproof-dedicated",
@@ -116,7 +86,58 @@ const services = [
       </svg>
     )
   },
+{
+    title: "TurboVDS",
+    description:
+      "Servers for parsing, mass-checking, SEO, security analysis, and other high-load network tasks. With up to 10 Gbps bandwidth, they deliver lightning-fast performance and stability. Ideal for port scanning, host availability checks, automation, and API-driven operations. Outperforms standard bulletproof VDS thanks to superior network throughput.",
+    href: "/turbovds",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M6 10H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" />
+        <path d="M6 14H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2" />
+        <path d="M6 6h.01" />
+        <path d="M6 18h.01" />
+        <path d="m13 6-4 6h6l-4 6" />
+      </svg>
+    )
+  },
   {
+    title: "VPS/VDS",
+    description:
+      "Regular virtual servers for white and gray projects. Standard abuse-handling policies apply — ideal for workloads without expected DMCA pressure.",
+    href: "/virtual-services",
+    comingSoon: false,
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M6 10H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" />
+        <path d="M6 14H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2" />
+        <path d="M6 6h.01" />
+        <path d="M6 18h.01" />
+        <path d="m13 6-4 6h6l-4 6" />
+      </svg>
+    )
+  },
+{
     title: "Dedicated Servers",
     description:
       'Dedicated servers for "white" or "gray" operation. Complaints are not ignored! The ability to install any OS.',
@@ -149,11 +170,12 @@ const services = [
       </svg>
     )
   },
-  {
-    title: "TurboVDS",
+{
+    title: "CDN",
     description:
-      "Servers for parsing, mass-checking, SEO, security analysis, and other high-load network tasks. With up to 10 Gbps bandwidth, they deliver lightning-fast performance and stability. Ideal for port scanning, host availability checks, automation, and API-driven operations. Outperforms standard bulletproof VDS thanks to superior network throughput.",
-    href: "/turbovds",
+      "Content Delivery Network service for fast content delivery worldwide. Accelerate your website performance with global edge servers and smart caching.",
+    href: "/bulletproof-cdn",
+    comingSoon: false,
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -166,15 +188,42 @@ const services = [
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <path d="M6 10H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" />
-        <path d="M6 14H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2" />
-        <path d="M6 6h.01" />
-        <path d="M6 18h.01" />
-        <path d="m13 6-4 6h6l-4 6" />
+        <circle cx="12" cy="12" r="10" />
+        <line x1="12" y1="2" x2="12" y2="6" />
+        <line x1="12" y1="18" x2="12" y2="22" />
+        <line x1="4.93" y1="4.93" x2="7.76" y2="7.76" />
+        <line x1="16.24" y1="16.24" x2="19.07" y2="19.07" />
+        <line x1="2" y1="12" x2="6" y2="12" />
+        <line x1="18" y1="12" x2="22" y2="12" />
+        <line x1="4.93" y1="19.07" x2="7.76" y2="16.24" />
+        <line x1="16.24" y1="7.76" x2="19.07" y2="4.93" />
       </svg>
     )
   },
-  {
+{
+    title: "VPN",
+    description:
+      "Virtual Private Network service for secure and private internet access. Bypass geo-restrictions, protect your data, and browse anonymously with our VPN infrastructure.",
+    href: "/bulletproof-vpn",
+    comingSoon: true,
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <path d="M9 12l2 2 4-4" />
+      </svg>
+    )
+  },
+{
     title: "Dedicated Servers IPHM",
     description:
       "IPHM servers are temporarily unavailable. This option lets users mask their real IP for privacy, geo-bypass, and network testing when available again.",
@@ -198,7 +247,7 @@ const services = [
       </svg>
     )
   },
-  {
+{
     title: "Minecraft Hosting",
     description:
       "High-performance Minecraft server hosting with optimized Java runtime, mod support, and automatic backups. Perfect for survival, creative, and custom game modes.",
@@ -222,7 +271,7 @@ const services = [
       </svg>
     )
   },
-  {
+{
     title: "Web Hosting",
     description:
       "Reliable shared hosting with cPanel, one-click installs, and 99.9% uptime guarantee. Perfect for websites, blogs, and business applications.",
@@ -246,30 +295,7 @@ const services = [
       </svg>
     )
   },
-  {
-    title: "VPN",
-    description:
-      "Virtual Private Network service for secure and private internet access. Bypass geo-restrictions, protect your data, and browse anonymously with our VPN infrastructure.",
-    href: "/bulletproof-vpn",
-    comingSoon: true,
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        <path d="M9 12l2 2 4-4" />
-      </svg>
-    )
-  },
-  {
+{
     title: "Proxy",
     description:
       "Premium proxy service with residential and static datacenter IPs. High anonymity, geo-targeting, and unlimited bandwidth for privacy, bypassing restrictions, and web automation.",
