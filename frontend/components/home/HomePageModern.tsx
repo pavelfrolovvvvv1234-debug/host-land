@@ -331,7 +331,7 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
           </p>
         </section>
 
-        {/* IPHM Section */}
+        {/* Bulletproof dedicated servers */}
         {content.iphmTariffs && content.iphmTariffs.length > 0 && (
           <div className="mt-16 text-center">
             <div className="relative mb-8">
@@ -388,9 +388,11 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
                       <li className="flex items-center gap-2">
                         <span className="w-1 h-1 rounded-full bg-primary"></span> {content.specLabels.ram}: {tariff.ram} GB
                       </li>
-                      <li className="flex items-center gap-2">
-                        <span className="w-1 h-1 rounded-full bg-primary"></span> NVME: {tariff.ssd} GB
-                      </li>
+                      {tariff.ssd > 0 && (
+                        <li className="flex items-center gap-2">
+                          <span className="w-1 h-1 rounded-full bg-primary"></span> {content.specLabels.storage}: {tariff.ssd} GB
+                        </li>
+                      )}
                       {tariff.props.map((prop, i) => (
                         <li key={i} className="flex items-center gap-2">
                           <span className="w-1 h-1 rounded-full bg-primary"></span> {prop.name}: {prop.value}
@@ -409,7 +411,7 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
             </div>
             <div className="mt-6">
               <Link
-                href={localizeHref("/services/iphm")}
+                href={localizeHref("/bulletproof/dedicated")}
                 className="inline-flex items-center text-sm text-white/70 hover:text-white hover:border-b border-white transition-all"
               >
                 {content.iphmShowMoreLabel}

@@ -235,63 +235,63 @@ const sharedVdsTariffs: ReadonlyArray<VdsTariff> = [
   }
 ];
 
-const sharedIphmTariffs: ReadonlyArray<IphmTariff> = [
+const sharedBulletproofDedicatedTariffs: ReadonlyArray<IphmTariff> = [
   {
-    title: "1X E5 2673 V3",
-    cpu: 12,
-    ssd: 1000,
-    ram: 64,
+    title: "Intel Xeon E3-1240v2",
+    cpu: 4,
+    ssd: 0,
+    ram: 16,
     props: [
-      { name: "IPs", value: "1 IPv4 - Upgradable" },
+      { name: "Storage", value: "SSD / NVMe" },
+      { name: "Network", value: "1 Gbps" },
+      { name: "Bandwidth", value: "Unlimited" },
       { name: "OS", value: "Linux, Windows" },
-      { name: "Bandwidth", value: "UNMETERED" },
-      { name: "Network Speed", value: "1 gbit/s" }
     ],
-    price: 1935,
-    url: "https://my.dior.host"
+    price: 180,
+    url: "https://my.dior.host",
   },
   {
-    title: "2X E5 2673 V3",
-    cpu: 24,
-    ssd: 1000,
-    ram: 64,
+    title: "Intel Xeon E3-1240v2",
+    cpu: 4,
+    ssd: 0,
+    ram: 32,
     props: [
-      { name: "IPs", value: "1 IPv4 - Upgradable" },
+      { name: "Storage", value: "250 GB" },
+      { name: "Network", value: "1 Gbps" },
+      { name: "Bandwidth", value: "Unlimited" },
       { name: "OS", value: "Linux, Windows" },
-      { name: "Bandwidth", value: "UNMETERED" },
-      { name: "Network Speed", value: "1 gbit/s" }
     ],
-    price: 2275,
-    url: "https://my.dior.host"
+    price: 220,
+    url: "https://my.dior.host",
   },
   {
-    title: "2X E5 2673 V3",
-    cpu: 24,
-    ssd: 2000,
+    title: "2x Intel Xeon E5-2650 v2",
+    cpu: 16,
+    ssd: 0,
+    ram: 192,
+    props: [
+      { name: "Storage", value: "480 GB SATA SSD" },
+      { name: "Network", value: "1 Gbps" },
+      { name: "Bandwidth", value: "Unlimited" },
+      { name: "OS", value: "Linux, Windows" },
+    ],
+    price: 470,
+    url: "https://my.dior.host",
+  },
+  {
+    title: "2x Intel Xeon E5-2680 v4",
+    cpu: 28,
+    ssd: 0,
     ram: 128,
     props: [
-      { name: "IPs", value: "1 IPv4 - Upgradable" },
+      { name: "Storage", value: "480 GB SATA SSD" },
+      { name: "Network", value: "1 Gbps" },
+      { name: "Bandwidth", value: "Unlimited" },
       { name: "OS", value: "Linux, Windows" },
-      { name: "Bandwidth", value: "UNMETERED" },
-      { name: "Network Speed", value: "1 gbit/s" }
     ],
-    price: 3189,
-    url: "https://my.dior.host"
+    price: 499,
+    url: "https://my.dior.host",
   },
-  {
-    title: "2X E5 2673 V3",
-    cpu: 24,
-    ssd: 1000,
-    ram: 64,
-    props: [
-      { name: "IPs", value: "1 IPv4 - Upgradable" },
-      { name: "OS", value: "Linux, Windows" },
-      { name: "Bandwidth", value: "500TB" },
-      { name: "Network Speed", value: "10 gbit/s" }
-    ],
-    price: 4785,
-    url: "https://my.dior.host"
-  }
 ];
 
 export const homeContent: Record<Locale, HomeContent> = {
@@ -346,8 +346,8 @@ export const homeContent: Record<Locale, HomeContent> = {
     vdsTariffs: sharedVdsTariffs,
     vdsSectionTitle: "Bulletproof VDS",
     vdsShowMoreLabel: "Show more",
-    iphmTariffs: sharedIphmTariffs,
-    iphmSectionTitle: "IPHM",
+    iphmTariffs: sharedBulletproofDedicatedTariffs,
+    iphmSectionTitle: "Bulletproof Dedicated",
     iphmShowMoreLabel: "Show more",
     specLabels: {
       cpu: "CPU",
@@ -576,8 +576,8 @@ export const homeContent: Record<Locale, HomeContent> = {
     vdsTariffs: sharedVdsTariffs,
     vdsSectionTitle: "Bulletproof VDS",
     vdsShowMoreLabel: "Показать больше",
-    iphmTariffs: sharedIphmTariffs,
-    iphmSectionTitle: "IPHM",
+    iphmTariffs: sharedBulletproofDedicatedTariffs,
+    iphmSectionTitle: "Абузоустойчивые Дедики",
     iphmShowMoreLabel: "Показать больше",
     specLabels: {
       cpu: "CPU",
