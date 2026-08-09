@@ -145,14 +145,10 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
               >
                 <h3 className="text-xs font-bold uppercase tracking-wider text-white/40 mb-2">{card.name}</h3>
                 {card.locations && card.locations.length > 0 ? (
-                  <ul className="space-y-1.5">
-                    {card.locations.map((location) => (
-                      <li key={location} className="flex items-center gap-2 text-green-400 text-sm font-medium">
-                        <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-green-500" />
-                        {location}
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="flex items-start gap-2 text-green-400 text-sm font-medium">
+                    <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-green-500" />
+                    <p>{card.locations.join(", ")}</p>
+                  </div>
                 ) : (
                   <div className="flex items-center gap-2 text-green-400 text-sm font-medium">
                     <div className="h-1.5 w-1.5 rounded-full bg-green-500" />
