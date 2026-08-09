@@ -222,7 +222,7 @@ export function HomePage({ locale, content = homeContent[locale] }: HomePageProp
                 <motion.li key={card.name} variants={fadeInUp} whileHover="hover" initial="rest" className="flex-grow basis-72">
                   <div className="bg-black/40 p-4 rounded-lg shadow shadow-lg">
                     <h3 className="font-bold uppercase opacity-50">{card.name}</h3>
-                    <p className="mt-4">{card.description}</p>
+                    <p className="mt-4">{card.locations?.join(", ") ?? card.description}</p>
                   </div>
                 </motion.li>
               ))}

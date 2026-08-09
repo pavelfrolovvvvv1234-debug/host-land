@@ -144,10 +144,21 @@ export function HomePageModern({ locale, content = homeContent[locale] }: HomePa
                 className="bg-black/20 p-4 rounded-lg border border-white/5 hover:border-white/10 transition-colors"
               >
                 <h3 className="text-xs font-bold uppercase tracking-wider text-white/40 mb-2">{card.name}</h3>
-                <div className="flex items-center gap-2 text-green-400 text-sm font-medium">
-                  <div className="h-1.5 w-1.5 rounded-full bg-green-500" />
-                  {card.description}
-                </div>
+                {card.locations && card.locations.length > 0 ? (
+                  <ul className="space-y-1.5">
+                    {card.locations.map((location) => (
+                      <li key={location} className="flex items-center gap-2 text-green-400 text-sm font-medium">
+                        <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-green-500" />
+                        {location}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <div className="flex items-center gap-2 text-green-400 text-sm font-medium">
+                    <div className="h-1.5 w-1.5 rounded-full bg-green-500" />
+                    {card.description}
+                  </div>
+                )}
               </motion.div>
             ))}
           </div>

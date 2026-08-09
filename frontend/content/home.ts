@@ -3,6 +3,7 @@ import type { Locale } from "../lib/localization";
 export interface StatusCard {
   readonly name: string;
   readonly description: string;
+  readonly locations?: ReadonlyArray<string>;
 }
 
 export interface DomainZone {
@@ -311,7 +312,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       { name: "Operators", description: "Working 24/7" },
       { name: "Current status", description: "Everything works" },
       { name: "Servers", description: "450+ online" },
-      { name: "Geolocation of servers", description: "Netherlands" }
+      { name: "Geolocation of servers", description: "Netherlands", locations: ["Netherlands", "USA", "Germany", "Turkey", "Paris", "Latvia"] }
     ],
     readyPlansSegments: [
       { type: "text", value: "Need ready-to-run plans? Explore " },
@@ -541,7 +542,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       { name: "Операторы", description: "Работают 24/7" },
       { name: "Текущий статус", description: "Все системы в работе" },
       { name: "Серверы", description: "450+ онлайн" },
-      { name: "География", description: "Нидерланды" }
+      { name: "География", description: "Нидерланды", locations: ["Нидерланды", "США", "Германия", "Турция", "Париж", "Латвия"] }
     ],
     readyPlansSegments: [
       { type: "text", value: "Нужны готовые тарифы? Посмотрите " },
