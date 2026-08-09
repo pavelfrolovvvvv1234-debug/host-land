@@ -1,4 +1,5 @@
 import type { Locale } from "../lib/localization";
+import { homeDomainZones } from "./domains";
 
 export interface StatusCard {
   readonly name: string;
@@ -326,24 +327,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       { type: "text", value: "." }
     ],
     domainSectionTitle: "Bulletproof Domain Registration",
-    domainZones: [
-      { title: ".com", price: 80 },
-      { title: ".net", price: 80 },
-      { title: ".org", price: 80 },
-      { title: ".info", price: 80 },
-      { title: ".biz", price: 80 },
-      { title: ".club", price: 80 },
-      { title: ".pro", price: 80 },
-      { title: ".uk", price: 80 },
-      { title: ".guru", price: 80 },
-      { title: ".ca", price: 80 },
-      { title: ".at", price: 80 },
-      { title: ".io", price: 99 },
-      { title: ".cc", price: 80 },
-      { title: ".us", price: 80 },
-      { title: ".link", price: 80 },
-      { title: ".bz", price: 80 }
-    ],
+    domainZones: homeDomainZones,
     vdsTariffs: sharedVdsTariffs,
     vdsSectionTitle: "Bulletproof VDS",
     vdsShowMoreLabel: "Show more",
@@ -556,24 +540,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       { type: "text", value: "." }
     ],
     domainSectionTitle: "Регистрация доменов",
-    domainZones: [
-      { title: ".com", price: 80 },
-      { title: ".net", price: 80 },
-      { title: ".org", price: 80 },
-      { title: ".info", price: 80 },
-      { title: ".biz", price: 80 },
-      { title: ".club", price: 80 },
-      { title: ".pro", price: 80 },
-      { title: ".uk", price: 80 },
-      { title: ".guru", price: 80 },
-      { title: ".ca", price: 80 },
-      { title: ".at", price: 80 },
-      { title: ".io", price: 99 },
-      { title: ".cc", price: 80 },
-      { title: ".us", price: 80 },
-      { title: ".link", price: 80 },
-      { title: ".bz", price: 80 }
-    ],
+    domainZones: homeDomainZones,
     vdsTariffs: sharedVdsTariffs,
     vdsSectionTitle: "Bulletproof VDS",
     vdsShowMoreLabel: "Показать больше",

@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { FAQItem } from "../../components/motion/FAQItem";
 import Link from "next/link";
 import { BILLING_URL } from "../../lib/billing";
+import { domainTldSummary, domainZonesWithUrl } from "../../content/domains";
 
 type ComparisonRow = { label: string; bulletproof: string; regular: string };
 
@@ -33,7 +34,7 @@ const sections = [
   },
   {
     title: "Which TLDs are supported?",
-    body: "Flat $80/year pricing (except .io) across .com, .net, .org, .io, .cc, .uk, .us, .link, .bz and more.",
+    body: `Flat $80/year pricing across ${domainTldSummary()}.`,
     bullets: [
       "Instant activation plus API access.",
       "Assisted transfers and backorders.",
@@ -64,7 +65,7 @@ const steps = [
   {
     title: "Pick the jurisdiction & TLD",
     description:
-      "Decide which GEO needs protection and choose between .com, .net, .io, .uk, .us or niche TLDs."
+      "Decide which GEO needs protection and choose from .com, .org, .net, .app or other supported TLDs."
   },
   {
     title: "Plan term & DNS strategy",
@@ -101,7 +102,7 @@ const comparisonRows: ComparisonRow[] = [
   },
   {
     label: "Pricing",
-    bulletproof: "Flat yearly pricing ($80 / $99 for .io).",
+    bulletproof: "Flat yearly pricing ($80).",
     regular: "Fluctuating renewals, hidden fees."
   },
   {
@@ -119,42 +120,7 @@ const domainsPrices = {
 
 const ORDER_URL = BILLING_URL;
 
-const zones: Zone[] = [
-  { title: ".com", price: 80, url: ORDER_URL },
-  { title: ".net", price: 80, url: ORDER_URL },
-  { title: ".club", price: 80, url: ORDER_URL },
-  { title: ".uk", price: 80, url: ORDER_URL },
-  { title: ".io", price: 99, url: ORDER_URL },
-  { title: ".at", price: 80, url: ORDER_URL },
-  { title: ".guru", price: 80, url: ORDER_URL },
-  { title: ".info", price: 80, url: ORDER_URL },
-  { title: ".app", price: 80, url: ORDER_URL },
-  { title: ".bot", price: 80, url: ORDER_URL },
-  { title: ".co", price: 80, url: ORDER_URL },
-  { title: ".energy", price: 80, url: ORDER_URL },
-  { title: ".money", price: 80, url: ORDER_URL },
-  { title: ".one", price: 80, url: ORDER_URL },
-  { title: ".shop", price: 80, url: ORDER_URL },
-  { title: ".skin", price: 80, url: ORDER_URL },
-  { title: ".top", price: 80, url: ORDER_URL },
-  { title: ".org", price: 80, url: ORDER_URL },
-  { title: ".biz", price: 80, url: ORDER_URL },
-  { title: ".pro", price: 80, url: ORDER_URL },
-  { title: ".cc", price: 80, url: ORDER_URL },
-  { title: ".us", price: 80, url: ORDER_URL },
-  { title: ".ca", price: 80, url: ORDER_URL },
-  { title: ".link", price: 80, url: ORDER_URL },
-  { title: ".ac", price: 80, url: ORDER_URL },
-  { title: ".bio", price: 80, url: ORDER_URL },
-  { title: ".cash", price: 80, url: ORDER_URL },
-  { title: ".dev", price: 80, url: ORDER_URL },
-  { title: ".host", price: 80, url: ORDER_URL },
-  { title: ".my", price: 80, url: ORDER_URL },
-  { title: ".pw", price: 80, url: ORDER_URL },
-  { title: ".site", price: 80, url: ORDER_URL },
-  { title: ".team", price: 80, url: ORDER_URL },
-  { title: ".vip", price: 80, url: ORDER_URL }
-];
+const zones: Zone[] = domainZonesWithUrl(ORDER_URL);
 
 const faqs = [
   {

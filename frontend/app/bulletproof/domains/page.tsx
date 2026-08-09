@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { domainTldSummary, domainZonesWithUrl } from "../../../content/domains";
 
 type ComparisonRow = { label: string; bulletproof: string; regular: string };
 
@@ -30,7 +31,7 @@ const sections = [
   },
   {
     title: "Which TLDs are supported?",
-    body: "Flat $80/year pricing (except .io) across .com, .net, .org, .io, .cc, .uk, .us, .link, .bz and more.",
+    body: `Flat $80/year pricing across ${domainTldSummary()}.`,
     bullets: [
       "Instant activation plus API access.",
       "Assisted transfers and backorders.",
@@ -52,7 +53,7 @@ const steps = [
   {
     title: "Pick the jurisdiction & TLD",
     description:
-      "Decide which GEO needs protection and choose between .com, .net, .io, .uk, .us or niche TLDs."
+      "Decide which GEO needs protection and choose from .com, .org, .net, .app or other supported TLDs."
   },
   {
     title: "Plan term & DNS strategy",
@@ -89,7 +90,7 @@ const comparisonRows: ComparisonRow[] = [
   },
   {
     label: "Pricing",
-    bulletproof: "Flat yearly pricing ($80 / $99 for .io).",
+    bulletproof: "Flat yearly pricing ($80).",
     regular: "Fluctuating renewals, hidden fees."
   },
   {
@@ -105,24 +106,7 @@ const domainsPrices = {
   transfer: 80
 };
 
-const zones: Zone[] = [
-  { title: ".com", price: 80, url: "https://my.dior.host" },
-  { title: ".net", price: 80, url: "https://my.dior.host" },
-  { title: ".org", price: 80, url: "https://my.dior.host" },
-  { title: ".info", price: 80, url: "https://my.dior.host" },
-  { title: ".biz", price: 80, url: "https://my.dior.host" },
-  { title: ".club", price: 80, url: "https://my.dior.host" },
-  { title: ".pro", price: 80, url: "https://my.dior.host" },
-  { title: ".uk", price: 80, url: "https://my.dior.host" },
-  { title: ".guru", price: 80, url: "https://my.dior.host" },
-  { title: ".ca", price: 80, url: "https://my.dior.host" },
-  { title: ".at", price: 80, url: "https://my.dior.host" },
-  { title: ".io", price: 99, url: "https://my.dior.host" },
-  { title: ".cc", price: 80, url: "https://my.dior.host" },
-  { title: ".us", price: 80, url: "https://my.dior.host" },
-  { title: ".link", price: 80, url: "https://my.dior.host" },
-  { title: ".bz", price: 80, url: "https://my.dior.host" }
-];
+const zones: Zone[] = domainZonesWithUrl("https://my.dior.host");
 
 const faqs = [
   {
