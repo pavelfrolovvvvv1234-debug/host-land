@@ -324,27 +324,6 @@ export default function UserAgreementPage() {
           </div>
         </section>
 
-        <section id="governing-law" className="mb-12">
-          <h2 className="text-3xl font-semibold mb-6 text-white border-b border-white/10 pb-4">
-            10. Governing Law
-          </h2>
-          <div className="space-y-4">
-            <p className="text-white/80 leading-relaxed mb-4">
-              This Agreement is governed by the laws of the Netherlands, with jurisdiction in Amsterdam courts. However, we maintain legal entities in multiple jurisdictions:
-            </p>
-            <div className="bg-black/30 border border-white/10 rounded-lg p-4">
-              <ul className="space-y-2 text-white/80">
-                <li><strong>Netherlands:</strong> Primary jurisdiction for disputes and legal matters</li>
-                <li><strong>Germany:</strong> Alternative jurisdiction for EU compliance matters</li>
-                <li><strong>Romania:</strong> Additional jurisdiction for offshore protection</li>
-              </ul>
-            </div>
-            <p className="text-white/80 leading-relaxed mt-4">
-              For disputes, parties agree to first attempt resolution through mediation. If mediation fails, disputes shall be resolved in Amsterdam courts, Netherlands.
-            </p>
-          </div>
-        </section>
-
         <section id="related-pages" className="mt-12 pt-8 border-t border-white/10">
           <h2 className="text-2xl font-semibold mb-4 text-white">Related Documents</h2>
           <div className="flex flex-wrap gap-4">

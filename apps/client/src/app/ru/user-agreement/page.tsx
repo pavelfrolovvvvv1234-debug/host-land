@@ -323,27 +323,6 @@ export default function UserAgreementPage() {
           </div>
         </section>
 
-        <section id="governing-law" className="mb-12">
-          <h2 className="text-3xl font-semibold mb-6 text-white border-b border-white/10 pb-4">
-            10. Применимое право
-          </h2>
-          <div className="space-y-4">
-            <p className="text-white/80 leading-relaxed mb-4">
-              Это Соглашение регулируется законами Нидерландов, с юрисдикцией в судах Амстердама. Однако мы поддерживаем юридические лица в нескольких юрисдикциях:
-            </p>
-            <div className="bg-black/30 border border-white/10 rounded-lg p-4">
-              <ul className="space-y-2 text-white/80">
-                <li><strong>Нидерланды:</strong> Основная юрисдикция для споров и правовых вопросов</li>
-                <li><strong>Германия:</strong> Альтернативная юрисдикция для вопросов соответствия ЕС</li>
-                <li><strong>Румыния:</strong> Дополнительная юрисдикция для офшорной защиты</li>
-              </ul>
-            </div>
-            <p className="text-white/80 leading-relaxed mt-4">
-              Для споров стороны соглашаются сначала попытаться разрешить через медиацию. Если медиация не удалась, споры должны быть разрешены в судах Амстердама, Нидерланды.
-            </p>
-          </div>
-        </section>
-
         <section id="related-pages" className="mt-12 pt-8 border-t border-white/10">
           <h2 className="text-2xl font-semibold mb-4 text-white">Связанные документы</h2>
           <div className="flex flex-wrap gap-4">
