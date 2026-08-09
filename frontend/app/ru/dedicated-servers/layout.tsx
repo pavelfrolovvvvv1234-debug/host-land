@@ -1,25 +1,28 @@
 import { Metadata } from "next";
 import { toPrimaryUrl, getHreflangAlternates } from "../../../lib/canonical";
+import { getDedicatedServersMeta } from "../../../content/dedicated-servers";
 
 const pathname = "/ru/dedicated-servers";
+const meta = getDedicatedServersMeta("ru");
+
 export const metadata: Metadata = {
-  title: "Выделенные серверы - Обычный Dedicated хостинг | DiorHost",
-  description: 'Выделенные серверы для «белой» или «серой» работы. Жалобы не остаются без внимания! Возможность установки любой ОС.',
+  title: meta.title,
+  description: meta.description,
   alternates: {
     canonical: toPrimaryUrl(pathname),
     languages: getHreflangAlternates(pathname),
   },
   openGraph: {
-    title: "Выделенные серверы - Обычный Dedicated хостинг | DiorHost",
-    description: 'Выделенные серверы для «белой» или «серой» работы. Жалобы не остаются без внимания!',
+    title: meta.title,
+    description: meta.description,
     url: toPrimaryUrl(pathname),
     siteName: "DiorHost",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Выделенные серверы - Обычный Dedicated хостинг | DiorHost",
-    description: 'Выделенные серверы для «белой» или «серой» работы. Жалобы не остаются без внимания!',
+    title: meta.title,
+    description: meta.description,
   },
 };
 
